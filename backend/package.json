@@ -4,7 +4,8 @@
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodejs": "^0.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
