@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom';
 import './App.css';
 import { AppContext } from './components/AppContext';
 
@@ -7,26 +8,10 @@ class App extends Component {
     return (
       <div className="App">
         <>
-          <div>Empty div</div>
-          <Test />
+          {/* <Route exact path="/" render={props => <LandingPage {...props} />} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} /> */}
         </>
-      </div>
-    );
-  }
-}
-
-class Test extends Component {
-  render() {
-    return (
-      <div>
-        <AppContext.Consumer>
-          {context => (
-            <React.Fragment>
-              <p>Username: {context.state.username}</p>
-              <button>🍰🍥🎂</button>
-            </React.Fragment>
-          )}
-        </AppContext.Consumer>
       </div>
     );
   }
