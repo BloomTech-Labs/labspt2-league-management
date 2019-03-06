@@ -1,26 +1,26 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -32,45 +32,45 @@ const styles = theme => ({
     flexGrow: 1
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0
     }
   },
   appBar: {
     marginLeft: drawerWidth,
-    backgroundColor: "#333",
-    [theme.breakpoints.up("sm")]: {
+    backgroundColor: '#333',
+    [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
-      width: "100%",
+      width: '100%',
       zIndex: theme.zIndex.drawer + 1
     }
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
-    [theme.breakpoints.up("sm")]: {
-      display: "none"
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
     }
   },
   button: {
-    color: "white"
+    color: 'white'
     // border: '1px solid white'
   },
   // toolbar: theme.mixins.toolbar,
   toolbar: {
     height: 63,
-    textAlign: "right"
+    textAlign: 'right'
   },
   closeButton: {
-    cursor: "pointer",
+    cursor: 'pointer',
     padding: 15,
     paddingLeft: 35,
-    fontSize: "2rem"
+    fontSize: '2rem'
   },
   drawerPaper: {
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
       width: drawerWidth
     }
   },
@@ -79,13 +79,13 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3
   },
   selected: {
-    color: "white",
-    borderBottom: "1px solid white",
+    color: 'white',
+    borderBottom: '1px solid white',
     borderRadius: 0
   },
   nested: {
-    flexDirection: "column",
-    alignItems: "flex-start",
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     paddingLeft: 40
   }
 });
@@ -109,10 +109,10 @@ class MenuAppBar extends React.Component {
     const { admin, coach } = this.props.data;
     this.setState({
       leagues: [
-        { id: 1, name: "League 1 - Name" },
-        { id: 2, name: "League 2 - Name" }
+        { id: 1, name: 'League 1 - Name' },
+        { id: 2, name: 'League 2 - Name' }
       ],
-      teams: [{ id: 1, name: "Team 1" }],
+      teams: [{ id: 1, name: 'Team 1' }],
       admin,
       coach,
       expandLeagues: false,
@@ -263,11 +263,11 @@ class MenuAppBar extends React.Component {
         {admin && !coach && (
           <List>
             {[
-              { name: "calendar", text: "Calendar" },
-              { name: "teamList", text: "Team List" },
-              { name: "leagueSettings", text: "League Settings" },
-              { name: "editSchedule", text: "Edit Schedule" },
-              { name: "cancellationRequests", text: "Cancellation Requests" }
+              { name: 'calendar', text: 'Calendar' },
+              { name: 'teamList', text: 'Team List' },
+              { name: 'leagueSettings', text: 'League Settings' },
+              { name: 'editSchedule', text: 'Edit Schedule' },
+              { name: 'cancellationRequests', text: 'Cancellation Requests' }
             ].map((item, index) => (
               <>
                 <ListItem
@@ -285,10 +285,18 @@ class MenuAppBar extends React.Component {
         )}
         {coach && !admin && (
           <List>
-            {["Dashboard", "Calendar"].map((text, index) => (
+            {[
+              { name: 'calendar', text: 'Calendar' },
+              { name: 'dashboard', text: 'Dashboard' }
+            ].map((item, index) => (
               <>
-                <ListItem button key={text}>
-                  <ListItemText primary={text} />
+                <ListItem
+                  button
+                  key={item.name}
+                  id={item.name}
+                  onClick={this.props.displayCoachContent}
+                >
+                  <ListItemText primary={item.text} />
                 </ListItem>
                 <Divider />
               </>
@@ -342,7 +350,7 @@ class MenuAppBar extends React.Component {
               <div>
                 <IconButton
                   id="anchorEl"
-                  aria-owns={open ? "menu-appbar" : undefined}
+                  aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
@@ -353,12 +361,12 @@ class MenuAppBar extends React.Component {
                   id="menu-appbar"
                   anchorEl={anchorEl}
                   anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
+                    vertical: 'top',
+                    horizontal: 'right'
                   }}
                   transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
+                    vertical: 'top',
+                    horizontal: 'right'
                   }}
                   open={open}
                   onClose={this.handleClose}
@@ -384,7 +392,7 @@ class MenuAppBar extends React.Component {
             <Drawer
               container={this.props.container}
               variant="temporary"
-              anchor={theme.direction === "rtl" ? "right" : "left"}
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={this.state.mobileOpen}
               onClose={this.handleDrawerToggle}
               classes={{
