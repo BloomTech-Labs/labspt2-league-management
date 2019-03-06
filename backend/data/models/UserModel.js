@@ -2,7 +2,7 @@ const db = require('../dbConfig.js');
 
 module.exports = {
     insert: (user) => {
-        return db('users').insert(user);
+        return db('users').insert(user, 'id');
     },
 
     findByEmail: (email) => {
