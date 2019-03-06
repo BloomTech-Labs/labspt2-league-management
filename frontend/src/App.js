@@ -8,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <>
+          League Management App
           {/* <Route exact path="/" render={props => <LandingPage {...props} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} /> */}
