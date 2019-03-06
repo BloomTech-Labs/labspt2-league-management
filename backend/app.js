@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
+const authRouter = require('./routers/authRouter');
 
 app.use(express.json());
 
 const PORT = process.env.PORT || '4000';
+
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
     res.status(200).send(`API active on port: ${PORT}`);
