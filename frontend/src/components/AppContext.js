@@ -6,14 +6,19 @@ export default class AppProvider extends Component {
   state = {
     username: 'User',
     admin: false,
-    coach: false
+    coach: false,
+    loggedIn: false
   };
 
   render() {
     return (
       <AppContext.Provider
         value={{
-          state: this.state
+          state: this.state,
+          login: () => {
+            // console.log("clicked");
+            this.setState({ loggedIn: true });
+          }
         }}
       >
         {this.props.children}
