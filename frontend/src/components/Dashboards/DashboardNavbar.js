@@ -151,10 +151,6 @@ class MenuAppBar extends React.Component {
     this.setState({ auth: false });
   };
 
-  // homeView = () => {
-  //   this.handleClose();
-  //   this.setState({ admin: false, coach: false });
-  // };
 
   setAdmin = () => {
     this.handleClose();
