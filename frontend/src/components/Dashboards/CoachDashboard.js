@@ -10,7 +10,6 @@ class CoachDashboard extends Component {
   };
 
   displayCoachContent = e => {
-    console.log(e.currentTarget.id);
     this.setState({
       calendar: false,
       dashboard: false

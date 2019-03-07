@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 class LandingPage extends Component {
   render() {
-    const { username, admin, coach, loggedIn } = this.props.context.state;
+    const { username, loggedIn } = this.props.context.state;
     const { login } = this.props.context;
     if (!loggedIn) {
       console.log(this.props.data);
