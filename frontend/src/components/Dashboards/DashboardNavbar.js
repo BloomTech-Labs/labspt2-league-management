@@ -23,6 +23,7 @@ import Menu from '@material-ui/core/Menu';
 import { Link } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
+import CoachDrawer from './CoachDrawer';
 
 const drawerWidth = 240;
 
@@ -94,9 +95,6 @@ const styles = theme => ({
 
 class MenuAppBar extends React.Component {
   state = {
-    auth: true, // global
-    // expandLeagues: false,
-    // expandTeams: false,
     anchorEl: null,
     mobileOpen: false,
     admin: false,
@@ -190,24 +188,10 @@ class MenuAppBar extends React.Component {
           />
         )}
         {coach && !admin && (
-          <List onClick={this.handleClose}>
-            {[
-              { name: 'calendar', text: 'Calendar' },
-              { name: 'dashboard', text: 'Dashboard' }
-            ].map((item, index) => (
-              <>
-                <ListItem
-                  button
-                  key={item.name}
-                  id={item.name}
-                  onClick={this.props.displayCoachContent}
-                >
-                  <ListItemText primary={item.text} />
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-          </List>
+          <CoachDrawer
+            handleClose={this.handleClose}
+            displayCoachContent={this.props.displayCoachContent}
+          />
         )}
       </div>
     );
@@ -235,61 +219,41 @@ class MenuAppBar extends React.Component {
                 Home
               </Button>
             </Link>
-            {/*<Button
-              className={admin && !coach ? classes.selected : classes.button}
-              onClick={this.setAdmin}
-            >
-              Admin
-            </Button>
-            <Button
-              className={!admin && coach ? classes.selected : classes.button}
-              onClick={this.setCoach}
-            >
-              Coach
-            </Button>*/}
-            {!auth && (
-              <Button className={classes.button} onClick={this.login}>
-                Log In
-              </Button>
-            )}
-            {auth && (
-              <div>
-                <IconButton
-                  id="anchorEl"
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  {/*<MenuItem onClick={this.homeView}>Home</MenuItem>*/}
-                  <MenuItem onClick={this.handleClose}>
-                    Account Settings
-                  </MenuItem>
-                  <MenuItem onClick={this.handleClose}>
-                    Billing Information
-                  </MenuItem>
-                  <Link to="/">
-                    <MenuItem>Log Out</MenuItem>
-                  </Link>
-                </Menu>
-              </div>
-            )}
+
+            <div>
+              <IconButton
+                id="anchorEl"
+                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right'
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right'
+                }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                {/*<MenuItem onClick={this.homeView}>Home</MenuItem>*/}
+                <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  Billing Information
+                </MenuItem>
+                <Link to="/">
+                  <MenuItem>Log Out</MenuItem>
+                </Link>
+              </Menu>
+            </div>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
