@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,9 +14,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import ExpandLess from '@material-ui/icons/ExpandLess';
-// import ExpandMore from '@material-ui/icons/ExpandMore';
-// import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
@@ -97,8 +91,8 @@ class MenuAppBar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
-    admin: false,
-    coach: false,
+    // admin: false,
+    // coach: false,
     leagues: [], // global
     teams: [] // global
   };
@@ -138,28 +132,9 @@ class MenuAppBar extends React.Component {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
-  login = () => {
-    setTimeout(() => {
-      this.setState({ auth: true });
-    }, 500);
-  };
-
-  logout = () => {
-    this.handleClose();
-    this.setState({ auth: false });
-  };
-
   render() {
     const { classes, theme } = this.props;
-    const {
-      auth,
-      anchorEl,
-      mobileOpen,
-      admin,
-      coach,
-      leagues,
-      teams
-    } = this.state;
+    const { anchorEl, mobileOpen, admin, coach, leagues, teams } = this.state;
     const open = Boolean(anchorEl);
 
     const drawer = (
@@ -244,7 +219,6 @@ class MenuAppBar extends React.Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                {/*<MenuItem onClick={this.homeView}>Home</MenuItem>*/}
                 <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
                 <MenuItem onClick={this.handleClose}>
                   Billing Information
