@@ -17,10 +17,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
+// import ExpandLess from '@material-ui/icons/ExpandLess';
+// import ExpandMore from '@material-ui/icons/ExpandMore';
+// import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
+import HomeDrawer from './HomeDrawer';
 
 const drawerWidth = 240;
 
@@ -93,8 +94,8 @@ const styles = theme => ({
 class MenuAppBar extends React.Component {
   state = {
     auth: true, // global
-    expandLeagues: false,
-    expandTeams: false,
+    // expandLeagues: false,
+    // expandTeams: false,
     anchorEl: null,
     mobileOpen: false,
     admin: false,
@@ -114,9 +115,7 @@ class MenuAppBar extends React.Component {
       ],
       teams: [{ id: 1, name: 'Team 1' }],
       admin,
-      coach,
-      expandLeagues: false,
-      expandTeams: false
+      coach
     });
   }
 
@@ -151,16 +150,15 @@ class MenuAppBar extends React.Component {
     this.setState({ auth: false });
   };
 
+  //   setAdmin = () => {
+  //     this.handleClose();
+  //     this.setState({ expandLeagues: false });
+  //   };
 
-  setAdmin = () => {
-    this.handleClose();
-    this.setState({ expandLeagues: false });
-  };
-
-  setCoach = () => {
-    this.handleClose();
-    this.setState({ expandTeams: false });
-  };
+  //   setCoach = () => {
+  //     this.handleClose();
+  //     this.setState({ expandTeams: false });
+  //   };
 
   render() {
     const { classes, theme } = this.props;
@@ -187,74 +185,7 @@ class MenuAppBar extends React.Component {
         </div>
         <Divider />
         {!admin && !coach && (
-          <List>
-            <ListItem button key="create">
-              <ListItemText primary="Create League" />
-            </ListItem>
-            <Divider />
-            <ListItem
-              button
-              key="admin"
-              id="expandLeagues"
-              onClick={this.handleClick}
-              color="inherit"
-            >
-              <ListItemText primary="Manage League" />
-              {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Divider />
-            <Collapse
-              in={this.state.expandLeagues}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                {leagues.map(league => (
-                  <>
-                    <Link to="/dashboard/admin">
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        onClick={this.setAdmin}
-                      >
-                        <ListItemText primary={league.name} />
-                      </ListItem>
-                    </Link>
-                    <Divider />
-                  </>
-                ))}
-              </List>
-            </Collapse>
-            <ListItem
-              button
-              key="coach"
-              id="expandTeams"
-              onClick={this.handleClick}
-              color="inherit"
-            >
-              <ListItemText primary="Manage Team" />
-              {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Divider />
-            <Collapse in={this.state.expandTeams} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {teams.map(team => (
-                  <>
-                    <Link to="/dashboard/coach">
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        onClick={this.setCoach}
-                      >
-                        <ListItemText primary={team.name} />
-                      </ListItem>
-                    </Link>
-                    <Divider />
-                  </>
-                ))}
-              </List>
-            </Collapse>
-          </List>
+          <HomeDrawer classes={classes} leagues={leagues} teams={teams} />
         )}
         {admin && !coach && (
           <List>
