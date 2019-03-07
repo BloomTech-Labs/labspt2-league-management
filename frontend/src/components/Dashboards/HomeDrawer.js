@@ -78,7 +78,7 @@ class HomeDrawer extends Component {
         <Divider />
         <Collapse in={this.state.expandTeams} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {teams.map(team => (
+            {teams.map((team, index) => (
               <>
                 <Link to="/dashboard/coach">
                   <ListItem
