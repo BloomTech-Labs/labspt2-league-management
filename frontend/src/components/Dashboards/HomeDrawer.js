@@ -18,11 +18,13 @@ class HomeDrawer extends Component {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
-  toggleLeagues = () => {
+  selectLeague = () => {
+    this.props.handleClose();
     this.setState({ expandLeagues: false });
   };
 
-  toggleTeams = () => {
+  selectTeam = () => {
+    this.props.handleClose();
     this.setState({ expandTeams: false });
   };
 
@@ -53,7 +55,7 @@ class HomeDrawer extends Component {
                   <ListItem
                     button
                     className={classes.nested}
-                    onClick={this.toggleLeagues}
+                    onClick={this.selectLeague}
                   >
                     <ListItemText primary={league.name} />
                   </ListItem>
@@ -82,7 +84,7 @@ class HomeDrawer extends Component {
                   <ListItem
                     button
                     className={classes.nested}
-                    onClick={this.toggleTeams}
+                    onClick={this.selectTeam}
                   >
                     <ListItemText primary={team.name} />
                   </ListItem>

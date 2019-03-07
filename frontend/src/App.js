@@ -10,7 +10,7 @@ import HomeDashboard from './components/Dashboards/HomeDashboard';
 
 class App extends Component {
   render() {
-    console.log(AppContext.Consumer);
+    // console.log(AppContext.Consumer);
     return (
       <>
         <Route

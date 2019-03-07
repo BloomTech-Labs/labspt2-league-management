@@ -13,7 +13,7 @@ class AdminDashboard extends Component {
   };
 
   displayAdminContent = e => {
-    console.log(e.currentTarget.id);
+    // console.log(e.currentTarget.id);
     this.setState({
       calendar: false,
       teamList: false,

@@ -132,7 +132,7 @@ class MenuAppBar extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null, adminAnchorEl: null, coachAnchorEl: null });
+    this.setState({ anchorEl: null, mobileOpen: false });
   };
 
   handleClick = e => {
@@ -149,16 +149,6 @@ class MenuAppBar extends React.Component {
     this.handleClose();
     this.setState({ auth: false });
   };
-
-  //   setAdmin = () => {
-  //     this.handleClose();
-  //     this.setState({ expandLeagues: false });
-  //   };
-
-  //   setCoach = () => {
-  //     this.handleClose();
-  //     this.setState({ expandTeams: false });
-  //   };
 
   render() {
     const { classes, theme } = this.props;
@@ -185,10 +175,15 @@ class MenuAppBar extends React.Component {
         </div>
         <Divider />
         {!admin && !coach && (
-          <HomeDrawer classes={classes} leagues={leagues} teams={teams} />
+          <HomeDrawer
+            classes={classes}
+            leagues={leagues}
+            teams={teams}
+            handleClose={this.handleClose}
+          />
         )}
         {admin && !coach && (
-          <List>
+          <List onClick={this.handleClose}>
             {[
               { name: 'calendar', text: 'Calendar' },
               { name: 'teamList', text: 'Team List' },
@@ -211,7 +206,7 @@ class MenuAppBar extends React.Component {
           </List>
         )}
         {coach && !admin && (
-          <List>
+          <List onClick={this.handleClose}>
             {[
               { name: 'calendar', text: 'Calendar' },
               { name: 'dashboard', text: 'Dashboard' }
