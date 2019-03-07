@@ -22,6 +22,7 @@ import Menu from '@material-ui/core/Menu';
 // import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
+import AdminDrawer from './AdminDrawer';
 
 const drawerWidth = 240;
 
@@ -183,27 +184,10 @@ class MenuAppBar extends React.Component {
           />
         )}
         {admin && !coach && (
-          <List onClick={this.handleClose}>
-            {[
-              { name: 'calendar', text: 'Calendar' },
-              { name: 'teamList', text: 'Team List' },
-              { name: 'leagueSettings', text: 'League Settings' },
-              { name: 'editSchedule', text: 'Edit Schedule' },
-              { name: 'cancellationRequests', text: 'Cancellation Requests' }
-            ].map((item, index) => (
-              <>
-                <ListItem
-                  button
-                  key={item.name}
-                  id={item.name}
-                  onClick={this.props.displayAdminContent}
-                >
-                  <ListItemText primary={item.text} />
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-          </List>
+          <AdminDrawer
+            handleClose={this.handleClose}
+            displayAdminContent={this.props.displayAdminContent}
+          />
         )}
         {coach && !admin && (
           <List onClick={this.handleClose}>
