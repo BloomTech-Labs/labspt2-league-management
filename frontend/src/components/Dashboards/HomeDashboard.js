@@ -7,7 +7,7 @@ class HomeDashboard extends Component {
     coach: false
   };
   render() {
-    return <DashboardNavbar data={this.state} />;
+    return <DashboardNavbar data={this.state} username={this.props.username} />;
   }
 }
 

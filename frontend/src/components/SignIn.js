@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   main: {
@@ -49,9 +50,10 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
   state = {
-    username: '',
-    password: ''
-}
+    email: '',
+    password: '',
+    signedIn: false
+  };
 
   InputHandler = event => {
     event.preventDefault();
@@ -61,14 +63,17 @@ class SignIn extends React.Component {
 
   SubmitHandler = event => {
     event.preventDefault();
-    console.log(this.state);
+    console.log(this.props);
     const credentials = this.state;
     const endpoint = 'https://league-management.herokuapp.com/auth/login';
     axios
       .post(endpoint, credentials)
       .then(res => {
         localStorage.setItem('jwt', res.data.token);
-        window.location.href = 'https://leaguemanagement.netlify.com/dashboard';
+        this.props.signin();
+        this.setState({ email: '', password: '', signedIn: true });
+        // window.location.href = 'http://localhost:3000/dashboard';
+        // window.location.href = 'https://leaguemanagement.netlify.com/dashboard';
       })
       .catch(err => {
         console.log('err from Submit handler in SignUp', err);
@@ -76,6 +81,9 @@ class SignIn extends React.Component {
   };
   render() {
     const { classes } = this.props;
+    if (this.state.signedIn) {
+      return <Redirect to="/dashboard" />;
+    }
 
     return (
       <main className={classes.main}>

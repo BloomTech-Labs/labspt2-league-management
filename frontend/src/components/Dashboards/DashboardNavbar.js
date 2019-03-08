@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
@@ -94,7 +94,8 @@ class MenuAppBar extends React.Component {
     // admin: false,
     // coach: false,
     leagues: [], // global
-    teams: [] // global
+    teams: [], // global
+    logout: false
   };
 
   componentDidMount() {
@@ -130,6 +131,11 @@ class MenuAppBar extends React.Component {
 
   handleClick = e => {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
+  };
+
+  logout = () => {
+    localStorage.removeItem('jwt');
+    this.setState({ logout: true });
   };
 
   render() {
@@ -171,6 +177,10 @@ class MenuAppBar extends React.Component {
       </div>
     );
 
+    if (this.state.logout) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.appBar}>
@@ -185,6 +195,9 @@ class MenuAppBar extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               League Management
+            </Typography>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              {this.props.username}
             </Typography>
             <Link to="/dashboard">
               <Button
@@ -223,9 +236,8 @@ class MenuAppBar extends React.Component {
                 <MenuItem onClick={this.handleClose}>
                   Billing Information
                 </MenuItem>
-                <Link to="/">
-                  <MenuItem>Log Out</MenuItem>
-                </Link>
+
+                <MenuItem onClick={this.logout}>Log Out</MenuItem>
               </Menu>
             </div>
           </Toolbar>
