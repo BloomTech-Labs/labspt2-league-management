@@ -10,7 +10,7 @@ module.exports = {
   },
 
   getByUsername: username => {
-    return db
+    return db('users')
       .select('username', 'email', 'first_name', 'last_name', 'phone')
       .from('users')
       .where('username', username)
