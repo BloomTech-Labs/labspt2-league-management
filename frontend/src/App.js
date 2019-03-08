@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import { AppContext } from './components/AppContext';
+import { AppContext } from './components/Context/AppContext';
 import LandingPage from './components/LandingPage';
 
 import AdminDashboard from './components/Dashboards/AdminDashboard';
@@ -12,7 +12,7 @@ import Signin from './components/SignIn.js';
 
 class App extends Component {
   render() {
-    console.log(AppContext.Consumer);
+    // console.log(AppContext.Consumer);
     return (
       <>
         <Route

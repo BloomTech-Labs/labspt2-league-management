@@ -16,7 +16,6 @@ export default class AppProvider extends Component {
         value={{
           state: this.state,
           login: () => {
-            // console.log("clicked");
             this.setState({ loggedIn: true });
           }
         }}
