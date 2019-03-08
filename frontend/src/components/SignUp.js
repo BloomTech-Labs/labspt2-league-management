@@ -53,7 +53,7 @@ class Signup extends React.Component {
     first_name: '',
     last_name: '',
     phone: ''
-}
+  };
 
   InputHandler = event => {
     event.preventDefault();
@@ -70,11 +70,13 @@ class Signup extends React.Component {
       .post(endpoint, credentials)
       .then(res => {
         localStorage.setItem('jwt', res.data.token);
+        this.props.history.push('/dashboard');
       })
       .catch(err => {
         console.log('err from Submit handler in SignUp', err);
       });
   };
+
   render() {
     const { classes } = this.props;
 
