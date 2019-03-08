@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { AppContext } from './components/Context/AppContext';
 import LandingPage from './components/LandingPage';
@@ -14,22 +14,46 @@ class App extends Component {
   render() {
     // console.log(AppContext.Consumer);
     return (
-      <>
-        <Route
-          exact
-          path="/"
-          render={props => (
-            <AppContext.Consumer>
-              {context => <LandingPage context={context} />}
-            </AppContext.Consumer>
-          )}
-        />
-        <Route path="/dashboard" component={HomeDashboard} />
-        <Route path="/dashboard/admin" component={AdminDashboard} />
-        <Route path="/dashboard/coach" component={CoachDashboard} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/signin" component={Signin} />
-      </>
+      <AppContext.Consumer>
+        {context => (
+          <>
+            {/* PUBLIC ROUTES*/}
+            <Route
+              exact
+              path="/"
+              render={props => <LandingPage context={context} />}
+            />
+            <Route path="/signup" component={Signup} />
+            <Route
+              path="/signin"
+              render={props => <Signin signin={context.signin} />}
+            />
+
+            {/* PROTECTED ROUTES*/}
+            {context.state.loggedIn ? (
+              <Route
+                path="/dashboard"
+                render={props => (
+                  <HomeDashboard
+                    username={context.state.username}
+                    context={context}
+                  />
+                )}
+              />
+            ) : (
+              <Route
+                path="/dashboard"
+                render={props => {
+                  return <Redirect to="/" />;
+                }}
+              />
+            )}
+
+            <Route path="/dashboard/admin" component={AdminDashboard} />
+            <Route path="/dashboard/coach" component={CoachDashboard} />
+          </>
+        )}
+      </AppContext.Consumer>
 
       // admin dashboard - restricted
       // coach dashboard - restricted
