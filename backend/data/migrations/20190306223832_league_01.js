@@ -2,14 +2,14 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('league', league => {
       league.increments();
       league
-      .string('Name')
+      .string('name')
       .notNullable();
      league
-     .integer('Admin_User_ID')
+     .integer('admin_user_id')
      .unsigned()
      .notNullable();
      league
-     .foreign('Admin_User_ID')
+     .foreign('admin_user_id')
      .references('id')
      .on('users')
      league
@@ -19,56 +19,55 @@ exports.up = function(knex, Promise) {
      league
      .foreign('type')
      .references('id')
-     .on('League_Type');
-    
+     .on('league_type');
      league
-     .integer('Teams_Game_Count');
+     .integer('teams_game_count');
      league
-     .datetime('Game_length');
+     .datetime('game_length');
      league
-     .datetime('Start_Day');
+     .datetime('start_day');
      league
-     .boolean('Allow_Monday');
+     .boolean('allow_monday');
      league
-     .boolean('Allow_Tuesday');
+     .boolean('allow_tuesday');
      league
-     .boolean('Allow_Wednesday');
+     .boolean('allow_wednesday');
      league
-     .boolean('Allow_Thursday');
+     .boolean('allow_thursday');
      league
-     .boolean('Allow_Friday');
+     .boolean('allow_friday');
      league
-     .boolean('Allow_Saturday');
+     .boolean('allow_saturday');
      league
-     .boolean('Allow_Sunday');
+     .boolean('allow_sunday');
      league
-     .datetime('Monday_Start_Time');
+     .datetime('monday_start_time');
      league
-     .datetime('Monday_End_Time');
+     .datetime('monday_end_time');
      league
-     .datetime('Tuesday_Start_Time');
+     .datetime('tuesday_start_time');
      league
-     .datetime('Tuesday_End_Time');
+     .datetime('tuesday_end_time');
      league
-     .datetime('Wednesday_Start_Time');
+     .datetime('wednesday_start_time');
      league
-     .datetime('Wednesday_End_Time');
+     .datetime('wednesday_end_time');
      league
-     .datetime('Thursday_Start_Time');
+     .datetime('thursday_start_time');
      league
-     .datetime('Thursday_End_Time');
+     .datetime('thursday_end_time');
      league
-     .datetime('Friday_Start_Time');
+     .datetime('friday_start_time');
      league
-     .datetime('Friday_End_Time');
+     .datetime('friday_end_time');
      league
-     .datetime('Saturday_Start_Time');
+     .datetime('saturday_start_time');
      league
-     .datetime('Saturday_End_Time');
+     .datetime('saturday_end_time');
      league
-     .datetime('Sunday_Start_Time');
+     .datetime('sunday_start_time');
      league
-     .datetime('Sunday_End_Time');
+     .datetime('sunday_end_time');
     });
   };
   
