@@ -18,6 +18,8 @@ import { Link, Redirect } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
+import { AppContext } from '../Context/AppContext';
+// import AppContext from '../Context/AppContext';
 
 const drawerWidth = 240;
 
@@ -195,11 +197,21 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              League Management
+              <Link to="/" style={{ color: '#fff' }}>
+                League Management
+              </Link>
             </Typography>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              {this.props.username}
-            </Typography>
+            <AppContext.Consumer>
+              {context => (
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  className={classes.grow}
+                >
+                  {context.state.username}
+                </Typography>
+              )}
+            </AppContext.Consumer>
             <Link to="/dashboard">
               <Button
                 className={!admin && !coach ? classes.selected : classes.button}
@@ -243,6 +255,7 @@ class MenuAppBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
+
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
