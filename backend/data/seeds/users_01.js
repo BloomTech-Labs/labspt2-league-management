@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
       return knex('users').insert([
         {
           username: 'cgallone0',
-          password: bcrypt.hashSync('rpXPv6MLe6', 10),
+          password: bcrypt.hashSync('rpXPv6MLe6', 4),
           email: 'cgallone0@soundcloud.com',
           first_name: 'Ceciley',
           last_name: 'Gallone',
@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'afarrear1',
-          password: bcrypt.hashSync('GDXoRdIwq5sm', 10),
+          password: bcrypt.hashSync('GDXoRdIwq5sm', 4),
           email: 'afarrear1@usa.gov',
           first_name: 'Athene',
           last_name: 'Farrear',
@@ -25,7 +25,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pbahl2',
-          password: bcrypt.hashSync('5pO5emZSMx', 10),
+          password: bcrypt.hashSync('5pO5emZSMx', 4),
           email: 'pbahl2@bizjournals.com',
           first_name: 'Pamella',
           last_name: 'Bahl',
@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'crochford3',
-          password: bcrypt.hashSync('XpJILoM', 10),
+          password: bcrypt.hashSync('XpJILoM', 4),
           email: 'crochford3@army.mil',
           first_name: 'Cullan',
           last_name: 'Rochford',
@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'olabro4',
-          password: bcrypt.hashSync('UH0mz3Wj', 10),
+          password: bcrypt.hashSync('UH0mz3Wj', 4),
           email: 'olabro4@dion.ne.jp',
           first_name: 'Osbourn',
           last_name: 'Labro',
@@ -49,7 +49,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cotham5',
-          password: bcrypt.hashSync('ZRl4zoMuLTn2', 10),
+          password: bcrypt.hashSync('ZRl4zoMuLTn2', 4),
           email: 'cotham5@creativecommons.org',
           first_name: 'Cassaundra',
           last_name: 'Otham',
@@ -57,7 +57,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'opaternoster6',
-          password: bcrypt.hashSync('jM84dXMxXLH', 10),
+          password: bcrypt.hashSync('jM84dXMxXLH', 4),
           email: 'opaternoster6@answers.com',
           first_name: 'Orelia',
           last_name: 'Paternoster',
@@ -65,7 +65,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'teltune7',
-          password: bcrypt.hashSync('utYiidDCKw', 10),
+          password: bcrypt.hashSync('utYiidDCKw', 4),
           email: 'teltune7@linkedin.com',
           first_name: 'Torrey',
           last_name: 'Eltune',
@@ -73,7 +73,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gsigars8',
-          password: bcrypt.hashSync('OssyvjbtAS', 10),
+          password: bcrypt.hashSync('OssyvjbtAS', 4),
           email: 'gsigars8@aol.com',
           first_name: 'Giraldo',
           last_name: 'Sigars',
@@ -81,7 +81,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'srudolf9',
-          password: bcrypt.hashSync('PaxHvitkLlL', 10),
+          password: bcrypt.hashSync('PaxHvitkLlL', 4),
           email: 'srudolf9@goo.ne.jp',
           first_name: 'Stevie',
           last_name: 'Rudolf',
@@ -89,7 +89,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lcherrymana',
-          password: bcrypt.hashSync('EdnLpY7kif', 10),
+          password: bcrypt.hashSync('EdnLpY7kif', 4),
           email: 'lcherrymana@epa.gov',
           first_name: 'Liv',
           last_name: 'Cherryman',
@@ -97,7 +97,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tmistryb',
-          password: bcrypt.hashSync('ExXR9VzdWj', 10),
+          password: bcrypt.hashSync('ExXR9VzdWj', 4),
           email: 'tmistryb@foxnews.com',
           first_name: 'Teri',
           last_name: 'Mistry',
@@ -105,7 +105,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'riddensc',
-          password: bcrypt.hashSync('mbp2r30e', 10),
+          password: bcrypt.hashSync('mbp2r30e', 4),
           email: 'riddensc@narod.ru',
           first_name: 'Reinwald',
           last_name: 'Iddens',
@@ -113,7 +113,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mbolensd',
-          password: bcrypt.hashSync('EiWVh9w3B', 10),
+          password: bcrypt.hashSync('EiWVh9w3B', 4),
           email: 'mbolensd@symantec.com',
           first_name: 'Marina',
           last_name: 'Bolens',
@@ -121,7 +121,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cchazerande',
-          password: bcrypt.hashSync('HTXS4Utr', 10),
+          password: bcrypt.hashSync('HTXS4Utr', 4),
           email: 'cchazerande@cyberchimps.com',
           first_name: 'Chane',
           last_name: 'Chazerand',
@@ -129,7 +129,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'soelsf',
-          password: bcrypt.hashSync('QwJYdATKUV', 10),
+          password: bcrypt.hashSync('QwJYdATKUV', 4),
           email: 'soelsf@apple.com',
           first_name: 'Stephie',
           last_name: 'Oels',
@@ -137,7 +137,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gjefferdg',
-          password: bcrypt.hashSync('C7QQZJ', 10),
+          password: bcrypt.hashSync('C7QQZJ', 4),
           email: 'gjefferdg@timesonline.co.uk',
           first_name: 'Gram',
           last_name: 'Jefferd',
@@ -145,7 +145,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rsooperh',
-          password: bcrypt.hashSync('JknUzMs3cm', 10),
+          password: bcrypt.hashSync('JknUzMs3cm', 4),
           email: 'rsooperh@sakura.ne.jp',
           first_name: 'Randal',
           last_name: 'Sooper',
@@ -153,7 +153,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pwhittingtoni',
-          password: bcrypt.hashSync('YE9GtUFYtgn', 10),
+          password: bcrypt.hashSync('YE9GtUFYtgn', 4),
           email: 'pwhittingtoni@ow.ly',
           first_name: 'Port',
           last_name: 'Whittington',
@@ -161,7 +161,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jsimmonettj',
-          password: bcrypt.hashSync('Y5Tn26K', 10),
+          password: bcrypt.hashSync('Y5Tn26K', 4),
           email: 'jsimmonettj@cbslocal.com',
           first_name: 'Johnna',
           last_name: 'Simmonett',
@@ -169,7 +169,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'blearoidk',
-          password: bcrypt.hashSync('TRSY1p8egjj', 10),
+          password: bcrypt.hashSync('TRSY1p8egjj', 4),
           email: 'blearoidk@1688.com',
           first_name: 'Basil',
           last_name: 'Learoid',
@@ -177,7 +177,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'svarfalameevl',
-          password: bcrypt.hashSync('rXFAxF', 10),
+          password: bcrypt.hashSync('rXFAxF', 4),
           email: 'svarfalameevl@mashable.com',
           first_name: 'Sheelagh',
           last_name: 'Varfalameev',
@@ -185,7 +185,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kelandm',
-          password: bcrypt.hashSync('TI8VxP', 10),
+          password: bcrypt.hashSync('TI8VxP', 4),
           email: 'kelandm@va.gov',
           first_name: 'Kendell',
           last_name: 'Eland',
@@ -193,7 +193,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rabbisonn',
-          password: bcrypt.hashSync('MealoBBoY3Bt', 10),
+          password: bcrypt.hashSync('MealoBBoY3Bt', 4),
           email: 'rabbisonn@a8.net',
           first_name: 'Ranna',
           last_name: 'Abbison',
@@ -201,7 +201,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bolenechano',
-          password: bcrypt.hashSync('IBcAydZ0s', 10),
+          password: bcrypt.hashSync('IBcAydZ0s', 4),
           email: 'bolenechano@pagesperso-orange.fr',
           first_name: 'Briny',
           last_name: "O'Lenechan",
@@ -209,7 +209,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hbrounep',
-          password: bcrypt.hashSync('rcaKIeY2t', 10),
+          password: bcrypt.hashSync('rcaKIeY2t', 4),
           email: 'hbrounep@geocities.jp',
           first_name: 'Heinrik',
           last_name: 'Broune',
@@ -217,7 +217,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'taizikovitchq',
-          password: bcrypt.hashSync('wUDX9xvSrphg', 10),
+          password: bcrypt.hashSync('wUDX9xvSrphg', 4),
           email: 'taizikovitchq@npr.org',
           first_name: 'Tricia',
           last_name: 'Aizikovitch',
@@ -225,7 +225,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gleetr',
-          password: bcrypt.hashSync('cVmfrAef60Ex', 10),
+          password: bcrypt.hashSync('cVmfrAef60Ex', 4),
           email: 'gleetr@patch.com',
           first_name: 'Geri',
           last_name: 'Leet',
@@ -233,7 +233,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rwhitmans',
-          password: bcrypt.hashSync('QXkr6I7', 10),
+          password: bcrypt.hashSync('QXkr6I7', 4),
           email: 'rwhitmans@vinaora.com',
           first_name: 'Rowland',
           last_name: 'Whitman',
@@ -241,7 +241,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vtaffiet',
-          password: bcrypt.hashSync('1hP96jLjwVQg', 10),
+          password: bcrypt.hashSync('1hP96jLjwVQg', 4),
           email: 'vtaffiet@clickbank.net',
           first_name: 'Vin',
           last_name: 'Taffie',
@@ -249,7 +249,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hfreckeltonu',
-          password: bcrypt.hashSync('bOmsoz5X', 10),
+          password: bcrypt.hashSync('bOmsoz5X', 4),
           email: 'hfreckeltonu@trellian.com',
           first_name: 'Hayes',
           last_name: 'Freckelton',
@@ -257,7 +257,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jshireffv',
-          password: bcrypt.hashSync('xiVdTyHrWYSq', 10),
+          password: bcrypt.hashSync('xiVdTyHrWYSq', 4),
           email: 'jshireffv@amazon.com',
           first_name: 'Joshuah',
           last_name: 'Shireff',
@@ -265,7 +265,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ysounessw',
-          password: bcrypt.hashSync('MSbxj9ZqQ', 10),
+          password: bcrypt.hashSync('MSbxj9ZqQ', 4),
           email: 'ysounessw@t.co',
           first_name: 'Yuri',
           last_name: 'Souness',
@@ -273,7 +273,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'npancastx',
-          password: bcrypt.hashSync('Vwcnrz3UNKKp', 10),
+          password: bcrypt.hashSync('Vwcnrz3UNKKp', 4),
           email: 'npancastx@ezinearticles.com',
           first_name: 'Nettle',
           last_name: 'Pancast',
@@ -281,7 +281,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cjuleffy',
-          password: bcrypt.hashSync('zf3SNTN5qeU', 10),
+          password: bcrypt.hashSync('zf3SNTN5qeU', 4),
           email: 'cjuleffy@wix.com',
           first_name: 'Conway',
           last_name: 'Juleff',
@@ -289,7 +289,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cbriscoz',
-          password: bcrypt.hashSync('yaoayAw', 10),
+          password: bcrypt.hashSync('yaoayAw', 4),
           email: 'cbriscoz@columbia.edu',
           first_name: 'Constantia',
           last_name: 'Brisco',
@@ -297,7 +297,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gcaton10',
-          password: bcrypt.hashSync('bIx7SoAYS', 10),
+          password: bcrypt.hashSync('bIx7SoAYS', 4),
           email: 'gcaton10@bing.com',
           first_name: 'Ginnie',
           last_name: 'Caton',
@@ -305,7 +305,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hjenton11',
-          password: bcrypt.hashSync('TAVLXrsbG', 10),
+          password: bcrypt.hashSync('TAVLXrsbG', 4),
           email: 'hjenton11@berkeley.edu',
           first_name: 'Horatia',
           last_name: 'Jenton',
@@ -313,7 +313,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'proote12',
-          password: bcrypt.hashSync('txKkqxMb7', 10),
+          password: bcrypt.hashSync('txKkqxMb7', 4),
           email: 'proote12@berkeley.edu',
           first_name: 'Paule',
           last_name: 'Roote',
@@ -321,7 +321,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dcanti13',
-          password: bcrypt.hashSync('HcrkB6', 10),
+          password: bcrypt.hashSync('HcrkB6', 4),
           email: 'dcanti13@nsw.gov.au',
           first_name: 'Desiri',
           last_name: 'Canti',
@@ -329,7 +329,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cgrisenthwaite14',
-          password: bcrypt.hashSync('CZacXVJ', 10),
+          password: bcrypt.hashSync('CZacXVJ', 4),
           email: 'cgrisenthwaite14@bloglines.com',
           first_name: 'Cosme',
           last_name: 'Grisenthwaite',
@@ -337,7 +337,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'abauchop15',
-          password: bcrypt.hashSync('mtBE5eat', 10),
+          password: bcrypt.hashSync('mtBE5eat', 4),
           email: 'abauchop15@globo.com',
           first_name: 'Almeda',
           last_name: 'Bauchop',
@@ -345,7 +345,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'danten16',
-          password: bcrypt.hashSync('H0aOgXjk', 10),
+          password: bcrypt.hashSync('H0aOgXjk', 4),
           email: 'danten16@photobucket.com',
           first_name: 'Darb',
           last_name: 'Anten',
@@ -353,7 +353,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mludee17',
-          password: bcrypt.hashSync('zBwNVjtxyl', 10),
+          password: bcrypt.hashSync('zBwNVjtxyl', 4),
           email: 'mludee17@bandcamp.com',
           first_name: 'Mommy',
           last_name: 'Ludee',
@@ -361,7 +361,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ghalston18',
-          password: bcrypt.hashSync('69kfjw', 10),
+          password: bcrypt.hashSync('69kfjw', 4),
           email: 'ghalston18@shinystat.com',
           first_name: 'Genevra',
           last_name: 'Halston',
@@ -369,7 +369,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dtolliday19',
-          password: bcrypt.hashSync('UIo05i90', 10),
+          password: bcrypt.hashSync('UIo05i90', 4),
           email: 'dtolliday19@mapy.cz',
           first_name: 'Dev',
           last_name: 'Tolliday',
@@ -377,7 +377,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bocannan1a',
-          password: bcrypt.hashSync('4pu0miKs0B', 10),
+          password: bcrypt.hashSync('4pu0miKs0B', 4),
           email: 'bocannan1a@pinterest.com',
           first_name: 'Beth',
           last_name: "O'Cannan",
@@ -385,7 +385,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ahaversum1b',
-          password: bcrypt.hashSync('Vsx41gUU', 10),
+          password: bcrypt.hashSync('Vsx41gUU', 4),
           email: 'ahaversum1b@google.cn',
           first_name: 'Amabelle',
           last_name: 'Haversum',
@@ -393,7 +393,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vfranceschino1c',
-          password: bcrypt.hashSync('bEj5TFcQ', 10),
+          password: bcrypt.hashSync('bEj5TFcQ', 4),
           email: 'vfranceschino1c@hibu.com',
           first_name: 'Virge',
           last_name: 'Franceschino',
@@ -401,7 +401,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bknights1d',
-          password: bcrypt.hashSync('iXMnWKG', 10),
+          password: bcrypt.hashSync('iXMnWKG', 4),
           email: 'bknights1d@blog.com',
           first_name: 'Bunny',
           last_name: 'Knights',
@@ -409,7 +409,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wcockaday1e',
-          password: bcrypt.hashSync('l2F4HFNf', 10),
+          password: bcrypt.hashSync('l2F4HFNf', 4),
           email: 'wcockaday1e@mozilla.com',
           first_name: 'Wylma',
           last_name: 'Cockaday',
@@ -417,7 +417,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'afernley1f',
-          password: bcrypt.hashSync('sDR42bYil', 10),
+          password: bcrypt.hashSync('sDR42bYil', 4),
           email: 'afernley1f@biglobe.ne.jp',
           first_name: 'Annie',
           last_name: 'Fernley',
@@ -425,7 +425,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cbyrd1g',
-          password: bcrypt.hashSync('PZKKcEluyD0', 10),
+          password: bcrypt.hashSync('PZKKcEluyD0', 4),
           email: 'cbyrd1g@sohu.com',
           first_name: 'Carmita',
           last_name: 'Byrd',
@@ -433,7 +433,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'iferneyhough1h',
-          password: bcrypt.hashSync('jZrq8It', 10),
+          password: bcrypt.hashSync('jZrq8It', 4),
           email: 'iferneyhough1h@google.de',
           first_name: 'Isacco',
           last_name: 'Ferneyhough',
@@ -441,7 +441,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tviggars1i',
-          password: bcrypt.hashSync('Z8jZSOa', 10),
+          password: bcrypt.hashSync('Z8jZSOa', 4),
           email: 'tviggars1i@mail.ru',
           first_name: 'Tanya',
           last_name: 'Viggars',
@@ -449,7 +449,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'alarrosa1j',
-          password: bcrypt.hashSync('uecKsD4kZFb', 10),
+          password: bcrypt.hashSync('uecKsD4kZFb', 4),
           email: 'alarrosa1j@alibaba.com',
           first_name: 'Adrianna',
           last_name: 'Larrosa',
@@ -457,7 +457,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mzapatero1k',
-          password: bcrypt.hashSync('61sJFU', 10),
+          password: bcrypt.hashSync('61sJFU', 4),
           email: 'mzapatero1k@nyu.edu',
           first_name: 'Mark',
           last_name: 'Zapatero',
@@ -465,7 +465,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dthomlinson1l',
-          password: bcrypt.hashSync('KtEPweAdG', 10),
+          password: bcrypt.hashSync('KtEPweAdG', 4),
           email: 'dthomlinson1l@github.io',
           first_name: 'Debor',
           last_name: 'Thomlinson',
@@ -473,7 +473,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gpappin1m',
-          password: bcrypt.hashSync('wFrgIDx', 10),
+          password: bcrypt.hashSync('wFrgIDx', 4),
           email: 'gpappin1m@about.me',
           first_name: 'Gianni',
           last_name: 'Pappin',
@@ -481,7 +481,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'amelia1n',
-          password: bcrypt.hashSync('JTnUZXr86g', 10),
+          password: bcrypt.hashSync('JTnUZXr86g', 4),
           email: 'amelia1n@java.com',
           first_name: 'Armand',
           last_name: 'Melia',
@@ -489,7 +489,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sbeacham1o',
-          password: bcrypt.hashSync('KQv908qH2A7h', 10),
+          password: bcrypt.hashSync('KQv908qH2A7h', 4),
           email: 'sbeacham1o@netscape.com',
           first_name: 'Skelly',
           last_name: 'Beacham',
@@ -497,7 +497,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rdanilovitch1p',
-          password: bcrypt.hashSync('qQi8PEoeKN', 10),
+          password: bcrypt.hashSync('qQi8PEoeKN', 4),
           email: 'rdanilovitch1p@skype.com',
           first_name: 'Reginald',
           last_name: 'Danilovitch',
@@ -505,7 +505,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ysuatt1q',
-          password: bcrypt.hashSync('Q5h4hHLh2dq', 10),
+          password: bcrypt.hashSync('Q5h4hHLh2dq', 4),
           email: 'ysuatt1q@tuttocitta.it',
           first_name: 'Ynes',
           last_name: 'Suatt',
@@ -513,7 +513,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mmacgiollapheadair1r',
-          password: bcrypt.hashSync('EmMdol74nO', 10),
+          password: bcrypt.hashSync('EmMdol74nO', 4),
           email: 'mmacgiollapheadair1r@sciencedaily.com',
           first_name: 'Maribeth',
           last_name: 'Mac Giolla Pheadair',
@@ -521,7 +521,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bherculson1s',
-          password: bcrypt.hashSync('6vXTIc1Qk78', 10),
+          password: bcrypt.hashSync('6vXTIc1Qk78', 4),
           email: 'bherculson1s@virginia.edu',
           first_name: 'Bram',
           last_name: 'Herculson',
@@ -529,7 +529,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jswinnard1t',
-          password: bcrypt.hashSync('s77kjhvC', 10),
+          password: bcrypt.hashSync('s77kjhvC', 4),
           email: 'jswinnard1t@twitter.com',
           first_name: 'Jimmy',
           last_name: 'Swinnard',
@@ -537,7 +537,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jbawdon1u',
-          password: bcrypt.hashSync('bIML2l', 10),
+          password: bcrypt.hashSync('bIML2l', 4),
           email: 'jbawdon1u@who.int',
           first_name: 'Jarrett',
           last_name: 'Bawdon',
@@ -545,7 +545,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rliebmann1v',
-          password: bcrypt.hashSync('9XzzjJMO7w', 10),
+          password: bcrypt.hashSync('9XzzjJMO7w', 4),
           email: 'rliebmann1v@wisc.edu',
           first_name: 'Russell',
           last_name: 'Liebmann',
@@ -553,7 +553,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lgoodsall1w',
-          password: bcrypt.hashSync('j9R8eT', 10),
+          password: bcrypt.hashSync('j9R8eT', 4),
           email: 'lgoodsall1w@cbslocal.com',
           first_name: 'Loren',
           last_name: 'Goodsall',
@@ -561,7 +561,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sfranke1x',
-          password: bcrypt.hashSync('y1ydAT', 10),
+          password: bcrypt.hashSync('y1ydAT', 4),
           email: 'sfranke1x@aol.com',
           first_name: 'Somerset',
           last_name: 'Franke',
@@ -569,7 +569,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lbunt1y',
-          password: bcrypt.hashSync('6xmgbsz', 10),
+          password: bcrypt.hashSync('6xmgbsz', 4),
           email: 'lbunt1y@cornell.edu',
           first_name: 'Louisette',
           last_name: 'Bunt',
@@ -577,7 +577,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ccarnock1z',
-          password: bcrypt.hashSync('e5F35j9UqZp', 10),
+          password: bcrypt.hashSync('e5F35j9UqZp', 4),
           email: 'ccarnock1z@upenn.edu',
           first_name: 'Ciel',
           last_name: 'Carnock',
@@ -585,7 +585,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hkemmish20',
-          password: bcrypt.hashSync('M9ZFyr', 10),
+          password: bcrypt.hashSync('M9ZFyr', 4),
           email: 'hkemmish20@last.fm',
           first_name: 'Horacio',
           last_name: 'Kemmish',
@@ -593,7 +593,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'igoss21',
-          password: bcrypt.hashSync('hig3RERGEv', 10),
+          password: bcrypt.hashSync('hig3RERGEv', 4),
           email: 'igoss21@smugmug.com',
           first_name: 'Iseabal',
           last_name: 'Goss',
@@ -601,7 +601,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'shein22',
-          password: bcrypt.hashSync('x1r0UzVJEQQ', 10),
+          password: bcrypt.hashSync('x1r0UzVJEQQ', 4),
           email: 'shein22@thetimes.co.uk',
           first_name: 'Shawnee',
           last_name: 'Hein',
@@ -609,7 +609,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nkalaher23',
-          password: bcrypt.hashSync('O8gsNQqUhd', 10),
+          password: bcrypt.hashSync('O8gsNQqUhd', 4),
           email: 'nkalaher23@wordpress.org',
           first_name: 'Natty',
           last_name: 'Kalaher',
@@ -617,7 +617,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'clowings24',
-          password: bcrypt.hashSync('Fbd5WyJQ6nF', 10),
+          password: bcrypt.hashSync('Fbd5WyJQ6nF', 4),
           email: 'clowings24@sourceforge.net',
           first_name: 'Carolan',
           last_name: 'Lowings',
@@ -625,7 +625,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'eheadan25',
-          password: bcrypt.hashSync('RdNhbALTV97a', 10),
+          password: bcrypt.hashSync('RdNhbALTV97a', 4),
           email: 'eheadan25@cyberchimps.com',
           first_name: 'Eleonore',
           last_name: 'Headan',
@@ -633,7 +633,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'maberkirder26',
-          password: bcrypt.hashSync('LaHzl7geyuU', 10),
+          password: bcrypt.hashSync('LaHzl7geyuU', 4),
           email: 'maberkirder26@cnbc.com',
           first_name: 'Manda',
           last_name: 'Aberkirder',
@@ -641,7 +641,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'abrickstock27',
-          password: bcrypt.hashSync('Ik4MOjPon', 10),
+          password: bcrypt.hashSync('Ik4MOjPon', 4),
           email: 'abrickstock27@sogou.com',
           first_name: 'Anderson',
           last_name: 'Brickstock',
@@ -649,7 +649,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tmercey28',
-          password: bcrypt.hashSync('9uzbCAEQgKm', 10),
+          password: bcrypt.hashSync('9uzbCAEQgKm', 4),
           email: 'tmercey28@prweb.com',
           first_name: 'Tanner',
           last_name: 'Mercey',
@@ -657,7 +657,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pspier29',
-          password: bcrypt.hashSync('5OYZ2EpCL0nn', 10),
+          password: bcrypt.hashSync('5OYZ2EpCL0nn', 4),
           email: 'pspier29@berkeley.edu',
           first_name: 'Perren',
           last_name: 'Spier',
@@ -665,7 +665,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wlinskill2a',
-          password: bcrypt.hashSync('XmzdlbEvr', 10),
+          password: bcrypt.hashSync('XmzdlbEvr', 4),
           email: 'wlinskill2a@dedecms.com',
           first_name: 'Wilburt',
           last_name: 'Linskill',
@@ -673,7 +673,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gstendall2b',
-          password: bcrypt.hashSync('QEWSKnW', 10),
+          password: bcrypt.hashSync('QEWSKnW', 4),
           email: 'gstendall2b@tuttocitta.it',
           first_name: 'Grover',
           last_name: 'Stendall',
@@ -681,7 +681,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mholmes2c',
-          password: bcrypt.hashSync('SUUG0kCz93', 10),
+          password: bcrypt.hashSync('SUUG0kCz93', 4),
           email: 'mholmes2c@nature.com',
           first_name: 'Marice',
           last_name: 'holmes',
@@ -689,7 +689,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rpixton2d',
-          password: bcrypt.hashSync('3hxJ9nl8', 10),
+          password: bcrypt.hashSync('3hxJ9nl8', 4),
           email: 'rpixton2d@skype.com',
           first_name: 'Rickie',
           last_name: 'Pixton',
@@ -697,7 +697,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mroddick2e',
-          password: bcrypt.hashSync('ZmF9Yw46XU', 10),
+          password: bcrypt.hashSync('ZmF9Yw46XU', 4),
           email: 'mroddick2e@odnoklassniki.ru',
           first_name: 'Mead',
           last_name: 'Roddick',
@@ -705,7 +705,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ssearsby2f',
-          password: bcrypt.hashSync('9vSQmF', 10),
+          password: bcrypt.hashSync('9vSQmF', 4),
           email: 'ssearsby2f@state.gov',
           first_name: 'Skylar',
           last_name: 'Searsby',
@@ -713,7 +713,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rrebbeck2g',
-          password: bcrypt.hashSync('QWlmUwO', 10),
+          password: bcrypt.hashSync('QWlmUwO', 4),
           email: 'rrebbeck2g@rediff.com',
           first_name: 'Ramsey',
           last_name: 'Rebbeck',
@@ -721,7 +721,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bwoolford2h',
-          password: bcrypt.hashSync('zy1OWF3U', 10),
+          password: bcrypt.hashSync('zy1OWF3U', 4),
           email: 'bwoolford2h@about.me',
           first_name: 'Bradly',
           last_name: 'Woolford',
@@ -729,7 +729,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jlenoury2i',
-          password: bcrypt.hashSync('YPX43Jdyli0', 10),
+          password: bcrypt.hashSync('YPX43Jdyli0', 4),
           email: 'jlenoury2i@ehow.com',
           first_name: 'Julio',
           last_name: 'Le Noury',
@@ -737,7 +737,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cheintzsch2j',
-          password: bcrypt.hashSync('SIuw4FIXVLZP', 10),
+          password: bcrypt.hashSync('SIuw4FIXVLZP', 4),
           email: 'cheintzsch2j@hc360.com',
           first_name: 'Charlean',
           last_name: 'Heintzsch',
@@ -745,7 +745,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ederoeck2k',
-          password: bcrypt.hashSync('amgsaI', 10),
+          password: bcrypt.hashSync('amgsaI', 4),
           email: 'ederoeck2k@mozilla.com',
           first_name: 'Ezra',
           last_name: 'De Roeck',
@@ -753,7 +753,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bdoumenc2l',
-          password: bcrypt.hashSync('UxJ2xn1ten7', 10),
+          password: bcrypt.hashSync('UxJ2xn1ten7', 4),
           email: 'bdoumenc2l@networksolutions.com',
           first_name: 'Benji',
           last_name: 'Doumenc',
@@ -761,7 +761,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lsuttling2m',
-          password: bcrypt.hashSync('4OskiLIDzZTs', 10),
+          password: bcrypt.hashSync('4OskiLIDzZTs', 4),
           email: 'lsuttling2m@indiegogo.com',
           first_name: 'Letizia',
           last_name: 'Suttling',
@@ -769,7 +769,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gwarmisham2n',
-          password: bcrypt.hashSync('kBabRT139J', 10),
+          password: bcrypt.hashSync('kBabRT139J', 4),
           email: 'gwarmisham2n@ca.gov',
           first_name: 'Garrott',
           last_name: 'Warmisham',
@@ -777,7 +777,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gakister2o',
-          password: bcrypt.hashSync('jSjsf8zV9y7J', 10),
+          password: bcrypt.hashSync('jSjsf8zV9y7J', 4),
           email: 'gakister2o@ameblo.jp',
           first_name: 'Gabrila',
           last_name: 'Akister',
@@ -785,7 +785,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rpapachristophorou2p',
-          password: bcrypt.hashSync('amCPdndpbNJ', 10),
+          password: bcrypt.hashSync('amCPdndpbNJ', 4),
           email: 'rpapachristophorou2p@wix.com',
           first_name: 'Rosina',
           last_name: 'Papachristophorou',
@@ -793,7 +793,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gdacosta2q',
-          password: bcrypt.hashSync('zVgdigbt0Wj', 10),
+          password: bcrypt.hashSync('zVgdigbt0Wj', 4),
           email: 'gdacosta2q@liveinternet.ru',
           first_name: 'Gwenora',
           last_name: 'Da Costa',
@@ -801,7 +801,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ggoddertsf2r',
-          password: bcrypt.hashSync('rwjQkTJ9tuL', 10),
+          password: bcrypt.hashSync('rwjQkTJ9tuL', 4),
           email: 'ggoddertsf2r@sakura.ne.jp',
           first_name: 'Gary',
           last_name: 'Goddert.sf',
@@ -809,7 +809,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mfeasby2s',
-          password: bcrypt.hashSync('cU2wgJlPMkR', 10),
+          password: bcrypt.hashSync('cU2wgJlPMkR', 4),
           email: 'mfeasby2s@hostgator.com',
           first_name: 'Morley',
           last_name: 'Feasby',
@@ -817,7 +817,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sshrieve2t',
-          password: bcrypt.hashSync('ffLsKnEEsNi', 10),
+          password: bcrypt.hashSync('ffLsKnEEsNi', 4),
           email: 'sshrieve2t@squarespace.com',
           first_name: 'Sophia',
           last_name: 'Shrieve',
@@ -825,7 +825,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gmossom2u',
-          password: bcrypt.hashSync('M2bFO8CH8Y0', 10),
+          password: bcrypt.hashSync('M2bFO8CH8Y0', 4),
           email: 'gmossom2u@wsj.com',
           first_name: 'Gordon',
           last_name: 'Mossom',
@@ -833,7 +833,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'arief2v',
-          password: bcrypt.hashSync('De58or', 10),
+          password: bcrypt.hashSync('De58or', 4),
           email: 'arief2v@cbslocal.com',
           first_name: 'Alyssa',
           last_name: 'Rief',
@@ -841,7 +841,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jodooley2w',
-          password: bcrypt.hashSync('F0KZsrPK2rJx', 10),
+          password: bcrypt.hashSync('F0KZsrPK2rJx', 4),
           email: 'jodooley2w@blinklist.com',
           first_name: 'Jilli',
           last_name: "O' Dooley",
@@ -849,7 +849,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pdunniom2x',
-          password: bcrypt.hashSync('eJ7nqUBLELp3', 10),
+          password: bcrypt.hashSync('eJ7nqUBLELp3', 4),
           email: 'pdunniom2x@studiopress.com',
           first_name: 'Pierre',
           last_name: 'Dunniom',
@@ -857,7 +857,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lbrugmann2y',
-          password: bcrypt.hashSync('j9jeyC3ci', 10),
+          password: bcrypt.hashSync('j9jeyC3ci', 4),
           email: 'lbrugmann2y@mlb.com',
           first_name: 'Lettie',
           last_name: 'Brugmann',
@@ -865,7 +865,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dclee2z',
-          password: bcrypt.hashSync('YWQf4u1', 10),
+          password: bcrypt.hashSync('YWQf4u1', 4),
           email: 'dclee2z@people.com.cn',
           first_name: 'Desmond',
           last_name: 'Clee',
@@ -873,7 +873,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cofogarty30',
-          password: bcrypt.hashSync('GZ2jmyT', 10),
+          password: bcrypt.hashSync('GZ2jmyT', 4),
           email: 'cofogarty30@ning.com',
           first_name: 'Cody',
           last_name: "O'Fogarty",
@@ -881,7 +881,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'yhylands31',
-          password: bcrypt.hashSync('a0ukud2B', 10),
+          password: bcrypt.hashSync('a0ukud2B', 4),
           email: 'yhylands31@furl.net',
           first_name: 'Yule',
           last_name: 'Hylands',
@@ -889,7 +889,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'snewey32',
-          password: bcrypt.hashSync('g702agJb1qE', 10),
+          password: bcrypt.hashSync('g702agJb1qE', 4),
           email: 'snewey32@creativecommons.org',
           first_name: 'Sandie',
           last_name: 'Newey',
@@ -897,7 +897,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mchurching33',
-          password: bcrypt.hashSync('0M7xhHZgn', 10),
+          password: bcrypt.hashSync('0M7xhHZgn', 4),
           email: 'mchurching33@auda.org.au',
           first_name: 'Melania',
           last_name: 'Churching',
@@ -905,7 +905,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pkoppelmann34',
-          password: bcrypt.hashSync('SqraP6Oe7', 10),
+          password: bcrypt.hashSync('SqraP6Oe7', 4),
           email: 'pkoppelmann34@oaic.gov.au',
           first_name: 'Prent',
           last_name: 'Koppelmann',
@@ -913,7 +913,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kklulik35',
-          password: bcrypt.hashSync('qqlsi8EUuDd', 10),
+          password: bcrypt.hashSync('qqlsi8EUuDd', 4),
           email: 'kklulik35@ezinearticles.com',
           first_name: 'Krystle',
           last_name: 'Klulik',
@@ -921,7 +921,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dmarham36',
-          password: bcrypt.hashSync('ppE4jJAdlXP5', 10),
+          password: bcrypt.hashSync('ppE4jJAdlXP5', 4),
           email: 'dmarham36@cyberchimps.com',
           first_name: 'Donalt',
           last_name: 'Marham',
@@ -929,7 +929,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cgodrich37',
-          password: bcrypt.hashSync('xjHpOsa', 10),
+          password: bcrypt.hashSync('xjHpOsa', 4),
           email: 'cgodrich37@bluehost.com',
           first_name: 'Cooper',
           last_name: 'Godrich',
@@ -937,7 +937,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kokennavain38',
-          password: bcrypt.hashSync('KIBUvjGuvg', 10),
+          password: bcrypt.hashSync('KIBUvjGuvg', 4),
           email: 'kokennavain38@skyrock.com',
           first_name: 'Kermit',
           last_name: "O'Kennavain",
@@ -945,7 +945,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lmaccolm39',
-          password: bcrypt.hashSync('KqzNhFgy34', 10),
+          password: bcrypt.hashSync('KqzNhFgy34', 4),
           email: 'lmaccolm39@facebook.com',
           first_name: 'Lane',
           last_name: 'MacColm',
@@ -953,7 +953,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jsigge3a',
-          password: bcrypt.hashSync('z91QGlprlpK', 10),
+          password: bcrypt.hashSync('z91QGlprlpK', 4),
           email: 'jsigge3a@bizjournals.com',
           first_name: 'Juana',
           last_name: 'Sigge',
@@ -961,7 +961,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'olepiscopio3b',
-          password: bcrypt.hashSync('QNybXig06js1', 10),
+          password: bcrypt.hashSync('QNybXig06js1', 4),
           email: 'olepiscopio3b@mozilla.org',
           first_name: 'Othilia',
           last_name: "L'Episcopio",
@@ -969,7 +969,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bmaclise3c',
-          password: bcrypt.hashSync('IBl18Lc', 10),
+          password: bcrypt.hashSync('IBl18Lc', 4),
           email: 'bmaclise3c@godaddy.com',
           first_name: 'Brandtr',
           last_name: 'MacLise',
@@ -977,7 +977,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cdavydkov3d',
-          password: bcrypt.hashSync('ZCXmvIDK', 10),
+          password: bcrypt.hashSync('ZCXmvIDK', 4),
           email: 'cdavydkov3d@is.gd',
           first_name: 'Collette',
           last_name: 'Davydkov',
@@ -985,7 +985,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'atolcharde3e',
-          password: bcrypt.hashSync('TMXFFTI', 10),
+          password: bcrypt.hashSync('TMXFFTI', 4),
           email: 'atolcharde3e@ning.com',
           first_name: 'Aubrey',
           last_name: 'Tolcharde',
@@ -993,7 +993,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mdunkerly3f',
-          password: bcrypt.hashSync('U0ivqc', 10),
+          password: bcrypt.hashSync('U0ivqc', 4),
           email: 'mdunkerly3f@redcross.org',
           first_name: 'Maryanne',
           last_name: 'Dunkerly',
@@ -1001,7 +1001,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cbearsmore3g',
-          password: bcrypt.hashSync('X7dcIls', 10),
+          password: bcrypt.hashSync('X7dcIls', 4),
           email: 'cbearsmore3g@deviantart.com',
           first_name: 'Channa',
           last_name: 'Bearsmore',
@@ -1009,7 +1009,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lnaish3h',
-          password: bcrypt.hashSync('GqWiICE8lTJ', 10),
+          password: bcrypt.hashSync('GqWiICE8lTJ', 4),
           email: 'lnaish3h@weibo.com',
           first_name: 'Lucinda',
           last_name: 'Naish',
@@ -1017,7 +1017,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dboldra3i',
-          password: bcrypt.hashSync('FI4U6nKwU', 10),
+          password: bcrypt.hashSync('FI4U6nKwU', 4),
           email: 'dboldra3i@51.la',
           first_name: 'Danita',
           last_name: 'Boldra',
@@ -1025,7 +1025,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cbutlin3j',
-          password: bcrypt.hashSync('kKKOgTGti', 10),
+          password: bcrypt.hashSync('kKKOgTGti', 4),
           email: 'cbutlin3j@flickr.com',
           first_name: 'Conrad',
           last_name: 'Butlin',
@@ -1033,7 +1033,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'agonsalo3k',
-          password: bcrypt.hashSync('c1tamHmc62z9', 10),
+          password: bcrypt.hashSync('c1tamHmc62z9', 4),
           email: 'agonsalo3k@discuz.net',
           first_name: 'Abagail',
           last_name: 'Gonsalo',
@@ -1041,7 +1041,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'scotes3l',
-          password: bcrypt.hashSync('d1sCCM1p6akC', 10),
+          password: bcrypt.hashSync('d1sCCM1p6akC', 4),
           email: 'scotes3l@mlb.com',
           first_name: 'Sascha',
           last_name: 'Cotes',
@@ -1049,7 +1049,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ogabbatt3m',
-          password: bcrypt.hashSync('dsxdZECS', 10),
+          password: bcrypt.hashSync('dsxdZECS', 4),
           email: 'ogabbatt3m@eepurl.com',
           first_name: 'Orelia',
           last_name: 'Gabbatt',
@@ -1057,7 +1057,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bbowkett3n',
-          password: bcrypt.hashSync('Am2Vy2', 10),
+          password: bcrypt.hashSync('Am2Vy2', 4),
           email: 'bbowkett3n@jiathis.com',
           first_name: 'Base',
           last_name: 'Bowkett',
@@ -1065,7 +1065,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'psawden3o',
-          password: bcrypt.hashSync('Vf2LobU20', 10),
+          password: bcrypt.hashSync('Vf2LobU20', 4),
           email: 'psawden3o@booking.com',
           first_name: 'Paco',
           last_name: 'Sawden',
@@ -1073,7 +1073,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nfoker3p',
-          password: bcrypt.hashSync('L7GOzzFNdij8', 10),
+          password: bcrypt.hashSync('L7GOzzFNdij8', 4),
           email: 'nfoker3p@cmu.edu',
           first_name: 'Nellie',
           last_name: 'Foker',
@@ -1081,7 +1081,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mduro3q',
-          password: bcrypt.hashSync('cI0RArZojI', 10),
+          password: bcrypt.hashSync('cI0RArZojI', 4),
           email: 'mduro3q@yahoo.com',
           first_name: 'Melanie',
           last_name: 'Duro',
@@ -1089,7 +1089,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'phackney3r',
-          password: bcrypt.hashSync('j6bjUcs7ER', 10),
+          password: bcrypt.hashSync('j6bjUcs7ER', 4),
           email: 'phackney3r@senate.gov',
           first_name: 'Pernell',
           last_name: 'Hackney',
@@ -1097,7 +1097,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cgregersen3s',
-          password: bcrypt.hashSync('qgyCgO', 10),
+          password: bcrypt.hashSync('qgyCgO', 4),
           email: 'cgregersen3s@godaddy.com',
           first_name: 'Carmita',
           last_name: 'Gregersen',
@@ -1105,7 +1105,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ctitman3t',
-          password: bcrypt.hashSync('D0ELPnuANK', 10),
+          password: bcrypt.hashSync('D0ELPnuANK', 4),
           email: 'ctitman3t@cargocollective.com',
           first_name: 'Corabella',
           last_name: 'Titman',
@@ -1113,7 +1113,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ehutchens3u',
-          password: bcrypt.hashSync('yOlwW1', 10),
+          password: bcrypt.hashSync('yOlwW1', 4),
           email: 'ehutchens3u@livejournal.com',
           first_name: 'Enrico',
           last_name: 'Hutchens',
@@ -1121,7 +1121,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bmcnelis3v',
-          password: bcrypt.hashSync('wfdBcXsPbrR', 10),
+          password: bcrypt.hashSync('wfdBcXsPbrR', 4),
           email: 'bmcnelis3v@dyndns.org',
           first_name: 'Betsey',
           last_name: 'McNelis',
@@ -1129,7 +1129,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'adronsfield3w',
-          password: bcrypt.hashSync('YfaYSzttg7', 10),
+          password: bcrypt.hashSync('YfaYSzttg7', 4),
           email: 'adronsfield3w@reverbnation.com',
           first_name: 'Alexia',
           last_name: 'Dronsfield',
@@ -1137,7 +1137,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'zbeahan3x',
-          password: bcrypt.hashSync('8VRRPARG', 10),
+          password: bcrypt.hashSync('8VRRPARG', 4),
           email: 'zbeahan3x@123-reg.co.uk',
           first_name: 'Zora',
           last_name: 'Beahan',
@@ -1145,7 +1145,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gdicey3y',
-          password: bcrypt.hashSync('dYhk2CW2I7', 10),
+          password: bcrypt.hashSync('dYhk2CW2I7', 4),
           email: 'gdicey3y@list-manage.com',
           first_name: 'Guglielmo',
           last_name: 'Dicey',
@@ -1153,7 +1153,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cmacfarlane3z',
-          password: bcrypt.hashSync('75Qd1uZCDW', 10),
+          password: bcrypt.hashSync('75Qd1uZCDW', 4),
           email: 'cmacfarlane3z@si.edu',
           first_name: 'Claudette',
           last_name: 'MacFarlane',
@@ -1161,7 +1161,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dscipsey40',
-          password: bcrypt.hashSync('mlvJK1TIJx1s', 10),
+          password: bcrypt.hashSync('mlvJK1TIJx1s', 4),
           email: 'dscipsey40@mysql.com',
           first_name: 'Dunstan',
           last_name: 'Scipsey',
@@ -1169,7 +1169,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dcarstairs41',
-          password: bcrypt.hashSync('NTPiMUE45YF', 10),
+          password: bcrypt.hashSync('NTPiMUE45YF', 4),
           email: 'dcarstairs41@msu.edu',
           first_name: 'Donall',
           last_name: 'Carstairs',
@@ -1177,7 +1177,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dloughnan42',
-          password: bcrypt.hashSync('12JpdMAze', 10),
+          password: bcrypt.hashSync('12JpdMAze', 4),
           email: 'dloughnan42@quantcast.com',
           first_name: 'Daisey',
           last_name: 'Loughnan',
@@ -1185,7 +1185,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gsmorthit43',
-          password: bcrypt.hashSync('I0E7gB', 10),
+          password: bcrypt.hashSync('I0E7gB', 4),
           email: 'gsmorthit43@deviantart.com',
           first_name: 'Godwin',
           last_name: 'Smorthit',
@@ -1193,7 +1193,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'aofer44',
-          password: bcrypt.hashSync('WdjQil0f', 10),
+          password: bcrypt.hashSync('WdjQil0f', 4),
           email: 'aofer44@fastcompany.com',
           first_name: 'Augustine',
           last_name: 'Ofer',
@@ -1201,7 +1201,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jlorrie45',
-          password: bcrypt.hashSync('m0bX95k5HxF', 10),
+          password: bcrypt.hashSync('m0bX95k5HxF', 4),
           email: 'jlorrie45@hao123.com',
           first_name: 'Juliet',
           last_name: 'Lorrie',
@@ -1209,7 +1209,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dbridal46',
-          password: bcrypt.hashSync('U3VF57', 10),
+          password: bcrypt.hashSync('U3VF57', 4),
           email: 'dbridal46@state.tx.us',
           first_name: 'Davey',
           last_name: 'Bridal',
@@ -1217,7 +1217,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lwheildon47',
-          password: bcrypt.hashSync('zVTXbReOF7tj', 10),
+          password: bcrypt.hashSync('zVTXbReOF7tj', 4),
           email: 'lwheildon47@xing.com',
           first_name: 'Lucretia',
           last_name: 'Wheildon',
@@ -1225,7 +1225,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gduignan48',
-          password: bcrypt.hashSync('FrPqWzW', 10),
+          password: bcrypt.hashSync('FrPqWzW', 4),
           email: 'gduignan48@hud.gov',
           first_name: 'Galina',
           last_name: 'Duignan',
@@ -1233,7 +1233,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pchatel49',
-          password: bcrypt.hashSync('AJpQYII8p6jt', 10),
+          password: bcrypt.hashSync('AJpQYII8p6jt', 4),
           email: 'pchatel49@arstechnica.com',
           first_name: 'Philip',
           last_name: 'Chatel',
@@ -1241,7 +1241,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kdalgety4a',
-          password: bcrypt.hashSync('VFQfeEWfCs', 10),
+          password: bcrypt.hashSync('VFQfeEWfCs', 4),
           email: 'kdalgety4a@w3.org',
           first_name: 'Karyl',
           last_name: 'Dalgety',
@@ -1249,7 +1249,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wgrassett4b',
-          password: bcrypt.hashSync('YrlexTTkW', 10),
+          password: bcrypt.hashSync('YrlexTTkW', 4),
           email: 'wgrassett4b@github.com',
           first_name: 'Wanda',
           last_name: 'Grassett',
@@ -1257,7 +1257,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mlaurent4c',
-          password: bcrypt.hashSync('D67kX8u3', 10),
+          password: bcrypt.hashSync('D67kX8u3', 4),
           email: 'mlaurent4c@ft.com',
           first_name: 'Marya',
           last_name: 'Laurent',
@@ -1265,7 +1265,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sannets4d',
-          password: bcrypt.hashSync('5QAfUB6fE2wi', 10),
+          password: bcrypt.hashSync('5QAfUB6fE2wi', 4),
           email: 'sannets4d@yandex.ru',
           first_name: 'Sidoney',
           last_name: 'Annets',
@@ -1273,7 +1273,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cgodfrey4e',
-          password: bcrypt.hashSync('r4VXGtcr', 10),
+          password: bcrypt.hashSync('r4VXGtcr', 4),
           email: 'cgodfrey4e@cdbaby.com',
           first_name: 'Corliss',
           last_name: 'Godfrey',
@@ -1281,7 +1281,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ggiacobelli4f',
-          password: bcrypt.hashSync('VhfcgSH', 10),
+          password: bcrypt.hashSync('VhfcgSH', 4),
           email: 'ggiacobelli4f@behance.net',
           first_name: 'Gideon',
           last_name: 'Giacobelli',
@@ -1289,7 +1289,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kpresnail4g',
-          password: bcrypt.hashSync('XCsCutlJOz', 10),
+          password: bcrypt.hashSync('XCsCutlJOz', 4),
           email: 'kpresnail4g@weather.com',
           first_name: 'Karlan',
           last_name: 'Presnail',
@@ -1297,7 +1297,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tdelap4h',
-          password: bcrypt.hashSync('Tkz5AAHbVtU', 10),
+          password: bcrypt.hashSync('Tkz5AAHbVtU', 4),
           email: 'tdelap4h@dailymail.co.uk',
           first_name: 'Tabina',
           last_name: 'Delap',
@@ -1305,7 +1305,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bsibson4i',
-          password: bcrypt.hashSync('ocxfyngWX', 10),
+          password: bcrypt.hashSync('ocxfyngWX', 4),
           email: 'bsibson4i@senate.gov',
           first_name: 'Becki',
           last_name: 'Sibson',
@@ -1313,7 +1313,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cfaichney4j',
-          password: bcrypt.hashSync('RIu7fTWB6fo2', 10),
+          password: bcrypt.hashSync('RIu7fTWB6fo2', 4),
           email: 'cfaichney4j@ihg.com',
           first_name: 'Crawford',
           last_name: 'Faichney',
@@ -1321,7 +1321,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dharsnep4k',
-          password: bcrypt.hashSync('PsKSXcyr', 10),
+          password: bcrypt.hashSync('PsKSXcyr', 4),
           email: 'dharsnep4k@shop-pro.jp',
           first_name: 'Derby',
           last_name: 'Harsnep',
@@ -1329,7 +1329,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sscollick4l',
-          password: bcrypt.hashSync('TM9PZWoyL7', 10),
+          password: bcrypt.hashSync('TM9PZWoyL7', 4),
           email: 'sscollick4l@statcounter.com',
           first_name: 'Sim',
           last_name: 'Scollick',
@@ -1337,7 +1337,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'msimenon4m',
-          password: bcrypt.hashSync('JFOAC3wXW', 10),
+          password: bcrypt.hashSync('JFOAC3wXW', 4),
           email: 'msimenon4m@sfgate.com',
           first_name: 'Morna',
           last_name: 'Simenon',
@@ -1345,7 +1345,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'clagde4n',
-          password: bcrypt.hashSync('KuAGSTaKU2eR', 10),
+          password: bcrypt.hashSync('KuAGSTaKU2eR', 4),
           email: 'clagde4n@springer.com',
           first_name: 'Costa',
           last_name: 'Lagde',
@@ -1353,7 +1353,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sjedrzejczak4o',
-          password: bcrypt.hashSync('c9InUK1', 10),
+          password: bcrypt.hashSync('c9InUK1', 4),
           email: 'sjedrzejczak4o@oaic.gov.au',
           first_name: 'Sande',
           last_name: 'Jedrzejczak',
@@ -1361,7 +1361,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'swordington4p',
-          password: bcrypt.hashSync('GU0pK73a0mp', 10),
+          password: bcrypt.hashSync('GU0pK73a0mp', 4),
           email: 'swordington4p@barnesandnoble.com',
           first_name: 'Sayres',
           last_name: 'Wordington',
@@ -1369,7 +1369,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dfierro4q',
-          password: bcrypt.hashSync('nWP101AJsX', 10),
+          password: bcrypt.hashSync('nWP101AJsX', 4),
           email: 'dfierro4q@bloglovin.com',
           first_name: 'Dennie',
           last_name: 'Fierro',
@@ -1377,7 +1377,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rlanktree4r',
-          password: bcrypt.hashSync('X0XhZdq', 10),
+          password: bcrypt.hashSync('X0XhZdq', 4),
           email: 'rlanktree4r@nhs.uk',
           first_name: 'Roland',
           last_name: 'Lanktree',
@@ -1385,7 +1385,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hscothron4s',
-          password: bcrypt.hashSync('uOoewaw0', 10),
+          password: bcrypt.hashSync('uOoewaw0', 4),
           email: 'hscothron4s@mac.com',
           first_name: 'Heath',
           last_name: 'Scothron',
@@ -1393,7 +1393,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vglanville4t',
-          password: bcrypt.hashSync('KjVF2E4Gr', 10),
+          password: bcrypt.hashSync('KjVF2E4Gr', 4),
           email: 'vglanville4t@topsy.com',
           first_name: 'Valencia',
           last_name: 'Glanville',
@@ -1401,7 +1401,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gdimatteo4u',
-          password: bcrypt.hashSync('38VuTx', 10),
+          password: bcrypt.hashSync('38VuTx', 4),
           email: 'gdimatteo4u@ask.com',
           first_name: 'Geoff',
           last_name: 'Di Matteo',
@@ -1409,7 +1409,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dgildea4v',
-          password: bcrypt.hashSync('beykMno', 10),
+          password: bcrypt.hashSync('beykMno', 4),
           email: 'dgildea4v@harvard.edu',
           first_name: 'Donal',
           last_name: 'Gildea',
@@ -1417,7 +1417,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gmealing4w',
-          password: bcrypt.hashSync('Hhcd89HuCUNi', 10),
+          password: bcrypt.hashSync('Hhcd89HuCUNi', 4),
           email: 'gmealing4w@issuu.com',
           first_name: 'Gillian',
           last_name: 'Mealing',
@@ -1425,7 +1425,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bmergue4x',
-          password: bcrypt.hashSync('7zxShnEqD7', 10),
+          password: bcrypt.hashSync('7zxShnEqD7', 4),
           email: 'bmergue4x@acquirethisname.com',
           first_name: 'Blanca',
           last_name: 'Mergue',
@@ -1433,7 +1433,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jperryn4y',
-          password: bcrypt.hashSync('c8Ez44K', 10),
+          password: bcrypt.hashSync('c8Ez44K', 4),
           email: 'jperryn4y@squarespace.com',
           first_name: 'Josee',
           last_name: 'Perryn',
@@ -1441,7 +1441,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dgyse4z',
-          password: bcrypt.hashSync('rYoiEREbvJSq', 10),
+          password: bcrypt.hashSync('rYoiEREbvJSq', 4),
           email: 'dgyse4z@domainmarket.com',
           first_name: 'Dickie',
           last_name: 'Gyse',
@@ -1449,7 +1449,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rtanslie50',
-          password: bcrypt.hashSync('vBxI56F', 10),
+          password: bcrypt.hashSync('vBxI56F', 4),
           email: 'rtanslie50@addthis.com',
           first_name: 'Rickert',
           last_name: 'Tanslie',
@@ -1457,7 +1457,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hrewcastle51',
-          password: bcrypt.hashSync('HfRC7asP7j89', 10),
+          password: bcrypt.hashSync('HfRC7asP7j89', 4),
           email: 'hrewcastle51@spiegel.de',
           first_name: 'Heidie',
           last_name: 'Rewcastle',
@@ -1465,7 +1465,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'elamke52',
-          password: bcrypt.hashSync('9vfhaClRN', 10),
+          password: bcrypt.hashSync('9vfhaClRN', 4),
           email: 'elamke52@people.com.cn',
           first_name: 'Ettie',
           last_name: 'Lamke',
@@ -1473,7 +1473,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gpellman53',
-          password: bcrypt.hashSync('UHBNkTzW', 10),
+          password: bcrypt.hashSync('UHBNkTzW', 4),
           email: 'gpellman53@yelp.com',
           first_name: 'Granthem',
           last_name: 'Pellman',
@@ -1481,7 +1481,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'eollie54',
-          password: bcrypt.hashSync('se7o2HyqOW9', 10),
+          password: bcrypt.hashSync('se7o2HyqOW9', 4),
           email: 'eollie54@indiatimes.com',
           first_name: 'Elsie',
           last_name: 'Ollie',
@@ -1489,7 +1489,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rburnsall55',
-          password: bcrypt.hashSync('13jLdNmq', 10),
+          password: bcrypt.hashSync('13jLdNmq', 4),
           email: 'rburnsall55@unblog.fr',
           first_name: 'Reeba',
           last_name: 'Burnsall',
@@ -1497,7 +1497,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wletterese56',
-          password: bcrypt.hashSync('nzo8wHkP6PCr', 10),
+          password: bcrypt.hashSync('nzo8wHkP6PCr', 4),
           email: 'wletterese56@vk.com',
           first_name: 'Wang',
           last_name: 'Letterese',
@@ -1505,7 +1505,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'groth57',
-          password: bcrypt.hashSync('HnjTC0MVa4v', 10),
+          password: bcrypt.hashSync('HnjTC0MVa4v', 4),
           email: 'groth57@wordpress.org',
           first_name: 'Glen',
           last_name: 'Roth',
@@ -1513,7 +1513,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kstollberg58',
-          password: bcrypt.hashSync('cQ88WAJnb', 10),
+          password: bcrypt.hashSync('cQ88WAJnb', 4),
           email: 'kstollberg58@vk.com',
           first_name: 'Karly',
           last_name: 'Stollberg',
@@ -1521,7 +1521,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ddefrain59',
-          password: bcrypt.hashSync('iLZJyMZb', 10),
+          password: bcrypt.hashSync('iLZJyMZb', 4),
           email: 'ddefrain59@w3.org',
           first_name: 'Danika',
           last_name: 'Defrain',
@@ -1529,7 +1529,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ttidcomb5a',
-          password: bcrypt.hashSync('ctdr8IWgrY', 10),
+          password: bcrypt.hashSync('ctdr8IWgrY', 4),
           email: 'ttidcomb5a@usda.gov',
           first_name: 'Traci',
           last_name: 'Tidcomb',
@@ -1537,7 +1537,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ddunlea5b',
-          password: bcrypt.hashSync('zh3BSO3Q', 10),
+          password: bcrypt.hashSync('zh3BSO3Q', 4),
           email: 'ddunlea5b@cnbc.com',
           first_name: 'Danie',
           last_name: 'Dunlea',
@@ -1545,7 +1545,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mjullian5c',
-          password: bcrypt.hashSync('7DkT8NWA', 10),
+          password: bcrypt.hashSync('7DkT8NWA', 4),
           email: 'mjullian5c@ucla.edu',
           first_name: 'Maye',
           last_name: 'Jullian',
@@ -1553,7 +1553,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ajoost5d',
-          password: bcrypt.hashSync('BqjqF48', 10),
+          password: bcrypt.hashSync('BqjqF48', 4),
           email: 'ajoost5d@ftc.gov',
           first_name: 'Amandy',
           last_name: 'Joost',
@@ -1561,7 +1561,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lmquhan5e',
-          password: bcrypt.hashSync('ELTabPecn', 10),
+          password: bcrypt.hashSync('ELTabPecn', 4),
           email: 'lmquhan5e@stumbleupon.com',
           first_name: 'Lance',
           last_name: "M'Quhan",
@@ -1569,7 +1569,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mscorer5f',
-          password: bcrypt.hashSync('mBTn37KvSZm', 10),
+          password: bcrypt.hashSync('mBTn37KvSZm', 4),
           email: 'mscorer5f@phoca.cz',
           first_name: 'Madeleine',
           last_name: 'Scorer',
@@ -1577,7 +1577,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'psharpous5g',
-          password: bcrypt.hashSync('4h968TP', 10),
+          password: bcrypt.hashSync('4h968TP', 4),
           email: 'psharpous5g@wsj.com',
           first_name: 'Park',
           last_name: 'Sharpous',
@@ -1585,7 +1585,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'msales5h',
-          password: bcrypt.hashSync('ZnYPu6zi6ECW', 10),
+          password: bcrypt.hashSync('ZnYPu6zi6ECW', 4),
           email: 'msales5h@behance.net',
           first_name: 'Mohammed',
           last_name: 'Sales',
@@ -1593,7 +1593,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'slamy5i',
-          password: bcrypt.hashSync('zaffsbD3lsb', 10),
+          password: bcrypt.hashSync('zaffsbD3lsb', 4),
           email: 'slamy5i@woothemes.com',
           first_name: 'Stephanie',
           last_name: 'Lamy',
@@ -1601,7 +1601,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rtod5j',
-          password: bcrypt.hashSync('eKDN8x', 10),
+          password: bcrypt.hashSync('eKDN8x', 4),
           email: 'rtod5j@gravatar.com',
           first_name: 'Reyna',
           last_name: 'Tod',
@@ -1609,7 +1609,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tmetschke5k',
-          password: bcrypt.hashSync('YMyD6TWpdE', 10),
+          password: bcrypt.hashSync('YMyD6TWpdE', 4),
           email: 'tmetschke5k@tumblr.com',
           first_name: 'Thatch',
           last_name: 'Metschke',
@@ -1617,7 +1617,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gelegood5l',
-          password: bcrypt.hashSync('w9LjEq0GY', 10),
+          password: bcrypt.hashSync('w9LjEq0GY', 4),
           email: 'gelegood5l@independent.co.uk',
           first_name: 'Gregoor',
           last_name: 'Elegood',
@@ -1625,7 +1625,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dboich5m',
-          password: bcrypt.hashSync('Rxuywl6', 10),
+          password: bcrypt.hashSync('Rxuywl6', 4),
           email: 'dboich5m@facebook.com',
           first_name: 'Drucy',
           last_name: 'Boich',
@@ -1633,7 +1633,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'forthmann5n',
-          password: bcrypt.hashSync('yF1yqXImr', 10),
+          password: bcrypt.hashSync('yF1yqXImr', 4),
           email: 'forthmann5n@scribd.com',
           first_name: 'Florri',
           last_name: 'Orthmann',
@@ -1641,7 +1641,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lcockshut5o',
-          password: bcrypt.hashSync('8vCP8B1fl', 10),
+          password: bcrypt.hashSync('8vCP8B1fl', 4),
           email: 'lcockshut5o@flavors.me',
           first_name: 'Lura',
           last_name: 'Cockshut',
@@ -1649,7 +1649,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kmordey5p',
-          password: bcrypt.hashSync('BADMPL', 10),
+          password: bcrypt.hashSync('BADMPL', 4),
           email: 'kmordey5p@dailymail.co.uk',
           first_name: 'Kimmi',
           last_name: 'Mordey',
@@ -1657,7 +1657,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cfraser5q',
-          password: bcrypt.hashSync('GI64jS', 10),
+          password: bcrypt.hashSync('GI64jS', 4),
           email: 'cfraser5q@cloudflare.com',
           first_name: 'Cindra',
           last_name: 'Fraser',
@@ -1665,7 +1665,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gmceachern5r',
-          password: bcrypt.hashSync('NwiBIxStUz', 10),
+          password: bcrypt.hashSync('NwiBIxStUz', 4),
           email: 'gmceachern5r@imgur.com',
           first_name: 'Gates',
           last_name: 'McEachern',
@@ -1673,7 +1673,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'smayberry5s',
-          password: bcrypt.hashSync('MoFDpd', 10),
+          password: bcrypt.hashSync('MoFDpd', 4),
           email: 'smayberry5s@tmall.com',
           first_name: 'Stanfield',
           last_name: 'Mayberry',
@@ -1681,7 +1681,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rlandrick5t',
-          password: bcrypt.hashSync('dz7rjYm', 10),
+          password: bcrypt.hashSync('dz7rjYm', 4),
           email: 'rlandrick5t@google.cn',
           first_name: 'Rosaleen',
           last_name: 'Landrick',
@@ -1689,7 +1689,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'amalter5u',
-          password: bcrypt.hashSync('kZ9FnvLrBPX', 10),
+          password: bcrypt.hashSync('kZ9FnvLrBPX', 4),
           email: 'amalter5u@comcast.net',
           first_name: 'Aleksandr',
           last_name: 'Malter',
@@ -1697,7 +1697,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ghubback5v',
-          password: bcrypt.hashSync('zgNjUqE9Myu', 10),
+          password: bcrypt.hashSync('zgNjUqE9Myu', 4),
           email: 'ghubback5v@eventbrite.com',
           first_name: 'Gene',
           last_name: 'Hubback',
@@ -1705,7 +1705,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cmaccorkell5w',
-          password: bcrypt.hashSync('QEoPFKSEADcu', 10),
+          password: bcrypt.hashSync('QEoPFKSEADcu', 4),
           email: 'cmaccorkell5w@plala.or.jp',
           first_name: 'Cordula',
           last_name: 'MacCorkell',
@@ -1713,7 +1713,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jchaffin5x',
-          password: bcrypt.hashSync('9s9ouF47P', 10),
+          password: bcrypt.hashSync('9s9ouF47P', 4),
           email: 'jchaffin5x@reuters.com',
           first_name: 'Jamison',
           last_name: 'Chaffin',
@@ -1721,7 +1721,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ajeandeau5y',
-          password: bcrypt.hashSync('1rbppnL5oo', 10),
+          password: bcrypt.hashSync('1rbppnL5oo', 4),
           email: 'ajeandeau5y@ehow.com',
           first_name: 'Aeriell',
           last_name: 'Jeandeau',
@@ -1729,7 +1729,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rrama5z',
-          password: bcrypt.hashSync('cOtIKv', 10),
+          password: bcrypt.hashSync('cOtIKv', 4),
           email: 'rrama5z@spotify.com',
           first_name: 'Rocky',
           last_name: 'Rama',
@@ -1737,7 +1737,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'adury60',
-          password: bcrypt.hashSync('MrdFECYM2Cr', 10),
+          password: bcrypt.hashSync('MrdFECYM2Cr', 4),
           email: 'adury60@ox.ac.uk',
           first_name: 'Alaric',
           last_name: 'Dury',
@@ -1745,7 +1745,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'glaurenceau61',
-          password: bcrypt.hashSync('D6nOIAY', 10),
+          password: bcrypt.hashSync('D6nOIAY', 4),
           email: 'glaurenceau61@free.fr',
           first_name: 'Garrot',
           last_name: 'Laurenceau',
@@ -1753,7 +1753,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mdenerley62',
-          password: bcrypt.hashSync('BnS0f0Ky', 10),
+          password: bcrypt.hashSync('BnS0f0Ky', 4),
           email: 'mdenerley62@cmu.edu',
           first_name: 'Mick',
           last_name: 'Denerley',
@@ -1761,7 +1761,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'crawes63',
-          password: bcrypt.hashSync('iUBVEP', 10),
+          password: bcrypt.hashSync('iUBVEP', 4),
           email: 'crawes63@tiny.cc',
           first_name: 'Curr',
           last_name: 'Rawes',
@@ -1769,7 +1769,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'edonat64',
-          password: bcrypt.hashSync('djjiYdz', 10),
+          password: bcrypt.hashSync('djjiYdz', 4),
           email: 'edonat64@moonfruit.com',
           first_name: 'Essy',
           last_name: 'Donat',
@@ -1777,7 +1777,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'erobbie65',
-          password: bcrypt.hashSync('kUG34rLQSW', 10),
+          password: bcrypt.hashSync('kUG34rLQSW', 4),
           email: 'erobbie65@netlog.com',
           first_name: 'Efrem',
           last_name: 'Robbie',
@@ -1785,7 +1785,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'amoules66',
-          password: bcrypt.hashSync('1d5uN6SH', 10),
+          password: bcrypt.hashSync('1d5uN6SH', 4),
           email: 'amoules66@list-manage.com',
           first_name: 'Annabela',
           last_name: 'Moules',
@@ -1793,7 +1793,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ifussey67',
-          password: bcrypt.hashSync('nI33QeCC94q', 10),
+          password: bcrypt.hashSync('nI33QeCC94q', 4),
           email: 'ifussey67@ebay.co.uk',
           first_name: 'Irene',
           last_name: 'Fussey',
@@ -1801,7 +1801,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rspringell68',
-          password: bcrypt.hashSync('StxXBRuy1', 10),
+          password: bcrypt.hashSync('StxXBRuy1', 4),
           email: 'rspringell68@barnesandnoble.com',
           first_name: 'Rourke',
           last_name: 'Springell',
@@ -1809,7 +1809,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mkillcross69',
-          password: bcrypt.hashSync('xX1OB6cm', 10),
+          password: bcrypt.hashSync('xX1OB6cm', 4),
           email: 'mkillcross69@hugedomains.com',
           first_name: 'Mirabel',
           last_name: 'Killcross',
@@ -1817,7 +1817,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'eeldrett6a',
-          password: bcrypt.hashSync('N0HgZh1IKRj', 10),
+          password: bcrypt.hashSync('N0HgZh1IKRj', 4),
           email: 'eeldrett6a@networksolutions.com',
           first_name: 'Elbert',
           last_name: 'Eldrett',
@@ -1825,7 +1825,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mbogaert6b',
-          password: bcrypt.hashSync('rg8XdqX', 10),
+          password: bcrypt.hashSync('rg8XdqX', 4),
           email: 'mbogaert6b@pagesperso-orange.fr',
           first_name: 'Mead',
           last_name: 'Bogaert',
@@ -1833,7 +1833,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ckinleyside6c',
-          password: bcrypt.hashSync('imD7Gn', 10),
+          password: bcrypt.hashSync('imD7Gn', 4),
           email: 'ckinleyside6c@whitehouse.gov',
           first_name: 'Clementia',
           last_name: 'Kinleyside',
@@ -1841,7 +1841,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nfilinkov6d',
-          password: bcrypt.hashSync('iizVeM9YzmI', 10),
+          password: bcrypt.hashSync('iizVeM9YzmI', 4),
           email: 'nfilinkov6d@cdc.gov',
           first_name: 'Naoma',
           last_name: 'Filinkov',
@@ -1849,7 +1849,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mfisby6e',
-          password: bcrypt.hashSync('oPpfVK7aey', 10),
+          password: bcrypt.hashSync('oPpfVK7aey', 4),
           email: 'mfisby6e@posterous.com',
           first_name: 'Miltie',
           last_name: 'Fisby',
@@ -1857,7 +1857,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'iiiannone6f',
-          password: bcrypt.hashSync('y4rLn05hr6', 10),
+          password: bcrypt.hashSync('y4rLn05hr6', 4),
           email: 'iiiannone6f@nsw.gov.au',
           first_name: 'Ivett',
           last_name: 'Iiannone',
@@ -1865,7 +1865,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hendecott6g',
-          password: bcrypt.hashSync('1WVWadMCCY', 10),
+          password: bcrypt.hashSync('1WVWadMCCY', 4),
           email: 'hendecott6g@rambler.ru',
           first_name: 'Herschel',
           last_name: 'Endecott',
@@ -1873,7 +1873,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cthys6h',
-          password: bcrypt.hashSync('AzjanDY', 10),
+          password: bcrypt.hashSync('AzjanDY', 4),
           email: 'cthys6h@statcounter.com',
           first_name: 'Clyve',
           last_name: 'Thys',
@@ -1881,7 +1881,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nvigurs6i',
-          password: bcrypt.hashSync('nXzObh4o', 10),
+          password: bcrypt.hashSync('nXzObh4o', 4),
           email: 'nvigurs6i@sbwire.com',
           first_name: 'Napoleon',
           last_name: 'Vigurs',
@@ -1889,7 +1889,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rbrunetti6j',
-          password: bcrypt.hashSync('fZOwNVTalpM7', 10),
+          password: bcrypt.hashSync('fZOwNVTalpM7', 4),
           email: 'rbrunetti6j@ucla.edu',
           first_name: 'Rube',
           last_name: 'Brunetti',
@@ -1897,7 +1897,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jfills6k',
-          password: bcrypt.hashSync('fB4HJ4', 10),
+          password: bcrypt.hashSync('fB4HJ4', 4),
           email: 'jfills6k@digg.com',
           first_name: 'Jereme',
           last_name: 'Fills',
@@ -1905,7 +1905,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cstruys6l',
-          password: bcrypt.hashSync('1HhHjKlUrv', 10),
+          password: bcrypt.hashSync('1HhHjKlUrv', 4),
           email: 'cstruys6l@123-reg.co.uk',
           first_name: 'Courtney',
           last_name: 'Struys',
@@ -1913,7 +1913,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tdoyland6m',
-          password: bcrypt.hashSync('HkiswLa9H', 10),
+          password: bcrypt.hashSync('HkiswLa9H', 4),
           email: 'tdoyland6m@last.fm',
           first_name: 'Theresita',
           last_name: 'Doyland',
@@ -1921,7 +1921,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sspenclay6n',
-          password: bcrypt.hashSync('vTtTbd', 10),
+          password: bcrypt.hashSync('vTtTbd', 4),
           email: 'sspenclay6n@wp.com',
           first_name: 'Sherri',
           last_name: 'Spenclay',
@@ -1929,7 +1929,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rgrugerr6o',
-          password: bcrypt.hashSync('75KjrJLwa2j2', 10),
+          password: bcrypt.hashSync('75KjrJLwa2j2', 4),
           email: 'rgrugerr6o@businessweek.com',
           first_name: 'Raff',
           last_name: 'Grugerr',
@@ -1937,7 +1937,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lhegerty6p',
-          password: bcrypt.hashSync('XofweApRD', 10),
+          password: bcrypt.hashSync('XofweApRD', 4),
           email: 'lhegerty6p@jigsy.com',
           first_name: 'Lyndel',
           last_name: 'Hegerty',
@@ -1945,7 +1945,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nrappport6q',
-          password: bcrypt.hashSync('wXmQAe1', 10),
+          password: bcrypt.hashSync('wXmQAe1', 4),
           email: 'nrappport6q@free.fr',
           first_name: 'Niccolo',
           last_name: 'Rappport',
@@ -1953,7 +1953,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lpimlett6r',
-          password: bcrypt.hashSync('euU6hR6Gv', 10),
+          password: bcrypt.hashSync('euU6hR6Gv', 4),
           email: 'lpimlett6r@nih.gov',
           first_name: 'Lenee',
           last_name: 'Pimlett',
@@ -1961,7 +1961,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pfyrth6s',
-          password: bcrypt.hashSync('qOjPPaYh4ap7', 10),
+          password: bcrypt.hashSync('qOjPPaYh4ap7', 4),
           email: 'pfyrth6s@auda.org.au',
           first_name: 'Patrica',
           last_name: 'Fyrth',
@@ -1969,7 +1969,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'chowison6t',
-          password: bcrypt.hashSync('2KHO5M', 10),
+          password: bcrypt.hashSync('2KHO5M', 4),
           email: 'chowison6t@usa.gov',
           first_name: 'Charissa',
           last_name: 'Howison',
@@ -1977,7 +1977,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bhilland6u',
-          password: bcrypt.hashSync('DDACnT6cKMe', 10),
+          password: bcrypt.hashSync('DDACnT6cKMe', 4),
           email: 'bhilland6u@spiegel.de',
           first_name: 'Brinna',
           last_name: 'Hilland',
@@ -1985,7 +1985,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ejedras6v',
-          password: bcrypt.hashSync('RaP5Lra6', 10),
+          password: bcrypt.hashSync('RaP5Lra6', 4),
           email: 'ejedras6v@skyrock.com',
           first_name: 'Erhard',
           last_name: 'Jedras',
@@ -1993,7 +1993,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cdudderidge6w',
-          password: bcrypt.hashSync('hxdoY2', 10),
+          password: bcrypt.hashSync('hxdoY2', 4),
           email: 'cdudderidge6w@ftc.gov',
           first_name: 'Carny',
           last_name: 'Dudderidge',
@@ -2001,7 +2001,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bcollimore6x',
-          password: bcrypt.hashSync('oOsVrGx7JI9', 10),
+          password: bcrypt.hashSync('oOsVrGx7JI9', 4),
           email: 'bcollimore6x@macromedia.com',
           first_name: 'Basilius',
           last_name: 'Collimore',
@@ -2009,7 +2009,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lmelody6y',
-          password: bcrypt.hashSync('ufURjrnSvIs', 10),
+          password: bcrypt.hashSync('ufURjrnSvIs', 4),
           email: 'lmelody6y@tamu.edu',
           first_name: 'Lesya',
           last_name: 'Melody',
@@ -2017,7 +2017,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cspearing6z',
-          password: bcrypt.hashSync('ZsckvH1YT0Tc', 10),
+          password: bcrypt.hashSync('ZsckvH1YT0Tc', 4),
           email: 'cspearing6z@hud.gov',
           first_name: 'Carol',
           last_name: 'Spearing',
@@ -2025,7 +2025,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mzannetti70',
-          password: bcrypt.hashSync('daJNfd', 10),
+          password: bcrypt.hashSync('daJNfd', 4),
           email: 'mzannetti70@accuweather.com',
           first_name: 'Marti',
           last_name: 'Zannetti',
@@ -2033,7 +2033,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kjeeks71',
-          password: bcrypt.hashSync('1gHN9jibpEXr', 10),
+          password: bcrypt.hashSync('1gHN9jibpEXr', 4),
           email: 'kjeeks71@live.com',
           first_name: 'Kaleena',
           last_name: 'Jeeks',
@@ -2041,7 +2041,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jmcveigh72',
-          password: bcrypt.hashSync('YN5WA3', 10),
+          password: bcrypt.hashSync('YN5WA3', 4),
           email: 'jmcveigh72@businessweek.com',
           first_name: 'Jozef',
           last_name: 'McVeigh',
@@ -2049,7 +2049,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rlongmore73',
-          password: bcrypt.hashSync('TSxjLBpS7', 10),
+          password: bcrypt.hashSync('TSxjLBpS7', 4),
           email: 'rlongmore73@ovh.net',
           first_name: 'Renata',
           last_name: 'Longmore',
@@ -2057,7 +2057,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pberthome74',
-          password: bcrypt.hashSync('hLbv2wW', 10),
+          password: bcrypt.hashSync('hLbv2wW', 4),
           email: 'pberthome74@tumblr.com',
           first_name: 'Pammi',
           last_name: 'Berthome',
@@ -2065,7 +2065,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dvandervelde75',
-          password: bcrypt.hashSync('2d7OpmU2', 10),
+          password: bcrypt.hashSync('2d7OpmU2', 4),
           email: 'dvandervelde75@devhub.com',
           first_name: 'Desmond',
           last_name: 'Van der Velde',
@@ -2073,7 +2073,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gjambrozek76',
-          password: bcrypt.hashSync('XZizVEXa', 10),
+          password: bcrypt.hashSync('XZizVEXa', 4),
           email: 'gjambrozek76@flickr.com',
           first_name: 'Giselle',
           last_name: 'Jambrozek',
@@ -2081,7 +2081,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ssybbe77',
-          password: bcrypt.hashSync('SYWMGzAkG', 10),
+          password: bcrypt.hashSync('SYWMGzAkG', 4),
           email: 'ssybbe77@moonfruit.com',
           first_name: 'Sheela',
           last_name: 'Sybbe',
@@ -2089,7 +2089,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'fsketchley78',
-          password: bcrypt.hashSync('9ePaJYrikO', 10),
+          password: bcrypt.hashSync('9ePaJYrikO', 4),
           email: 'fsketchley78@omniture.com',
           first_name: 'Filberto',
           last_name: 'Sketchley',
@@ -2097,7 +2097,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vschober79',
-          password: bcrypt.hashSync('9PRITrkf5e', 10),
+          password: bcrypt.hashSync('9PRITrkf5e', 4),
           email: 'vschober79@kickstarter.com',
           first_name: 'Vinny',
           last_name: 'Schober',
@@ -2105,7 +2105,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sgettings7a',
-          password: bcrypt.hashSync('AkqlLIE', 10),
+          password: bcrypt.hashSync('AkqlLIE', 4),
           email: 'sgettings7a@wp.com',
           first_name: 'Shane',
           last_name: 'Gettings',
@@ -2113,7 +2113,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'idreinan7b',
-          password: bcrypt.hashSync('VlRHOzmk6', 10),
+          password: bcrypt.hashSync('VlRHOzmk6', 4),
           email: 'idreinan7b@boston.com',
           first_name: 'Imogene',
           last_name: 'Dreinan',
@@ -2121,7 +2121,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lhaggeth7c',
-          password: bcrypt.hashSync('d0aF6R7', 10),
+          password: bcrypt.hashSync('d0aF6R7', 4),
           email: 'lhaggeth7c@ow.ly',
           first_name: 'Lucias',
           last_name: 'Haggeth',
@@ -2129,7 +2129,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jlowthorpe7d',
-          password: bcrypt.hashSync('dxjexRiR7r', 10),
+          password: bcrypt.hashSync('dxjexRiR7r', 4),
           email: 'jlowthorpe7d@hhs.gov',
           first_name: 'Justis',
           last_name: 'Lowthorpe',
@@ -2137,7 +2137,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dkinglesyd7e',
-          password: bcrypt.hashSync('pM6CmGZVfLb', 10),
+          password: bcrypt.hashSync('pM6CmGZVfLb', 4),
           email: 'dkinglesyd7e@springer.com',
           first_name: 'Dorine',
           last_name: 'Kinglesyd',
@@ -2145,7 +2145,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mbawden7f',
-          password: bcrypt.hashSync('EEDQm6', 10),
+          password: bcrypt.hashSync('EEDQm6', 4),
           email: 'mbawden7f@newyorker.com',
           first_name: 'Murielle',
           last_name: 'Bawden',
@@ -2153,7 +2153,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mmcfarland7g',
-          password: bcrypt.hashSync('OtOBbmhuxjBd', 10),
+          password: bcrypt.hashSync('OtOBbmhuxjBd', 4),
           email: 'mmcfarland7g@tmall.com',
           first_name: 'Mildred',
           last_name: 'McFarland',
@@ -2161,7 +2161,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wfanshaw7h',
-          password: bcrypt.hashSync('xuKJCuxv6', 10),
+          password: bcrypt.hashSync('xuKJCuxv6', 4),
           email: 'wfanshaw7h@angelfire.com',
           first_name: 'Walliw',
           last_name: 'Fanshaw',
@@ -2169,7 +2169,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nmelonby7i',
-          password: bcrypt.hashSync('Iv1td7lc6', 10),
+          password: bcrypt.hashSync('Iv1td7lc6', 4),
           email: 'nmelonby7i@fc2.com',
           first_name: 'Nessi',
           last_name: 'Melonby',
@@ -2177,7 +2177,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nreah7j',
-          password: bcrypt.hashSync('WpHFeXrS', 10),
+          password: bcrypt.hashSync('WpHFeXrS', 4),
           email: 'nreah7j@gravatar.com',
           first_name: 'Niven',
           last_name: 'Reah',
@@ -2185,7 +2185,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nkubala7k',
-          password: bcrypt.hashSync('o4BGrG', 10),
+          password: bcrypt.hashSync('o4BGrG', 4),
           email: 'nkubala7k@oracle.com',
           first_name: 'Natty',
           last_name: 'Kubala',
@@ -2193,7 +2193,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'zdunmuir7l',
-          password: bcrypt.hashSync('gzQ8SF4t34', 10),
+          password: bcrypt.hashSync('gzQ8SF4t34', 4),
           email: 'zdunmuir7l@hugedomains.com',
           first_name: 'Zilvia',
           last_name: 'Dunmuir',
@@ -2201,7 +2201,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lbelliveau7m',
-          password: bcrypt.hashSync('mA8Rn1yKEJ4', 10),
+          password: bcrypt.hashSync('mA8Rn1yKEJ4', 4),
           email: 'lbelliveau7m@tumblr.com',
           first_name: 'Laryssa',
           last_name: 'Belliveau',
@@ -2209,7 +2209,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tpresman7n',
-          password: bcrypt.hashSync('xsTckkj', 10),
+          password: bcrypt.hashSync('xsTckkj', 4),
           email: 'tpresman7n@istockphoto.com',
           first_name: 'Temp',
           last_name: 'Presman',
@@ -2217,7 +2217,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hballach7o',
-          password: bcrypt.hashSync('9W4VeeHbsn', 10),
+          password: bcrypt.hashSync('9W4VeeHbsn', 4),
           email: 'hballach7o@bloglovin.com',
           first_name: 'Helyn',
           last_name: 'Ballach',
@@ -2225,7 +2225,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'smoulton7p',
-          password: bcrypt.hashSync('oku9FiCe6Ib', 10),
+          password: bcrypt.hashSync('oku9FiCe6Ib', 4),
           email: 'smoulton7p@ow.ly',
           first_name: 'Sybyl',
           last_name: 'Moulton',
@@ -2233,7 +2233,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dgimeno7q',
-          password: bcrypt.hashSync('ayS8QSAmeHEC', 10),
+          password: bcrypt.hashSync('ayS8QSAmeHEC', 4),
           email: 'dgimeno7q@ucsd.edu',
           first_name: 'Dallis',
           last_name: 'Gimeno',
@@ -2241,7 +2241,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'prendle7r',
-          password: bcrypt.hashSync('8jE67vxmJ', 10),
+          password: bcrypt.hashSync('8jE67vxmJ', 4),
           email: 'prendle7r@seesaa.net',
           first_name: 'Prinz',
           last_name: 'Rendle',
@@ -2249,7 +2249,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'elosbie7s',
-          password: bcrypt.hashSync('LGuB7NMU', 10),
+          password: bcrypt.hashSync('LGuB7NMU', 4),
           email: 'elosbie7s@goo.ne.jp',
           first_name: 'Eleonore',
           last_name: 'Losbie',
@@ -2257,7 +2257,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'smantrip7t',
-          password: bcrypt.hashSync('ehSxLF56v', 10),
+          password: bcrypt.hashSync('ehSxLF56v', 4),
           email: 'smantrip7t@phpbb.com',
           first_name: 'Steve',
           last_name: 'Mantrip',
@@ -2265,7 +2265,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'esnodin7u',
-          password: bcrypt.hashSync('oggKai', 10),
+          password: bcrypt.hashSync('oggKai', 4),
           email: 'esnodin7u@alibaba.com',
           first_name: 'Eugenia',
           last_name: 'Snodin',
@@ -2273,7 +2273,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hlaugier7v',
-          password: bcrypt.hashSync('k2Elm436', 10),
+          password: bcrypt.hashSync('k2Elm436', 4),
           email: 'hlaugier7v@guardian.co.uk',
           first_name: 'Herta',
           last_name: 'Laugier',
@@ -2281,7 +2281,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'egligori7w',
-          password: bcrypt.hashSync('a8Wste', 10),
+          password: bcrypt.hashSync('a8Wste', 4),
           email: 'egligori7w@netscape.com',
           first_name: 'Eustace',
           last_name: 'Gligori',
@@ -2289,7 +2289,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'aesel7x',
-          password: bcrypt.hashSync('YNDwwjZx1Kci', 10),
+          password: bcrypt.hashSync('YNDwwjZx1Kci', 4),
           email: 'aesel7x@marriott.com',
           first_name: 'Alair',
           last_name: 'Esel',
@@ -2297,7 +2297,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bdelia7y',
-          password: bcrypt.hashSync('Gvslg8cxNk', 10),
+          password: bcrypt.hashSync('Gvslg8cxNk', 4),
           email: 'bdelia7y@weibo.com',
           first_name: 'Berny',
           last_name: 'Delia',
@@ -2305,7 +2305,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'srefford7z',
-          password: bcrypt.hashSync('GQxxTUas9wZ', 10),
+          password: bcrypt.hashSync('GQxxTUas9wZ', 4),
           email: 'srefford7z@sohu.com',
           first_name: 'Sidonnie',
           last_name: 'Refford',
@@ -2313,7 +2313,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ctern80',
-          password: bcrypt.hashSync('DOx9CpufaS', 10),
+          password: bcrypt.hashSync('DOx9CpufaS', 4),
           email: 'ctern80@redcross.org',
           first_name: 'Charin',
           last_name: 'Tern',
@@ -2321,7 +2321,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nwillcocks81',
-          password: bcrypt.hashSync('vYp0NNdH', 10),
+          password: bcrypt.hashSync('vYp0NNdH', 4),
           email: 'nwillcocks81@tuttocitta.it',
           first_name: 'Nona',
           last_name: 'Willcocks',
@@ -2329,7 +2329,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bgillings82',
-          password: bcrypt.hashSync('QtI4wa', 10),
+          password: bcrypt.hashSync('QtI4wa', 4),
           email: 'bgillings82@archive.org',
           first_name: 'Bar',
           last_name: 'Gillings',
@@ -2337,7 +2337,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'poldershaw83',
-          password: bcrypt.hashSync('jaXDcCLPz', 10),
+          password: bcrypt.hashSync('jaXDcCLPz', 4),
           email: 'poldershaw83@instagram.com',
           first_name: 'Paige',
           last_name: 'Oldershaw',
@@ -2345,7 +2345,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bcestard84',
-          password: bcrypt.hashSync('Pa35ksZvtTSW', 10),
+          password: bcrypt.hashSync('Pa35ksZvtTSW', 4),
           email: 'bcestard84@apple.com',
           first_name: 'Bond',
           last_name: 'Cestard',
@@ -2353,7 +2353,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'staffley85',
-          password: bcrypt.hashSync('dwzQv8vKQ9', 10),
+          password: bcrypt.hashSync('dwzQv8vKQ9', 4),
           email: 'staffley85@virginia.edu',
           first_name: 'Spencer',
           last_name: 'Taffley',
@@ -2361,7 +2361,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'krusk86',
-          password: bcrypt.hashSync('HePNCqPxl', 10),
+          password: bcrypt.hashSync('HePNCqPxl', 4),
           email: 'krusk86@pen.io',
           first_name: 'Kylila',
           last_name: 'Rusk',
@@ -2369,7 +2369,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cghelardoni87',
-          password: bcrypt.hashSync('bSD2qnyK', 10),
+          password: bcrypt.hashSync('bSD2qnyK', 4),
           email: 'cghelardoni87@jimdo.com',
           first_name: 'Charity',
           last_name: 'Ghelardoni',
@@ -2377,7 +2377,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cduplan88',
-          password: bcrypt.hashSync('NPUOHtf3Cvce', 10),
+          password: bcrypt.hashSync('NPUOHtf3Cvce', 4),
           email: 'cduplan88@plala.or.jp',
           first_name: 'Cari',
           last_name: 'Duplan',
@@ -2385,7 +2385,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'awhines89',
-          password: bcrypt.hashSync('TCEfKaHALYT', 10),
+          password: bcrypt.hashSync('TCEfKaHALYT', 4),
           email: 'awhines89@histats.com',
           first_name: 'Aveline',
           last_name: 'Whines',
@@ -2393,7 +2393,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ggownge8a',
-          password: bcrypt.hashSync('JtxyWva3', 10),
+          password: bcrypt.hashSync('JtxyWva3', 4),
           email: 'ggownge8a@mtv.com',
           first_name: 'Guendolen',
           last_name: 'Gownge',
@@ -2401,7 +2401,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mcopson8b',
-          password: bcrypt.hashSync('qOTtEln0', 10),
+          password: bcrypt.hashSync('qOTtEln0', 4),
           email: 'mcopson8b@acquirethisname.com',
           first_name: 'Miles',
           last_name: 'Copson',
@@ -2409,7 +2409,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nmordanti8c',
-          password: bcrypt.hashSync('7s8nQia6nlK', 10),
+          password: bcrypt.hashSync('7s8nQia6nlK', 4),
           email: 'nmordanti8c@umn.edu',
           first_name: 'Nancie',
           last_name: 'Mordanti',
@@ -2417,7 +2417,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nsherrock8d',
-          password: bcrypt.hashSync('d42Pc0sJEg0W', 10),
+          password: bcrypt.hashSync('d42Pc0sJEg0W', 4),
           email: 'nsherrock8d@netvibes.com',
           first_name: 'Nicolas',
           last_name: 'Sherrock',
@@ -2425,7 +2425,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lwilmut8e',
-          password: bcrypt.hashSync('76CzEc6xF', 10),
+          password: bcrypt.hashSync('76CzEc6xF', 4),
           email: 'lwilmut8e@live.com',
           first_name: 'Larissa',
           last_name: 'Wilmut',
@@ -2433,7 +2433,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bgapp8f',
-          password: bcrypt.hashSync('rClW0AaKR', 10),
+          password: bcrypt.hashSync('rClW0AaKR', 4),
           email: 'bgapp8f@so-net.ne.jp',
           first_name: 'Boris',
           last_name: 'Gapp',
@@ -2441,7 +2441,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'omusprat8g',
-          password: bcrypt.hashSync('p1ooihNHfS', 10),
+          password: bcrypt.hashSync('p1ooihNHfS', 4),
           email: 'omusprat8g@myspace.com',
           first_name: 'Osmond',
           last_name: 'Musprat',
@@ -2449,7 +2449,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jternault8h',
-          password: bcrypt.hashSync('8xC2DV', 10),
+          password: bcrypt.hashSync('8xC2DV', 4),
           email: 'jternault8h@google.it',
           first_name: 'Juli',
           last_name: 'Ternault',
@@ -2457,7 +2457,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dpostance8i',
-          password: bcrypt.hashSync('MVjPOE87ZriO', 10),
+          password: bcrypt.hashSync('MVjPOE87ZriO', 4),
           email: 'dpostance8i@edublogs.org',
           first_name: 'Darrelle',
           last_name: 'Postance',
@@ -2465,7 +2465,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hchantree8j',
-          password: bcrypt.hashSync('UzASMiuzTSgH', 10),
+          password: bcrypt.hashSync('UzASMiuzTSgH', 4),
           email: 'hchantree8j@squarespace.com',
           first_name: 'Hershel',
           last_name: 'Chantree',
@@ -2473,7 +2473,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dgillet8k',
-          password: bcrypt.hashSync('TQU0W2i', 10),
+          password: bcrypt.hashSync('TQU0W2i', 4),
           email: 'dgillet8k@icq.com',
           first_name: 'Deloris',
           last_name: 'Gillet',
@@ -2481,7 +2481,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mlorimer8l',
-          password: bcrypt.hashSync('Bioxlww40', 10),
+          password: bcrypt.hashSync('Bioxlww40', 4),
           email: 'mlorimer8l@dedecms.com',
           first_name: 'Mannie',
           last_name: 'Lorimer',
@@ -2489,7 +2489,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ggrinaugh8m',
-          password: bcrypt.hashSync('gxIOwLqdq', 10),
+          password: bcrypt.hashSync('gxIOwLqdq', 4),
           email: 'ggrinaugh8m@yahoo.co.jp',
           first_name: 'Giffy',
           last_name: 'Grinaugh',
@@ -2497,7 +2497,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bsnoxall8n',
-          password: bcrypt.hashSync('dsVlg3dtns', 10),
+          password: bcrypt.hashSync('dsVlg3dtns', 4),
           email: 'bsnoxall8n@usatoday.com',
           first_name: 'Broddy',
           last_name: 'Snoxall',
@@ -2505,7 +2505,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wseaton8o',
-          password: bcrypt.hashSync('wmnPZpQchq', 10),
+          password: bcrypt.hashSync('wmnPZpQchq', 4),
           email: 'wseaton8o@drupal.org',
           first_name: 'Whitaker',
           last_name: 'Seaton',
@@ -2513,7 +2513,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'awhal8p',
-          password: bcrypt.hashSync('7TPQmDB', 10),
+          password: bcrypt.hashSync('7TPQmDB', 4),
           email: 'awhal8p@narod.ru',
           first_name: 'Allie',
           last_name: 'Whal',
@@ -2521,7 +2521,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'pdowne8q',
-          password: bcrypt.hashSync('npTCoS', 10),
+          password: bcrypt.hashSync('npTCoS', 4),
           email: 'pdowne8q@123-reg.co.uk',
           first_name: 'Philippe',
           last_name: 'Downe',
@@ -2529,7 +2529,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cambler8r',
-          password: bcrypt.hashSync('HZwdBRhVg', 10),
+          password: bcrypt.hashSync('HZwdBRhVg', 4),
           email: 'cambler8r@hao123.com',
           first_name: 'Cam',
           last_name: 'Ambler',
@@ -2537,7 +2537,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'efellgate8s',
-          password: bcrypt.hashSync('WOaTM1YlPE', 10),
+          password: bcrypt.hashSync('WOaTM1YlPE', 4),
           email: 'efellgate8s@theguardian.com',
           first_name: 'Elfrida',
           last_name: 'Fellgate',
@@ -2545,7 +2545,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ddimaggio8t',
-          password: bcrypt.hashSync('3opwr7', 10),
+          password: bcrypt.hashSync('3opwr7', 4),
           email: 'ddimaggio8t@latimes.com',
           first_name: 'Dieter',
           last_name: 'Di Maggio',
@@ -2553,7 +2553,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bfleury8u',
-          password: bcrypt.hashSync('7b47cJ', 10),
+          password: bcrypt.hashSync('7b47cJ', 4),
           email: 'bfleury8u@statcounter.com',
           first_name: 'Billie',
           last_name: 'Fleury',
@@ -2561,7 +2561,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'relman8v',
-          password: bcrypt.hashSync('FRaKowsi0wN', 10),
+          password: bcrypt.hashSync('FRaKowsi0wN', 4),
           email: 'relman8v@is.gd',
           first_name: 'Rod',
           last_name: 'Elman',
@@ -2569,7 +2569,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mchittim8w',
-          password: bcrypt.hashSync('DvRoXMfTK', 10),
+          password: bcrypt.hashSync('DvRoXMfTK', 4),
           email: 'mchittim8w@baidu.com',
           first_name: 'Mahmud',
           last_name: 'Chittim',
@@ -2577,7 +2577,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rtripean8x',
-          password: bcrypt.hashSync('RI9TzPnCip', 10),
+          password: bcrypt.hashSync('RI9TzPnCip', 4),
           email: 'rtripean8x@ft.com',
           first_name: 'Rafi',
           last_name: 'Tripean',
@@ -2585,7 +2585,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bbullar8y',
-          password: bcrypt.hashSync('XqESwKo6', 10),
+          password: bcrypt.hashSync('XqESwKo6', 4),
           email: 'bbullar8y@fotki.com',
           first_name: 'Brittni',
           last_name: 'Bullar',
@@ -2593,7 +2593,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kallright8z',
-          password: bcrypt.hashSync('D5wjEKLUxjU', 10),
+          password: bcrypt.hashSync('D5wjEKLUxjU', 4),
           email: 'kallright8z@youtube.com',
           first_name: 'Kylynn',
           last_name: 'Allright',
@@ -2601,7 +2601,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jtwaits90',
-          password: bcrypt.hashSync('ELoWsiAN', 10),
+          password: bcrypt.hashSync('ELoWsiAN', 4),
           email: 'jtwaits90@ustream.tv',
           first_name: 'Juli',
           last_name: 'Twaits',
@@ -2609,7 +2609,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bakrigg91',
-          password: bcrypt.hashSync('7OUdr1Uig', 10),
+          password: bcrypt.hashSync('7OUdr1Uig', 4),
           email: 'bakrigg91@nyu.edu',
           first_name: 'Bethany',
           last_name: 'Akrigg',
@@ -2617,7 +2617,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hnairne92',
-          password: bcrypt.hashSync('sRbVOdk7ClC', 10),
+          password: bcrypt.hashSync('sRbVOdk7ClC', 4),
           email: 'hnairne92@jugem.jp',
           first_name: 'Haleigh',
           last_name: 'Nairne',
@@ -2625,7 +2625,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rfeeham93',
-          password: bcrypt.hashSync('FLC7zkLijMN', 10),
+          password: bcrypt.hashSync('FLC7zkLijMN', 4),
           email: 'rfeeham93@baidu.com',
           first_name: 'Rosina',
           last_name: 'Feeham',
@@ -2633,7 +2633,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jkopec94',
-          password: bcrypt.hashSync('b4N6D73hR', 10),
+          password: bcrypt.hashSync('b4N6D73hR', 4),
           email: 'jkopec94@kickstarter.com',
           first_name: 'Joannes',
           last_name: 'Kopec',
@@ -2641,7 +2641,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'srosellini95',
-          password: bcrypt.hashSync('XofMLAuXt', 10),
+          password: bcrypt.hashSync('XofMLAuXt', 4),
           email: 'srosellini95@unc.edu',
           first_name: 'Star',
           last_name: 'Rosellini',
@@ -2649,7 +2649,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rwenzel96',
-          password: bcrypt.hashSync('ilrkZ3D', 10),
+          password: bcrypt.hashSync('ilrkZ3D', 4),
           email: 'rwenzel96@imgur.com',
           first_name: 'Randal',
           last_name: 'Wenzel',
@@ -2657,7 +2657,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mcrawforth97',
-          password: bcrypt.hashSync('JPq1or504', 10),
+          password: bcrypt.hashSync('JPq1or504', 4),
           email: 'mcrawforth97@google.cn',
           first_name: 'Michell',
           last_name: 'Crawforth',
@@ -2665,7 +2665,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hlemaitre98',
-          password: bcrypt.hashSync('j1UFgWBVnf', 10),
+          password: bcrypt.hashSync('j1UFgWBVnf', 4),
           email: 'hlemaitre98@google.fr',
           first_name: 'Haleigh',
           last_name: 'Le Maitre',
@@ -2673,7 +2673,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rguido99',
-          password: bcrypt.hashSync('PKjLLAiG', 10),
+          password: bcrypt.hashSync('PKjLLAiG', 4),
           email: 'rguido99@apple.com',
           first_name: 'Rosina',
           last_name: 'Guido',
@@ -2681,7 +2681,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bbiagi9a',
-          password: bcrypt.hashSync('tmTvmevdEPT', 10),
+          password: bcrypt.hashSync('tmTvmevdEPT', 4),
           email: 'bbiagi9a@biblegateway.com',
           first_name: 'Brena',
           last_name: 'Biagi',
@@ -2689,7 +2689,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bkyte9b',
-          password: bcrypt.hashSync('OlT2vXVsNUy', 10),
+          password: bcrypt.hashSync('OlT2vXVsNUy', 4),
           email: 'bkyte9b@tamu.edu',
           first_name: 'Brade',
           last_name: 'Kyte',
@@ -2697,7 +2697,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mguidotti9c',
-          password: bcrypt.hashSync('sH8fsJ', 10),
+          password: bcrypt.hashSync('sH8fsJ', 4),
           email: 'mguidotti9c@youtube.com',
           first_name: 'Marita',
           last_name: 'Guidotti',
@@ -2705,7 +2705,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'caudrey9d',
-          password: bcrypt.hashSync('sHBf5MnYnVH', 10),
+          password: bcrypt.hashSync('sHBf5MnYnVH', 4),
           email: 'caudrey9d@sakura.ne.jp',
           first_name: 'Clarke',
           last_name: 'Audrey',
@@ -2713,7 +2713,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'smathieson9e',
-          password: bcrypt.hashSync('h2b25sOfd', 10),
+          password: bcrypt.hashSync('h2b25sOfd', 4),
           email: 'smathieson9e@cloudflare.com',
           first_name: 'Sander',
           last_name: 'Mathieson',
@@ -2721,7 +2721,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'yboffin9f',
-          password: bcrypt.hashSync('wd8KYG8mmIYe', 10),
+          password: bcrypt.hashSync('wd8KYG8mmIYe', 4),
           email: 'yboffin9f@github.io',
           first_name: 'Yvonne',
           last_name: 'Boffin',
@@ -2729,7 +2729,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'koxherd9g',
-          password: bcrypt.hashSync('Vl2DtGxFvHpI', 10),
+          password: bcrypt.hashSync('Vl2DtGxFvHpI', 4),
           email: 'koxherd9g@furl.net',
           first_name: 'Kathye',
           last_name: 'Oxherd',
@@ -2737,7 +2737,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'eskillitt9h',
-          password: bcrypt.hashSync('yIED4h', 10),
+          password: bcrypt.hashSync('yIED4h', 4),
           email: 'eskillitt9h@cdbaby.com',
           first_name: 'Emmye',
           last_name: 'Skillitt',
@@ -2745,7 +2745,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'erame9i',
-          password: bcrypt.hashSync('NAQRovmx', 10),
+          password: bcrypt.hashSync('NAQRovmx', 4),
           email: 'erame9i@sphinn.com',
           first_name: 'Eward',
           last_name: 'Rame',
@@ -2753,7 +2753,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nradbone9j',
-          password: bcrypt.hashSync('BQy0xeyW', 10),
+          password: bcrypt.hashSync('BQy0xeyW', 4),
           email: 'nradbone9j@webs.com',
           first_name: 'Nady',
           last_name: 'Radbone',
@@ -2761,7 +2761,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rgilbane9k',
-          password: bcrypt.hashSync('wSTuEEl', 10),
+          password: bcrypt.hashSync('wSTuEEl', 4),
           email: 'rgilbane9k@linkedin.com',
           first_name: 'Roy',
           last_name: 'Gilbane',
@@ -2769,7 +2769,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'melsop9l',
-          password: bcrypt.hashSync('7X0zq0vH', 10),
+          password: bcrypt.hashSync('7X0zq0vH', 4),
           email: 'melsop9l@istockphoto.com',
           first_name: 'Marcille',
           last_name: 'Elsop',
@@ -2777,7 +2777,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sbagott9m',
-          password: bcrypt.hashSync('hh481wIL', 10),
+          password: bcrypt.hashSync('hh481wIL', 4),
           email: 'sbagott9m@themeforest.net',
           first_name: 'Susi',
           last_name: 'Bagott',
@@ -2785,7 +2785,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rfinnes9n',
-          password: bcrypt.hashSync('mm4mHsNrN', 10),
+          password: bcrypt.hashSync('mm4mHsNrN', 4),
           email: 'rfinnes9n@sfgate.com',
           first_name: 'Rhona',
           last_name: 'Finnes',
@@ -2793,7 +2793,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lrobers9o',
-          password: bcrypt.hashSync('bixDvmD', 10),
+          password: bcrypt.hashSync('bixDvmD', 4),
           email: 'lrobers9o@dyndns.org',
           first_name: 'Leila',
           last_name: 'Robers',
@@ -2801,7 +2801,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mrenfield9p',
-          password: bcrypt.hashSync('RTOGXK', 10),
+          password: bcrypt.hashSync('RTOGXK', 4),
           email: 'mrenfield9p@about.me',
           first_name: 'Marna',
           last_name: 'Renfield',
@@ -2809,7 +2809,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cwaight9q',
-          password: bcrypt.hashSync('Iij7fSqKiDjO', 10),
+          password: bcrypt.hashSync('Iij7fSqKiDjO', 4),
           email: 'cwaight9q@biglobe.ne.jp',
           first_name: 'Corabella',
           last_name: 'Waight',
@@ -2817,7 +2817,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'okrause9r',
-          password: bcrypt.hashSync('6eDRlpKd', 10),
+          password: bcrypt.hashSync('6eDRlpKd', 4),
           email: 'okrause9r@rambler.ru',
           first_name: 'Oswell',
           last_name: 'Krause',
@@ -2825,7 +2825,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'omottley9s',
-          password: bcrypt.hashSync('2KjSi9Uj', 10),
+          password: bcrypt.hashSync('2KjSi9Uj', 4),
           email: 'omottley9s@adobe.com',
           first_name: 'Ondrea',
           last_name: 'Mottley',
@@ -2833,7 +2833,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dgegg9t',
-          password: bcrypt.hashSync('MxQdeUiTphnP', 10),
+          password: bcrypt.hashSync('MxQdeUiTphnP', 4),
           email: 'dgegg9t@businesswire.com',
           first_name: 'Dare',
           last_name: 'Gegg',
@@ -2841,7 +2841,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cgregorace9u',
-          password: bcrypt.hashSync('xDsAt2AsL3', 10),
+          password: bcrypt.hashSync('xDsAt2AsL3', 4),
           email: 'cgregorace9u@slashdot.org',
           first_name: 'Chadwick',
           last_name: 'Gregorace',
@@ -2849,7 +2849,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mchastney9v',
-          password: bcrypt.hashSync('ExdDXg', 10),
+          password: bcrypt.hashSync('ExdDXg', 4),
           email: 'mchastney9v@yandex.ru',
           first_name: 'Minna',
           last_name: 'Chastney',
@@ -2857,7 +2857,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'aalf9w',
-          password: bcrypt.hashSync('xUsWP6xnA', 10),
+          password: bcrypt.hashSync('xUsWP6xnA', 4),
           email: 'aalf9w@un.org',
           first_name: 'Adrien',
           last_name: 'Alf',
@@ -2865,7 +2865,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ebilbrook9x',
-          password: bcrypt.hashSync('DNLNYx', 10),
+          password: bcrypt.hashSync('DNLNYx', 4),
           email: 'ebilbrook9x@cbsnews.com',
           first_name: 'Esmaria',
           last_name: 'Bilbrook',
@@ -2873,7 +2873,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mchevin9y',
-          password: bcrypt.hashSync('Xr6JDN', 10),
+          password: bcrypt.hashSync('Xr6JDN', 4),
           email: 'mchevin9y@china.com.cn',
           first_name: 'Molli',
           last_name: 'Chevin',
@@ -2881,7 +2881,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'egoalby9z',
-          password: bcrypt.hashSync('C9FBaj', 10),
+          password: bcrypt.hashSync('C9FBaj', 4),
           email: 'egoalby9z@noaa.gov',
           first_name: 'Ema',
           last_name: 'Goalby',
@@ -2889,7 +2889,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mbrusina0',
-          password: bcrypt.hashSync('JLWuV87R', 10),
+          password: bcrypt.hashSync('JLWuV87R', 4),
           email: 'mbrusina0@tripadvisor.com',
           first_name: 'Moise',
           last_name: 'Brusin',
@@ -2897,7 +2897,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gflyea1',
-          password: bcrypt.hashSync('Kzpi0DbsuS', 10),
+          password: bcrypt.hashSync('Kzpi0DbsuS', 4),
           email: 'gflyea1@ameblo.jp',
           first_name: 'Gregor',
           last_name: 'Flye',
@@ -2905,7 +2905,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'geveralla2',
-          password: bcrypt.hashSync('Nhgxzsws', 10),
+          password: bcrypt.hashSync('Nhgxzsws', 4),
           email: 'geveralla2@hexun.com',
           first_name: 'Graham',
           last_name: 'Everall',
@@ -2913,7 +2913,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ctremoillea3',
-          password: bcrypt.hashSync('eJU5SChoXHa', 10),
+          password: bcrypt.hashSync('eJU5SChoXHa', 4),
           email: 'ctremoillea3@noaa.gov',
           first_name: 'Carline',
           last_name: 'Tremoille',
@@ -2921,7 +2921,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lmallinsona4',
-          password: bcrypt.hashSync('ebUlqgF', 10),
+          password: bcrypt.hashSync('ebUlqgF', 4),
           email: 'lmallinsona4@is.gd',
           first_name: 'Llewellyn',
           last_name: 'Mallinson',
@@ -2929,7 +2929,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'abelseya5',
-          password: bcrypt.hashSync('R8aeEgt1Ili', 10),
+          password: bcrypt.hashSync('R8aeEgt1Ili', 4),
           email: 'abelseya5@smugmug.com',
           first_name: 'Abbie',
           last_name: 'Belsey',
@@ -2937,7 +2937,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ljeppa6',
-          password: bcrypt.hashSync('alr4rEFu', 10),
+          password: bcrypt.hashSync('alr4rEFu', 4),
           email: 'ljeppa6@privacy.gov.au',
           first_name: 'Leese',
           last_name: 'Jepp',
@@ -2945,7 +2945,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'slinkiea7',
-          password: bcrypt.hashSync('cr3WBPlrvS', 10),
+          password: bcrypt.hashSync('cr3WBPlrvS', 4),
           email: 'slinkiea7@hostgator.com',
           first_name: 'Sayres',
           last_name: 'Linkie',
@@ -2953,7 +2953,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tgaltona8',
-          password: bcrypt.hashSync('lZKhmRFpH', 10),
+          password: bcrypt.hashSync('lZKhmRFpH', 4),
           email: 'tgaltona8@imgur.com',
           first_name: 'Ted',
           last_name: 'Galton',
@@ -2961,7 +2961,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'fdemeridaa9',
-          password: bcrypt.hashSync('eMv7pnsJVkm', 10),
+          password: bcrypt.hashSync('eMv7pnsJVkm', 4),
           email: 'fdemeridaa9@issuu.com',
           first_name: 'Fernandina',
           last_name: 'de Merida',
@@ -2969,7 +2969,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jflucksaa',
-          password: bcrypt.hashSync('XQ5bewqvG5', 10),
+          password: bcrypt.hashSync('XQ5bewqvG5', 4),
           email: 'jflucksaa@oaic.gov.au',
           first_name: 'Joann',
           last_name: 'Flucks',
@@ -2977,7 +2977,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dsanbrookab',
-          password: bcrypt.hashSync('d2mVAOpN2k', 10),
+          password: bcrypt.hashSync('d2mVAOpN2k', 4),
           email: 'dsanbrookab@sciencedirect.com',
           first_name: 'Derick',
           last_name: 'Sanbrook',
@@ -2985,7 +2985,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cmclanaghanac',
-          password: bcrypt.hashSync('sVChU0cEb', 10),
+          password: bcrypt.hashSync('sVChU0cEb', 4),
           email: 'cmclanaghanac@google.fr',
           first_name: 'Christan',
           last_name: 'McLanaghan',
@@ -2993,7 +2993,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mbassilashviliad',
-          password: bcrypt.hashSync('pOfRekidvmB2', 10),
+          password: bcrypt.hashSync('pOfRekidvmB2', 4),
           email: 'mbassilashviliad@un.org',
           first_name: 'Mick',
           last_name: 'Bassilashvili',
@@ -3001,7 +3001,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vsidebottomae',
-          password: bcrypt.hashSync('EyC2An', 10),
+          password: bcrypt.hashSync('EyC2An', 4),
           email: 'vsidebottomae@hexun.com',
           first_name: 'Verena',
           last_name: 'Sidebottom',
@@ -3009,7 +3009,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tdeinertaf',
-          password: bcrypt.hashSync('dRCNdkqAqv', 10),
+          password: bcrypt.hashSync('dRCNdkqAqv', 4),
           email: 'tdeinertaf@shop-pro.jp',
           first_name: 'Tanitansy',
           last_name: 'Deinert',
@@ -3017,7 +3017,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dpinhornag',
-          password: bcrypt.hashSync('QrQtfE6', 10),
+          password: bcrypt.hashSync('QrQtfE6', 4),
           email: 'dpinhornag@sakura.ne.jp',
           first_name: 'Davie',
           last_name: 'Pinhorn',
@@ -3025,7 +3025,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jjerzakah',
-          password: bcrypt.hashSync('pABoPGCSFKFD', 10),
+          password: bcrypt.hashSync('pABoPGCSFKFD', 4),
           email: 'jjerzakah@bbc.co.uk',
           first_name: 'Julietta',
           last_name: 'Jerzak',
@@ -3033,7 +3033,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'craymanai',
-          password: bcrypt.hashSync('10ZSxCCD', 10),
+          password: bcrypt.hashSync('10ZSxCCD', 4),
           email: 'craymanai@t-online.de',
           first_name: 'Cullie',
           last_name: 'Rayman',
@@ -3041,7 +3041,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kbloyesaj',
-          password: bcrypt.hashSync('011AvwwuxH', 10),
+          password: bcrypt.hashSync('011AvwwuxH', 4),
           email: 'kbloyesaj@stumbleupon.com',
           first_name: 'Keefer',
           last_name: 'Bloyes',
@@ -3049,7 +3049,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ndigginsak',
-          password: bcrypt.hashSync('y4Nl5s6jY', 10),
+          password: bcrypt.hashSync('y4Nl5s6jY', 4),
           email: 'ndigginsak@soup.io',
           first_name: 'Nester',
           last_name: 'Diggins',
@@ -3057,7 +3057,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lridesdaleal',
-          password: bcrypt.hashSync('HvtnWwSHHEY', 10),
+          password: bcrypt.hashSync('HvtnWwSHHEY', 4),
           email: 'lridesdaleal@jiathis.com',
           first_name: 'Lind',
           last_name: 'Ridesdale',
@@ -3065,7 +3065,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ebaueram',
-          password: bcrypt.hashSync('wftZtGc', 10),
+          password: bcrypt.hashSync('wftZtGc', 4),
           email: 'ebaueram@unc.edu',
           first_name: 'Elga',
           last_name: 'Bauer',
@@ -3073,7 +3073,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ggontieran',
-          password: bcrypt.hashSync('r1aXhVwPtynH', 10),
+          password: bcrypt.hashSync('r1aXhVwPtynH', 4),
           email: 'ggontieran@instagram.com',
           first_name: 'Gibby',
           last_name: 'Gontier',
@@ -3081,7 +3081,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tlincolnao',
-          password: bcrypt.hashSync('gY3CcD7', 10),
+          password: bcrypt.hashSync('gY3CcD7', 4),
           email: 'tlincolnao@webnode.com',
           first_name: 'Thaine',
           last_name: 'Lincoln',
@@ -3089,7 +3089,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rheakinsap',
-          password: bcrypt.hashSync('z7kNNTEEop', 10),
+          password: bcrypt.hashSync('z7kNNTEEop', 4),
           email: 'rheakinsap@w3.org',
           first_name: 'Rhetta',
           last_name: 'Heakins',
@@ -3097,7 +3097,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'blannonaq',
-          password: bcrypt.hashSync('UpXakPXfn7', 10),
+          password: bcrypt.hashSync('UpXakPXfn7', 4),
           email: 'blannonaq@usnews.com',
           first_name: 'Barbey',
           last_name: 'Lannon',
@@ -3105,7 +3105,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dcarstairsar',
-          password: bcrypt.hashSync('OFnFrrXNvJTv', 10),
+          password: bcrypt.hashSync('OFnFrrXNvJTv', 4),
           email: 'dcarstairsar@dailymotion.com',
           first_name: 'Dewain',
           last_name: 'Carstairs',
@@ -3113,7 +3113,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'asawleas',
-          password: bcrypt.hashSync('whiYuBeT9F5', 10),
+          password: bcrypt.hashSync('whiYuBeT9F5', 4),
           email: 'asawleas@usgs.gov',
           first_name: 'Alexio',
           last_name: 'Sawle',
@@ -3121,7 +3121,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rhastingsat',
-          password: bcrypt.hashSync('jlWFRqT8wpXC', 10),
+          password: bcrypt.hashSync('jlWFRqT8wpXC', 4),
           email: 'rhastingsat@rediff.com',
           first_name: 'Rock',
           last_name: 'Hastings',
@@ -3129,7 +3129,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'afairfootau',
-          password: bcrypt.hashSync('K9Z0gX4xz', 10),
+          password: bcrypt.hashSync('K9Z0gX4xz', 4),
           email: 'afairfootau@bbb.org',
           first_name: 'Alaine',
           last_name: 'Fairfoot',
@@ -3137,7 +3137,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cmumbeyav',
-          password: bcrypt.hashSync('CqO0dAH', 10),
+          password: bcrypt.hashSync('CqO0dAH', 4),
           email: 'cmumbeyav@scientificamerican.com',
           first_name: 'Colly',
           last_name: 'Mumbey',
@@ -3145,7 +3145,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'scrumbyaw',
-          password: bcrypt.hashSync('Q3MvcTwf06G9', 10),
+          password: bcrypt.hashSync('Q3MvcTwf06G9', 4),
           email: 'scrumbyaw@adobe.com',
           first_name: 'Sayre',
           last_name: 'Crumby',
@@ -3153,7 +3153,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'reglintonax',
-          password: bcrypt.hashSync('akY04dbt3L', 10),
+          password: bcrypt.hashSync('akY04dbt3L', 4),
           email: 'reglintonax@uol.com.br',
           first_name: 'Rand',
           last_name: 'Eglinton',
@@ -3161,7 +3161,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cbehanay',
-          password: bcrypt.hashSync('mVbqyeW2', 10),
+          password: bcrypt.hashSync('mVbqyeW2', 4),
           email: 'cbehanay@wix.com',
           first_name: 'Christie',
           last_name: 'Behan',
@@ -3169,7 +3169,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kfrieraz',
-          password: bcrypt.hashSync('lDUWS1DC2', 10),
+          password: bcrypt.hashSync('lDUWS1DC2', 4),
           email: 'kfrieraz@xrea.com',
           first_name: 'Karol',
           last_name: 'Frier',
@@ -3177,7 +3177,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ldarnodyb0',
-          password: bcrypt.hashSync('YsxtZ6Wq', 10),
+          password: bcrypt.hashSync('YsxtZ6Wq', 4),
           email: 'ldarnodyb0@hostgator.com',
           first_name: 'Lynsey',
           last_name: 'Darnody',
@@ -3185,7 +3185,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mmithonb1',
-          password: bcrypt.hashSync('qFqvDc2wx', 10),
+          password: bcrypt.hashSync('qFqvDc2wx', 4),
           email: 'mmithonb1@constantcontact.com',
           first_name: 'Maddy',
           last_name: 'Mithon',
@@ -3193,7 +3193,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hrumensb2',
-          password: bcrypt.hashSync('rgGcAA4rWR1t', 10),
+          password: bcrypt.hashSync('rgGcAA4rWR1t', 4),
           email: 'hrumensb2@cisco.com',
           first_name: 'Hadria',
           last_name: 'Rumens',
@@ -3201,7 +3201,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'yhardisonb3',
-          password: bcrypt.hashSync('AeqnX2P4J32', 10),
+          password: bcrypt.hashSync('AeqnX2P4J32', 4),
           email: 'yhardisonb3@archive.org',
           first_name: 'Yves',
           last_name: 'Hardison',
@@ -3209,7 +3209,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jlambertsb4',
-          password: bcrypt.hashSync('vVszu8Vl8Y', 10),
+          password: bcrypt.hashSync('vVszu8Vl8Y', 4),
           email: 'jlambertsb4@163.com',
           first_name: 'Jessi',
           last_name: 'Lamberts',
@@ -3217,7 +3217,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bkondratenyab5',
-          password: bcrypt.hashSync('tKLQZWXBcHRT', 10),
+          password: bcrypt.hashSync('tKLQZWXBcHRT', 4),
           email: 'bkondratenyab5@weibo.com',
           first_name: 'Bartholemy',
           last_name: 'Kondratenya',
@@ -3225,7 +3225,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mlathamb6',
-          password: bcrypt.hashSync('lAsmTyBy4', 10),
+          password: bcrypt.hashSync('lAsmTyBy4', 4),
           email: 'mlathamb6@latimes.com',
           first_name: 'Myrtle',
           last_name: 'Latham',
@@ -3233,7 +3233,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jbearfootb7',
-          password: bcrypt.hashSync('OI6xr6vzmgZf', 10),
+          password: bcrypt.hashSync('OI6xr6vzmgZf', 4),
           email: 'jbearfootb7@i2i.jp',
           first_name: 'Juliane',
           last_name: 'Bearfoot',
@@ -3241,7 +3241,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mjacombsb8',
-          password: bcrypt.hashSync('T3F0KDnn2FKF', 10),
+          password: bcrypt.hashSync('T3F0KDnn2FKF', 4),
           email: 'mjacombsb8@nature.com',
           first_name: 'Maire',
           last_name: 'Jacombs',
@@ -3249,7 +3249,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ddunsmoreb9',
-          password: bcrypt.hashSync('frRGpBl', 10),
+          password: bcrypt.hashSync('frRGpBl', 4),
           email: 'ddunsmoreb9@guardian.co.uk',
           first_name: 'Dwain',
           last_name: 'Dunsmore',
@@ -3257,7 +3257,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ilivenba',
-          password: bcrypt.hashSync('wMuYVI0pUvg', 10),
+          password: bcrypt.hashSync('wMuYVI0pUvg', 4),
           email: 'ilivenba@reddit.com',
           first_name: 'Idette',
           last_name: 'Liven',
@@ -3265,7 +3265,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mmalamorebb',
-          password: bcrypt.hashSync('4sL7aXz818vr', 10),
+          password: bcrypt.hashSync('4sL7aXz818vr', 4),
           email: 'mmalamorebb@hc360.com',
           first_name: 'Mahmoud',
           last_name: 'Malamore',
@@ -3273,7 +3273,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'edwyerbc',
-          password: bcrypt.hashSync('o0i2K6bq', 10),
+          password: bcrypt.hashSync('o0i2K6bq', 4),
           email: 'edwyerbc@xinhuanet.com',
           first_name: 'Enrique',
           last_name: 'Dwyer',
@@ -3281,7 +3281,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'vbendikbd',
-          password: bcrypt.hashSync('LO7oNZUI7PY', 10),
+          password: bcrypt.hashSync('LO7oNZUI7PY', 4),
           email: 'vbendikbd@accuweather.com',
           first_name: 'Viola',
           last_name: 'Bendik',
@@ -3289,7 +3289,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tlortzbe',
-          password: bcrypt.hashSync('qjlxS1kHh', 10),
+          password: bcrypt.hashSync('qjlxS1kHh', 4),
           email: 'tlortzbe@free.fr',
           first_name: 'Tomaso',
           last_name: 'Lortz',
@@ -3297,7 +3297,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ocorkelbf',
-          password: bcrypt.hashSync('1EZgfeOU35', 10),
+          password: bcrypt.hashSync('1EZgfeOU35', 4),
           email: 'ocorkelbf@mit.edu',
           first_name: 'Odie',
           last_name: 'Corkel',
@@ -3305,7 +3305,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'aknapmanbg',
-          password: bcrypt.hashSync('bEanljteZW', 10),
+          password: bcrypt.hashSync('bEanljteZW', 4),
           email: 'aknapmanbg@spiegel.de',
           first_name: 'Amye',
           last_name: 'Knapman',
@@ -3313,7 +3313,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mgossingtonbh',
-          password: bcrypt.hashSync('5faWVzlRkXm', 10),
+          password: bcrypt.hashSync('5faWVzlRkXm', 4),
           email: 'mgossingtonbh@ustream.tv',
           first_name: 'Martguerita',
           last_name: 'Gossington',
@@ -3321,7 +3321,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'emcallanbi',
-          password: bcrypt.hashSync('66yfJ1larIrp', 10),
+          password: bcrypt.hashSync('66yfJ1larIrp', 4),
           email: 'emcallanbi@google.co.jp',
           first_name: 'Emmerich',
           last_name: 'McAllan',
@@ -3329,7 +3329,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mwillsherebj',
-          password: bcrypt.hashSync('CMkzXK9JFYQR', 10),
+          password: bcrypt.hashSync('CMkzXK9JFYQR', 4),
           email: 'mwillsherebj@umich.edu',
           first_name: 'Mackenzie',
           last_name: 'Willshere',
@@ -3337,7 +3337,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'skuhlbk',
-          password: bcrypt.hashSync('02eQkHV1Mc8H', 10),
+          password: bcrypt.hashSync('02eQkHV1Mc8H', 4),
           email: 'skuhlbk@netlog.com',
           first_name: 'Sergeant',
           last_name: 'Kuhl',
@@ -3345,7 +3345,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rgrottybl',
-          password: bcrypt.hashSync('M2ZydVtsR', 10),
+          password: bcrypt.hashSync('M2ZydVtsR', 4),
           email: 'rgrottybl@cnet.com',
           first_name: 'Rice',
           last_name: 'Grotty',
@@ -3353,7 +3353,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gpaladinobm',
-          password: bcrypt.hashSync('ryq52vgDGpxq', 10),
+          password: bcrypt.hashSync('ryq52vgDGpxq', 4),
           email: 'gpaladinobm@google.co.jp',
           first_name: 'Garwin',
           last_name: 'Paladino',
@@ -3361,7 +3361,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gdumberellbn',
-          password: bcrypt.hashSync('zkZTgC6pwbU', 10),
+          password: bcrypt.hashSync('zkZTgC6pwbU', 4),
           email: 'gdumberellbn@blinklist.com',
           first_name: 'George',
           last_name: 'Dumberell',
@@ -3369,7 +3369,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tkettlebo',
-          password: bcrypt.hashSync('PtvLe1f', 10),
+          password: bcrypt.hashSync('PtvLe1f', 4),
           email: 'tkettlebo@hao123.com',
           first_name: 'Taylor',
           last_name: 'Kettle',
@@ -3377,7 +3377,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mmcmechanbp',
-          password: bcrypt.hashSync('A5bidOwHCi9', 10),
+          password: bcrypt.hashSync('A5bidOwHCi9', 4),
           email: 'mmcmechanbp@parallels.com',
           first_name: 'Maryann',
           last_name: 'Mc Mechan',
@@ -3385,7 +3385,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'zhrinishinbq',
-          password: bcrypt.hashSync('pYXC2GUY', 10),
+          password: bcrypt.hashSync('pYXC2GUY', 4),
           email: 'zhrinishinbq@stanford.edu',
           first_name: 'Zabrina',
           last_name: 'Hrinishin',
@@ -3393,7 +3393,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'adockrillbr',
-          password: bcrypt.hashSync('QFKJ109wiVlL', 10),
+          password: bcrypt.hashSync('QFKJ109wiVlL', 4),
           email: 'adockrillbr@symantec.com',
           first_name: 'Asher',
           last_name: 'Dockrill',
@@ -3401,7 +3401,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'fgeddesbs',
-          password: bcrypt.hashSync('91PpehJz6VVx', 10),
+          password: bcrypt.hashSync('91PpehJz6VVx', 4),
           email: 'fgeddesbs@ebay.co.uk',
           first_name: 'Florenza',
           last_name: 'Geddes',
@@ -3409,7 +3409,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ledwinsonbt',
-          password: bcrypt.hashSync('Bco0cbYkvK', 10),
+          password: bcrypt.hashSync('Bco0cbYkvK', 4),
           email: 'ledwinsonbt@rambler.ru',
           first_name: 'Licha',
           last_name: 'Edwinson',
@@ -3417,7 +3417,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'loduanebu',
-          password: bcrypt.hashSync('Pe3IHHLk8', 10),
+          password: bcrypt.hashSync('Pe3IHHLk8', 4),
           email: 'loduanebu@upenn.edu',
           first_name: 'Leisha',
           last_name: "O'Duane",
@@ -3425,7 +3425,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ehemphillbv',
-          password: bcrypt.hashSync('z9ZXmBE', 10),
+          password: bcrypt.hashSync('z9ZXmBE', 4),
           email: 'ehemphillbv@umn.edu',
           first_name: 'Elena',
           last_name: 'Hemphill',
@@ -3433,7 +3433,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cpetriellobw',
-          password: bcrypt.hashSync('7HfjLl', 10),
+          password: bcrypt.hashSync('7HfjLl', 4),
           email: 'cpetriellobw@odnoklassniki.ru',
           first_name: 'Charlene',
           last_name: 'Petriello',
@@ -3441,7 +3441,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'acanobx',
-          password: bcrypt.hashSync('aK8GQ6L1vyH', 10),
+          password: bcrypt.hashSync('aK8GQ6L1vyH', 4),
           email: 'acanobx@go.com',
           first_name: 'Angy',
           last_name: 'Cano',
@@ -3449,7 +3449,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cmunehayby',
-          password: bcrypt.hashSync('LtT5337hY2U', 10),
+          password: bcrypt.hashSync('LtT5337hY2U', 4),
           email: 'cmunehayby@cloudflare.com',
           first_name: 'Clari',
           last_name: 'Munehay',
@@ -3457,7 +3457,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'asallengerbz',
-          password: bcrypt.hashSync('1RGmm7Bl', 10),
+          password: bcrypt.hashSync('1RGmm7Bl', 4),
           email: 'asallengerbz@nasa.gov',
           first_name: 'Andrey',
           last_name: 'Sallenger',
@@ -3465,7 +3465,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'akilaleac0',
-          password: bcrypt.hashSync('MxIp3o', 10),
+          password: bcrypt.hashSync('MxIp3o', 4),
           email: 'akilaleac0@auda.org.au',
           first_name: 'Ashley',
           last_name: 'Kilalea',
@@ -3473,7 +3473,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'crockliffec1',
-          password: bcrypt.hashSync('nl9sXjE4Q', 10),
+          password: bcrypt.hashSync('nl9sXjE4Q', 4),
           email: 'crockliffec1@dot.gov',
           first_name: 'Caroline',
           last_name: 'Rockliffe',
@@ -3481,7 +3481,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tjaxonc2',
-          password: bcrypt.hashSync('lkv1PjS', 10),
+          password: bcrypt.hashSync('lkv1PjS', 4),
           email: 'tjaxonc2@umich.edu',
           first_name: 'Tymon',
           last_name: 'Jaxon',
@@ -3489,7 +3489,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sarnaldoc3',
-          password: bcrypt.hashSync('Un2FhXBDz', 10),
+          password: bcrypt.hashSync('Un2FhXBDz', 4),
           email: 'sarnaldoc3@cornell.edu',
           first_name: 'Sal',
           last_name: 'Arnaldo',
@@ -3497,7 +3497,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rolexac4',
-          password: bcrypt.hashSync('E1zB7h', 10),
+          password: bcrypt.hashSync('E1zB7h', 4),
           email: 'rolexac4@rediff.com',
           first_name: 'Ruth',
           last_name: 'Olexa',
@@ -3505,7 +3505,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gchristofec5',
-          password: bcrypt.hashSync('9g15evLFjk', 10),
+          password: bcrypt.hashSync('9g15evLFjk', 4),
           email: 'gchristofec5@usnews.com',
           first_name: 'Goldina',
           last_name: 'Christofe',
@@ -3513,7 +3513,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tmarielc6',
-          password: bcrypt.hashSync('lQS18xF', 10),
+          password: bcrypt.hashSync('lQS18xF', 4),
           email: 'tmarielc6@smh.com.au',
           first_name: 'Trescha',
           last_name: 'Mariel',
@@ -3521,7 +3521,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lhimpsonc7',
-          password: bcrypt.hashSync('9wQ81F', 10),
+          password: bcrypt.hashSync('9wQ81F', 4),
           email: 'lhimpsonc7@wix.com',
           first_name: 'Lexie',
           last_name: 'Himpson',
@@ -3529,7 +3529,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'nilyuninc8',
-          password: bcrypt.hashSync('pO1LFoLo', 10),
+          password: bcrypt.hashSync('pO1LFoLo', 4),
           email: 'nilyuninc8@npr.org',
           first_name: 'Nataline',
           last_name: 'Ilyunin',
@@ -3537,7 +3537,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lseivwrightc9',
-          password: bcrypt.hashSync('wAvDLg', 10),
+          password: bcrypt.hashSync('wAvDLg', 4),
           email: 'lseivwrightc9@blogspot.com',
           first_name: 'Lorri',
           last_name: 'Seivwright',
@@ -3545,7 +3545,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lderuggieroca',
-          password: bcrypt.hashSync('ee9eXS', 10),
+          password: bcrypt.hashSync('ee9eXS', 4),
           email: 'lderuggieroca@china.com.cn',
           first_name: 'Lenard',
           last_name: 'De Ruggiero',
@@ -3553,7 +3553,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'amasdincb',
-          password: bcrypt.hashSync('Rh3WhmQ3', 10),
+          password: bcrypt.hashSync('Rh3WhmQ3', 4),
           email: 'amasdincb@qq.com',
           first_name: 'Aymer',
           last_name: 'Masdin',
@@ -3561,7 +3561,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'fbottinellicc',
-          password: bcrypt.hashSync('RrMyEWTob', 10),
+          password: bcrypt.hashSync('RrMyEWTob', 4),
           email: 'fbottinellicc@vimeo.com',
           first_name: 'Faydra',
           last_name: 'Bottinelli',
@@ -3569,7 +3569,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wzupacd',
-          password: bcrypt.hashSync('cjozcIkN', 10),
+          password: bcrypt.hashSync('cjozcIkN', 4),
           email: 'wzupacd@imdb.com',
           first_name: 'Winnifred',
           last_name: 'Zupa',
@@ -3577,7 +3577,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'iantatce',
-          password: bcrypt.hashSync('ks0uDIbbTF9', 10),
+          password: bcrypt.hashSync('ks0uDIbbTF9', 4),
           email: 'iantatce@wufoo.com',
           first_name: 'Ivy',
           last_name: 'Antat',
@@ -3585,7 +3585,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'echristophlecf',
-          password: bcrypt.hashSync('oKlF0QH3', 10),
+          password: bcrypt.hashSync('oKlF0QH3', 4),
           email: 'echristophlecf@unblog.fr',
           first_name: 'Emmott',
           last_name: 'Christophle',
@@ -3593,7 +3593,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'epeachmentcg',
-          password: bcrypt.hashSync('JrQFQy5', 10),
+          password: bcrypt.hashSync('JrQFQy5', 4),
           email: 'epeachmentcg@bluehost.com',
           first_name: 'Enrichetta',
           last_name: 'Peachment',
@@ -3601,7 +3601,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cfreckeltonch',
-          password: bcrypt.hashSync('jPCYqNP', 10),
+          password: bcrypt.hashSync('jPCYqNP', 4),
           email: 'cfreckeltonch@meetup.com',
           first_name: 'Clara',
           last_name: 'Freckelton',
@@ -3609,7 +3609,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'skleanthousci',
-          password: bcrypt.hashSync('q40K8aUql', 10),
+          password: bcrypt.hashSync('q40K8aUql', 4),
           email: 'skleanthousci@dot.gov',
           first_name: 'Stesha',
           last_name: 'Kleanthous',
@@ -3617,7 +3617,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gcolbroncj',
-          password: bcrypt.hashSync('6WUj7qTw', 10),
+          password: bcrypt.hashSync('6WUj7qTw', 4),
           email: 'gcolbroncj@cnn.com',
           first_name: 'Godfrey',
           last_name: 'Colbron',
@@ -3625,7 +3625,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rrudolfck',
-          password: bcrypt.hashSync('u7rHXmK', 10),
+          password: bcrypt.hashSync('u7rHXmK', 4),
           email: 'rrudolfck@wunderground.com',
           first_name: 'Randy',
           last_name: 'Rudolf',
@@ -3633,7 +3633,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hgisckencl',
-          password: bcrypt.hashSync('HKgKAcrlD', 10),
+          password: bcrypt.hashSync('HKgKAcrlD', 4),
           email: 'hgisckencl@plala.or.jp',
           first_name: 'Holden',
           last_name: 'Giscken',
@@ -3641,7 +3641,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cwilmottcm',
-          password: bcrypt.hashSync('bNaw5qSpDBiB', 10),
+          password: bcrypt.hashSync('bNaw5qSpDBiB', 4),
           email: 'cwilmottcm@nytimes.com',
           first_name: 'Carlie',
           last_name: 'Wilmott',
@@ -3649,7 +3649,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dcuretoncn',
-          password: bcrypt.hashSync('O3knziTkPu', 10),
+          password: bcrypt.hashSync('O3knziTkPu', 4),
           email: 'dcuretoncn@yolasite.com',
           first_name: 'Delora',
           last_name: 'Cureton',
@@ -3657,7 +3657,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'smohanco',
-          password: bcrypt.hashSync('nOE03yVf', 10),
+          password: bcrypt.hashSync('nOE03yVf', 4),
           email: 'smohanco@ask.com',
           first_name: 'Silvester',
           last_name: 'Mohan',
@@ -3665,7 +3665,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'csneathcp',
-          password: bcrypt.hashSync('Msk5lZr', 10),
+          password: bcrypt.hashSync('Msk5lZr', 4),
           email: 'csneathcp@trellian.com',
           first_name: 'Celestia',
           last_name: 'Sneath',
@@ -3673,7 +3673,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dclerkcq',
-          password: bcrypt.hashSync('kz5VWyj', 10),
+          password: bcrypt.hashSync('kz5VWyj', 4),
           email: 'dclerkcq@dot.gov',
           first_name: 'Demeter',
           last_name: 'Clerk',
@@ -3681,7 +3681,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'boldmeadowcr',
-          password: bcrypt.hashSync('pjjgrp9DQH', 10),
+          password: bcrypt.hashSync('pjjgrp9DQH', 4),
           email: 'boldmeadowcr@kickstarter.com',
           first_name: 'Brant',
           last_name: 'Oldmeadow',
@@ -3689,7 +3689,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ttiddcs',
-          password: bcrypt.hashSync('1IAJxYYZ3d', 10),
+          password: bcrypt.hashSync('1IAJxYYZ3d', 4),
           email: 'ttiddcs@moonfruit.com',
           first_name: 'Tina',
           last_name: 'Tidd',
@@ -3697,7 +3697,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dpoylect',
-          password: bcrypt.hashSync('dbWLlL73n', 10),
+          password: bcrypt.hashSync('dbWLlL73n', 4),
           email: 'dpoylect@un.org',
           first_name: 'Dode',
           last_name: 'Poyle',
@@ -3705,7 +3705,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cpeakmancu',
-          password: bcrypt.hashSync('EohKS2bs', 10),
+          password: bcrypt.hashSync('EohKS2bs', 4),
           email: 'cpeakmancu@scientificamerican.com',
           first_name: 'Chadwick',
           last_name: 'Peakman',
@@ -3713,7 +3713,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bjasiakcv',
-          password: bcrypt.hashSync('kZ5poWROjF', 10),
+          password: bcrypt.hashSync('kZ5poWROjF', 4),
           email: 'bjasiakcv@twitter.com',
           first_name: 'Bogart',
           last_name: 'Jasiak',
@@ -3721,7 +3721,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mverdycw',
-          password: bcrypt.hashSync('ksUc7P', 10),
+          password: bcrypt.hashSync('ksUc7P', 4),
           email: 'mverdycw@home.pl',
           first_name: 'Monty',
           last_name: 'Verdy',
@@ -3729,7 +3729,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kmatecx',
-          password: bcrypt.hashSync('1HnWxjPtAnQ', 10),
+          password: bcrypt.hashSync('1HnWxjPtAnQ', 4),
           email: 'kmatecx@imageshack.us',
           first_name: 'Kinny',
           last_name: 'Mate',
@@ -3737,7 +3737,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sgiannotticy',
-          password: bcrypt.hashSync('5rwj1c5sVot', 10),
+          password: bcrypt.hashSync('5rwj1c5sVot', 4),
           email: 'sgiannotticy@nature.com',
           first_name: 'Shalom',
           last_name: 'Giannotti',
@@ -3745,7 +3745,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'kspilsburycz',
-          password: bcrypt.hashSync('FzJCLzZrAgDc', 10),
+          password: bcrypt.hashSync('FzJCLzZrAgDc', 4),
           email: 'kspilsburycz@unicef.org',
           first_name: 'Karalee',
           last_name: 'Spilsbury',
@@ -3753,7 +3753,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mwogand0',
-          password: bcrypt.hashSync('ZhWunMv5Jjx', 10),
+          password: bcrypt.hashSync('ZhWunMv5Jjx', 4),
           email: 'mwogand0@fastcompany.com',
           first_name: 'Margette',
           last_name: 'Wogan',
@@ -3761,7 +3761,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cdowsed1',
-          password: bcrypt.hashSync('9fuD2ebDU', 10),
+          password: bcrypt.hashSync('9fuD2ebDU', 4),
           email: 'cdowsed1@t.co',
           first_name: 'Candie',
           last_name: 'Dowse',
@@ -3769,7 +3769,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'elered2',
-          password: bcrypt.hashSync('TfdcXBoEtshq', 10),
+          password: bcrypt.hashSync('TfdcXBoEtshq', 4),
           email: 'elered2@google.co.jp',
           first_name: 'Eolanda',
           last_name: 'Lere',
@@ -3777,7 +3777,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jellsburyd3',
-          password: bcrypt.hashSync('F15y3ruDg', 10),
+          password: bcrypt.hashSync('F15y3ruDg', 4),
           email: 'jellsburyd3@dmoz.org',
           first_name: 'Jeanelle',
           last_name: 'Ellsbury',
@@ -3785,7 +3785,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lmckeaneyd4',
-          password: bcrypt.hashSync('mM174XupXn', 10),
+          password: bcrypt.hashSync('mM174XupXn', 4),
           email: 'lmckeaneyd4@addtoany.com',
           first_name: 'Lily',
           last_name: 'McKeaney',
@@ -3793,7 +3793,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tolerenshawd5',
-          password: bcrypt.hashSync('vh1ig8MH', 10),
+          password: bcrypt.hashSync('vh1ig8MH', 4),
           email: 'tolerenshawd5@nifty.com',
           first_name: 'Thurston',
           last_name: 'Olerenshaw',
@@ -3801,7 +3801,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'ldrohand6',
-          password: bcrypt.hashSync('DHHQoNHG', 10),
+          password: bcrypt.hashSync('DHHQoNHG', 4),
           email: 'ldrohand6@flickr.com',
           first_name: 'Latashia',
           last_name: 'Drohan',
@@ -3809,7 +3809,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'braysond7',
-          password: bcrypt.hashSync('UxMd95Kt', 10),
+          password: bcrypt.hashSync('UxMd95Kt', 4),
           email: 'braysond7@rambler.ru',
           first_name: 'Brodie',
           last_name: 'Rayson',
@@ -3817,7 +3817,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'lruaned8',
-          password: bcrypt.hashSync('3U2amJ', 10),
+          password: bcrypt.hashSync('3U2amJ', 4),
           email: 'lruaned8@apache.org',
           first_name: 'Lemmie',
           last_name: 'Ruane',
@@ -3825,7 +3825,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dibotsond9',
-          password: bcrypt.hashSync('AJvIScpOQ', 10),
+          password: bcrypt.hashSync('AJvIScpOQ', 4),
           email: 'dibotsond9@google.ca',
           first_name: 'Dacia',
           last_name: 'Ibotson',
@@ -3833,7 +3833,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hsomerfieldda',
-          password: bcrypt.hashSync('PvYo2scX5', 10),
+          password: bcrypt.hashSync('PvYo2scX5', 4),
           email: 'hsomerfieldda@squidoo.com',
           first_name: 'Henrieta',
           last_name: 'Somerfield',
@@ -3841,7 +3841,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rchindb',
-          password: bcrypt.hashSync('y3Db4ChWUoeP', 10),
+          password: bcrypt.hashSync('y3Db4ChWUoeP', 4),
           email: 'rchindb@theguardian.com',
           first_name: 'Rutger',
           last_name: 'Chin',
@@ -3849,7 +3849,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'cferrellidc',
-          password: bcrypt.hashSync('01qA5KLBuKz', 10),
+          password: bcrypt.hashSync('01qA5KLBuKz', 4),
           email: 'cferrellidc@jugem.jp',
           first_name: 'Chip',
           last_name: 'Ferrelli',
@@ -3857,7 +3857,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'tfingletondd',
-          password: bcrypt.hashSync('ooVHAa6sAhHf', 10),
+          password: bcrypt.hashSync('ooVHAa6sAhHf', 4),
           email: 'tfingletondd@seesaa.net',
           first_name: 'Tallie',
           last_name: 'Fingleton',
@@ -3865,7 +3865,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'fdebrickde',
-          password: bcrypt.hashSync('QZGyio', 10),
+          password: bcrypt.hashSync('QZGyio', 4),
           email: 'fdebrickde@pen.io',
           first_name: 'Felisha',
           last_name: 'Debrick',
@@ -3873,7 +3873,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'saimabledf',
-          password: bcrypt.hashSync('V4PLeQ', 10),
+          password: bcrypt.hashSync('V4PLeQ', 4),
           email: 'saimabledf@bluehost.com',
           first_name: 'Skell',
           last_name: 'Aimable',
@@ -3881,7 +3881,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'dluchettidg',
-          password: bcrypt.hashSync('DVONJtSkzl2', 10),
+          password: bcrypt.hashSync('DVONJtSkzl2', 4),
           email: 'dluchettidg@bigcartel.com',
           first_name: 'Dean',
           last_name: 'Luchetti',
@@ -3889,7 +3889,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'wchiplendh',
-          password: bcrypt.hashSync('t8cIb9', 10),
+          password: bcrypt.hashSync('t8cIb9', 4),
           email: 'wchiplendh@blinklist.com',
           first_name: 'Wynny',
           last_name: 'Chiplen',
@@ -3897,7 +3897,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bbardeydi',
-          password: bcrypt.hashSync('x74G7Pr7su', 10),
+          password: bcrypt.hashSync('x74G7Pr7su', 4),
           email: 'bbardeydi@youtube.com',
           first_name: 'Boone',
           last_name: 'Bardey',
@@ -3905,7 +3905,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'echreedj',
-          password: bcrypt.hashSync('s8cRhR7Om7Pr', 10),
+          password: bcrypt.hashSync('s8cRhR7Om7Pr', 4),
           email: 'echreedj@zdnet.com',
           first_name: 'Emerson',
           last_name: 'Chree',
@@ -3913,7 +3913,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mpickavancedk',
-          password: bcrypt.hashSync('FxScvnkm', 10),
+          password: bcrypt.hashSync('FxScvnkm', 4),
           email: 'mpickavancedk@hhs.gov',
           first_name: 'Marketa',
           last_name: 'Pickavance',
@@ -3921,7 +3921,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'mrandlesomedl',
-          password: bcrypt.hashSync('EgRKYsmlr0Ug', 10),
+          password: bcrypt.hashSync('EgRKYsmlr0Ug', 4),
           email: 'mrandlesomedl@yellowpages.com',
           first_name: 'Meier',
           last_name: 'Randlesome',
@@ -3929,7 +3929,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'gblackburndm',
-          password: bcrypt.hashSync('mEL7kZ', 10),
+          password: bcrypt.hashSync('mEL7kZ', 4),
           email: 'gblackburndm@weather.com',
           first_name: 'Gweneth',
           last_name: 'Blackburn',
@@ -3937,7 +3937,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rchrishopdn',
-          password: bcrypt.hashSync('M9TLZXND5B', 10),
+          password: bcrypt.hashSync('M9TLZXND5B', 4),
           email: 'rchrishopdn@hatena.ne.jp',
           first_name: 'Rafaela',
           last_name: 'Chrishop',
@@ -3945,7 +3945,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'prountreedo',
-          password: bcrypt.hashSync('27QT8DyYHq', 10),
+          password: bcrypt.hashSync('27QT8DyYHq', 4),
           email: 'prountreedo@army.mil',
           first_name: 'Powell',
           last_name: 'Rountree',
@@ -3953,7 +3953,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'echallengerdp',
-          password: bcrypt.hashSync('B5uu6lnw6N6l', 10),
+          password: bcrypt.hashSync('B5uu6lnw6N6l', 4),
           email: 'echallengerdp@arstechnica.com',
           first_name: 'Emanuele',
           last_name: 'Challenger',
@@ -3961,7 +3961,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'sdombdq',
-          password: bcrypt.hashSync('0CuWulq', 10),
+          password: bcrypt.hashSync('0CuWulq', 4),
           email: 'sdombdq@privacy.gov.au',
           first_name: 'Sim',
           last_name: 'Domb',
@@ -3969,7 +3969,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'awashingtondr',
-          password: bcrypt.hashSync('Q4Vlndb8s', 10),
+          password: bcrypt.hashSync('Q4Vlndb8s', 4),
           email: 'awashingtondr@smh.com.au',
           first_name: 'Allen',
           last_name: 'Washington',
@@ -3977,7 +3977,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'rcallisds',
-          password: bcrypt.hashSync('kxfcwfv', 10),
+          password: bcrypt.hashSync('kxfcwfv', 4),
           email: 'rcallisds@yelp.com',
           first_name: 'Rikki',
           last_name: 'Callis',
@@ -3985,7 +3985,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'bbartelsellisdt',
-          password: bcrypt.hashSync('RXUp7eI', 10),
+          password: bcrypt.hashSync('RXUp7eI', 4),
           email: 'bbartelsellisdt@google.co.jp',
           first_name: 'Bernardo',
           last_name: 'Bartels-Ellis',
@@ -3993,7 +3993,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'jladddu',
-          password: bcrypt.hashSync('hwiVhLMRt', 10),
+          password: bcrypt.hashSync('hwiVhLMRt', 4),
           email: 'jladddu@psu.edu',
           first_name: 'Joel',
           last_name: 'Ladd',
@@ -4001,7 +4001,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           username: 'hbofielddv',
-          password: bcrypt.hashSync('xWVOVJIscUho', 10),
+          password: bcrypt.hashSync('xWVOVJIscUho', 4),
           email: 'hbofielddv@foxnews.com',
           first_name: 'Heddie',
           last_name: 'Bofield',

@@ -24,7 +24,7 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
     const creds = req.body;
-    creds.password = bcrypt.hashSync(creds.password, 10);
+    creds.password = bcrypt.hashSync(creds.password, 4);
     userModel.insert(creds)
         .then(ids => {
             if (ids.length) {
