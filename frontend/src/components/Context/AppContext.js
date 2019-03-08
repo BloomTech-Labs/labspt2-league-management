@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 export const AppContext = React.createContext();
 
@@ -9,6 +10,26 @@ export default class AppProvider extends Component {
     admin: false,
     coach: false,
     loggedIn: false,
+    publicEvents: [
+      {
+        id: '1',
+        start: 'mar 4 2019 10: 00: 00',
+        end: 'mar 4 2019 12: 00: 00',
+        title: 'Team 1 vs Team 2'
+      },
+      {
+        id: '2',
+        start: 'mar 5 2019 12: 00: 00',
+        end: 'mar 5 2019 14: 00: 00',
+        title: 'Team 3 vs Team 4'
+      },
+      {
+        id: '3',
+        start: 'mar 6 2019 10: 00: 00',
+        end: 'mar 6 2019 12: 00: 00',
+        title: 'Team 5 vs Team 6'
+      }
+    ],
     events: [
       {
         id: '1',
@@ -32,6 +53,7 @@ export default class AppProvider extends Component {
   };
 
   render() {
+    const { events } = this.state;
     return (
       <AppContext.Provider
         value={{
@@ -53,17 +75,20 @@ export default class AppProvider extends Component {
             this.setState({ loggedIn: false, username: null });
           },
           getEvents: () => {
-            console.log(
-              'An axios request will need to be done here to pull events from DB'
-            );
+            // An axios request will need to be done here to pull events from DB
             // this.setState({
-            //   events: []
+            //   events: events
             // });
           },
-          updateEvents: updates => {
-            console.log('made it to context update function');
-            this.setState({ events: updates });
-            console.log('global events:', this.state.events);
+          updateEvents: () => {
+            // console.log('made it to context update function');
+
+            const newEventsArr = JSON.parse(JSON.stringify(events));
+            this.setState({ publicEvents: newEventsArr });
+
+            // console.log('global events:', this.state.events);
+            // do a put request to update the events on the DB
+            // const updateDB = await axios.put()
           }
         }}
       >

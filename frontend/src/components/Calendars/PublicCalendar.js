@@ -1,51 +1,75 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+// import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import '../../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 // import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 
 const localizer = Calendar.momentLocalizer(moment);
 
-const events = [
-  {
-    id: '1',
-    start: 'mar 4 2019 10: 00: 00',
-    end: 'mar 4 2019 12: 00: 00',
-    title: 'Team 1 vs Team 2'
-  },
-  {
-    id: '2',
-    start: 'mar 5 2019 12: 00: 00',
-    end: 'mar 5 2019 14: 00: 00',
-    title: 'Team 3 vs Team 4'
-  },
-  {
-    id: '3',
-    start: 'mar 6 2019 10: 00: 00',
-    end: 'mar 6 2019 12: 00: 00',
-    title: 'Team 5 vs Team 6'
-  }
-];
+// const events = [
+//   {
+//     id: '1',
+//     start: 'mar 4 2019 10: 00: 00',
+//     end: 'mar 4 2019 12: 00: 00',
+//     title: 'Team 1 vs Team 2'
+//   },
+//   {
+//     id: '2',
+//     start: 'mar 5 2019 12: 00: 00',
+//     end: 'mar 5 2019 14: 00: 00',
+//     title: 'Team 3 vs Team 4'
+//   },
+//   {
+//     id: '3',
+//     start: 'mar 6 2019 10: 00: 00',
+//     end: 'mar 6 2019 12: 00: 00',
+//     title: 'Team 5 vs Team 6'
+//   }
+// ];
 
 class PublicCalendar extends Component {
   state = {
-    events: [],
+    // events: [],
     isLoading: true
   };
 
+  //   componentDidMount() {
+  //     console.log(events);
+  //     const displayEvents = events.map(event => {
+  //       event.start = new Date(event.start);
+  //       event.end = new Date(event.end);
+  //       return event;
+  //     });
+  //     setTimeout(() => {
+  //       this.setState({ events: displayEvents, isLoading: false });
+  //     }, 500);
+  //   }
   componentDidMount() {
-    console.log(events);
-    const displayEvents = events.map(event => {
+    this.retrieveGames();
+  }
+
+  retrieveGames = async () => {
+    // GRAB EVENTS FROM DATABASE TO SET GLOBAL STATE
+    await this.props.context.getEvents();
+
+    // GRAB EVENTS FROM GLOBAL STATE TO SET LOCAL STATE
+    await this.showGames();
+  };
+
+  showGames = () => {
+    const { publicEvents } = this.props.context.state;
+
+    const displayEvents = publicEvents.map(event => {
       event.start = new Date(event.start);
       event.end = new Date(event.end);
       return event;
     });
     setTimeout(() => {
-      this.setState({ events: displayEvents, isLoading: false });
+      this.setState({ publicEvents: displayEvents, isLoading: false });
     }, 500);
-  }
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -77,7 +101,7 @@ class PublicCalendar extends Component {
           max={new Date(2019, 0, 0, 23, 0)}
           defaultDate={new Date()}
           defaultView="week"
-          events={this.state.events}
+          events={this.state.publicEvents}
           style={{ height: '80vh', padding: '10px' }}
         />
       </div>
