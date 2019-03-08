@@ -9,7 +9,7 @@ class LandingPage extends Component {
     if (token) {
       const decoded = jwt_decode(token);
       username = decoded.username;
-      console.log('decoded jwt: ', decoded);
+      // console.log('decoded jwt: ', decoded);
       this.props.context.signedIn(username);
     }
   }

@@ -136,7 +136,7 @@ class MenuAppBar extends React.Component {
   logout = () => {
     localStorage.removeItem('jwt');
     this.setState({ logout: true });
-    // this.props.context.signOut();
+    this.props.context.signOut();
   };
 
   render() {
