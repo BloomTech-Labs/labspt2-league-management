@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
-import AppContext from '../Context/AppContext';
+// import AppContext from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {

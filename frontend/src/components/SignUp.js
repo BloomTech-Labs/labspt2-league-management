@@ -70,7 +70,7 @@ class Signup extends React.Component {
       .post(endpoint, credentials)
       .then(res => {
         localStorage.setItem('jwt', res.data.token);
-        this.props.history.push('/dashboard');
+        this.props.history.push('/signin');
       })
       .catch(err => {
         console.log('err from Submit handler in SignUp', err);
