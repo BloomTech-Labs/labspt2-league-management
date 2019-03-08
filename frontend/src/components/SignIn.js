@@ -48,6 +48,11 @@ const styles = theme => ({
 });
 
 class SignIn extends React.Component {
+  state = {
+    username: '',
+    password: ''
+}
+
   InputHandler = event => {
     event.preventDefault();
     const target = event.target;

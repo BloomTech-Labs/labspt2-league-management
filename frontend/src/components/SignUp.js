@@ -46,6 +46,15 @@ const styles = theme => ({
 });
 
 class Signup extends React.Component {
+  state = {
+    username: '',
+    password: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    phone: ''
+}
+
   InputHandler = event => {
     event.preventDefault();
     const target = event.target;
