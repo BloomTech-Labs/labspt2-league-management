@@ -7,6 +7,8 @@ import LandingPage from './components/LandingPage';
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
 import HomeDashboard from './components/Dashboards/HomeDashboard';
+import Signup from './components/SignUp.js';
+import Signin from './components/SignIn.js';
 
 class App extends Component {
   render() {
@@ -25,10 +27,10 @@ class App extends Component {
         <Route path="/dashboard" component={HomeDashboard} />
         <Route path="/dashboard/admin" component={AdminDashboard} />
         <Route path="/dashboard/coach" component={CoachDashboard} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/signin" component={Signin} />
       </>
 
-      // <Route path="/signup" component={Signup} />
-      // <Route path="/signin" component={Signin} />
       // admin dashboard - restricted
       // coach dashboard - restricted
       // create league form - restricted
