@@ -99,7 +99,6 @@ class SignIn extends React.Component {
                 id="password"
                 name="password"
                 onChange={this.InputHandler}
-                autoComplete="current-password"
                 type="password"
               />
             </FormControl>
