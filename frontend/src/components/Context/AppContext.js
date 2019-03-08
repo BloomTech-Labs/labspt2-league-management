@@ -28,6 +28,9 @@ export default class AppProvider extends Component {
           },
           signedIn: username => {
             this.setState({ loggedIn: true, username });
+          },
+          signedOut: () => {
+            this.setState({ loggedIn: false, username: null });
           }
         }}
       >

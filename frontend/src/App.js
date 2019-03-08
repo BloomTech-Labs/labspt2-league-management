@@ -34,7 +34,10 @@ class App extends Component {
               <Route
                 path="/dashboard"
                 render={props => (
-                  <HomeDashboard username={context.state.username} />
+                  <HomeDashboard
+                    username={context.state.username}
+                    context={context}
+                  />
                 )}
               />
             ) : (
