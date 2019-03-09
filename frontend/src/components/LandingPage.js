@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 class LandingPage extends Component {
+  componentDidMount() {
+    const token = localStorage.getItem('jwt');
+    let username = null;
+    if (token) {
+      const decoded = jwt_decode(token);
+      username = decoded.username;
+      console.log('decoded jwt: ', decoded);
+      this.props.context.signedIn(username);
+    }
+  }
+
   render() {
     const { username, loggedIn } = this.props.context.state;
-    const { login } = this.props.context;
+    // const { login } = this.props.context;
+    // console.log(this.props.context);
     if (!loggedIn) {
-      console.log(this.props.data);
+      // console.log(this.props.data);
       return (
         <>
           <div>App Name</div>
-          <button onClick={login}>Sign In</button>
+          <Link to={'/signin'}>Sign In</Link>
           <div>Landing Page Content</div>
         </>
       );
@@ -19,9 +32,7 @@ class LandingPage extends Component {
       <>
         <div>App Name</div>
         <div>{username}</div>
-        <Link to="/dashboard">My Account</Link>{' '}
-        {/*Link to home dashboard component*/}
-        <div>Landing Page Content</div>
+        <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div>
       </>
     );
   }
