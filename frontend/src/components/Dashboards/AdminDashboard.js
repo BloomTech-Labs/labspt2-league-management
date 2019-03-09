@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
+import PublicCalendar from '../Calendars/PublicCalendar';
+import DnDCalendar from '../Calendars/DnDCalendar';
+import { AppContext } from '../Context/AppContext';
 
 class AdminDashboard extends Component {
   state = {
@@ -13,7 +16,7 @@ class AdminDashboard extends Component {
   };
 
   displayAdminContent = e => {
-    console.log(e.currentTarget.id);
+    // console.log(e.currentTarget.id);
     this.setState({
       calendar: false,
       teamList: false,
@@ -33,19 +36,27 @@ class AdminDashboard extends Component {
       cancellationRequests
     } = this.state;
     return (
-      <>
-        <DashboardNavbar
-          data={this.state}
-          displayAdminContent={this.displayAdminContent}
-        />
-        <div style={{ margin: '100px 80px 20px 280px' }}>
-          {calendar && <div>calendar</div>}
-          {teamList && <div>Team List</div>}
-          {leagueSettings && <div>League Settings</div>}
-          {editSchedule && <div>Edit Schedule</div>}
-          {cancellationRequests && <div>Cancellation Requests</div>}
-        </div>
-      </>
+      <AppContext.Consumer>
+        {context => (
+          <>
+            <DashboardNavbar
+              data={this.state}
+              displayAdminContent={this.displayAdminContent}
+            />
+            <div
+              style={{
+                margin: '100px 40px 20px 280px'
+              }}
+            >
+              {calendar && <PublicCalendar context={context} />}
+              {teamList && <div>Team List</div>}
+              {leagueSettings && <div>League Settings</div>}
+              {editSchedule && <DnDCalendar context={context} />}
+              {cancellationRequests && <div>Cancellation Requests</div>}
+            </div>
+          </>
+        )}
+      </AppContext.Consumer>
     );
   }
 }

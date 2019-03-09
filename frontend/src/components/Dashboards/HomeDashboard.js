@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
+// import AppContext from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {
@@ -7,7 +8,13 @@ class HomeDashboard extends Component {
     coach: false
   };
   render() {
-    return <DashboardNavbar data={this.state} />;
+    return (
+      <DashboardNavbar
+        data={this.state}
+        username={this.props.username}
+        context={this.props.context}
+      />
+    );
   }
 }
 

@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,10 +14,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import HomeDrawer from './HomeDrawer';
+import AdminDrawer from './AdminDrawer';
+import CoachDrawer from './CoachDrawer';
+import { AppContext } from '../Context/AppContext';
+// import AppContext from '../Context/AppContext';
 
 const drawerWidth = 240;
 
@@ -92,15 +91,13 @@ const styles = theme => ({
 
 class MenuAppBar extends React.Component {
   state = {
-    auth: true, // global
-    expandLeagues: false,
-    expandTeams: false,
     anchorEl: null,
     mobileOpen: false,
-    admin: false,
-    coach: false,
+    // admin: false,
+    // coach: false,
     leagues: [], // global
-    teams: [] // global
+    teams: [], // global
+    logout: false
   };
 
   componentDidMount() {
@@ -114,9 +111,7 @@ class MenuAppBar extends React.Component {
       ],
       teams: [{ id: 1, name: 'Team 1' }],
       admin,
-      coach,
-      expandLeagues: false,
-      expandTeams: false
+      coach
     });
   }
 
@@ -133,50 +128,22 @@ class MenuAppBar extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null, adminAnchorEl: null, coachAnchorEl: null });
+    this.setState({ anchorEl: null, mobileOpen: false });
   };
 
   handleClick = e => {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
-  login = () => {
-    setTimeout(() => {
-      this.setState({ auth: true });
-    }, 500);
-  };
-
   logout = () => {
-    this.handleClose();
-    this.setState({ auth: false });
-  };
-
-  // homeView = () => {
-  //   this.handleClose();
-  //   this.setState({ admin: false, coach: false });
-  // };
-
-  setAdmin = () => {
-    this.handleClose();
-    this.setState({ expandLeagues: false });
-  };
-
-  setCoach = () => {
-    this.handleClose();
-    this.setState({ expandTeams: false });
+    localStorage.removeItem('jwt');
+    this.setState({ logout: true });
+    this.props.context.signOut();
   };
 
   render() {
     const { classes, theme } = this.props;
-    const {
-      auth,
-      anchorEl,
-      mobileOpen,
-      admin,
-      coach,
-      leagues,
-      teams
-    } = this.state;
+    const { anchorEl, mobileOpen, admin, coach, leagues, teams } = this.state;
     const open = Boolean(anchorEl);
 
     const drawer = (
@@ -191,120 +158,31 @@ class MenuAppBar extends React.Component {
         </div>
         <Divider />
         {!admin && !coach && (
-          <List>
-            <ListItem button key="create">
-              <ListItemText primary="Create League" />
-            </ListItem>
-            <Divider />
-            <ListItem
-              button
-              key="admin"
-              id="expandLeagues"
-              onClick={this.handleClick}
-              color="inherit"
-            >
-              <ListItemText primary="Manage League" />
-              {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Divider />
-            <Collapse
-              in={this.state.expandLeagues}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                {leagues.map(league => (
-                  <>
-                    <Link to="/dashboard/admin">
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        onClick={this.setAdmin}
-                      >
-                        <ListItemText primary={league.name} />
-                      </ListItem>
-                    </Link>
-                    <Divider />
-                  </>
-                ))}
-              </List>
-            </Collapse>
-            <ListItem
-              button
-              key="coach"
-              id="expandTeams"
-              onClick={this.handleClick}
-              color="inherit"
-            >
-              <ListItemText primary="Manage Team" />
-              {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Divider />
-            <Collapse in={this.state.expandTeams} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {teams.map(team => (
-                  <>
-                    <Link to="/dashboard/coach">
-                      <ListItem
-                        button
-                        className={classes.nested}
-                        onClick={this.setCoach}
-                      >
-                        <ListItemText primary={team.name} />
-                      </ListItem>
-                    </Link>
-                    <Divider />
-                  </>
-                ))}
-              </List>
-            </Collapse>
-          </List>
+          <HomeDrawer
+            classes={classes}
+            leagues={leagues}
+            teams={teams}
+            handleClose={this.handleClose}
+          />
         )}
         {admin && !coach && (
-          <List>
-            {[
-              { name: 'calendar', text: 'Calendar' },
-              { name: 'teamList', text: 'Team List' },
-              { name: 'leagueSettings', text: 'League Settings' },
-              { name: 'editSchedule', text: 'Edit Schedule' },
-              { name: 'cancellationRequests', text: 'Cancellation Requests' }
-            ].map((item, index) => (
-              <>
-                <ListItem
-                  button
-                  key={item.name}
-                  id={item.name}
-                  onClick={this.props.displayAdminContent}
-                >
-                  <ListItemText primary={item.text} />
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-          </List>
+          <AdminDrawer
+            handleClose={this.handleClose}
+            displayAdminContent={this.props.displayAdminContent}
+          />
         )}
         {coach && !admin && (
-          <List>
-            {[
-              { name: 'calendar', text: 'Calendar' },
-              { name: 'dashboard', text: 'Dashboard' }
-            ].map((item, index) => (
-              <>
-                <ListItem
-                  button
-                  key={item.name}
-                  id={item.name}
-                  onClick={this.props.displayCoachContent}
-                >
-                  <ListItemText primary={item.text} />
-                </ListItem>
-                <Divider />
-              </>
-            ))}
-          </List>
+          <CoachDrawer
+            handleClose={this.handleClose}
+            displayCoachContent={this.props.displayCoachContent}
+          />
         )}
       </div>
     );
+
+    if (this.state.logout) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div className={classes.root}>
@@ -319,8 +197,21 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              League Management
+              <Link to="/" style={{ color: '#fff' }}>
+                League Management
+              </Link>
             </Typography>
+            <AppContext.Consumer>
+              {context => (
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  className={classes.grow}
+                >
+                  {context.state.username}
+                </Typography>
+              )}
+            </AppContext.Consumer>
             <Link to="/dashboard">
               <Button
                 className={!admin && !coach ? classes.selected : classes.button}
@@ -329,63 +220,42 @@ class MenuAppBar extends React.Component {
                 Home
               </Button>
             </Link>
-            {/*<Button
-              className={admin && !coach ? classes.selected : classes.button}
-              onClick={this.setAdmin}
-            >
-              Admin
-            </Button>
-            <Button
-              className={!admin && coach ? classes.selected : classes.button}
-              onClick={this.setCoach}
-            >
-              Coach
-            </Button>*/}
-            {!auth && (
-              <Button className={classes.button} onClick={this.login}>
-                Log In
-              </Button>
-            )}
-            {auth && (
-              <div>
-                <IconButton
-                  id="anchorEl"
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  {/*<MenuItem onClick={this.homeView}>Home</MenuItem>*/}
-                  <MenuItem onClick={this.handleClose}>
-                    Account Settings
-                  </MenuItem>
-                  <MenuItem onClick={this.handleClose}>
-                    Billing Information
-                  </MenuItem>
-                  <Link to="/">
-                    <MenuItem>Log Out</MenuItem>
-                  </Link>
-                </Menu>
-              </div>
-            )}
+
+            <div>
+              <IconButton
+                id="anchorEl"
+                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right'
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right'
+                }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                <MenuItem onClick={this.handleClose}>Account Settings</MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  Billing Information
+                </MenuItem>
+
+                <MenuItem onClick={this.logout}>Log Out</MenuItem>
+              </Menu>
+            </div>
           </Toolbar>
         </AppBar>
+
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
