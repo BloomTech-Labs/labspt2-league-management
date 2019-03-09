@@ -6,5 +6,38 @@ The sports community is currently fragmented where each sport has its own sports
 
 ## Setup and Install
 
-### Backend
+### Back End - Local install
 
+From the command line, switch into the 'backend' directory.
+
+`cd path/to/labspt2-league-management/backend`
+
+Install node-modules and dependencies
+
+`yarn install`
+
+Set up environment variable for JSON Web Token Secret
+
+`touch .env` or create the file in VS Code
+
+Inside the file, add the environment variable
+
+`JWT_SECRET=SomeRandomString`
+
+Run the server
+
+`yarn server`
+
+Open `http://localhost:4000` in a web browser and verify API is running
+
+To set up the database run knex migrations
+
+`knex migrate:latest`
+
+And if you want to populate the database with seed data
+
+`knex seed:run`
+
+The back end is ready!
+
+### Front End - Local Install
