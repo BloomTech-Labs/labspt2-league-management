@@ -14,7 +14,7 @@ From the command line, switch into the 'backend' directory.
 
 Install node-modules and dependencies
 
-`yarn install`
+`yarn`
 
 Set up environment variable for JSON Web Token Secret
 
@@ -41,3 +41,17 @@ And if you want to populate the database with seed data
 The back end is ready!
 
 ### Front End - Local Install
+
+From the command line, switch into the 'frontend' directory.
+
+`cd path/to/labspt2-league-management/frontend`
+
+Install node-modules and dependencies
+
+`yarn`
+
+Run React
+
+`yarn start`
+
+The front end is ready!
