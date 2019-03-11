@@ -65,7 +65,7 @@ class Signup extends React.Component {
     event.preventDefault();
     console.log(this.state);
     const credentials = this.state;
-    const endpoint = 'https://league-management.herokuapp.com/auth/register';
+    const endpoint = '/auth/register';
     axios
       .post(endpoint, credentials)
       .then(res => {

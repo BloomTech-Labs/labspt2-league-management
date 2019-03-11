@@ -64,8 +64,8 @@ class SignIn extends React.Component {
   SubmitHandler = event => {
     event.preventDefault();
     console.log(this.props);
-    const credentials = this.state;
-    const endpoint = 'https://league-management.herokuapp.com/auth/login';
+    const credentials = {email: this.state.email, password: this.state.password};
+    const endpoint = '/auth/login';
     axios
       .post(endpoint, credentials)
       .then(res => {
