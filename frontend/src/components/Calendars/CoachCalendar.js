@@ -29,7 +29,7 @@ const localizer = Calendar.momentLocalizer(moment);
 //   }
 // ];
 
-class PublicCalendar extends Component {
+class CoachCalendar extends Component {
   state = {
     // events: [],
     isLoading: true
@@ -71,35 +71,35 @@ class PublicCalendar extends Component {
     }, 500);
   };
 
-  //   customEventPropGetter = event => {
-  //     if (event.id === '2') {
-  //       console.log(event);
-  //       return {
-  //         style: {
-  //           backgroundColor: 'yellow',
-  //           color: '#333',
-  //           border: '1px solid #333',
-  //           textAlign: 'center',
-  //           boxShadow: '1px 1px 5px black',
-  //           margin: '0 5px'
-  //           //   paddingTop: '10px',
-  //           //   lineHeight: '48px'
-  //         }
-  //       };
-  //     }
-  //     return {
-  //       style: {
-  //         backgroundColor: '#ffc851',
-  //         color: '#333',
-  //         border: '1px solid #333',
-  //         textAlign: 'center',
-  //         boxShadow: '1px 1px 5px black',
-  //         margin: '0 5px',
-  //         paddingTop: '10px',
-  //         lineHeight: '28px'
-  //       }
-  //     };
-  //   };
+  customEventPropGetter = event => {
+    if (event.id === '2') {
+      console.log(event);
+      return {
+        style: {
+          backgroundColor: 'yellow',
+          color: '#333',
+          border: '1px solid #333',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          margin: '0 5px'
+          //   paddingTop: '10px',
+          //   lineHeight: '48px'
+        }
+      };
+    }
+    return {
+      style: {
+        //   backgroundColor: '#ffc851',
+        //   color: '#333',
+        //   border: '1px solid #333',
+        textAlign: 'center',
+        boxShadow: '1px 1px 5px black',
+        margin: '0 5px',
+        paddingTop: '10px',
+        lineHeight: '28px'
+      }
+    };
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -133,7 +133,7 @@ class PublicCalendar extends Component {
           defaultDate={new Date()}
           defaultView="week"
           events={this.state.publicEvents}
-          //   eventPropGetter={this.customEventPropGetter}
+          eventPropGetter={this.customEventPropGetter}
           style={{ height: '80vh', padding: '10px' }}
         />
       </div>
@@ -141,4 +141,4 @@ class PublicCalendar extends Component {
   }
 }
 
-export default PublicCalendar;
+export default CoachCalendar;
