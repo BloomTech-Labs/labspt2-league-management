@@ -15,19 +15,22 @@ export default class AppProvider extends Component {
         id: '1',
         start: 'mar 4 2019 10: 00: 00',
         end: 'mar 4 2019 12: 00: 00',
-        title: 'Team 1 vs Team 2'
+        title: 'Team 1 vs Team 2',
+        location: 'Park'
       },
       {
         id: '2',
         start: 'mar 5 2019 12: 00: 00',
         end: 'mar 5 2019 14: 00: 00',
-        title: 'Team 3 vs Team 4'
+        title: 'Team 3 vs Team 4',
+        location: 'Park'
       },
       {
         id: '3',
         start: 'mar 6 2019 10: 00: 00',
         end: 'mar 6 2019 12: 00: 00',
-        title: 'Team 5 vs Team 6'
+        title: ['Team 5 vs Team 6'],
+        location: 'Park'
       }
     ],
     events: [
@@ -35,19 +38,22 @@ export default class AppProvider extends Component {
         id: '1',
         start: 'mar 4 2019 10: 00: 00',
         end: 'mar 4 2019 12: 00: 00',
-        title: 'Team 1 vs Team 2'
+        title: 'Team 1 vs Team 2',
+        location: 'Park'
       },
       {
         id: '2',
         start: 'mar 5 2019 12: 00: 00',
         end: 'mar 5 2019 14: 00: 00',
-        title: 'Team 3 vs Team 4'
+        title: 'Team 3 vs Team 4',
+        location: 'Park'
       },
       {
         id: '3',
         start: 'mar 6 2019 10: 00: 00',
         end: 'mar 6 2019 12: 00: 00',
-        title: 'Team 5 vs Team 6'
+        title: 'Team 5 vs Team 6',
+        location: 'Park'
       }
     ]
   };
@@ -74,7 +80,7 @@ export default class AppProvider extends Component {
           signOut: () => {
             this.setState({ loggedIn: false, username: null });
           },
-          getEvents: () => {
+          getEvents: id => {
             // An axios request will need to be done here to pull events from DB
             // this.setState({
             //   events: events
