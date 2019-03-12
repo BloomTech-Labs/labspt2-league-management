@@ -4,6 +4,10 @@ exports.up = function(knex, Promise) {
     cancellation_requests => {
       cancellation_requests.increments();
       cancellation_requests
+        .integer('game_id')
+        .unsigned()
+        .notNullable();
+      cancellation_requests
         .foreign('game_id')
         .references('id')
         .on('game');
