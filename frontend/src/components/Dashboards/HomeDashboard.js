@@ -7,6 +7,7 @@ class HomeDashboard extends Component {
     admin: false,
     coach: false
   };
+
   render() {
     return (
       <DashboardNavbar

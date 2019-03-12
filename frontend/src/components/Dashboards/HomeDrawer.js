@@ -61,7 +61,7 @@ class HomeDrawer extends Component {
                     className={classes.nested}
                     onClick={this.selectLeague}
                   >
-                    <ListItemText primary={league.name} />
+                    <ListItemText id={league.id} primary={league.name} />
                   </ListItem>
                 </Link>
                 <Divider />
