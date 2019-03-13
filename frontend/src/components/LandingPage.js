@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import WeatherWidget from './Weather/WeatherWidget';
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class LandingPage extends Component {
       // console.log(this.props.data);
       return (
         <>
+          <WeatherWidget />
           <div>App Name</div>
           <Link to={'/signin'}>Sign In</Link>
           <div>Landing Page Content</div>
@@ -30,6 +32,7 @@ class LandingPage extends Component {
     }
     return (
       <>
+        <WeatherWidget />
         <div>App Name</div>
         <div>{username}</div>
         <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div>
