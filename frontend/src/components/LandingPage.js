@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import TeamCard from './TeamCardList/TeamCard';
 
 class LandingPage extends Component {
   componentDidMount() {
