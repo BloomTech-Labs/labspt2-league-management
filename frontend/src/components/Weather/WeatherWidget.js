@@ -14,7 +14,7 @@ class WeatherWidget extends Component {
   componentDidMount() {
     axios.get('https://league-management.herokuapp.com/weather').then(res => {
       const { time, temperature, icon } = res.data.weatherData.currently;
-      console.log(res.data.weatherData.daily.data[0]);
+      // console.log(res.data.weatherData.daily.data[0]);
       const { sunriseTime, sunsetTime } = res.data.weatherData.daily.data[0];
       this.setState({
         temp: Math.floor(temperature),
