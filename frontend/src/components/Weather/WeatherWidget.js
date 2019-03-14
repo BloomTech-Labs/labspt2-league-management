@@ -3,20 +3,15 @@ import axios from 'axios';
 
 class WeatherWidget extends Component {
   state = {
-    temp: 0,
-    condition: 'rain',
+    temp: null,
+    condition: null,
     city: null,
     state: null,
     loading: true
   };
 
   componentDidMount() {
-    const coordinates = {
-      latitude: 43.25,
-      longitude: 92.09
-    };
-
-    axios.get('http://localhost:4000/weather').then(res => {
+    axios.get('https://league-management.herokuapp.com/weather').then(res => {
       const { temperature, icon } = res.data.weatherData.currently;
       //   console.log(res.data);
       this.setState({
