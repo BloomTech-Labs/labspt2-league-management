@@ -7,18 +7,21 @@ class WeatherWidget extends Component {
     condition: null,
     city: null,
     state: null,
-    loading: true
+    loading: true,
+    daytime: null
   };
 
   componentDidMount() {
     axios.get('https://league-management.herokuapp.com/weather').then(res => {
-      const { temperature, icon } = res.data.weatherData.currently;
-      //   console.log(res.data);
+      const { time, temperature, icon } = res.data.weatherData.currently;
+      // console.log(res.data.weatherData.currently);
+      const { sunsetTime } = res.data.weatherData.daily.data[0];
       this.setState({
         temp: Math.floor(temperature),
         condition: icon,
         city: res.data.city,
         state: res.data.state,
+        daytime: time < sunsetTime,
         loading: false
       });
     });
@@ -26,24 +29,61 @@ class WeatherWidget extends Component {
 
   render() {
     const widget = {
-      display: 'inline-block',
-      border: '1px solid black',
-      padding: '10px',
-      color: 'white',
-      backgroundColor: 'steelblue',
-      marginTop: '0px'
+      textAlign: 'center',
+      fontSize: '1.25rem',
+      display: 'flex',
+      flexDirection: 'column',
+      // width: '20%',
+      width: 150,
+      height: 60,
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '1px solid lightgray',
+      borderRadius: 35,
+      color: this.state.daytime ? '#333' : '#fff',
+      backgroundColor: this.state.daytime ? '#fff' : '#333'
+      // marginTop: 0
     };
+
+    const style1 = {
+      display: 'flex',
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      margin: 0,
+      marginBottom: -10
+    };
+
     if (this.state.loading) {
       return <h3 style={widget}>Loading...</h3>;
     }
     return (
-      <div>
-        <h2 style={{ marginBottom: '5px' }}>
+      <div style={widget}>
+        {/* <h2 style={{ marginBottom: '5px' }}>
           {this.state.city}, {this.state.state}
-        </h2>
-        <h3 style={widget}>
-          {this.state.temp}˚F {this.state.condition}
+        </h2> */}
+        <h3 style={style1}>
+          {this.state.temp}˚F
+          <img
+            src={require(`../../Icons/${this.state.condition}.png`)}
+            alt={this.state.condition}
+            height="40px"
+            // style={{ backgroundColor: '#333' }}
+          />
         </h3>
+        <a href="https://darksky.net/poweredby/" target="_blank">
+          <img
+            src={
+              this.state.daytime
+                ? require(`../../poweredby-oneline.png`)
+                : require(`../../poweredby-oneline-darkbackground.png`)
+            }
+            alt="alt"
+            // height="40px"
+            width="120px"
+            // style={{ backgroundColor: '#333' }}
+          />
+        </a>
       </div>
     );
   }
