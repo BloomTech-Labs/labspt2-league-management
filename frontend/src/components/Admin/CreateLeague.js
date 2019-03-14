@@ -1,3 +1,4 @@
+import 'date-fns';
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -13,6 +14,9 @@ import Switch from "@material-ui/core/Switch";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -43,14 +47,16 @@ class CreateLeague extends Component {
   state = {
     leagueName: "League Name",
     leagueType: 0, // 0 = kid 1 = adult 2 = co-ed
+    leagueStartDate: new Date(),
+    leagueEndDate: new Date(),
     numberOfGames: 0,
     lengthOfGames: 0,
     weekday: false,
     weekend: false,
-    weekdayStartTimes: ["", "", "", "", ""],
-    weekdayEndTimes: ["", "", "", "", ""],
-    weekendStartTimes: ["", ""],
-    weekendEndTimes: ["", ""],
+    weekdayStartTimes: [new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
+    weekdayEndTimes: [new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
+    weekendStartTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
+    weekendEndTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
     // When team is selected add to this array
     teams: []
   };
@@ -59,11 +65,13 @@ class CreateLeague extends Component {
     // console.log(this.state.teams);
     // console.log(this.state.weekday);
     // console.log(this.state.weekend);
-    // console.log(this.state.weekdayStartTimes);
-    // console.log(this.state.weekdayEndTimes);
-    // console.log(this.state.weekendStartTimes);
-    // console.log(this.state.weekendEndTimes);
-    console.log(this.state.leagueType);
+    console.log(this.state.weekdayStartTimes);
+    console.log(this.state.weekdayEndTimes);
+    console.log(this.state.weekendStartTimes);
+    console.log(this.state.weekendEndTimes);
+    // console.log(this.state.leagueType);
+    // console.log(this.state.leagueStartDate);
+    // console.log(this.state.leagueEndDate);
   };
 
   addTeam = teamName => event => {
@@ -99,29 +107,29 @@ class CreateLeague extends Component {
     this.setState({ [name]: event.target.checked });
   };
 
-  setWeekEndStartTime = index => event => {
+  setWeekEndStartTime = (index, time) => {
     const times = [...this.state.weekendStartTimes];
-    times[index] = event.target.value;
+    times[index] = time;
     this.setState({ weekendStartTimes: times });
   };
 
   // NEED TO CHECK THAT END TIME IS GREATER THEN START TIME
-  setWeekEndEndTime = index => event => {
+  setWeekEndEndTime = (index, time) => {
     const times = [...this.state.weekendEndTimes];
-    times[index] = event.target.value;
+    times[index] = time;
     this.setState({ weekendEndTimes: times });
   };
 
-  setWeekDayStartTime = index => event => {
+  setWeekDayStartTime = (index, time) => {
     const times = [...this.state.weekdayStartTimes];
-    times[index] = event.target.value;
+    times[index] = time;
     this.setState({ weekdayStartTimes: times });
   };
 
   // NEED TO CHECK THAT END TIME IS GREATER THEN START TIME
-  setWeekDayEndTime = index => event => {
+  setWeekDayEndTime = (index, time) => {
     const times = [...this.state.weekdayEndTimes];
-    times[index] = event.target.value;
+    times[index] = time;
     this.setState({ weekdayEndTimes: times });
   };
 
@@ -130,6 +138,73 @@ class CreateLeague extends Component {
       this.setState({ leagueType: value });
     }
   };
+
+  setStartDate = date => {
+    console.log(date);
+    this.setState({ leagueStartDate: date });
+  };
+
+  setEndDate = date => {
+    this.setState({ leagueEndDate: date });
+  };
+
+  generateSchedule = ()=>{
+    console.log(this.state.teams);
+
+    const randomValues = [];
+
+    const games = this.state.numberOfGames;
+    const numOfTeams = this.state.teams.length;
+    const repeatGames = Math.ceil(games / numOfTeams);
+
+    for(let i = 0; i < games; i++){
+      randomValues.push([]);
+      for(let j = 0; j < numOfTeams; j++){
+        let rand = Math.trunc(Math.random() * numOfTeams);
+        while(randomValues[i].indexOf(rand) !== -1){
+          rand = Math.trunc(Math.random() * numOfTeams);
+        }
+        randomValues[i].push(rand);
+      }
+    }
+
+    console.log(randomValues);
+
+    // Create temp team storage
+    const teams = []
+    for(let i = 0; i < this.state.teams.length; i++){
+      teams.push({name: this.state.teams[i], played: []})
+    }
+
+    console.log(teams);
+
+    const schedule = [];
+
+    for(let i = 0; i < games; i++){
+      for(let j = 0; j < Math.floor(numOfTeams / 2); j++){
+        let team1Offset = 0;
+        while(randomValues[i][team1Offset] === null){
+          team1Offset++;
+        }
+        const team1 = randomValues[i][team1Offset];
+        randomValues[i][team1Offset] = null;
+
+        let team2Offset = 0;
+        while(randomValues[i][team2Offset] === null){
+          team2Offset++;
+        }
+        const team2 = randomValues[i][team2Offset];
+        randomValues[i][team2Offset] = null;
+
+        teams[team1].played.push(team2);
+        teams[team2].played.push(team1);
+
+        schedule.push([{team1, team2}]);
+      }
+    }
+
+    console.log(schedule);
+  }
 
   render() {
     return (
@@ -183,32 +258,20 @@ class CreateLeague extends Component {
                 return (
                   <div key={day}>
                     <div>{day}</div>
-                    <TextField
-                      label="Start Time"
-                      type="time"
-                      defaultValue="--:--"
-                      value={this.state.weekdayStartTimes[index]}
-                      onChange={this.setWeekDayStartTime(index)}
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      inputProps={{
-                        step: 300 // 5 min
-                      }}
-                    />
-                    <TextField
-                      label="End Time"
-                      type="time"
-                      defaultValue="--:--"
-                      value={this.state.weekdayEndTimes[index]}
-                      onChange={this.setWeekDayEndTime(index)}
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      inputProps={{
-                        step: 300 // 5 min
-                      }}
-                    />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <TimePicker
+                          margin="normal"
+                          label="Start Time"
+                          value={this.state.weekdayStartTimes[index]}
+                          onChange={time=>this.setWeekDayStartTime(index, time)}
+                        />
+                        <TimePicker
+                          margin="normal"
+                          label="End Time"
+                          value={this.state.weekdayEndTimes[index]}
+                          onChange={time=>this.setWeekDayEndTime(index, time)}
+                        />
+                    </MuiPickersUtilsProvider>
                   </div>
                 );
               })
@@ -229,32 +292,20 @@ class CreateLeague extends Component {
                 return (
                   <div key={day}>
                     <div>{day}</div>
-                    <TextField
-                      label="Start Time"
-                      type="time"
-                      defaultValue="--:--"
-                      value={this.state.weekendStartTimes[index]}
-                      onChange={this.setWeekEndStartTime(index)}
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      inputProps={{
-                        step: 300 // 5 min
-                      }}
-                    />
-                    <TextField
-                      label="End Time"
-                      type="time"
-                      defaultValue="--:--"
-                      value={this.state.weekendEndTimes[index]}
-                      onChange={this.setWeekEndEndTime(index)}
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      inputProps={{
-                        step: 300 // 5 min
-                      }}
-                    />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <TimePicker
+                          margin="normal"
+                          label="Start Time"
+                          value={this.state.weekendStartTimes[index]}
+                          onChange={time=>this.setWeekEndStartTime(index, time)}
+                        />
+                        <TimePicker
+                          margin="normal"
+                          label="End Time"
+                          value={this.state.weekendEndTimes[index]}
+                          onChange={time=>this.setWeekEndEndTime(index, time)}
+                        />
+                    </MuiPickersUtilsProvider>
                   </div>
                 );
               })
@@ -286,12 +337,24 @@ class CreateLeague extends Component {
 
         <div>
           <h2>Season</h2>
-          <div>Start Date</div>
-          <div>End Date</div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DatePicker
+                margin="normal"
+                label="Start Date"
+                value={this.state.leagueStartDate}
+                onChange={this.setStartDate}
+              />
+              <DatePicker
+                margin="normal"
+                label="End Date"
+                value={this.state.leagueEndDate}
+                onChange={this.setEndDate}
+              />
+          </MuiPickersUtilsProvider>
         </div>
 
         <div>
-          <button>Generate Schedule</button>
+          <Button variant="contained" color="primary" onClick={this.generateSchedule}>Generate Schedule</Button>
         </div>
       </div>
     );
