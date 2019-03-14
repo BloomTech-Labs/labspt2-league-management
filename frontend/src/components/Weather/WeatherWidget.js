@@ -33,7 +33,6 @@ class WeatherWidget extends Component {
       fontSize: '1.25rem',
       display: 'flex',
       flexDirection: 'column',
-      // width: '20%',
       width: 150,
       height: 60,
       alignItems: 'center',
@@ -42,7 +41,6 @@ class WeatherWidget extends Component {
       borderRadius: 35,
       color: this.state.daytime ? '#333' : '#fff',
       backgroundColor: this.state.daytime ? '#fff' : '#333'
-      // marginTop: 0
     };
 
     const style1 = {
@@ -59,16 +57,12 @@ class WeatherWidget extends Component {
     }
     return (
       <div style={widget}>
-        {/* <h2 style={{ marginBottom: '5px' }}>
-          {this.state.city}, {this.state.state}
-        </h2> */}
         <h3 style={style1}>
           {this.state.temp}˚F
           <img
             src={require(`../../Icons/${this.state.condition}.png`)}
             alt={this.state.condition}
             height="40px"
-            // style={{ backgroundColor: '#333' }}
           />
         </h3>
         <a href="https://darksky.net/poweredby/" target="_blank">
@@ -79,9 +73,7 @@ class WeatherWidget extends Component {
                 : require(`../../poweredby-oneline-darkbackground.png`)
             }
             alt="alt"
-            // height="40px"
             width="120px"
-            // style={{ backgroundColor: '#333' }}
           />
         </a>
       </div>
