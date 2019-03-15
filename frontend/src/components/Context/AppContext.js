@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-import axios from 'axios';
+// import axios from 'axios';
 
 export const AppContext = React.createContext();
 
 export default class AppProvider extends Component {
   state = {
-    username: 'User',
+    username: null,
     admin: false,
     coach: false,
     loggedIn: true,
@@ -66,13 +66,13 @@ export default class AppProvider extends Component {
           state: this.state,
           signin: () => {
             const token = localStorage.getItem('jwt');
-            let username = null;
+            // let username = null;
             if (token) {
               const decoded = jwt_decode(token);
-              username = decoded.username;
-              console.log('decoded jwt: ', decoded);
+              const username = decoded.username;
+              // console.log('decoded jwt: ', decoded);
+              this.setState({ loggedIn: true, username });
             }
-            this.setState({ loggedIn: true, username: username });
           },
           signedIn: username => {
             this.setState({ loggedIn: true, username });
