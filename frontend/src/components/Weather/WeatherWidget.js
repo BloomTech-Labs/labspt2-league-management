@@ -66,7 +66,11 @@ class WeatherWidget extends Component {
             height="40px"
           />
         </h3>
-        <a href="https://darksky.net/poweredby/" target="_blank">
+        <a
+          href="https://darksky.net/poweredby/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src={
               this.state.daytime
