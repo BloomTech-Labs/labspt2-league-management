@@ -9,7 +9,7 @@ export default class AppProvider extends Component {
     username: 'User',
     admin: false,
     coach: false,
-    loggedIn: false,
+    loggedIn: true,
     publicEvents: [
       {
         id: '1',

@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage';
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
 import HomeDashboard from './components/Dashboards/HomeDashboard';
+import UserSettings from './components/UserSettings/UserSettings';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 
@@ -31,15 +32,21 @@ class App extends Component {
 
             {/* PROTECTED ROUTES*/}
             {context.state.loggedIn ? (
-              <Route
-                path="/dashboard"
-                render={props => (
-                  <HomeDashboard
-                    username={context.state.username}
-                    context={context}
-                  />
-                )}
-              />
+              <>
+                <Route
+                  path="/dashboard"
+                  render={props => (
+                    <HomeDashboard
+                      username={context.state.username}
+                      context={context}
+                    />
+                  )}
+                />
+                <Route
+                  path="/settings"
+                  render={props => <UserSettings context={context} />}
+                />
+              </>
             ) : (
               <Route
                 path="/dashboard"
