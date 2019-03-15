@@ -1,11 +1,15 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-    getLeagueById: (id) =>{
-        return db('league').where(id, 'admin_user_id')
+    getAll: (user) =>{
+        return db('league')
     },
 
     insertLeague: (league) =>{
         return db('league').insert(league)
+    },
+
+    findById: (id) =>{
+        return db('league').where({id}).first()
     }
 }
