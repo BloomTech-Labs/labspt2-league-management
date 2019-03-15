@@ -1,108 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 import axios from 'axios';
 import TeamCard from './TeamCard.js';
 
-const styles = {
-  card: {
-    minWidth: 275
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  }
-};
+const styles = theme => ({
+});
 
 class TeamCardList extends React.Component {
-  componentDidMount() {}
+  state = {
+  };
+
+  componentDidMount() {
+
+  };
 
   render() {
+    // const { classes } = this.props;
+
     return (
-      <div>
-        {this.props.LeagueTeams.map(team => (
-          <TeamCard
-            team={team}
-            key={team.id}
-            id={team.id}
-            teamName={team.teamName}
-            email={team.email}
-            phone={team.phone}
-            teamWins={team.teamWins}
-            teamLosses={team.teamLosses}
-          />
-        ))}
-      </div>
+      <Grid container spacing={16}>
+        <Grid item xs={12} >
+        <Grid container justify="center" spacing={16}>
+        {/* //       {this.props.LeagueTeams.map(team => ( */}
+             {[0, 1, 2, 3, 4, 5, 6, 7].map(team => (
+               <Grid key={team} item>
+                  <TeamCard
+                  team={team}
+                  key={team.id}
+                  id={team.id}
+                  teamName={team.teamName}
+                  email={team.email}
+                  phone={team.phone}
+                  teamWins={team.teamWins}
+                  teamLosses={team.teamLosses}
+                  />
+               </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
     );
   }
 }
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = {
-  card: {
-    maxWidth: '325px',
-    border: '2px solid lightgrey',
-    width: '45%',
-    borderRadius: '4%',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    height: '300px'
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
-  },
-  container: {
-    width: '90%'
-  },
-  title: {
-    fontSize: '1.6rem',
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
-  pos: {
-    border: '1px solid black',
-    marginTop: '8px',
-    width: '65%',
-    maxWidth: '180px',
-    borderRadius: '8%',
-    marginBottom: '12px',
-    padding: '10px'
-  },
-  upcoming: {
-    border: '1px solid black',
-    marginTop: '8px',
-    width: '90%',
-    borderRadius: '8%',
-    marginBottom: '7px',
-    padding: '10px'
-  },
-  button: {
-    border: '1px solid lightgrey',
-    borderRadius: '6%'
-  },
-  p: {
-    fontSize: 13
-  }
-};
+export default withStyles(styles)(TeamCardList);
