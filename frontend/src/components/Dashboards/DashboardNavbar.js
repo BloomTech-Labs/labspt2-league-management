@@ -19,6 +19,7 @@ import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
 import { AppContext } from '../Context/AppContext';
+import WeatherWidget from '../Weather/WeatherWidget';
 // import AppContext from '../Context/AppContext';
 
 const drawerWidth = 240;
@@ -222,6 +223,7 @@ class MenuAppBar extends React.Component {
                 </Typography>
               )}
             </AppContext.Consumer>
+            <WeatherWidget />
             <Link to="/dashboard">
               <Button
                 className={!admin && !coach ? classes.selected : classes.button}
