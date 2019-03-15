@@ -80,8 +80,8 @@ class WeatherWidget extends Component {
           <img
             src={
               this.state.daytime
-                ? require(`../../poweredby-oneline.png`)
-                : require(`../../poweredby-oneline-darkbackground.png`)
+                ? require(`../../Images/poweredby-oneline.png`)
+                : require(`../../Images/poweredby-oneline-darkbackground.png`)
             }
             alt="alt"
             width="120px"

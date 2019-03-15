@@ -26,7 +26,6 @@ const styles = theme => ({
     margin: '65px auto 0 auto',
     padding: '40px 20px 100px 20px',
     minHeight: 'calc(100vh - 65px)'
-    // minHeight: '100%'
   },
   formControl: {
     marginLeft: theme.spacing.unit,
