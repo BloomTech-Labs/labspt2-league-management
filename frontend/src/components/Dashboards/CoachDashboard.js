@@ -27,6 +27,7 @@ class CoachDashboard extends Component {
             <DashboardNavbar
               data={this.state}
               displayCoachContent={this.displayCoachContent}
+              context={context}
             />
             <div style={{ margin: '100px 80px 20px 280px' }}>
               {calendar && <CoachCalendar context={context} />}

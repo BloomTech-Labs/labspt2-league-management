@@ -9,6 +9,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const styles = theme => ({
   container: {
@@ -89,14 +90,19 @@ TextMaskCustom.propTypes = {
 
 class UserSettings extends React.Component {
   state = {
-    username: 'test',
-    email: 'test@test.com',
-    firstName: 'Test',
-    lastName: 'User',
-    phone: '(555)123-1234',
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    phone: '1',
     password: '',
     allowUpdate: false
   };
+
+  endpoint =
+    process.env.NODE_ENV === 'production'
+      ? 'https://league-management.herokuapp.com/settings'
+      : 'http://localhost:4000/settings';
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -106,9 +112,48 @@ class UserSettings extends React.Component {
     this.setState({ allowUpdate: true });
   };
 
-  handleSubmit = () => {
-    this.setState({ allowUpdate: false });
+  handleSubmit = async e => {
+    e.preventDefault();
+    const token = localStorage.getItem('jwt');
+    const options = {
+      headers: {
+        Authorization: token
+      }
+    };
+
+    const { username, email, first_name, last_name, phone } = this.state;
+    const body = { username, email, first_name, last_name, phone };
+
+    // axios.put(this.endpoint, body, options).then(res => console.log(res.data)).catch(err => console.log(err))
+
+    await this.setState({ allowUpdate: false });
+    await this.getData();
   };
+
+  getData() {
+    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const options = {
+      headers: {
+        Authorization: token
+      }
+    };
+    const endpoint =
+      process.env.NODE_ENV === 'production'
+        ? 'https://league-management.herokuapp.com/settings'
+        : 'http://localhost:4000/settings';
+
+    axios
+      .get(this.endpoint, options)
+      .then(res => {
+        const { username, email, first_name, last_name, phone } = res.data;
+        this.setState({ username, email, first_name, last_name, phone });
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
 
   render() {
     const { classes } = this.props;
@@ -171,8 +216,8 @@ class UserSettings extends React.Component {
           id="standard-firstName"
           label="First Name"
           className={classes.textField}
-          value={this.state.firstName}
-          onChange={this.handleChange('firstName')}
+          value={this.state.first_name}
+          onChange={this.handleChange('first_name')}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -185,8 +230,8 @@ class UserSettings extends React.Component {
           id="standard-lastName"
           label="Last Name"
           className={classes.textField}
-          value={this.state.lastName}
-          onChange={this.handleChange('lastName')}
+          value={this.state.last_name}
+          onChange={this.handleChange('last_name')}
           margin="normal"
           variant="outlined"
           InputProps={{

@@ -101,6 +101,7 @@ class MenuAppBar extends React.Component {
   };
 
   componentDidMount() {
+    const token = localStorage.getItem('jwt') || this.props.context.signOut();
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
     // state would also include user settings, and other info on the user (global state?)
     const { admin, coach } = this.props.data;
