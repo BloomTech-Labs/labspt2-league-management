@@ -11,19 +11,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   card: {
-    maxWidth: '325px',
+    minWidth: '275px',
     border: '2px solid lightgrey',
     width: '45%',
     borderRadius: '4%',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    height: '300px'
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
+    height: '325px'
   },
   container: {
     width: '90%'
