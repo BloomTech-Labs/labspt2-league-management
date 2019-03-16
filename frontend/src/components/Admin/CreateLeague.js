@@ -58,7 +58,8 @@ class CreateLeague extends Component {
     weekendStartTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
     weekendEndTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
     // When team is selected add to this array
-    teams: []
+    teams: [],
+    schedule: []
   };
 
   showState = () => {
@@ -83,12 +84,14 @@ class CreateLeague extends Component {
         return element.teamName === teamName;
       })
     ) {
+      // Remove team, check box has been deselected
       const newTeams = currentTeams.filter(team => team.teamName !== teamName);
       this.setState({
         teams: newTeams
       });
     } else {
-      currentTeams.push({ teamName: teamName, played: [] });
+      // Add team to schedule
+      currentTeams.push({ teamName: teamName, played: [], homeGames: 0, numOfByes: 0, isBye: false });
       this.setState({
         teams: currentTeams
       });
@@ -149,61 +152,128 @@ class CreateLeague extends Component {
   };
 
   generateSchedule = ()=>{
-    console.log(this.state.teams);
-
-    const randomValues = [];
+    const teams = this.state.teams;
+    // Add bye week if odd amount of teams
+    if(teams.length % 2 !== 0){
+      teams.push({teamName: 'Bye Week', played: [], homeGames: 0, numOfByes: 0, isBye: true});
+    }
 
     const games = this.state.numberOfGames;
-    const numOfTeams = this.state.teams.length;
-    const repeatGames = Math.ceil(games / numOfTeams);
-
-    for(let i = 0; i < games; i++){
-      randomValues.push([]);
-      for(let j = 0; j < numOfTeams; j++){
-        let rand = Math.trunc(Math.random() * numOfTeams);
-        while(randomValues[i].indexOf(rand) !== -1){
-          rand = Math.trunc(Math.random() * numOfTeams);
-        }
-        randomValues[i].push(rand);
-      }
-    }
-
-    console.log(randomValues);
-
-    // Create temp team storage
-    const teams = []
-    for(let i = 0; i < this.state.teams.length; i++){
-      teams.push({name: this.state.teams[i], played: []})
-    }
-
-    console.log(teams);
-
+    const numOfTeams = teams.length;
     const schedule = [];
 
+    // Create all game matchups for each team to play each other team
+    const allGames = [];
+    for(let i = 0; i < numOfTeams; i++){
+      for(let j = i + 1; j < numOfTeams; j++){
+        allGames.push(i);
+        allGames.push(j);
+      }
+    }
+
+    // Setup empty 2D array to store the matchups for one round by weeks
+    const matchUpsByWeek = []
+    for(let i = 0; i < numOfTeams - 1; i++){
+      matchUpsByWeek.push([]);
+    }
+
+    // Push created games in to week separated matchups
+    // Each set of teams in order is a game
+    let currentWeek = 0
+    for(let i = 0; i < allGames.length; i += 2){
+      while(matchUpsByWeek[currentWeek].includes(allGames[i]) || matchUpsByWeek[currentWeek].includes(allGames[i + 1])){
+        currentWeek++;
+        currentWeek = currentWeek === matchUpsByWeek.length ? 0 : currentWeek;
+      }
+      
+      matchUpsByWeek[currentWeek].push(allGames[i]);
+      matchUpsByWeek[currentWeek].push(allGames[i + 1]);
+
+      currentWeek++;
+      currentWeek = currentWeek === matchUpsByWeek.length ? 0 : currentWeek;
+    }
+
+    // Compile Schedule
+    let randomWeeks = [];
+    let randomGameOrderPerWeek = [];
+    currentWeek = 0;
     for(let i = 0; i < games; i++){
-      for(let j = 0; j < Math.floor(numOfTeams / 2); j++){
-        let team1Offset = 0;
-        while(randomValues[i][team1Offset] === null){
-          team1Offset++;
+      // Check if its a new round
+      // If it is reset the round variables
+      // And generate new randoms to combat patterns showing up
+      if(i % (numOfTeams - 1) === 0){
+        randomWeeks = [];
+        randomGameOrderPerWeek = [];
+        currentWeek = 0;
+        // Creates random weeks for one round of games
+        for(let j = 0; j < numOfTeams - 1; j++){
+          let rand = Math.abs(Math.trunc(Math.random() * numOfTeams - 1));
+          while(randomWeeks.indexOf(rand) !== -1){
+            rand = Math.abs(Math.trunc(Math.random() * numOfTeams - 1));
+          }
+          randomWeeks.push(rand);
         }
-        const team1 = randomValues[i][team1Offset];
-        randomValues[i][team1Offset] = null;
 
-        let team2Offset = 0;
-        while(randomValues[i][team2Offset] === null){
-          team2Offset++;
+        // Randomize order of games per week
+        // For one round of games
+        for(let j = 0; j < numOfTeams; j++){
+          randomGameOrderPerWeek.push([]);
+          for(let k = 0; k < Math.trunc(numOfTeams / 2); k++){
+            let rand = Math.trunc(Math.random() * Math.trunc(numOfTeams / 2));
+            while(randomGameOrderPerWeek[j].indexOf(rand) !== -1){
+              rand = Math.trunc(Math.random() * Math.trunc(numOfTeams / 2));
+            }
+            randomGameOrderPerWeek[j].push(rand);
+          }
         }
-        const team2 = randomValues[i][team2Offset];
-        randomValues[i][team2Offset] = null;
+      }
+      
+      // Set a weeks worth of games using the random numbers generated
+      const week = randomWeeks[currentWeek];
+      const weekSchedule = [];
+      for(let j = 0; j < Math.trunc(numOfTeams / 2); j++){
+        const team1 = matchUpsByWeek[week][randomGameOrderPerWeek[week][j] * 2];
+        const team2 = matchUpsByWeek[week][randomGameOrderPerWeek[week][j] * 2 + 1];
 
+        // TODO: FIX THIS HOME AND AWAY STILL NOT WORKING 100% OF THE TIME
+        // This sets the bye week, when odd number of teams and sets home/away teams
+        if(teams[team1].isBye || teams[team2].isBye){
+          if(teams[team1].isBye){
+            teams[team2].numOfByes++;
+            weekSchedule.push({away: 'Bye Week', home: team2})
+          }
+
+          else{
+            teams[team1].numOfByes++;
+            weekSchedule.push({away: 'Bye Week', home: team1})
+          }
+        }
+
+        else if(teams[team1].homeGames < teams[team2].homeGames){
+          teams[team1].homeGames++;
+          weekSchedule.push({away: team2, home: team1});
+        }
+
+        else{
+          teams[team2].homeGames++;
+          weekSchedule.push({away: team1, home: team2});
+        }
+
+        // FOR TESTING
         teams[team1].played.push(team2);
         teams[team2].played.push(team1);
-
-        schedule.push([{team1, team2}]);
       }
+
+      // Push the weekly schedule to the main schedule
+      schedule.push(weekSchedule);
+      currentWeek++;
     }
 
     console.log(schedule);
+
+    this.setState({
+      schedule: schedule
+    });
   }
 
   render() {
