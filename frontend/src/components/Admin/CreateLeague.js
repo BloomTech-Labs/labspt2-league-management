@@ -1,13 +1,13 @@
 import 'date-fns';
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+// import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
+// import FormLabel from "@material-ui/core/FormLabel";
+// import FormControl from "@material-ui/core/FormControl";
+// import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Switch from "@material-ui/core/Switch";
@@ -50,6 +50,7 @@ class CreateLeague extends Component {
     leagueStartDate: new Date(),
     leagueEndDate: new Date(),
     numberOfGames: 0,
+    gamesPerTeamPerWeek: 0,
     lengthOfGames: 0,
     weekday: false,
     weekend: false,
@@ -63,19 +64,22 @@ class CreateLeague extends Component {
   };
 
   showState = () => {
-    // console.log(this.state.teams);
+    console.log(this.state.teams);
     // console.log(this.state.weekday);
     // console.log(this.state.weekend);
-    console.log(this.state.weekdayStartTimes);
-    console.log(this.state.weekdayEndTimes);
-    console.log(this.state.weekendStartTimes);
-    console.log(this.state.weekendEndTimes);
+    // console.log(this.state.weekdayStartTimes);
+    // console.log(this.state.weekdayEndTimes);
+    // console.log(this.state.weekendStartTimes);
+    // console.log(this.state.weekendEndTimes);
     // console.log(this.state.leagueType);
     // console.log(this.state.leagueStartDate);
     // console.log(this.state.leagueEndDate);
+    console.log(this.state.numberOfGames);
+    console.log(this.state.gamesPerTeamPerWeek);
+    console.log(this.state.lengthOfGames);
   };
 
-  addTeam = teamName => event => {
+  addRemoveTeam = teamName => event => {
     // Check if team needs removed
     const currentTeams = this.state.teams;
 
@@ -98,12 +102,8 @@ class CreateLeague extends Component {
     }
   };
 
-  setGames = () => event => {
-    this.setState({ numberOfGames: event.target.value });
-  };
-
-  setLength = () => event => {
-    this.setState({ lengthOfGames: event.target.value });
+  setGameData = (stateName) => event => {
+    this.setState({ [stateName]: event.target.value });
   };
 
   setGameDays = name => event => {
@@ -274,6 +274,9 @@ class CreateLeague extends Component {
     this.setState({
       schedule: schedule
     });
+
+    // Assign teams to hours available per week
+
   }
 
   render() {
@@ -301,16 +304,23 @@ class CreateLeague extends Component {
           <TextField
             variant="outlined"
             type="number"
-            label="Number"
+            label="Total Number of Games"
             value={this.state.numberOfGames}
-            onChange={this.setGames()}
+            onChange={this.setGameData("numberOfGames")}
           />
           <TextField
             variant="outlined"
             type="number"
-            label="Length"
+            label="Games per Team per Week"
+            value={this.state.gamesPerTeamPerWeek}
+            onChange={this.setGameData("gamesPerTeamPerWeek")}
+          />
+          <TextField
+            variant="outlined"
+            type="number"
+            label="Length of Games"
             value={this.state.lengthOfGames}
-            onChange={this.setLength()}
+            onChange={this.setGameData("lengthOfGames")}
           />
           <FormControlLabel
             control={
@@ -395,7 +405,7 @@ class CreateLeague extends Component {
                         return element.teamName === team;
                       }) !== -1
                     }
-                    onChange={this.addTeam(team)}
+                    onChange={this.addRemoveTeam(team)}
                     value={team}
                   />
                 }
