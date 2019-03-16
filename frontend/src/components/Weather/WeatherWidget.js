@@ -12,7 +12,11 @@ class WeatherWidget extends Component {
   };
 
   componentDidMount() {
-    axios.get('https://league-management.herokuapp.com/weather').then(res => {
+    const endpoint =
+      process.env.NODE_ENV === 'production'
+        ? 'https://league-management.herokuapp.com/weather'
+        : 'http://localhost:4000/weather';
+    axios.get(endpoint).then(res => {
       const { time, temperature, icon } = res.data.weatherData.currently;
       // console.log(res.data.weatherData.daily.data[0]);
       const { sunriseTime, sunsetTime } = res.data.weatherData.daily.data[0];
@@ -40,7 +44,9 @@ class WeatherWidget extends Component {
       border: '1px solid lightgray',
       borderRadius: 35,
       color: this.state.daytime ? '#333' : '#fff',
-      backgroundColor: this.state.daytime ? '#fff' : '#333'
+      backgroundColor: this.state.daytime ? '#fff' : '#333',
+      margin: this.state.loading ? 0 : null,
+      marginRight: '2%'
     };
 
     const style1 = {
@@ -66,12 +72,16 @@ class WeatherWidget extends Component {
             height="40px"
           />
         </h3>
-        <a href="https://darksky.net/poweredby/" target="_blank">
+        <a
+          href="https://darksky.net/poweredby/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src={
               this.state.daytime
-                ? require(`../../poweredby-oneline.png`)
-                : require(`../../poweredby-oneline-darkbackground.png`)
+                ? require(`../../Images/poweredby-oneline.png`)
+                : require(`../../Images/poweredby-oneline-darkbackground.png`)
             }
             alt="alt"
             width="120px"

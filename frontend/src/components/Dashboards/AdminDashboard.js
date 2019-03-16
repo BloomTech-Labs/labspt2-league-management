@@ -43,6 +43,7 @@ class AdminDashboard extends Component {
             <DashboardNavbar
               data={this.state}
               displayAdminContent={this.displayAdminContent}
+              context={context}
             />
             <div
               style={{
@@ -51,7 +52,7 @@ class AdminDashboard extends Component {
             >
               {calendar && <PublicCalendar context={context} />}
               {teamList && <div>Team List</div>}
-              {leagueSettings && <CreateLeague context={context}/>}
+              {leagueSettings && <CreateLeague context={context} />}
               {editSchedule && <DnDCalendar context={context} />}
               {cancellationRequests && <div>Cancellation Requests</div>}
             </div>
