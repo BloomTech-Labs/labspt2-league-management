@@ -49,6 +49,27 @@ router.get('/:id', (req, res) =>{
   })
 })
 
-
+router.put('/:id', (req, res) =>{
+  const { id } = req.params;
+  const league = req.body;
+    if(league.name && league.admin_user_id && league.type){
+      leagueModel.update(id, league)
+      .then(updatedLeague =>{
+        if(updatedLeague){
+          leagueModel.findById(id).then(leagues =>{
+            res.json(leagues)
+          }).catch(err =>{
+            res.status(500).json({error:"Could not return updated League", err})
+          })
+        }else{
+          res.status(404).json({error:"The league with the specified id does not exist!"})
+        }
+      }).catch(err =>{
+        res.status(500).json({error:"The league could not be modified!", err})
+      })
+    }else{
+      res.status(400).json({message:"You are missing required league information!"})
+    }
+})
 
 module.exports = router;
