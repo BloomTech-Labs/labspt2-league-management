@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const authRouter = require('./routers/authRouter');
 const settingsRouter = require('./routers/settingsRouter');
+const leagueRouter = require('./routers/leagueRouter');
 const cors = require('cors');
 
 // const cors = (req, res, next) => {
