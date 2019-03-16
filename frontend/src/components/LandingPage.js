@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import WeatherWidget from './Weather/WeatherWidget';
+// import WeatherWidget from './Weather/WeatherWidget';
 
 class LandingPage extends Component {
   componentDidMount() {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt') || this.props.context.signOut();
     let username = null;
     if (token) {
       const decoded = jwt_decode(token);
@@ -23,18 +23,22 @@ class LandingPage extends Component {
       // console.log(this.props.data);
       return (
         <>
-          <WeatherWidget />
+          {/* <WeatherWidget /> */}
           <div>App Name</div>
           <Link to={'/signin'}>Sign In</Link>
+          <br />
+          <Link to={'/signup'}>Sign Up</Link>
           <div>Landing Page Content</div>
         </>
       );
     }
     return (
       <>
-        <WeatherWidget />
+        {/* <WeatherWidget /> */}
         <div>App Name</div>
         <div>{username}</div>
+        <Link to="/settings">My Settings</Link>
+        <br />
         <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div>
       </>
     );

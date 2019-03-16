@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage';
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
 import HomeDashboard from './components/Dashboards/HomeDashboard';
+import UserSettings from './components/UserSettings/UserSettings';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 
@@ -15,44 +16,67 @@ class App extends Component {
     // console.log(AppContext.Consumer);
     return (
       <AppContext.Consumer>
-        {context => (
-          <>
-            {/* PUBLIC ROUTES*/}
-            <Route
-              exact
-              path="/"
-              render={props => <LandingPage context={context} />}
-            />
-            <Route path="/signup" component={Signup} />
-            <Route
-              path="/signin"
-              render={props => <Signin signin={context.signin} />}
-            />
-
-            {/* PROTECTED ROUTES*/}
-            {context.state.loggedIn ? (
+        {context => {
+          const homepage = props => {
+            return <Redirect to="/" />;
+          };
+          return (
+            <>
+              {/* PUBLIC ROUTES*/}
               <Route
-                path="/dashboard"
-                render={props => (
-                  <HomeDashboard
-                    username={context.state.username}
-                    context={context}
-                  />
-                )}
+                exact
+                path="/"
+                render={props => <LandingPage context={context} />}
               />
-            ) : (
+              <Route path="/signup" component={Signup} />
               <Route
-                path="/dashboard"
-                render={props => {
-                  return <Redirect to="/" />;
-                }}
+                path="/signin"
+                render={props => <Signin signin={context.signin} />}
               />
-            )}
+              {/* PROTECTED ROUTES*/}
 
-            <Route path="/dashboard/admin" component={AdminDashboard} />
-            <Route path="/dashboard/coach" component={CoachDashboard} />
-          </>
-        )}
+              <Route
+                exact
+                path="/dashboard"
+                render={
+                  context.state.loggedIn
+                    ? props => (
+                        <HomeDashboard
+                          username={context.state.username}
+                          context={context}
+                        />
+                      )
+                    : homepage
+                }
+              />
+
+              <Route
+                path="/settings"
+                render={
+                  context.state.loggedIn
+                    ? props => <UserSettings context={context} />
+                    : homepage
+                }
+              />
+              <Route
+                path="/dashboard/admin"
+                render={
+                  context.state.loggedIn
+                    ? props => <AdminDashboard />
+                    : homepage
+                }
+              />
+              <Route
+                path="/dashboard/coach"
+                render={
+                  context.state.loggedIn
+                    ? props => <CoachDashboard />
+                    : homepage
+                }
+              />
+            </>
+          );
+        }}
       </AppContext.Consumer>
 
       // admin dashboard - restricted

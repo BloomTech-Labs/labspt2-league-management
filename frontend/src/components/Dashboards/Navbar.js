@@ -3,24 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link, Redirect } from 'react-router-dom';
-import HomeDrawer from './HomeDrawer';
-import AdminDrawer from './AdminDrawer';
-import CoachDrawer from './CoachDrawer';
-import { AppContext } from '../Context/AppContext';
-import WeatherWidget from '../Weather/WeatherWidget';
-// import AppContext from '../Context/AppContext';
 
 const drawerWidth = 240;
 
@@ -90,7 +79,7 @@ const styles = theme => ({
   }
 });
 
-class MenuAppBar extends React.Component {
+class Navbar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
@@ -109,21 +98,21 @@ class MenuAppBar extends React.Component {
     }
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
     // state would also include user settings, and other info on the user (global state?)
-    const { admin, coach } = this.props.data;
-    this.setState({
-      leagues: [
-        { id: 1, name: 'League 1 - Name' },
-        { id: 2, name: 'League 2 - Name' }
-      ],
-      teams: [{ id: 1, name: 'Team 1' }],
-      admin,
-      coach
-    });
+    // const { admin, coach } = this.props.data;
+    // this.setState({
+    //   leagues: [
+    //     { id: 1, name: 'League 1 - Name' },
+    //     { id: 2, name: 'League 2 - Name' }
+    //   ],
+    //   teams: [{ id: 1, name: 'Team 1' }],
+    //   admin,
+    //   coach
+    // });
   }
 
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
+  //   handleDrawerToggle = () => {
+  //     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  //   };
 
   handleChange = event => {
     this.setState({ auth: event.target.checked });
@@ -153,43 +142,9 @@ class MenuAppBar extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
-    const { anchorEl, mobileOpen, admin, coach, leagues, teams } = this.state;
+    const { classes } = this.props;
+    const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-
-    const drawer = (
-      <div>
-        <div className={classes.toolbar}>
-          {mobileOpen ? (
-            <CloseIcon
-              className={classes.closeButton}
-              onClick={this.handleDrawerToggle}
-            />
-          ) : null}
-        </div>
-        <Divider />
-        {!admin && !coach && (
-          <HomeDrawer
-            classes={classes}
-            leagues={leagues}
-            teams={teams}
-            handleClose={this.handleClose}
-          />
-        )}
-        {admin && !coach && (
-          <AdminDrawer
-            handleClose={this.handleClose}
-            displayAdminContent={this.props.displayAdminContent}
-          />
-        )}
-        {coach && !admin && (
-          <CoachDrawer
-            handleClose={this.handleClose}
-            displayCoachContent={this.props.displayCoachContent}
-          />
-        )}
-      </div>
-    );
 
     if (this.state.logout) {
       return <Redirect to="/" />;
@@ -199,20 +154,20 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <IconButton
+            {/* <IconButton
               className={classes.menuButton}
               color="inherit"
               onClick={this.handleDrawerToggle}
               aria-label="Menu"
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/" style={{ color: '#fff' }}>
                 League Management
               </Link>
             </Typography>
-            <AppContext.Consumer>
+            {/* <AppContext.Consumer>
               {context => (
                 <Typography
                   variant="h6"
@@ -222,13 +177,9 @@ class MenuAppBar extends React.Component {
                   {context.state.username}
                 </Typography>
               )}
-            </AppContext.Consumer>
-            <WeatherWidget />
+            </AppContext.Consumer> */}
             <Link to="/dashboard">
-              <Button
-                className={!admin && !coach ? classes.selected : classes.button}
-                onClick={this.homeView}
-              >
+              <Button className={classes.button} onClick={this.homeView}>
                 Home
               </Button>
             </Link>
@@ -269,43 +220,14 @@ class MenuAppBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-
-        <nav className={classes.drawer}>
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
-            <Drawer
-              container={this.props.container}
-              variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.state.mobileOpen}
-              onClose={this.handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Drawer
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              variant="permanent"
-              open
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-        </nav>
       </div>
     );
   }
 }
 
-MenuAppBar.propTypes = {
+Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(MenuAppBar);
+export default withStyles(styles, { withTheme: true })(Navbar);
