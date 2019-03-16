@@ -35,4 +35,20 @@ router.get('/', (req, res) =>{
         })
 })
 
+router.get('/:id', (req, res) =>{
+  const { id } = req.params;
+  leagueModel.findById(id)
+  .then(league =>{
+    if(league){
+      res.json(league)
+    }else{
+      res.status(404).json({message:"The league with the specified id does not exist!"})
+    }
+  }).catch(err =>{
+      res.status(500).json({error:"Trouble getting the League", err})
+  })
+})
+
+
+
 module.exports = router;
