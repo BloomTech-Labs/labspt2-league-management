@@ -61,23 +61,23 @@ function TeamCard(props) {
     <Card className={classes.card}>
       <CardContent className={classes.container}>
         <Typography className={classes.title}>
-          Team name
+          Team name {props.name}
           <div>
             <EditIcon />
             <DeleteIcon />
           </div>
         </Typography>
         <Typography className={classes.p}>
-          Email
+          Email {props.email}
           <br />
-          Phone #
+          Phone # {props.phone}
         </Typography>
         <Typography className={classes.pos}>
           Record:
           <br />
-          Wins: Team-Wins
+          Wins: Team-Wins {props.wins}
           <br />
-          Losses: Team-Losses
+          Losses: Team-Losses {props.losses}
         </Typography>
         <Typography className={classes.upcoming}>
           Upcoming:
