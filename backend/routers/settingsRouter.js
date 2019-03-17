@@ -8,10 +8,11 @@ const router = express.Router();
 router.use(authenticate);
 
 router.get('/', (req, res) => {
-  const username = req.user.username;
+  const email = req.user.email;
   userModel
-    .getByUsername(username)
+    .getByEmail(email)
     .then(user => {
+      delete user['password'];
       res.json(user);
     })
     .catch(err => {

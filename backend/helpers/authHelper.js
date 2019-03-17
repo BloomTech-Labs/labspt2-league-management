@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    generateToken: (username) => {
+    generateToken: (email) => {
         const payload = {
-            username: username
+            email: email
         }
         const secret = process.env.JWT_SECRET;
         const options = {
