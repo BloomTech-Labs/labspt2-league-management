@@ -72,16 +72,17 @@ router.put('/:id', (req, res) =>{
     }
 })
 
-router.delete('/:id',(req, res)=>{
+router.delete('/:id', (req , res) =>{
   const { id } = req.params;
-  leagueModel.remove(id).then(removed =>{
+    leagueModel.remove(id)
+    .then(removed =>{
       if(removed){
-        res.json({message:"The league was successfully completed!"})
-      }else {
-        res.status(500).json({message:"The league does not exist!"})
+        res.json({message:"league has been deleted!"})
+      } else {
+        res.status(500).json({message:"league id does not exist"})
       }
     }).catch(err =>{
-      res.status(500).json({error:"The league could not be removed!"})
+      res.status(500).json({error:"The league could not be removed!", err})
     })
 })
 
