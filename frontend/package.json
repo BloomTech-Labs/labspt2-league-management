@@ -12,6 +12,7 @@
     "jwt-decode": "^2.2.0",
     "material-ui-pickers": "^2.2.4",
     "moment": "^2.24.0",
+    "query-string": "^6.4.0",
     "react": "^16.8.3",
     "react-big-calendar": "^0.20.3",
     "react-dnd": "^7.2.1",

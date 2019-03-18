@@ -26,8 +26,8 @@ router.get(
         console.log(req.err);
         delete req.user['password'];
         const token = authHelper.generateToken(req.user);
-        console.log(FRONTEND_URL + "/?token=" + token);
-        res.redirect(FRONTEND_URL + "/?token=" + token);
+        console.log(FRONTEND_URL + "/authorize?token=" + token);
+        res.redirect(FRONTEND_URL + "/authorize?token=" + token);
     }
 );
 

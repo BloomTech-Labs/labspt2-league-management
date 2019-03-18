@@ -8,6 +8,7 @@ import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
 import HomeDashboard from './components/Dashboards/HomeDashboard';
 import UserSettings from './components/UserSettings/UserSettings';
+import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 
@@ -32,6 +33,10 @@ class App extends Component {
               <Route
                 path="/signin"
                 render={props => <Signin signin={context.signin} />}
+              />
+              <Route 
+                path="/authorize"
+                render={props => <Authorize signin={context.signin} />}
               />
               {/* PROTECTED ROUTES*/}
 
