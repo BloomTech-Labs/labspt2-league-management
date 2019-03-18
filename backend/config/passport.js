@@ -29,11 +29,11 @@ passport.use(
       let err = null;
       let user = null;
       console.log(profile.emails[0].value);
-      userModel.findByEmail(profile.emails[0].value).then(users => {
+      userModel.findByEmail(profile.emails[0].value).then(u => {
         console.log('passport: userModel.findByEmail()');
-        if (users.length) {
+        if (user) {
           console.log('passport: userModel.findByEmail(): if');
-          user = users[0];
+          user = u;
           console.log(user);
           if (user.google_id !== profile.id) {
             console.log('passport: userModel.findByEmail(): if: if');

@@ -24,10 +24,10 @@ router.get(
         console.log('router.get(): passport.authenticate(): anon()')
         console.log(req.user);
         console.log(req.err);
-        const token = authHelper.generateToken(req.user.email);
-        delete user['password'];
-        res.json({ user, token });
-        res.redirect(FRONTEND_URL);
+        delete req.user['password'];
+        const token = authHelper.generateToken(req.user);
+        console.log(FRONTEND_URL + "/?token=" + token);
+        res.redirect(FRONTEND_URL + "/?token=" + token);
     }
 );
 
@@ -37,9 +37,9 @@ router.post('/login', (req, res) => {
     .findByEmail(creds.email)
     .then(user => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
-        const token = authHelper.generateToken(user.email);
         delete user['password'];
-        res.json({ user, token });
+        const token = authHelper.generateToken(user.email);
+        res.json({ token });
       } else {
         res.status(401).json({ message: 'Invalid email or password' });
       }

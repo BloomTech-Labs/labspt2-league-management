@@ -1,10 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    generateToken: (email) => {
-        const payload = {
-            email: email
-        }
+    generateToken: (user) => {
+        const payload = { user }
         const secret = process.env.JWT_SECRET;
         const options = {
             expiresIn: '1d',
