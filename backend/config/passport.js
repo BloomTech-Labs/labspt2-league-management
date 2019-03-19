@@ -29,7 +29,7 @@ passport.use(
       let err = null;
       let user = null;
       userModel.findByEmail(profile.emails[0].value).then(u => {
-        if (user) {
+        if (u) {
           user = u;
           if (user.google_id !== profile.id) {
             user.google_id = profile.id;
