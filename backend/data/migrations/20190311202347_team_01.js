@@ -22,7 +22,7 @@ exports.up = function (knex, Promise) {
         team
             .foreign('coach_user_id')
             .references('id')
-            .on('user')
+            .on('users')
         team
             .string('coach_name', 128)
             .notNullable();
