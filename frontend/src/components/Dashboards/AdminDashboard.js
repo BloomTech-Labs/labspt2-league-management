@@ -4,6 +4,7 @@ import PublicCalendar from '../Calendars/PublicCalendar';
 import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
+import TeamCardList from '../TeamCardList/TeamCardList.js';
 
 class AdminDashboard extends Component {
   state = {
@@ -51,7 +52,7 @@ class AdminDashboard extends Component {
               }}
             >
               {calendar && <PublicCalendar context={context} />}
-              {teamList && <div>Team List</div>}
+              {teamList && <TeamCardList />}
               {leagueSettings && <CreateLeague context={context} />}
               {editSchedule && <DnDCalendar context={context} />}
               {cancellationRequests && <div>Cancellation Requests</div>}
