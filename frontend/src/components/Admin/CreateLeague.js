@@ -27,7 +27,7 @@ const styles = theme => ({
   }
 });
 
-// Load this in axios
+// Get this from the context
 const loadedTeams = [
   "Valley Vipers",
   "Woodside Warriors",
@@ -49,16 +49,18 @@ class CreateLeague extends Component {
     leagueType: 0, // 0 = kid 1 = adult 2 = co-ed
     leagueStartDate: new Date(),
     leagueEndDate: new Date(),
-    numberOfGames: 0,
-    gamesPerTeamPerWeek: 0,
-    lengthOfGames: 0,
+    numberOfGames: 1,
+    gamesPlayedConcurrently: 2,
+    gamesPerTeamPerWeek: 1,
+    lengthOfGames: 2,
     weekday: false,
     weekend: false,
-    weekdayStartTimes: [new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
-    weekdayEndTimes: [new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
-    weekendStartTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
-    weekendEndTimes: [new Date("January 1, 2019 00:00:00"), new Date("January 1, 2019 00:00:00")],
+    weekdayStartTimes: [new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
+    weekdayEndTimes: [new Date("January 1, 2019 13:00:00"),new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
+    weekendStartTimes: [new Date("January 1, 2019 13:00:00"), new Date("January 1, 2019 10:00:00")],
+    weekendEndTimes: [new Date("January 1, 2019 17:00:00"), new Date("January 1, 2019 14:00:00")],
     // When team is selected add to this array
+    oddNumOfTeams: false,
     teams: [],
     schedule: []
   };
@@ -81,7 +83,7 @@ class CreateLeague extends Component {
 
   addRemoveTeam = teamName => event => {
     // Check if team needs removed
-    const currentTeams = this.state.teams;
+    const currentTeams = this.state.teams.slice();
 
     if (
       this.state.teams.find(function(element) {
@@ -151,12 +153,20 @@ class CreateLeague extends Component {
     this.setState({ leagueEndDate: date });
   };
 
+  // ##########################################################
   generateSchedule = ()=>{
-    const teams = this.state.teams;
-    // Add bye week if odd amount of teams
-    if(teams.length % 2 !== 0){
-      teams.push({teamName: 'Bye Week', played: [], homeGames: 0, numOfByes: 0, isBye: true});
+    // If odd number of teams issue warning
+    if(this.state.teams.length % 2 !== 0){
+      this.setState({oddNumOfTeams: true});
+      return;
     }
+    
+    const teams = this.state.teams.slice();
+    // Add bye week if odd amount of teams
+    // For now require even number of teams only
+    // if(teams.length % 2 !== 0){
+    //   teams.push({teamName: 'Bye Week', played: [], homeGames: 0, numOfByes: 0, isBye: true});
+    // }
 
     const games = this.state.numberOfGames;
     const numOfTeams = teams.length;
@@ -170,7 +180,7 @@ class CreateLeague extends Component {
         allGames.push(j);
       }
     }
-
+    
     // Setup empty 2D array to store the matchups for one round by weeks
     const matchUpsByWeek = []
     for(let i = 0; i < numOfTeams - 1; i++){
@@ -237,19 +247,20 @@ class CreateLeague extends Component {
 
         // TODO: FIX THIS HOME AND AWAY STILL NOT WORKING 100% OF THE TIME
         // This sets the bye week, when odd number of teams and sets home/away teams
-        if(teams[team1].isBye || teams[team2].isBye){
-          if(teams[team1].isBye){
-            teams[team2].numOfByes++;
-            weekSchedule.push({away: 'Bye Week', home: team2})
-          }
+        // for now requiure even number of teams
+        // if(teams[team1].isBye || teams[team2].isBye){
+        //   if(teams[team1].isBye){
+        //     teams[team2].numOfByes++;
+        //     weekSchedule.push({away: 'Bye Week', home: team2})
+        //   }
 
-          else{
-            teams[team1].numOfByes++;
-            weekSchedule.push({away: 'Bye Week', home: team1})
-          }
-        }
+        //   else{
+        //     teams[team1].numOfByes++;
+        //     weekSchedule.push({away: 'Bye Week', home: team1})
+        //   }
+        // }
 
-        else if(teams[team1].homeGames < teams[team2].homeGames){
+        if(teams[team1].homeGames < teams[team2].homeGames){
           teams[team1].homeGames++;
           weekSchedule.push({away: team2, home: team1});
         }
@@ -269,14 +280,58 @@ class CreateLeague extends Component {
       currentWeek++;
     }
 
-    console.log(schedule);
+    //console.log(schedule);
 
     this.setState({
       schedule: schedule
     });
-
+    // #####################################################################################
+    // numberOfGames: 1,
+    // gamesPlayedConcurrently: 1,
+    // gamesPerTeamPerWeek: 1,
+    // lengthOfGames: 1,
+    // weekday: false,
+    // weekend: false,
+    // weekdayStartTimes:
+    // weekdayEndTimes: 
+    // weekendStartTimes: 
+    // weekendEndTimes: 
     // Assign teams to hours available per week
+    // Create time slots available for each week
+    const gameTimeSlotsPerWeek = [];
+    for(let i = 0; i < this.state.weekdayStartTimes.length; i++){
+      // NEED TO ADD THE MINUTES TO THIS FOR NON TOP OF THE HOUR GAME START TIMES
+      const hoursInDay = this.state.weekdayEndTimes[i].getHours() - this.state.weekdayStartTimes[i].getHours();
+      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
+      
+      // MUST SYNC UP THE LEAGUE START DATE WITH THE DAY OF THE WEEK
+      for(let j = 0; j < numOfTimeSlots; j++){
+        for(let k = 0; k < this.state.gamesPlayedConcurrently; k++){
+          const startTime = this.state.weekdayStartTimes[i].getHours() + (j * this.state.lengthOfGames);
+          const endTime = startTime + this.state.lengthOfGames;
 
+          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i + 1), startTime: startTime, endTime: endTime});
+        }
+      }
+    }
+
+    for(let i = 0; i < this.state.weekendStartTimes.length; i++){
+      // NEED TO ADD THE MINUTES TO THIS FOR NON TOP OF THE HOUR GAME START TIMES
+      const hoursInDay = this.state.weekendEndTimes[i].getHours() - this.state.weekendStartTimes[i].getHours();
+      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
+      
+      // MUST SYNC UP THE LEAGUE START DATE WITH THE DAY OF THE WEEK
+      for(let j = 0; j < numOfTimeSlots; j++){
+        for(let k = 0; k < this.state.gamesPlayedConcurrently; k++){
+          const startTime = this.state.weekendStartTimes[i].getHours() + (j * this.state.lengthOfGames);
+          const endTime = startTime + this.state.lengthOfGames;
+
+          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i * 6), startTime: startTime, endTime: endTime});
+        }
+      }
+    }
+
+    console.log(gameTimeSlotsPerWeek);
   }
 
   render() {
@@ -311,16 +366,23 @@ class CreateLeague extends Component {
           <TextField
             variant="outlined"
             type="number"
-            label="Games per Team per Week"
-            value={this.state.gamesPerTeamPerWeek}
-            onChange={this.setGameData("gamesPerTeamPerWeek")}
+            label="Length of Games"
+            value={this.state.lengthOfGames}
+            onChange={this.setGameData("lengthOfGames")}
           />
           <TextField
             variant="outlined"
             type="number"
-            label="Length of Games"
-            value={this.state.lengthOfGames}
-            onChange={this.setGameData("lengthOfGames")}
+            label="Concurrent Games"
+            value={this.state.gamesPlayedConcurrently}
+            onChange={this.setGameData("gamesPlayedConcurrently")}
+          />
+          <TextField
+            variant="outlined"
+            type="number"
+            label="Games per Team per Week"
+            value={this.state.gamesPerTeamPerWeek}
+            onChange={this.setGameData("gamesPerTeamPerWeek")}
           />
           <FormControlLabel
             control={
@@ -394,6 +456,7 @@ class CreateLeague extends Component {
 
         <div>
           <h2>Teams</h2>
+          {this.state.oddNumOfTeams ? <div>Please select an even number of teams</div> : null}
           {loadedTeams.map((team, index) => {
             return (
               <FormControlLabel
