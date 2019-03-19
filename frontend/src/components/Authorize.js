@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 class Authorize extends React.Component {
     render() {
         const parsed = queryString.parse(this.props.location.search);
-        if (parsed) {
+        if ('token' in parsed) {
             localStorage.setItem('jwt', parsed.token);
             this.props.signin();
             return <Redirect to="/dashboard" />

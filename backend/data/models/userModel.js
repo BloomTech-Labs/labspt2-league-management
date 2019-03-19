@@ -6,7 +6,6 @@ module.exports = {
   },
 
   findByEmail: email => {
-    console.log('userModel: findByEmail()');
     return db('users')
       .where('email', email)
       .first();

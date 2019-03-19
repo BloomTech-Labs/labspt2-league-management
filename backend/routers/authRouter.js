@@ -21,12 +21,8 @@ router.get(
       failureRedirect: FRONTEND_URL + '/signin' 
     }),
     (req, res) => {
-        console.log('router.get(): passport.authenticate(): anon()')
-        console.log(req.user);
-        console.log(req.err);
         delete req.user['password'];
         const token = authHelper.generateToken(req.user);
-        console.log(FRONTEND_URL + "/authorize?token=" + token);
         res.redirect(FRONTEND_URL + "/authorize?token=" + token);
     }
 );
