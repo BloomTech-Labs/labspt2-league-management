@@ -9,6 +9,7 @@ import App from './App';
 import AppProvider from './components/Context/AppContext';
 
 dotenv.config();
+
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ?
     'https://league-management.herokuapp.com' : 'http://localhost:4000';
 
