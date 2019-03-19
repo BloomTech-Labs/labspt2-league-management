@@ -26,8 +26,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) =>{
+  const userId = req.user.id; 
     leagueModel
-        .getAll()
+        .getLeaguesByUserId(userId)
         .then(leagues =>{
             res.json(leagues)
         }).catch(err =>{

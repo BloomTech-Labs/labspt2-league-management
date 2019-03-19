@@ -1,11 +1,15 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-    getAll: (user) =>{
+    getAll: () =>{
         return db('league')
     },
 
-    insertLeague: (league) =>{
+    getLeaguesByUser: (user) =>{
+        return db('league').where('admin_user_id', user.id)
+    },
+
+    insertLeague: (league, user) =>{
         return db('league').insert(league)
     },
 
@@ -18,6 +22,6 @@ module.exports = {
     },
 
     remove: (id) =>{
-        db('league').where({id}).del();
+        return db('league').where({id}).del();
     }
 }
