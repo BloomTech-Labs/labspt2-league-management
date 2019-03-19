@@ -1,19 +1,20 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import axios from 'axios';
 import TeamCard from './TeamCard.js';
+import NewTeamCard from './NewTeamCard.js';
 
-const styles = theme => ({});
 
 class TeamCardList extends React.Component {
   state = {};
 
-  componentDidMount() {}
+  componentDidMount() {
+    // Need to add pull route 
+    // axios.get() data from Admin User Login - League Id - Team Ids in league
+  }
 
   render() {
-    // const { classes } = this.props;
 
     return (
       <Grid container spacing={16}>
@@ -35,6 +36,9 @@ class TeamCardList extends React.Component {
                 />
               </Grid>
             ))}
+            <Grid item>
+              <NewTeamCard />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -42,4 +46,4 @@ class TeamCardList extends React.Component {
   }
 }
 
-export default withStyles(styles)(TeamCardList);
+export default (TeamCardList);

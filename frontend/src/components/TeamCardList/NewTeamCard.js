@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -19,19 +18,19 @@ const styles = theme => ({
   cardFront: {
     minWidth: '285px',
     maxWidth: '310px',
-    border: '2px solid lightgrey',
     width: '45%',
+    border: '2px solid lightgrey',
     borderRadius: '4%',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    height: '350px'
+    height: '75px'
   },
   cardBack: {
     minWidth: '275px',
     maxWidth: '300px',
-    border: '2px solid lightgrey',
     width: '45%',
+    border: '2px solid lightgrey',
     borderRadius: '4%',
     display: 'flex',
     flexWrap: 'wrap',
@@ -55,16 +54,6 @@ const styles = theme => ({
     marginBottom: '12px',
     padding: '10px'
   },
-  pos: {
-    border: '1px solid black',
-    marginTop: '8px',
-    width: '65%',
-    maxWidth: '180px',
-    borderRadius: '8%',
-    marginBottom: '12px',
-    padding: '10px',
-    display: 'none'
-  },
   upcoming: {
     border: '1px solid black',
     marginTop: '8px',
@@ -74,24 +63,24 @@ const styles = theme => ({
     padding: '10px'
   },
   button: {
-    border: '1px solid lightgrey',
-    borderRadius: '6%'
+    border: '1px solid black',
+    borderRadius: '6%',
+    textTransform: 'none'
   },
   p: {
     fontSize: 13
   }
 });
 
-class TeamCard extends React.Component {
+class NewTeamCard extends React.Component {
   state = {
-    name: this.name,
-    coach_email: this.coach_email,
-    coach_phone_number: this.coach_phone_number,
-    wins: this.wins,
-    losses: this.losses,
-    ties: this.ties,
-    isFlipped: false,
-    containsTies: false
+    name: '',
+    coach_email: '',
+    coach_phone_number: '',
+    wins: 0,
+    losses: 0,
+    ties: 0,
+    isFlipped: false
   };
 
   ClickHandler = event => {
@@ -105,94 +94,56 @@ class TeamCard extends React.Component {
     this.setState({ [target.name]: target.value });
   };
 
-  EditHandler = event => {
+  SubmitHandler = event => {
     event.preventDefault();
     const credentials = this.state;
     const endpoint = '/';
-    // const endpoint = '/';
+    // const endpoint = '/auth/register';
     axios
-      .put(endpoint, credentials)
+      .post(endpoint, credentials)
       .then(res => {
         // localStorage.setItem('jwt', res.data.token);
         // this.props.history.push('/signin');
-        //Have to get this working
+        // Have to get this part working
       })
       .catch(err => {
-        console.log('err from Edit handler in TeamCard', err);
+        console.log('err from Submit handler in NewTeamCard', err);
       });
   };
 
   render() {
     const { classes } = this.props;
 
-    //     let teamNameShort = this.state.name;
-    // if(teamNameShort.length > 12) { teamNameShort = teamNameShort.substring(0,11)}
-    // This will keep team name from Breaking Card styling by Showing Only first 12 characters for team Name without altering team name.
     return (
       <ReactCardFlip
         isFlipped={this.state.isFlipped}
         flipDirection="horizontal"
       >
-      {/* Card only flips when EditIcon is clicked. */}
-        <Card className={classes.cardFront} key="front" style={{ height: this.state.containsTies ? '365px' : '350px' }}>
-          <CardContent className={classes.container}>
-            <Typography className={classes.title}>
-              Team Name
-              {/* {teamNameShort} */}
-              <div>
-                <EditIcon onClick={this.ClickHandler} />
-                <DeleteIcon />
-              </div>
-            </Typography>
-            <Typography className={classes.p}>
-              Email {this.state.coach_email}
-              <br />
-              Phone # {this.state.coach_phone_number}
-            </Typography>
-            <Typography
-              className={classes.pos}
-              style={{ display: this.state.containsTies ? 'none' : 'block' }}
+        <Card className={classes.cardFront} key="front">
+          <CssBaseline />
+          <CardActions>
+            <Button
+              size="large"
+              fullWidth
+              variant="contained"
+              className={classes.button}
+              onClick={this.ClickHandler}
             >
-              Record:
-              <br />
-              Wins: Team-Wins {this.state.wins}
-              <br />
-              Losses: Team-Losses {this.state.losses}
-            </Typography>
-            <Typography
-              className={classes.pos}
-              style={{ display: this.state.containsTies ? 'block' : 'none' }}
-            >
-              Record:
-              <br />
-              Wins: Team-Wins {this.state.wins}
-              <br />
-              Losses: Team-Losses {this.state.losses}
-              <br />
-              Ties: Team-Ties {this.state.ties}
-            </Typography>
-            <Typography className={classes.upcoming}>
-              Upcoming:
-              <br />
-              July 20th 7pm vs Woodside Warriors
-              <br />
-              Game 2
-            </Typography>
-            {/* Still not quite Sure how we are going to do the upcoming games part. */}
-          </CardContent>
+              <AddIcon /> Add Team
+            </Button>
+          </CardActions>
         </Card>
 
         <Card className={classes.cardBack} key="back">
           <CssBaseline />
           <CardContent className={classes.container}>
-            <form onSubmit={this.EditHandler}>
+            <form onSubmit={this.SubmitHandler}>
               <FormControl
                 margin="none"
                 required
                 fullWidth
-                className={classes.title}
               >
-                <InputLabel htmlFor="name">{this.state.name}</InputLabel>
+                <InputLabel htmlFor="name">Team Name</InputLabel>
                 <Input
                   id="name"
                   name="name"
@@ -201,9 +152,7 @@ class TeamCard extends React.Component {
                 />
               </FormControl>
               <FormControl margin="none" fullWidth>
-                <InputLabel htmlFor="coach_email">
-                  {this.state.coach_email}
-                </InputLabel>
+                <InputLabel htmlFor="coach_email">Email</InputLabel>
                 <Input
                   id="coach_email"
                   name="coach_email"
@@ -212,7 +161,7 @@ class TeamCard extends React.Component {
               </FormControl>
               <FormControl margin="none">
                 <InputLabel htmlFor="coach_phone_number">
-                  {this.state.coach_phone_number}
+                  Phone Number
                 </InputLabel>
                 <Input
                   id="coach_phone_number"
@@ -221,15 +170,15 @@ class TeamCard extends React.Component {
                 />
               </FormControl>
               <FormControl margin="none">
-                <InputLabel htmlFor="wins">{this.state.wins}</InputLabel>
+                <InputLabel htmlFor="wins">Wins</InputLabel>
                 <Input id="wins" name="wins" onChange={this.InputHandler} />
               </FormControl>
               <FormControl margin="none">
-                <InputLabel htmlFor="losses">{this.state.losses}</InputLabel>
+                <InputLabel htmlFor="losses">Losses</InputLabel>
                 <Input id="losses" name="losses" onChange={this.InputHandler} />
               </FormControl>
-              <FormControl margin="none" display="none">
-                <InputLabel htmlFor="ties">{this.state.ties}</InputLabel>
+              <FormControl margin="none">
+                <InputLabel htmlFor="ties">Ties</InputLabel>
                 <Input id="ties" name="ties" onChange={this.InputHandler} />
               </FormControl>
             </form>
@@ -242,7 +191,7 @@ class TeamCard extends React.Component {
               variant="contained"
               className={classes.button}
             >
-              Edit Team
+              <AddIcon /> Add Team
             </Button>
           </CardActions>
         </Card>
@@ -251,8 +200,8 @@ class TeamCard extends React.Component {
   }
 }
 
-TeamCard.propTypes = {
+NewTeamCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TeamCard);
+export default withStyles(styles)(NewTeamCard);
