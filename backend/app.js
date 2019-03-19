@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const app = express();
 const authRouter = require('./routers/authRouter');
 const settingsRouter = require('./routers/settingsRouter');
@@ -15,6 +16,9 @@ const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
+
+app.use(passport.initialize());
+require("./config/passport");
 
 const PORT = process.env.PORT || '4000';
 

@@ -69,7 +69,7 @@ export default class AppProvider extends Component {
             // let username = null;
             if (token) {
               const decoded = jwt_decode(token);
-              const username = decoded.username;
+              const username = decoded.user.username;
               // console.log('decoded jwt: ', decoded);
               this.setState({ loggedIn: true, username });
             }

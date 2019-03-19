@@ -79,6 +79,7 @@ class SignIn extends React.Component {
         console.log('err from Submit handler in SignUp', err);
       });
   };
+
   render() {
     const { classes } = this.props;
     if (this.state.signedIn) {
@@ -129,6 +130,14 @@ class SignIn extends React.Component {
               Sign in
             </Button>
           </form>
+            <a
+              href={process.env.REACT_APP_API_URL + '/auth/google'}
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Login with Google
+            </a>
         </Paper>
       </main>
     );
