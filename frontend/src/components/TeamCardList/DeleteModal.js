@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 
+
 const styles = theme => ({
   paper: {
     position: 'absolute',
@@ -17,7 +18,26 @@ const styles = theme => ({
 });
 
 class DeleteModal extends React.Component {
-  state = {};
+  state = {
+    open: false,
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div>
+        </div>
+    );
+  }
 }
 
 DeleteModal.propTypes = {
