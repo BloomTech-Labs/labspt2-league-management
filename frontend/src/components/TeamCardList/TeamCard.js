@@ -14,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import ReactCardFlip from 'react-card-flip';
+import DeleteModal from './DeleteModal.js';
 
 const styles = theme => ({
   cardFront: {
@@ -55,16 +56,6 @@ const styles = theme => ({
     marginBottom: '12px',
     padding: '10px'
   },
-  pos: {
-    border: '1px solid black',
-    marginTop: '8px',
-    width: '65%',
-    maxWidth: '180px',
-    borderRadius: '8%',
-    marginBottom: '12px',
-    padding: '10px',
-    display: 'none'
-  },
   upcoming: {
     border: '1px solid black',
     marginTop: '8px',
@@ -91,7 +82,8 @@ class TeamCard extends React.Component {
     losses: this.losses,
     ties: this.ties,
     isFlipped: false,
-    containsTies: false
+    containsTies: false,
+    delete: false
   };
 
   ClickHandler = event => {
@@ -122,6 +114,23 @@ class TeamCard extends React.Component {
       });
   };
 
+  deletePopUp = event => {
+    event.preventDefault();
+    this.setState({
+      delete: !this.state.delete
+    });
+  };
+
+  closeButton = event => {
+    event.preventDefault();
+    this.setState({
+      delete: !this.state.delete
+    });
+  };
+
+  deleteCard = () => {
+    // Delete endpoint
+  };
   render() {
     const { classes } = this.props;
 
@@ -129,124 +138,140 @@ class TeamCard extends React.Component {
     // if(teamNameShort.length > 12) { teamNameShort = teamNameShort.substring(0,11)}
     // This will keep team name from Breaking Card styling by Showing Only first 12 characters for team Name without altering team name.
     return (
-      <ReactCardFlip
-        isFlipped={this.state.isFlipped}
-        flipDirection="horizontal"
-      >
-      {/* Card only flips when EditIcon is clicked. */}
-        <Card className={classes.cardFront} key="front" style={{ height: this.state.containsTies ? '365px' : '350px' }}>
-          <CardContent className={classes.container}>
-            <Typography className={classes.title}>
-              Team Name
-              {/* {teamNameShort} */}
-              <div>
-                <EditIcon onClick={this.ClickHandler} />
-                <DeleteIcon />
-              </div>
-            </Typography>
-            <Typography className={classes.p}>
-              Email {this.state.coach_email}
-              <br />
-              Phone # {this.state.coach_phone_number}
-            </Typography>
-            <Typography
-              className={classes.pos}
-              style={{ display: this.state.containsTies ? 'none' : 'block' }}
-            >
-              Record:
-              <br />
-              Wins: Team-Wins {this.state.wins}
-              <br />
-              Losses: Team-Losses {this.state.losses}
-            </Typography>
-            <Typography
-              className={classes.pos}
-              style={{ display: this.state.containsTies ? 'block' : 'none' }}
-            >
-              Record:
-              <br />
-              Wins: Team-Wins {this.state.wins}
-              <br />
-              Losses: Team-Losses {this.state.losses}
-              <br />
-              Ties: Team-Ties {this.state.ties}
-            </Typography>
-            <Typography className={classes.upcoming}>
-              Upcoming:
-              <br />
-              July 20th 7pm vs Woodside Warriors
-              <br />
-              Game 2
-            </Typography>
-            {/* Still not quite Sure how we are going to do the upcoming games part. */}
-          </CardContent>
-        </Card>
-
-        <Card className={classes.cardBack} key="back">
-          <CssBaseline />
-          <CardContent className={classes.container}>
-            <form onSubmit={this.EditHandler}>
-              <FormControl
-                margin="none"
-                required
-                fullWidth
-                className={classes.title}
+      <div>
+        <ReactCardFlip
+          isFlipped={this.state.isFlipped}
+          flipDirection="horizontal"
+        >
+          {/* Card only flips when EditIcon is clicked. */}
+          <Card
+            className={classes.cardFront}
+            key="front"
+            style={{ height: this.state.containsTies ? '365px' : '350px' }}
+          >
+            <CardContent className={classes.container}>
+              <Typography className={classes.title}>
+                Team Name
+                {/* {teamNameShort} */}
+                <div>
+                  <EditIcon onClick={this.ClickHandler} />
+                  <DeleteIcon onClick={this.deletePopUp} />
+                </div>
+              </Typography>
+              <Typography className={classes.p}>
+                Email {this.state.coach_email}
+                <br />
+                Phone # {this.state.coach_phone_number}
+              </Typography>
+              <Typography
+                className={classes.pos}
+                style={{ display: this.state.containsTies ? 'none' : 'block' }}
               >
-                <InputLabel htmlFor="name">{this.state.name}</InputLabel>
-                <Input
-                  id="name"
-                  name="name"
-                  onChange={this.InputHandler}
-                  autoFocus
-                />
-              </FormControl>
-              <FormControl margin="none" fullWidth>
-                <InputLabel htmlFor="coach_email">
-                  {this.state.coach_email}
-                </InputLabel>
-                <Input
-                  id="coach_email"
-                  name="coach_email"
-                  onChange={this.InputHandler}
-                />
-              </FormControl>
-              <FormControl margin="none">
-                <InputLabel htmlFor="coach_phone_number">
-                  {this.state.coach_phone_number}
-                </InputLabel>
-                <Input
-                  id="coach_phone_number"
-                  name="coach_phone_number"
-                  onChange={this.InputHandler}
-                />
-              </FormControl>
-              <FormControl margin="none">
-                <InputLabel htmlFor="wins">{this.state.wins}</InputLabel>
-                <Input id="wins" name="wins" onChange={this.InputHandler} />
-              </FormControl>
-              <FormControl margin="none">
-                <InputLabel htmlFor="losses">{this.state.losses}</InputLabel>
-                <Input id="losses" name="losses" onChange={this.InputHandler} />
-              </FormControl>
-              <FormControl margin="none" display="none">
-                <InputLabel htmlFor="ties">{this.state.ties}</InputLabel>
-                <Input id="ties" name="ties" onChange={this.InputHandler} />
-              </FormControl>
-            </form>
-          </CardContent>
-          <CardActions>
-            <Button
-              size="large"
-              fullWidth
-              type="submit"
-              variant="contained"
-              className={classes.button}
-            >
-              Edit Team
-            </Button>
-          </CardActions>
-        </Card>
-      </ReactCardFlip>
+                Record:
+                <br />
+                Wins: Team-Wins {this.state.wins}
+                <br />
+                Losses: Team-Losses {this.state.losses}
+              </Typography>
+              <Typography
+                className={classes.pos}
+                style={{ display: this.state.containsTies ? 'block' : 'none' }}
+              >
+                Record:
+                <br />
+                Wins: Team-Wins {this.state.wins}
+                <br />
+                Losses: Team-Losses {this.state.losses}
+                <br />
+                Ties: Team-Ties {this.state.ties}
+              </Typography>
+              <Typography className={classes.upcoming}>
+                Upcoming:
+                <br />
+                July 20th 7pm vs Woodside Warriors
+                <br />
+                Game 2
+              </Typography>
+              {/* Still not quite Sure how we are going to do the upcoming games part. */}
+            </CardContent>
+          </Card>
+
+          <Card className={classes.cardBack} key="back">
+            <CssBaseline />
+            <CardContent className={classes.container}>
+              <form onSubmit={this.EditHandler}>
+                <FormControl
+                  margin="none"
+                  required
+                  fullWidth
+                  className={classes.title}
+                >
+                  <InputLabel htmlFor="name">{this.state.name}</InputLabel>
+                  <Input
+                    id="name"
+                    name="name"
+                    onChange={this.InputHandler}
+                    autoFocus
+                  />
+                </FormControl>
+                <FormControl margin="none" fullWidth>
+                  <InputLabel htmlFor="coach_email">
+                    {this.state.coach_email}
+                  </InputLabel>
+                  <Input
+                    id="coach_email"
+                    name="coach_email"
+                    onChange={this.InputHandler}
+                  />
+                </FormControl>
+                <FormControl margin="none">
+                  <InputLabel htmlFor="coach_phone_number">
+                    {this.state.coach_phone_number}
+                  </InputLabel>
+                  <Input
+                    id="coach_phone_number"
+                    name="coach_phone_number"
+                    onChange={this.InputHandler}
+                  />
+                </FormControl>
+                <FormControl margin="none">
+                  <InputLabel htmlFor="wins">{this.state.wins}</InputLabel>
+                  <Input id="wins" name="wins" onChange={this.InputHandler} />
+                </FormControl>
+                <FormControl margin="none">
+                  <InputLabel htmlFor="losses">{this.state.losses}</InputLabel>
+                  <Input
+                    id="losses"
+                    name="losses"
+                    onChange={this.InputHandler}
+                  />
+                </FormControl>
+                <FormControl margin="none" display="none">
+                  <InputLabel htmlFor="ties">{this.state.ties}</InputLabel>
+                  <Input id="ties" name="ties" onChange={this.InputHandler} />
+                </FormControl>
+              </form>
+            </CardContent>
+            <CardActions>
+              <Button
+                size="large"
+                fullWidth
+                type="submit"
+                variant="contained"
+                className={classes.button}
+              >
+                Edit Team
+              </Button>
+            </CardActions>
+          </Card>
+        </ReactCardFlip>
+        {this.state.delete ? (
+          <DeleteModal
+            delete={this.deleteCard}
+            closeButton={this.closeButton}
+          />
+        ) : null}
+      </div>
     );
   }
 }

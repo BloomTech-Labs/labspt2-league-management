@@ -7208,6 +7208,7 @@ react-big-calendar@^0.20.3:
 react-card-flip@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-card-flip/-/react-card-flip-0.5.0.tgz#f946d0fb3845bcf6d4d776d24704eed5949765d6"
+  integrity sha512-8YfPJxn6Kr28AKXqmUyi3i/YUwBlGXNuWUl4MdraoROa0VF1MG+8d1lKLaTXoHVb2tfSEAN9WCA46W7bs0N0zQ==
   dependencies:
     classnames "^2.2.0"
     prop-types "^15.6.0"
@@ -7375,6 +7376,11 @@ react-scripts@2.1.5:
     workbox-webpack-plugin "3.6.3"
   optionalDependencies:
     fsevents "1.2.4"
+
+react-stripe-checkout@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
+  integrity sha1-MXOocLBOWjwyGgbSTNU8YDARHEU=
 
 react-text-mask@^5.4.3:
   version "5.4.3"
