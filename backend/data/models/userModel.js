@@ -11,15 +11,21 @@ module.exports = {
       .first();
   },
 
+  findById: id => {
+    return db('users')
+      .where('id', id)
+      .first();
+  },
+
   findByUsername: username => {
     return db('users')
       .where('username', username)
       .first();
   },
 
-  update: user => {
+  update: (uid, changes) => {
     return db('users')
-      .where('email', user.email)
-      .update(user);
+      .where('id', uid)
+      .update(changes);
   } 
 };
