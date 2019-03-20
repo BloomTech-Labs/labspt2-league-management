@@ -62,7 +62,7 @@ const styles = theme => ({
     padding: '10px'
   },
   button: {
-    border: '1px solid black',
+    border: '1px solid lightgrey',
     borderRadius: '6%',
     textTransform: 'none'
   },
