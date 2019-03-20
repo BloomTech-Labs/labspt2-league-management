@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import Billing from './Billing/Billing';
 // import WeatherWidget from './Weather/WeatherWidget';
 
 class LandingPage extends Component {
@@ -35,6 +36,7 @@ class LandingPage extends Component {
     return (
       <>
         {/* <WeatherWidget /> */}
+        <Billing />
         <div>App Name</div>
         <div>{username}</div>
         <Link to="/settings">My Settings</Link>
