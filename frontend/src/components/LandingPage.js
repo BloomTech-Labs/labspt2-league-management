@@ -36,7 +36,6 @@ class LandingPage extends Component {
     return (
       <>
         {/* <WeatherWidget /> */}
-        <Billing />
         <div>App Name</div>
         <div>{username}</div>
         <Link to="/settings">My Settings</Link>

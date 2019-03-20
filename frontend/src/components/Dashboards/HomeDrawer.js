@@ -32,13 +32,12 @@ class HomeDrawer extends Component {
     const { leagues, teams, classes } = this.props;
     return (
       <List>
-        <Link to="/dashboard">
-          {' '}
-          {/* This will eventually link to a component that will collect the name of the league and payment information */}
-          <ListItem button key="create">
-            <ListItemText primary="Create League" />
-          </ListItem>
-        </Link>
+        {/* <Link to="/dashboard"> */}{' '}
+        {/* This will eventually link to a component that will collect the name of the league and payment information */}
+        <ListItem button id="create" onClick={this.props.displayBilling}>
+          <ListItemText primary="Create League" />
+        </ListItem>
+        {/* </Link> */}
         <Divider />
         <ListItem
           button

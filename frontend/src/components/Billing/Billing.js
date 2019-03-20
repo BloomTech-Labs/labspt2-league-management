@@ -41,7 +41,7 @@ class Billing extends Component {
         <StripeCheckout
           stripeKey="pk_test_VcEhOLfFL76sBbdyEX8npTmN"
           // billingAddress
-          description="Basic League"
+          description="Premium League"
           locale="auto"
           token={this.onTokenPremium}
           label="Premium League - $15/mo"
