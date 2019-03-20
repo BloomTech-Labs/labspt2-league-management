@@ -85,7 +85,7 @@ function TextMaskCustom(props) {
         /\d/,
         /\d/
       ]}
-      placeholderChar={'\u2000'}
+      placeholderChar={'#'}
       showMask
     />
   );
@@ -102,6 +102,7 @@ class UserSettings extends React.Component {
     first_name: '',
     last_name: '',
     phone: '',
+    password: '',
     allowUpdate: false
   };
 
