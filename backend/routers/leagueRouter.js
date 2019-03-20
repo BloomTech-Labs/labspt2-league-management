@@ -8,9 +8,10 @@ const router = express.Router();
 router.use(authenticate);
 
 router.post('/', (req, res) => {
+  const user = req.user;
   const league = req.body;
   leagueModel
-    .insertLeague(league)
+    .insertLeague(league, user)
     .then(ids => {
       leagueModel.findById(ids[0])
       .then(newLeague =>{
@@ -26,9 +27,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) =>{
-  const userId = req.user.id; 
+  const user = req.user; 
     leagueModel
-        .getLeaguesByUserId(userId)
+        .getLeaguesByUser(user)
         .then(leagues =>{
             res.json(leagues)
         }).catch(err =>{
