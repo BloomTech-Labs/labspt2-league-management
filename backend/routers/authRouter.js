@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         delete user['password'];
-        const token = authHelper.generateToken(user.email);
+        const token = authHelper.generateToken(user);
         res.json({ token });
       } else {
         res.status(401).json({ message: 'Invalid email or password' });

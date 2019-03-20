@@ -3,6 +3,7 @@ const passport = require('passport');
 const app = express();
 const authRouter = require('./routers/authRouter');
 const settingsRouter = require('./routers/settingsRouter');
+const leagueRouter = require('./routers/leagueRouter');
 const cors = require('cors');
 
 // const cors = (req, res, next) => {
@@ -23,6 +24,7 @@ const PORT = process.env.PORT || '4000';
 
 app.use('/auth', authRouter);
 app.use('/settings', settingsRouter);
+app.use('/leagues', leagueRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send(`API active on port: ${PORT}`);
