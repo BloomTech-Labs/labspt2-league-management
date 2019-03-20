@@ -69,16 +69,16 @@ export default class AppProvider extends Component {
             // let username = null;
             if (token) {
               const decoded = jwt_decode(token);
-              const username = decoded.user.username;
+              // const username = decoded.user.username;
               // console.log('decoded jwt: ', decoded);
-              this.setState({ loggedIn: true, username });
+              this.setState({ loggedIn: true });
             }
           },
-          signedIn: username => {
-            this.setState({ loggedIn: true, username });
+          signedIn: () => {
+            this.setState({ loggedIn: true });
           },
           signOut: () => {
-            this.setState({ loggedIn: false, username: null });
+            this.setState({ loggedIn: false });
           },
           getEvents: id => {
             // An axios request will need to be done here to pull events from DB
