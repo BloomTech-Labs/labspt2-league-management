@@ -56,16 +56,6 @@ const styles = theme => ({
     marginBottom: '12px',
     padding: '10px'
   },
-  pos: {
-    border: '1px solid black',
-    marginTop: '8px',
-    width: '65%',
-    maxWidth: '180px',
-    borderRadius: '8%',
-    marginBottom: '12px',
-    padding: '10px',
-    display: 'none'
-  },
   upcoming: {
     border: '1px solid black',
     marginTop: '8px',
@@ -131,7 +121,8 @@ class TeamCard extends React.Component {
     });
   };
 
-  closeButton = () => {
+  closeButton = event => {
+    event.preventDefault();
     this.setState({
       delete: !this.state.delete
     });
@@ -139,7 +130,7 @@ class TeamCard extends React.Component {
 
   deleteCard = () => {
     // Delete endpoint
-  }
+  };
   render() {
     const { classes } = this.props;
 
@@ -274,8 +265,12 @@ class TeamCard extends React.Component {
             </CardActions>
           </Card>
         </ReactCardFlip>
-        {this.state.delete ? <DeleteModal delete={this.deleteCard} closeForm={this.closeButton} /> : null }
-
+        {this.state.delete ? (
+          <DeleteModal
+            delete={this.deleteCard}
+            closeButton={this.closeButton}
+          />
+        ) : null}
       </div>
     );
   }

@@ -5,7 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Input from '@material-ui/core/Input';
@@ -138,11 +137,7 @@ class NewTeamCard extends React.Component {
           <CssBaseline />
           <CardContent className={classes.container}>
             <form onSubmit={this.SubmitHandler}>
-              <FormControl
-                margin="none"
-                required
-                fullWidth
-              >
+              <FormControl margin="none" required fullWidth>
                 <InputLabel htmlFor="name">Team Name</InputLabel>
                 <Input
                   id="name"

@@ -5,17 +5,15 @@ import axios from 'axios';
 import TeamCard from './TeamCard.js';
 import NewTeamCard from './NewTeamCard.js';
 
-
 class TeamCardList extends React.Component {
   state = {};
 
   componentDidMount() {
-    // Need to add pull route 
+    // Need to add pull route
     // axios.get() data from Admin User Login - League Id - Team Ids in league
   }
 
   render() {
-
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
@@ -46,4 +44,4 @@ class TeamCardList extends React.Component {
   }
 }
 
-export default (TeamCardList);
+export default TeamCardList;
