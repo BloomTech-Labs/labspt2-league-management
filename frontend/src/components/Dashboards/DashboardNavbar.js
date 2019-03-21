@@ -105,7 +105,7 @@ class MenuAppBar extends React.Component {
 
   getLeagues() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
-    const endpoint = 'leagues/';
+    const endpoint = '/leagues';
     const options = {
       headers: {
         authorization: token
@@ -120,23 +120,36 @@ class MenuAppBar extends React.Component {
       });
   };
 
+  getTeams() {
+    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const endpoint = '/teams';
+    const options = {
+      headers: {
+        authorization: token
+      }
+    }
+    axios.get(endpoint, options)
+      .then(res => {
+        this.setState({ teams: res.data });
+      })
+      .catch(err => {
+        console.log('error from getTeams', err);
+      });
+  }
+
   componentDidMount() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
 
     if (token) {
       this.props.context.signin();
       this.getLeagues();
+      this.getTeams();
     }
 
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
     // state would also include user settings, and other info on the user (global state?)
     const { admin, coach } = this.props.data;
     this.setState({
-      // leagues: [
-      //   { id: 1, name: 'League 1 - Name' },
-      //   { id: 2, name: 'League 2 - Name' },
-      // ],
-      teams: [{ id: 1, name: 'Team 1' }],
       admin,
       coach
     });
