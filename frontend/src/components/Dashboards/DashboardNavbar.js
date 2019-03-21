@@ -105,7 +105,7 @@ class MenuAppBar extends React.Component {
 
   getLeagues() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
-    const endpoint = 'http://localhost:4000/leagues/';
+    const endpoint = 'leagues/';
     const options = {
       headers: {
         authorization: token
