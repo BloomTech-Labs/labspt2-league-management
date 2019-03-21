@@ -37,9 +37,9 @@ router.get('/', (req, res) =>{
         })
 })
 
-router.get('/:id', (req, res) =>{
-  const { id } = req.params;
-  leagueModel.findById(id)
+router.get('/:lid', (req, res) =>{
+  const { lid } = req.params;
+  leagueModel.findById(lid)
   .then(league =>{
     if(league){
       res.json(league)
@@ -51,14 +51,14 @@ router.get('/:id', (req, res) =>{
   })
 })
 
-router.put('/:id', (req, res) =>{
-  const { id } = req.params;
+router.put('/:lid', (req, res) =>{
+  const { lid } = req.params;
   const league = req.body;
     if(league.name && league.admin_user_id && league.type){
-      leagueModel.update(id, league)
+      leagueModel.update(lid, league)
       .then(updatedLeague =>{
         if(updatedLeague){
-          leagueModel.findById(id).then(leagues =>{
+          leagueModel.findById(lid).then(leagues =>{
             res.json(leagues)
           }).catch(err =>{
             res.status(500).json({error:"Could not return updated League", err})
@@ -74,9 +74,9 @@ router.put('/:id', (req, res) =>{
     }
 })
 
-router.delete('/:id', (req , res) =>{
-  const { id } = req.params;
-    leagueModel.remove(id)
+router.delete('/:lid', (req , res) =>{
+  const { lid } = req.params;
+    leagueModel.remove(lid)
     .then(removed =>{
       if(removed){
         res.json({message:"league has been deleted!"})
@@ -86,6 +86,32 @@ router.delete('/:id', (req , res) =>{
     }).catch(err =>{
       res.status(500).json({error:"The league could not be removed!", err})
     })
+})
+
+//The beginning of the league teams endpoints
+
+router.get('/:lid/teams', (req, res) =>{
+  const { lid } = req.params;
+  leagueModel.getTeamsByLeague(lid)
+  .then(teams =>{
+    res.json(teams)
+  }).catch(err =>{
+    res.status(500).json({error:"Trouble retrieving teams for league",err})
+  })
+})
+
+router.post('/:lid/teams', (req, res) => {
+  const { lid } = req.params;
+  const team = req.body;
+  team.league_id = lid;
+  console.log(lid, team)
+  leagueModel.insertTeam(team)
+  .then(ids =>{    
+    req.status(201).json({message:`New team added with ${ids[0]}!`})
+  }).catch(err =>{
+    res.status(500).json({error:"Problem adding new team!",err})
+  })
+
 })
 
 module.exports = router;
