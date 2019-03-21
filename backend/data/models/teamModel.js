@@ -14,7 +14,7 @@ module.exports = {
   },
 
   insert: (team) =>{
-      return db('team').insert(team);
+      return db('team').insert(team, 'id');
   },
 
   update: (id, team) =>{

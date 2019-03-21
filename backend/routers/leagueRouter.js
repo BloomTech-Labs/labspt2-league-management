@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
   const user = req.user;
   const league = req.body;
   leagueModel
-    .insertLeague(league, user)
+    .insert(league, user)
     .then(ids => {
       leagueModel
         .findById(ids[0])
@@ -110,6 +110,107 @@ router.delete('/:lid', (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ error: 'The league could not be removed!', err });
+    });
+});
+
+//The beginning of the league teams endpoints
+
+router.post('/:lid/teams', (req, res) => {
+  const { lid } = req.params;
+  const team = req.body;
+  team.league_id = lid;
+  console.log(lid, team);
+  teamModel
+    .insert(team)
+    .then(ids => {
+      req.status(201).json({ message: `New team added with ${ids[0]}!` });
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Problem adding new team!', err });
+    });
+});
+
+router.get('/:lid/teams', (req, res) => {
+  const { lid } = req.params;
+  leagueModel
+    .getTeamsByLeague(lid)
+    .then(teams => {
+      res.json(teams);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Trouble retrieving teams for league', err });
+    });
+});
+
+router.get('/:lid/teams/:tid', (req, res) => {
+  const { tid } = req.params;
+  teamModel
+    .getTeamById(tid)
+    .then(teams => {
+      res.json(teams);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Trouble retrieving team', err });
+    });
+});
+
+router.put('/:lid/teams/:tid', (req, res) => {
+  const { lid, tid } = req.params;
+  const team = req.body;
+  team.league_id = lid;
+
+  if (team.name && team.league_id) {
+    teamModel
+      .update(tid, team)
+      .then(team => {
+        if (updatedTeam) {
+          teamModel
+            .GetTeamById(tid)
+            .then(team => {
+              res.json(team);
+            })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: 'Could not return updated Team', err });
+            });
+        } else {
+          res
+            .status(404)
+            .json({
+              error: 'The team with the specified id does not exist!'
+            });
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: 'The team could not be modified!', err });
+      });
+  } else {
+    res
+      .status(400)
+      .json({ message: 'You are missing required team information!' });
+  }
+});
+
+router.delete('/:lid/teams/:tid', (req, res) => {
+  const { tid } = req.params;
+  teamModel
+    .remove(tid)
+    .then(removed => {
+      if (removed) {
+        res.json({ message: 'Team has been deleted!' });
+      } else {
+        res.status(500).json({ message: 'Team id does not exist' });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'The team could not be removed!', err });
     });
 });
 
