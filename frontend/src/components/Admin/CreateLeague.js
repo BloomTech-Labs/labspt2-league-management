@@ -47,20 +47,21 @@ class CreateLeague extends Component {
   state = {
     leagueName: "League Name",
     leagueType: 0, // 0 = kid 1 = adult 2 = co-ed
-    leagueStartDate: new Date(),
-    leagueEndDate: new Date(),
+    leagueStartDate: new Date("March 20, 2019 09:30:00"),
+    leagueEndDate: new Date("April 2, 2019 09:30:00"),
     numberOfGames: 1,
-    gamesPlayedConcurrently: 2,
+    gamesPlayedConcurrently: 1,
     gamesPerTeamPerWeek: 1,
     lengthOfGames: 2,
     weekday: false,
     weekend: false,
-    weekdayStartTimes: [new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
-    weekdayEndTimes: [new Date("January 1, 2019 13:00:00"),new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00"),new Date("January 1, 2019 00:00:00")],
-    weekendStartTimes: [new Date("January 1, 2019 13:00:00"), new Date("January 1, 2019 10:00:00")],
-    weekendEndTimes: [new Date("January 1, 2019 17:00:00"), new Date("January 1, 2019 14:00:00")],
+    weekdayStartTimes: [new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00"),new Date("January 1, 2019 09:00:00")],
+    weekdayEndTimes: [new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 11:00:00"),new Date("January 1, 2019 11:00:00")],
+    weekendStartTimes: [new Date("January 1, 2019 09:00:00"), new Date("January 1, 2019 09:00:00")],
+    weekendEndTimes: [new Date("January 1, 2019 11:00:00"), new Date("January 1, 2019 11:00:00")],
     // When team is selected add to this array
-    oddNumOfTeams: false,
+    oddNumOfTeams: false, // For error handling
+    toManyGamesPerWeek: false, // For error handling
     teams: [],
     schedule: []
   };
@@ -280,58 +281,89 @@ class CreateLeague extends Component {
       currentWeek++;
     }
 
-    //console.log(schedule);
-
     this.setState({
       schedule: schedule
     });
     // #####################################################################################
-    // numberOfGames: 1,
-    // gamesPlayedConcurrently: 1,
-    // gamesPerTeamPerWeek: 1,
-    // lengthOfGames: 1,
-    // weekday: false,
-    // weekend: false,
-    // weekdayStartTimes:
-    // weekdayEndTimes: 
-    // weekendStartTimes: 
-    // weekendEndTimes: 
     // Assign teams to hours available per week
     // Create time slots available for each week
-    const gameTimeSlotsPerWeek = [];
+    let gameTimeSlotsPerWeek = [];
     for(let i = 0; i < this.state.weekdayStartTimes.length; i++){
-      // NEED TO ADD THE MINUTES TO THIS FOR NON TOP OF THE HOUR GAME START TIMES
-      const hoursInDay = this.state.weekdayEndTimes[i].getHours() - this.state.weekdayStartTimes[i].getHours();
+      const hoursInDay = (this.state.weekdayEndTimes[i].getHours() + (this.state.weekdayEndTimes[i].getMinutes() / 60)) - (this.state.weekdayStartTimes[i].getHours() + (this.state.weekdayStartTimes[i].getMinutes() / 60));
       const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
       
-      // MUST SYNC UP THE LEAGUE START DATE WITH THE DAY OF THE WEEK
       for(let j = 0; j < numOfTimeSlots; j++){
         for(let k = 0; k < this.state.gamesPlayedConcurrently; k++){
-          const startTime = this.state.weekdayStartTimes[i].getHours() + (j * this.state.lengthOfGames);
-          const endTime = startTime + this.state.lengthOfGames;
+          const startTimeHour = (this.state.weekdayStartTimes[i].getHours() + (j * this.state.lengthOfGames));
+          const startTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
+          const endTimeHour = startTimeHour + this.state.lengthOfGames;
+          const endTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
 
-          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i + 1), startTime: startTime, endTime: endTime});
+          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i + 1), startTimeHour, startTimeMinute, endTimeHour, endTimeMinute});
         }
       }
     }
 
     for(let i = 0; i < this.state.weekendStartTimes.length; i++){
-      // NEED TO ADD THE MINUTES TO THIS FOR NON TOP OF THE HOUR GAME START TIMES
-      const hoursInDay = this.state.weekendEndTimes[i].getHours() - this.state.weekendStartTimes[i].getHours();
+      const hoursInDay = (this.state.weekendEndTimes[i].getHours() + (this.state.weekendEndTimes[i].getMinutes() / 60)) - (this.state.weekendStartTimes[i].getHours() + (this.state.weekendStartTimes[i].getMinutes() / 60));
       const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
       
-      // MUST SYNC UP THE LEAGUE START DATE WITH THE DAY OF THE WEEK
       for(let j = 0; j < numOfTimeSlots; j++){
         for(let k = 0; k < this.state.gamesPlayedConcurrently; k++){
-          const startTime = this.state.weekendStartTimes[i].getHours() + (j * this.state.lengthOfGames);
-          const endTime = startTime + this.state.lengthOfGames;
+          const startTimeHour = (this.state.weekendStartTimes[i].getHours() + (j * this.state.lengthOfGames));
+          const startTimeMinute = this.state.weekendStartTimes[i].getMinutes();
+          const endTimeHour = startTimeHour + this.state.lengthOfGames;
+          const endTimeMinute = this.state.weekendStartTimes[i].getMinutes();
 
-          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i * 6), startTime: startTime, endTime: endTime});
+          gameTimeSlotsPerWeek.push({dayOfTheWeek: (i === 0 ? 6 : 0), startTimeHour, startTimeMinute, endTimeHour, endTimeMinute});
         }
       }
     }
 
+    // Sync up league to start on league start day
+    // Then run the week from that day of the week thru day - 1
+    // Example: league start day = Wednesday, league week is Wednesday thru Tuesday
+    const sortDays = function(day1, day2){
+      return day1.dayOfTheWeek - day2.dayOfTheWeek;
+    }
+    gameTimeSlotsPerWeek = [...gameTimeSlotsPerWeek.filter(day=>day.dayOfTheWeek >= this.state.leagueStartDate.getDay()).sort(sortDays), ...gameTimeSlotsPerWeek.filter(day=>day.dayOfTheWeek < this.state.leagueStartDate.getDay()).sort(sortDays)];
+
+    // Fill in complete schedule with games, times and days
+
+    // Create array of all games
+    const allGameMatchUps = [];
+    for(let i = 0; i < schedule.length; i++){
+      for(let j = 0; j < this.state.teams.length / 2; j++){
+        allGameMatchUps.push(schedule[i][j]);
+      }
+    }
+
+    // Combine games with week
+    // Check that enough time slots per week exist
+    const gamesPerWeek = (this.state.teams.length / 2) * this.state.gamesPerTeamPerWeek;
+    if(gamesPerWeek > gameTimeSlotsPerWeek.length){
+      this.setState({toManyGamesPerWeek: true});
+      return;
+    }
+
+    // Check that the league doesn't overrun the league end date!!!!!!!!!!
+    const completedSchedule = [];
+    let currentTimeSlot = 0;
+
+    for(let i = 0; i < allGameMatchUps.length; i++){
+      completedSchedule.push({game: allGameMatchUps[i], date: gameTimeSlotsPerWeek[currentTimeSlot]})
+
+      currentTimeSlot++;
+      if(currentTimeSlot >= gamesPerWeek){
+        currentTimeSlot = 0;
+      }
+    }
+
+
+    // console.log(this.state.leagueStartDate.getDay(), this.state.leagueEndDate);
+    console.log(allGameMatchUps);
     console.log(gameTimeSlotsPerWeek);
+    console.log(completedSchedule);
   }
 
   render() {
@@ -384,6 +416,7 @@ class CreateLeague extends Component {
             value={this.state.gamesPerTeamPerWeek}
             onChange={this.setGameData("gamesPerTeamPerWeek")}
           />
+          {this.state.toManyGamesPerWeek ? <div>More games scheduled per week then time slots available</div> : null}
           <FormControlLabel
             control={
               <Switch
