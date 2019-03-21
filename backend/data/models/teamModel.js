@@ -9,7 +9,19 @@ module.exports = {
       return db('team').where('league_id', leagueId);
   },
 
-  insertTeam: (team) =>{
+  getTeamById: (id) =>{
+      return db('team').where('id', id);
+  },
+
+  insert: (team) =>{
       return db('team').insert(team);
-  }
+  },
+
+  update: (id, team) =>{
+      return db('team').where('id', id).update(team);
+  },
+
+  remove: (id) =>{
+      return db('team').where('id', id).del();
+  },
 };
