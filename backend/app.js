@@ -3,15 +3,9 @@ const passport = require('passport');
 const app = express();
 const authRouter = require('./routers/authRouter');
 const settingsRouter = require('./routers/settingsRouter');
+const leagueRouter = require('./routers/leagueRouter');
+const teamRouter = require('./routers/teamRouter')
 const cors = require('cors');
-
-// const cors = (req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-//   // res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// };
 
 app.use(express.json());
 app.use(cors());
@@ -23,6 +17,8 @@ const PORT = process.env.PORT || '4000';
 
 app.use('/auth', authRouter);
 app.use('/settings', settingsRouter);
+app.use('/leagues', leagueRouter);
+app.use('/teams', teamRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send(`API active on port: ${PORT}`);
