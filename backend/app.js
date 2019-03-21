@@ -4,14 +4,14 @@ const app = express();
 const authRouter = require('./routers/authRouter');
 const settingsRouter = require('./routers/settingsRouter');
 const leagueRouter = require('./routers/leagueRouter');
-const teamRouter = require('./routers/teamRouter')
+const teamRouter = require('./routers/teamRouter');
 const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
 
 app.use(passport.initialize());
-require("./config/passport");
+require('./config/passport');
 
 const PORT = process.env.PORT || '4000';
 
