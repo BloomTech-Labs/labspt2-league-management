@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
-const endpoint =
-  process.env.NODE_ENV === 'production'
-    ? 'https://league-management.herokuapp.com/api/stripe'
-    : 'http://localhost:4000/api/stripe';
-
 class Billing extends Component {
   onTokenBasic = token => {
     console.log('basic token', token);
+    const endpoint =
+      process.env.NODE_ENV === 'production'
+        ? 'https://league-management.herokuapp.com/stripe/billing'
+        : 'http://localhost:4000/stripe/billing';
 
     axios
-      .post(this.endpoint, token)
+      .post(endpoint, token)
       .then(res => {
         console.log(res.data);
       })
       .catch(err => {
-        console.log(err);
+        console.log('Error in axios call to backend', err);
       });
     // TODO: Send the token information and any other
     // relevant information to your payment process
