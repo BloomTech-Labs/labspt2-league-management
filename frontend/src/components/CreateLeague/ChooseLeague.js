@@ -21,7 +21,8 @@ const styles = {
     marginBottom: 15
   },
   title: {
-    fontSize: 14
+    fontSize: 16,
+    textDecoration: 'underline'
   },
   pos: {
     marginBottom: 12
@@ -50,8 +51,11 @@ function ChooseLeague(props) {
           >
             Basic League
           </Typography>
-          <Typography variant="h5" component="p">
-            League Description
+          <Typography className={classes.title}>League Description</Typography>
+          <Typography>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+            minus consequatur soluta possimus dicta quae necessitatibus minima
+            consequuntur voluptatem iste dolores, amet fugit, incidunt tempore.
           </Typography>
         </CardContent>
         <CardActions>
@@ -70,8 +74,11 @@ function ChooseLeague(props) {
           >
             Premium League
           </Typography>
-          <Typography variant="h5" component="p">
-            League Description
+          <Typography className={classes.title}>League Description</Typography>
+          <Typography>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+            minus consequatur soluta possimus dicta quae necessitatibus minima
+            consequuntur voluptatem iste dolores, amet fugit, incidunt tempore.
           </Typography>
         </CardContent>
         <CardActions>
