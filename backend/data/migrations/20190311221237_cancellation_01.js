@@ -7,11 +7,11 @@ exports.up = function(knex, Promise) {
         .integer('game_id')
         .unsigned()
         .notNullable();
-      cancellation_requests
-        .foreign('game_id')
-        .references('id')
-        .inTable('game')
-        .onDelete('cascade');
+      // cancellation_requests
+      //   .foreign('game_id')
+      //   .references('id')
+      //   .inTable('game')
+      //   .onDelete('cascade');
       cancellation_requests.boolean('acknowledged').defaultTo(false);
     }
   );
