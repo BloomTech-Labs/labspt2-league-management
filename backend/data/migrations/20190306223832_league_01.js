@@ -6,20 +6,20 @@ exports.up = function(knex, Promise) {
       .integer('admin_user_id')
       .unsigned()
       .notNullable();
-    league
-      .foreign('admin_user_id')
-      .references('id')
-      .inTable('users')
-      .onDelete('cascade');
+    // league
+    //   .foreign('admin_user_id')
+    //   .references('id')
+    //   .inTable('users')
+    //   .onDelete('cascade');
     league
       .integer('league_type_id')
       .unsigned()
       .notNullable();
-    league
-      .foreign('league_type_id')
-      .references('id')
-      .inTable('league_type')
-      .onDelete('cascade');
+    // league
+    //   .foreign('league_type_id')
+    //   .references('id')
+    //   .inTable('league_type')
+    //   .onDelete('cascade');
     league.integer('teams_game_count');
     league.datetime('game_length');
     league.datetime('start_day');
