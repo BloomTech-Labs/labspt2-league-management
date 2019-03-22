@@ -5,15 +5,19 @@ import axios from 'axios';
 class Billing extends Component {
   onTokenBasic = token => {
     console.log('basic token', token);
+    const endpoint =
+      process.env.NODE_ENV === 'production'
+        ? 'https://league-management.herokuapp.com/stripe/billing'
+        : 'http://localhost:4000/stripe/billing';
 
-    // axios
-    //   .post('', token)
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    axios
+      .post(endpoint, token)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log('Error in axios call to backend', err);
+      });
     // TODO: Send the token information and any other
     // relevant information to your payment process
     // server, wait for the response, and update the UI
