@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
+import ChooseLeague from '../CreateLeague/ChooseLeague';
+
 class Billing extends Component {
   onTokenBasic = token => {
     console.log('basic token', token);
@@ -18,11 +20,6 @@ class Billing extends Component {
       .catch(err => {
         console.log('Error in axios call to backend', err);
       });
-    // TODO: Send the token information and any other
-    // relevant information to your payment process
-    // server, wait for the response, and update the UI
-    // accordingly. How this is done is up to you. Using
-    // XHR, fetch, or a GraphQL mutation is typical.
   };
 
   onTokenPremium = token => {
@@ -32,6 +29,7 @@ class Billing extends Component {
   render() {
     return (
       <>
+        <ChooseLeague />
         <StripeCheckout
           stripeKey="pk_test_VcEhOLfFL76sBbdyEX8npTmN"
           // billingAddress
