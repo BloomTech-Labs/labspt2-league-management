@@ -2,6 +2,7 @@ const express = require('express');
 
 const authenticate = require('../middleware/authenticate.js');
 const leagueModel = require('../data/models/leagueModel.js');
+const teamModel = require('../data/models/teamModel.js');
 
 const router = express.Router();
 
@@ -47,11 +48,9 @@ router.get('/:lid', (req, res) => {
       if (league) {
         res.json(league);
       } else {
-        res
-          .status(404)
-          .json({
-            message: 'The league with the specified id does not exist!'
-          });
+        res.status(404).json({
+          message: 'The league with the specified id does not exist!'
+        });
       }
     })
     .catch(err => {
@@ -78,11 +77,9 @@ router.put('/:lid', (req, res) => {
                 .json({ error: 'Could not return updated League', err });
             });
         } else {
-          res
-            .status(404)
-            .json({
-              error: 'The league with the specified id does not exist!'
-            });
+          res.status(404).json({
+            error: 'The league with the specified id does not exist!'
+          });
         }
       })
       .catch(err => {
@@ -123,7 +120,8 @@ router.post('/:lid/teams', (req, res) => {
   teamModel
     .insert(team)
     .then(ids => {
-      req.status(201).json({ message: `New team added with ${ids[0]}!` });
+      console.log(ids);
+      res.status(201).json({ message: `New team added with ${ids[0]}!` });
     })
     .catch(err => {
       res.status(500).json({ error: 'Problem adding new team!', err });
@@ -152,9 +150,7 @@ router.get('/:lid/teams/:tid', (req, res) => {
       res.json(teams);
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: 'Trouble retrieving team', err });
+      res.status(500).json({ error: 'Trouble retrieving team', err });
     });
 });
 
@@ -166,10 +162,10 @@ router.put('/:lid/teams/:tid', (req, res) => {
   if (team.name && team.league_id) {
     teamModel
       .update(tid, team)
-      .then(team => {
-        if (updatedTeam) {
+      .then(count => {
+        if (count) {
           teamModel
-            .GetTeamById(tid)
+            .getTeamById(tid)
             .then(team => {
               res.json(team);
             })
@@ -179,17 +175,13 @@ router.put('/:lid/teams/:tid', (req, res) => {
                 .json({ error: 'Could not return updated Team', err });
             });
         } else {
-          res
-            .status(404)
-            .json({
-              error: 'The team with the specified id does not exist!'
-            });
+          res.status(404).json({
+            error: 'The team with the specified id does not exist!'
+          });
         }
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: 'The team could not be modified!', err });
+        res.status(500).json({ error: 'The team could not be modified!', err });
       });
   } else {
     res
