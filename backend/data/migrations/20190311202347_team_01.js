@@ -9,12 +9,14 @@ exports.up = function(knex, Promise) {
     team
       .foreign('league_id')
       .references('id')
-      .on('league');
+      .inTable('league')
+      .onDelete('cascade');
     team.integer('coach_user_id').unsigned();
     team
       .foreign('coach_user_id')
       .references('id')
-      .on('users');
+      .inTable('users')
+      .onDelete('cascade');
     team.string('coach_name', 128);
     team.string('coach_email', 128);
     team.string('coach_phone', 128);
