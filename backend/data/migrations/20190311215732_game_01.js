@@ -8,7 +8,8 @@ exports.up = function(knex, Promise) {
     game
       .foreign('league_id')
       .references('id')
-      .on('league');
+      .inTable('league')
+      .onDelete('cascade');
     game
       .integer('home_team_id')
       .unsigned()
@@ -16,7 +17,8 @@ exports.up = function(knex, Promise) {
     game
       .foreign('home_team_id')
       .references('id')
-      .on('team');
+      .inTable('team')
+      .onDelete('cascade');
     game
       .integer('away_team_id')
       .unsigned()
@@ -24,14 +26,16 @@ exports.up = function(knex, Promise) {
     game
       .foreign('away_team_id')
       .references('id')
-      .on('team');
+      .inTable('team')
+      .onDelete('cascade');
     game.datetime('start_time');
     game.datetime('end_time');
     game.integer('location_id').unsigned();
     game
       .foreign('location_id')
       .references('id')
-      .on('location');
+      .inTable('location')
+      .onDelete('cascade');
     game.boolean('cancelled').defaultTo(false);
   });
 };
