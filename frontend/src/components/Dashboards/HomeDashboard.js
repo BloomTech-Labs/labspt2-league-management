@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
-import Billing from '../Billing/Billing';
+import ChooseLeague from '../CreateLeague/ChooseLeague';
+// import Billing from '../Billing/Billing';
 // import AppContext from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {
     admin: false,
     coach: false,
-    billing: false
+    chooseLeague: false
   };
 
   displayBilling = e => {
     e.preventDefault();
-    this.setState({ billing: !this.state.billing });
+    this.setState({ chooseLeague: !this.state.chooseLeague });
   };
 
   render() {
-    const { billing } = this.state;
+    const { chooseLeague } = this.state;
     return (
       <>
         <DashboardNavbar
@@ -30,7 +31,7 @@ class HomeDashboard extends Component {
             margin: '100px 40px 20px 280px'
           }}
         >
-          {billing && <Billing />}
+          {chooseLeague && <ChooseLeague />}
         </div>
       </>
     );

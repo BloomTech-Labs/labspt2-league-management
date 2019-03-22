@@ -14,6 +14,8 @@ class BasicCheckout extends Component {
       .post(endpoint, token)
       .then(res => {
         console.log(res.data);
+        // axios.post to create the new league {this.props.leagueName}
+        this.props.close();
       })
       .catch(err => {
         console.log('Error in axios call to backend', err);

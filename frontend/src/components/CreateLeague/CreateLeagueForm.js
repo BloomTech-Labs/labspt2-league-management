@@ -9,16 +9,24 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
 
 import BasicCheckout from '../Stripe/BasicCheckout';
+import PremiumCheckout from '../Stripe/PremiumCheckout';
 
 const styles = {
+  container: {
+    width: '90%',
+    margin: '0 auto'
+  },
   button: {
-    backgroundColor: '#42b6ff'
+    width: '100%',
+    border: '1px solid #eee',
+    backgroundColor: 'skyblue'
   }
 };
 
-class FormDialog extends React.Component {
+class CreateLeagueForm extends React.Component {
   state = {
-    open: false
+    open: false,
+    leagueName: ''
   };
 
   handleClickOpen = () => {
@@ -26,20 +34,28 @@ class FormDialog extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, leagueName: '' });
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, leagueType } = this.props;
+    const price =
+      leagueType === 'basic' ? 5 : leagueType === 'premium' ? 15 : null;
     return (
-      <div>
+      <div className={classes.container}>
         <Button
           className={classes.button}
-          variant="outlined"
-          color="primary"
+          disabled={leagueType != 'basic'}
           onClick={this.handleClickOpen}
         >
-          Select for $5/mo
+          {leagueType === 'basic'
+            ? `Select for $${price}/mo`
+            : 'Currently Unavailable'}
         </Button>
         <Dialog
           open={this.state.open}
@@ -55,7 +71,9 @@ class FormDialog extends React.Component {
             <TextField
               autoFocus
               margin="dense"
-              id="name"
+              name="leagueName"
+              value={this.state.leagueName}
+              onChange={this.handleChange}
               label="League Name"
               type="text"
               fullWidth
@@ -65,7 +83,17 @@ class FormDialog extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            {this.props.leagueType === 'basic' ? <BasicCheckout /> : null}
+            {this.props.leagueType === 'basic' ? (
+              <BasicCheckout
+                leagueName={this.state.leagueName}
+                close={this.handleClose}
+              />
+            ) : (
+              <PremiumCheckout
+                leagueName={this.state.leagueName}
+                close={this.handleClose}
+              />
+            )}
 
             {/* <Button onClick={this.handleClose} color="primary">
               Create League
@@ -77,4 +105,4 @@ class FormDialog extends React.Component {
   }
 }
 
-export default withStyles(styles)(FormDialog);
+export default withStyles(styles)(CreateLeagueForm);
