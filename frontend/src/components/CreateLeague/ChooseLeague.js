@@ -7,9 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import CreateLeagueForm from './CreateLeagueForm';
+
 const styles = {
   card: {
-    minWidth: 275
+    width: '20%',
+    minWidth: 250
   },
   bullet: {
     display: 'inline-block',
@@ -21,29 +24,37 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  button: {
+    width: '90%',
+    margin: '0 auto',
+    border: '1px solid #eee',
+    backgroundColor: '#42b6ff'
   }
 };
 
 function ChooseLeague(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography
-          className={classes.title}
-          color="textSecondary"
+          variant="h5"
+          component="h2"
+          // className={classes.title}
+          // color="textSecondary"
           gutterBottom
         >
           Basic League
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="p">
           League Description
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <CreateLeagueForm leagueType="basic" />
+        {/* <Button className={classes.button}>Select</Button> */}
       </CardActions>
     </Card>
   );
