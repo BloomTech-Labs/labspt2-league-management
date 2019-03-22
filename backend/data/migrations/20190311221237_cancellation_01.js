@@ -10,7 +10,8 @@ exports.up = function(knex, Promise) {
       cancellation_requests
         .foreign('game_id')
         .references('id')
-        .on('game');
+        .inTable('game')
+        .onDelete('cascade');
       cancellation_requests.boolean('acknowledged').defaultTo(false);
     }
   );
