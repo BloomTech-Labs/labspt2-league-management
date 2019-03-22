@@ -6,6 +6,7 @@ const settingsRouter = require('./routers/settingsRouter');
 const leagueRouter = require('./routers/leagueRouter');
 const teamRouter = require('./routers/teamRouter');
 const stripeRouter = require('./routers/stripeRouter');
+
 const cors = require('cors');
 
 app.use(express.json());
