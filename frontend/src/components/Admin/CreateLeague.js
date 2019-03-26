@@ -47,9 +47,9 @@ class CreateLeague extends Component {
   state = {
     leagueName: "League Name",
     leagueType: 0, // 0 = kid 1 = adult 2 = co-ed
-    leagueStartDate: new Date("March 20, 2019 09:30:00"),
-    leagueEndDate: new Date("April 2, 2019 09:30:00"),
-    numberOfGames: 1,
+    leagueStartDate: new Date("March 29, 2019 09:30:00"),
+    leagueEndDate: new Date("May 10, 2019 09:30:00"),
+    numberOfGames: 4,
     gamesPlayedConcurrently: 1,
     gamesPerTeamPerWeek: 1,
     lengthOfGames: 2,
@@ -62,6 +62,7 @@ class CreateLeague extends Component {
     // When team is selected add to this array
     oddNumOfTeams: false, // For error handling
     toManyGamesPerWeek: false, // For error handling
+    seasonOverrun: false,
     teams: [],
     schedule: []
   };
@@ -337,8 +338,7 @@ class CreateLeague extends Component {
         allGameMatchUps.push(schedule[i][j]);
       }
     }
-
-    // Combine games with week
+    
     // Check that enough time slots per week exist
     const gamesPerWeek = (this.state.teams.length / 2) * this.state.gamesPerTeamPerWeek;
     if(gamesPerWeek > gameTimeSlotsPerWeek.length){
@@ -346,12 +346,47 @@ class CreateLeague extends Component {
       return;
     }
 
-    // Check that the league doesn't overrun the league end date!!!!!!!!!!
     const completedSchedule = [];
     let currentTimeSlot = 0;
 
+    // Set up map to increment the actual day of the calender
+    let currentDateOffset = [null, null, null, null, null, null, null];
+    let currentDayOffset = gameTimeSlotsPerWeek[0].dayOfTheWeek;
+    for(let i = 0; i < 7; i++){
+      currentDateOffset[currentDayOffset] = i
+
+      currentDayOffset++;
+      currentDayOffset = currentDayOffset > 6 ? 0 : currentDayOffset;
+    }
+
+    
+    let currentWeekOffset = -1;
+
+    // Combine games with week
     for(let i = 0; i < allGameMatchUps.length; i++){
-      completedSchedule.push({game: allGameMatchUps[i], date: gameTimeSlotsPerWeek[currentTimeSlot]})
+      // Convert data back to javascript date
+      if(i % gamesPerWeek === 0){
+        currentWeekOffset++;
+      }
+      const startDate = new Date(this.state.leagueStartDate);
+      const currentGameDate = new Date(startDate.setDate(startDate.getDate() + (currentWeekOffset * 7) + currentDateOffset[gameTimeSlotsPerWeek[currentTimeSlot].dayOfTheWeek]));
+      if(currentGameDate > this.state.leagueEndDate){
+        this.setState({
+          seasonOverrun: true
+        })
+        return;
+      }
+
+      const gameStartDateTime = new Date(currentGameDate);
+      const gameEndDateTime = new Date(currentGameDate);
+
+      gameStartDateTime.setHours(gameTimeSlotsPerWeek[currentTimeSlot].startTimeHour);
+      gameStartDateTime.setMinutes(gameTimeSlotsPerWeek[currentTimeSlot].startTimeMinute);
+      gameEndDateTime.setHours(gameTimeSlotsPerWeek[currentTimeSlot].endTimeHour);
+      gameEndDateTime.setMinutes(gameTimeSlotsPerWeek[currentTimeSlot].endTimeMinute);
+      
+      // Build matchup array with usable data
+      completedSchedule.push({awayTeamIndex: allGameMatchUps[i].away, homeTeamIndex: allGameMatchUps[i].home, startTime: gameStartDateTime, endTime: gameEndDateTime})
 
       currentTimeSlot++;
       if(currentTimeSlot >= gamesPerWeek){
@@ -361,8 +396,8 @@ class CreateLeague extends Component {
 
 
     // console.log(this.state.leagueStartDate.getDay(), this.state.leagueEndDate);
-    console.log(allGameMatchUps);
-    console.log(gameTimeSlotsPerWeek);
+    // console.log(allGameMatchUps);
+    // console.log(gameTimeSlotsPerWeek);
     console.log(completedSchedule);
   }
 
@@ -513,6 +548,7 @@ class CreateLeague extends Component {
 
         <div>
           <h2>Season</h2>
+          {this.state.seasonOverrun ? <div>The total number of weeks exceeds the league end date</div> : null}
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <DatePicker
                 margin="normal"
