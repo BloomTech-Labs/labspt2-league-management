@@ -10,9 +10,11 @@ router.use(authenticate);
 router.post('/', (req, res) => {
   const user = req.user;
   const league = req.body;
+  // console.log(league);
   leagueModel
     .insertLeague(league, user)
     .then(ids => {
+      console.log(ids);
       leagueModel
         .findById(ids[0])
         .then(newLeague => {
@@ -47,11 +49,9 @@ router.get('/:lid', (req, res) => {
       if (league) {
         res.json(league);
       } else {
-        res
-          .status(404)
-          .json({
-            message: 'The league with the specified id does not exist!'
-          });
+        res.status(404).json({
+          message: 'The league with the specified id does not exist!'
+        });
       }
     })
     .catch(err => {
@@ -78,11 +78,9 @@ router.put('/:lid', (req, res) => {
                 .json({ error: 'Could not return updated League', err });
             });
         } else {
-          res
-            .status(404)
-            .json({
-              error: 'The league with the specified id does not exist!'
-            });
+          res.status(404).json({
+            error: 'The league with the specified id does not exist!'
+          });
         }
       })
       .catch(err => {

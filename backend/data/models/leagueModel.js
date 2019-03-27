@@ -1,24 +1,30 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-    getLeaguesByUser: (user) =>{
-        return db('league').where('admin_user_id', user.id)
-    },
+  getLeaguesByUser: user => {
+    return db('league').where('admin_user_id', user.id);
+  },
 
-    insertLeague: (league, user) =>{
-        league.admin_user_id = user.id
-        return db('league').insert(league)
-    },
+  insertLeague: (league, user) => {
+    league.admin_user_id = user.id;
+    return db('league').insert(league);
+  },
 
-    findById: (id) =>{
-        return db('league').where({id}).first()
-    },
+  findById: id => {
+    return db('league')
+      .where({ id })
+      .first();
+  },
 
-    update: (id, league) =>{
-        return db('league').where({id}).update(league);
-    },
+  update: (id, league) => {
+    return db('league')
+      .where({ id })
+      .update(league);
+  },
 
-    remove: (id) =>{
-        return db('league').where({id}).del();
-    },
-}
+  remove: id => {
+    return db('league')
+      .where({ id })
+      .del();
+  }
+};
