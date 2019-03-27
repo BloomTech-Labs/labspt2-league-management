@@ -117,11 +117,9 @@ router.post('/:lid/teams', (req, res) => {
   const { lid } = req.params;
   const team = req.body;
   team.league_id = lid;
-  console.log(lid, team);
   teamModel
     .insert(team)
     .then(ids => {
-      console.log(ids);
       res.status(201).json({ message: `New team added with ${ids[0]}!` });
     })
     .catch(err => {
@@ -209,17 +207,33 @@ router.delete('/:lid/teams/:tid', (req, res) => {
 
 // The beginning of the league schedule endpoints
 
+router.post('/:lid/schedule', (req, res) => {
+  const { lid } = req.params;
+  const games = req.body;
+  games.forEach(function(element) {
+    element.league_id = lid;
+  });
+  gameModel
+    .insert(games)
+    .then(ids => {
+      res.status(201).json(ids);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Problem adding games!', err });
+    });
+});
+
 router.get('/:lid/schedule', (req, res) => {
   const { lid } = req.params;
   gameModel
-    .getByLeague(lid)
-    .then(teams => {
-      res.json(teams);
+    .getGamesByLeague(lid)
+    .then(games => {
+      res.json(games);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: 'Trouble retrieving teams for league', err });
+        .json({ error: 'Trouble retrieving games for league', err });
     });
 });
 
