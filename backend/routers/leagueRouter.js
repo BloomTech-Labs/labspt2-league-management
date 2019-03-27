@@ -3,6 +3,7 @@ const express = require('express');
 const authenticate = require('../middleware/authenticate.js');
 const leagueModel = require('../data/models/leagueModel.js');
 const teamModel = require('../data/models/teamModel.js');
+const gameModel = require('../data/models/gameModel.js');
 
 const router = express.Router();
 
@@ -203,6 +204,22 @@ router.delete('/:lid/teams/:tid', (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ error: 'The team could not be removed!', err });
+    });
+});
+
+// The beginning of the league schedule endpoints
+
+router.get('/:lid/schedule', (req, res) => {
+  const { lid } = req.params;
+  gameModel
+    .getByLeague(lid)
+    .then(teams => {
+      res.json(teams);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Trouble retrieving teams for league', err });
     });
 });
 
