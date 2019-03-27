@@ -3,6 +3,7 @@ const express = require('express');
 const authenticate = require('../middleware/authenticate.js');
 const leagueModel = require('../data/models/leagueModel.js');
 const teamModel = require('../data/models/teamModel.js');
+const gameModel = require('../data/models/gameModel.js');
 
 const router = express.Router();
 
@@ -116,11 +117,9 @@ router.post('/:lid/teams', (req, res) => {
   const { lid } = req.params;
   const team = req.body;
   team.league_id = lid;
-  console.log(lid, team);
   teamModel
     .insert(team)
     .then(ids => {
-      console.log(ids);
       res.status(201).json({ message: `New team added with ${ids[0]}!` });
     })
     .catch(err => {
@@ -203,6 +202,38 @@ router.delete('/:lid/teams/:tid', (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ error: 'The team could not be removed!', err });
+    });
+});
+
+// The beginning of the league schedule endpoints
+
+router.post('/:lid/schedule', (req, res) => {
+  const { lid } = req.params;
+  const games = req.body;
+  games.forEach(function(element) {
+    element.league_id = lid;
+  });
+  gameModel
+    .insert(games)
+    .then(ids => {
+      res.status(201).json(ids);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Problem adding games!', err });
+    });
+});
+
+router.get('/:lid/schedule', (req, res) => {
+  const { lid } = req.params;
+  gameModel
+    .getGamesByLeague(lid)
+    .then(games => {
+      res.json(games);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Trouble retrieving games for league', err });
     });
 });
 
