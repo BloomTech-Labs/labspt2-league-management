@@ -14,7 +14,6 @@ exports.up = function(knex, Promise) {
     league
       .integer('league_type_id')
       .unsigned()
-      .notNullable();
     // league
     //   .foreign('league_type_id')
     //   .references('id')
@@ -23,13 +22,6 @@ exports.up = function(knex, Promise) {
     league.integer('teams_game_count');
     league.datetime('game_length');
     league.datetime('start_day');
-    league.boolean('allow_monday');
-    league.boolean('allow_tuesday');
-    league.boolean('allow_wednesday');
-    league.boolean('allow_thursday');
-    league.boolean('allow_friday');
-    league.boolean('allow_saturday');
-    league.boolean('allow_sunday');
     league.datetime('monday_start_time');
     league.datetime('monday_end_time');
     league.datetime('tuesday_start_time');
