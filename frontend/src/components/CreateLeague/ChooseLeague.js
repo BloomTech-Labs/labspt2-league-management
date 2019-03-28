@@ -37,6 +37,7 @@ const styles = {
 
 function ChooseLeague(props) {
   const { classes } = props;
+  console.log(props);
 
   return (
     <div className={classes.cardContainer}>

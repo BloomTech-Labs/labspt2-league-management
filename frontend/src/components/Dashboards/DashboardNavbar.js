@@ -110,15 +110,16 @@ class MenuAppBar extends React.Component {
       headers: {
         authorization: token
       }
-    }
-    axios.get(endpoint, options)
+    };
+    axios
+      .get(endpoint, options)
       .then(res => {
         this.setState({ leagues: res.data });
       })
       .catch(err => {
         console.log('error from getLeagues', err);
       });
-  };
+  }
 
   getTeams() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
@@ -127,8 +128,9 @@ class MenuAppBar extends React.Component {
       headers: {
         authorization: token
       }
-    }
-    axios.get(endpoint, options)
+    };
+    axios
+      .get(endpoint, options)
       .then(res => {
         this.setState({ teams: res.data });
       })
@@ -209,6 +211,7 @@ class MenuAppBar extends React.Component {
             teams={teams}
             handleClose={this.handleClose}
             displayBilling={this.props.displayBilling}
+            getLeagues={this.getLeagues}
           />
         )}
         {admin && !coach && (

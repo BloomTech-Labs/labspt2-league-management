@@ -3,11 +3,15 @@ import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
 class BasicCheckout extends Component {
+  state = {
+    leaguesAdded: 0
+  };
+
   onToken = token => {
     const league = {
       name: null,
-      admin_user_id: null,
-      league_type_id: 1
+      admin_user_id: null
+      //   league_type_id: 1
       //   teams_game_count: null,
       //   game_length: null,
       //   start_day: null,
@@ -62,6 +66,7 @@ class BasicCheckout extends Component {
           .then(res => {
             this.props.close();
             console.log(res);
+            window.location.reload();
           })
           .catch(err => {
             console.log('Error creating a new league', err);
