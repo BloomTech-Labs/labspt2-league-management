@@ -7,6 +7,7 @@ module.exports = {
 
   insertLeague: (league, user) => {
     league.admin_user_id = user.id;
+    console.log(league);
     return db('league').insert(league);
   },
 

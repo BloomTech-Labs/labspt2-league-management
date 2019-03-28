@@ -10,7 +10,7 @@ router.use(authenticate);
 router.post('/', (req, res) => {
   const user = req.user;
   const league = req.body;
-  // console.log(league);
+  console.log(league);
   leagueModel
     .insertLeague(league, user)
     .then(ids => {
