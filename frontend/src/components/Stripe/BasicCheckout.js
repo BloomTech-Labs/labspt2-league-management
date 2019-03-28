@@ -4,18 +4,44 @@ import axios from 'axios';
 
 class BasicCheckout extends Component {
   onToken = token => {
-    console.log('basic token', token);
+    const league = {
+      name: null,
+      admin_user_id: null
+    };
+    const jwt = localStorage.getItem('jwt') || this.props.context.signOut();
+    const options = {
+      headers: {
+        authorization: jwt
+      }
+    };
+    // console.log('basic token', token);
     const endpoint =
       process.env.NODE_ENV === 'production'
-        ? 'https://league-management.herokuapp.com/stripe/billing'
-        : 'http://localhost:4000/stripe/billing';
+        ? 'https://league-management.herokuapp.com'
+        : 'http://localhost:4000';
 
     axios
-      .post(endpoint, token)
+      .post(`${endpoint}/stripe/billing`, token)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         // axios.post to create the new league {this.props.leagueName}
-        this.props.close();
+        axios
+          .post(
+            `${endpoint}/leagues`,
+            {
+              ...league,
+              name: this.props.leagueName
+            },
+            options
+          )
+          .then(res => {
+            this.props.close();
+            // console.log(res);
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log('Error creating a new league', err);
+          });
       })
       .catch(err => {
         console.log('Error in axios call to backend', err);

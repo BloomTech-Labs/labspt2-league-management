@@ -12,9 +12,11 @@ router.use(authenticate);
 router.post('/', (req, res) => {
   const user = req.user;
   const league = req.body;
+  // console.log(league);
   leagueModel
     .insert(league, user)
     .then(ids => {
+      // console.log(ids);
       leagueModel
         .findById(ids[0])
         .then(newLeague => {
