@@ -6,28 +6,22 @@ exports.up = function(knex, Promise) {
       .integer('admin_user_id')
       .unsigned()
       .notNullable();
-    league
-      .foreign('admin_user_id')
-      .references('id')
-      .on('users');
+    // league
+    //   .foreign('admin_user_id')
+    //   .references('id')
+    //   .inTable('users')
+    //   .onDelete('cascade');
     league
       .integer('league_type_id')
       .unsigned()
-      .notNullable();
-    league
-      .foreign('league_type_id')
-      .references('id')
-      .on('league_type');
+    // league
+    //   .foreign('league_type_id')
+    //   .references('id')
+    //   .inTable('league_type')
+    //   .onDelete('cascade');
     league.integer('teams_game_count');
     league.datetime('game_length');
     league.datetime('start_day');
-    league.boolean('allow_monday');
-    league.boolean('allow_tuesday');
-    league.boolean('allow_wednesday');
-    league.boolean('allow_thursday');
-    league.boolean('allow_friday');
-    league.boolean('allow_saturday');
-    league.boolean('allow_sunday');
     league.datetime('monday_start_time');
     league.datetime('monday_end_time');
     league.datetime('tuesday_start_time');

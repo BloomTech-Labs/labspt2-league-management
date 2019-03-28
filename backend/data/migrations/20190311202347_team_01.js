@@ -6,15 +6,17 @@ exports.up = function(knex, Promise) {
       .integer('league_id')
       .unsigned()
       .notNullable();
-    team
-      .foreign('league_id')
-      .references('id')
-      .on('league');
+    // team
+    //   .foreign('league_id')
+    //   .references('id')
+    //   .inTable('league')
+    //   .onDelete('cascade');
     team.integer('coach_user_id').unsigned();
-    team
-      .foreign('coach_user_id')
-      .references('id')
-      .on('users');
+    // team
+    //   .foreign('coach_user_id')
+    //   .references('id')
+    //   .inTable('users')
+    //   .onDelete('cascade');
     team.string('coach_name', 128);
     team.string('coach_email', 128);
     team.string('coach_phone', 128);
