@@ -5,6 +5,19 @@ module.exports = {
     return db('league').where('admin_user_id', user.id);
   },
 
+  getLeaguesByName: name => {
+    return db('league')
+      .join('users', 'league.admin_user_id', '=', 'users.id')
+      .select(
+        'league.id',
+        'league.name',
+        'users.first_name',
+        'users.last_name',
+        'users.email'
+      )
+      .where('league.name', name);
+  },
+
   findById: id => {
     return db('league')
       .where({ id })
