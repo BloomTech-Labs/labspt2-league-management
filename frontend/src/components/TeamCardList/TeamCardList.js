@@ -14,6 +14,8 @@ class TeamCardList extends React.Component {
   }
 
   render() {
+    console.log('context check in TeamCardList', this.props.context);
+
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
