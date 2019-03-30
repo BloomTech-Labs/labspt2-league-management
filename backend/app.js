@@ -6,6 +6,7 @@ const settingsRouter = require('./routers/settingsRouter');
 const leagueRouter = require('./routers/leagueRouter');
 const teamRouter = require('./routers/teamRouter');
 const stripeRouter = require('./routers/stripeRouter');
+const searchRouter = require('./routers/searchRouter');
 
 const cors = require('cors');
 
@@ -22,6 +23,7 @@ app.use('/settings', settingsRouter);
 app.use('/leagues', leagueRouter);
 app.use('/teams', teamRouter);
 app.use('/stripe', stripeRouter);
+app.use('/search', searchRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send(`API active on port: ${PORT}`);
