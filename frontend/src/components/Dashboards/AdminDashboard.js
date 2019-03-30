@@ -52,7 +52,7 @@ class AdminDashboard extends Component {
               }}
             >
               {calendar && <PublicCalendar context={context} />}
-              {teamList && <TeamCardList />}
+              {teamList && <TeamCardList context={context} />}
               {leagueSettings && <CreateLeague context={context} />}
               {editSchedule && <DnDCalendar context={context} />}
               {cancellationRequests && <div>Cancellation Requests</div>}

@@ -64,13 +64,18 @@ class SignIn extends React.Component {
   SubmitHandler = event => {
     event.preventDefault();
     console.log(this.props);
-    const credentials = {email: this.state.email, password: this.state.password};
+    const credentials = {
+      email: this.state.email,
+      password: this.state.password
+    };
     const endpoint = '/auth/login';
     axios
       .post(endpoint, credentials)
       .then(res => {
         localStorage.setItem('jwt', res.data.token);
         this.props.signin();
+        this.props.getLeagues();
+        this.props.getTeams();
         this.setState({ email: '', password: '', signedIn: true });
         // window.location.href = 'http://localhost:3000/dashboard';
         // window.location.href = 'https://leaguemanagement.netlify.com/dashboard';
@@ -130,14 +135,14 @@ class SignIn extends React.Component {
               Sign in
             </Button>
           </form>
-            <a
-              href={process.env.REACT_APP_API_URL + '/auth/google'}
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Login with Google
-            </a>
+          <a
+            href={process.env.REACT_APP_API_URL + '/auth/google'}
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Login with Google
+          </a>
         </Paper>
       </main>
     );

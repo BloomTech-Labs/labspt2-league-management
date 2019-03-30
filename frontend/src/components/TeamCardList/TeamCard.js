@@ -133,7 +133,6 @@ class TeamCard extends React.Component {
   };
   render() {
     const { classes } = this.props;
-
     //     let teamNameShort = this.state.name;
     // if(teamNameShort.length > 12) { teamNameShort = teamNameShort.substring(0,11)}
     // This will keep team name from Breaking Card styling by Showing Only first 12 characters for team Name without altering team name.
