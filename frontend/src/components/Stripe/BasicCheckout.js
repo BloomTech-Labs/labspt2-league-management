@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
@@ -23,7 +24,8 @@ class BasicCheckout extends Component {
     axios
       .post(`${endpoint}/stripe/billing`, token)
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data);
+        console.log(league);
         // axios.post to create the new league {this.props.leagueName}
         axios
           .post(
@@ -36,8 +38,8 @@ class BasicCheckout extends Component {
           )
           .then(res => {
             this.props.close();
-            // console.log(res);
-            window.location.reload();
+            console.log(res);
+            this.props.history.push('/league/setup');
           })
           .catch(err => {
             console.log('Error creating a new league', err);
@@ -63,4 +65,4 @@ class BasicCheckout extends Component {
   }
 }
 
-export default BasicCheckout;
+export default withRouter(BasicCheckout);

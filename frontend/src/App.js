@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage';
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
 import HomeDashboard from './components/Dashboards/HomeDashboard';
+import CreateLeague from './components/Admin/CreateLeague';
 import UserSettings from './components/UserSettings/UserSettings';
 import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
@@ -76,6 +77,14 @@ class App extends Component {
                 render={
                   context.state.loggedIn
                     ? props => <CoachDashboard />
+                    : homepage
+                }
+              />
+              <Route
+                path="/league/setup"
+                render={
+                  context.state.loggedIn
+                    ? props => <CreateLeague />
                     : homepage
                 }
               />
