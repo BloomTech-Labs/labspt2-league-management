@@ -61,7 +61,7 @@ export default class AppProvider extends Component {
   };
 
   render() {
-    const { events, leagues, teams } = this.state;
+    const { events } = this.state;
 
     return (
       <AppContext.Provider
@@ -100,7 +100,17 @@ export default class AppProvider extends Component {
                 console.log('error from getLeagues', err);
               });
           },
-
+          getLeagueId: () => {
+            const endpoint = `/leagues/${this.props.id}`;
+            axios
+              .get(endpoint)
+              .then(res => {
+                this.setState({ leagues: res.data });
+              })
+              .catch(err => {
+                console.log('error from getLeagues', err);
+              });
+              console.log('Admin Dashboard check', this.props.id)          },
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/teams';

@@ -5,6 +5,7 @@ import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
+import axios from 'axios';
 
 class AdminDashboard extends Component {
   state = {
@@ -14,7 +15,8 @@ class AdminDashboard extends Component {
     teamList: false,
     leagueSettings: false,
     editSchedule: false,
-    cancellationRequests: false
+    cancellationRequests: false,
+    id: this.props.id
   };
 
   displayAdminContent = e => {
@@ -37,6 +39,7 @@ class AdminDashboard extends Component {
       editSchedule,
       cancellationRequests
     } = this.state;
+    console.log('this.state.id check in AdminDashboard', this.state)
     return (
       <AppContext.Consumer>
         {context => (

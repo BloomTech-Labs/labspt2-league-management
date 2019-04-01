@@ -7,6 +7,9 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
+import AppContext from '../Context/AppContext';
+
+
 
 class HomeDrawer extends Component {
   state = {
@@ -20,7 +23,7 @@ class HomeDrawer extends Component {
 
   selectLeague = () => {
     this.props.handleClose();
-    this.setState({ expandLeagues: false });
+    this.setState({ expandLeagues: false, leagueId: this.id });
   };
 
   selectTeam = () => {
@@ -59,6 +62,7 @@ class HomeDrawer extends Component {
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
+                    id={league.id}
                   >
                     <ListItemText id={league.id} primary={league.name} />
                   </ListItem>
@@ -101,5 +105,7 @@ class HomeDrawer extends Component {
     );
   }
 }
+
+HomeDrawer.contextType = AppContext;
 
 export default HomeDrawer;

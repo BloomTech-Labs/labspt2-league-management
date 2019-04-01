@@ -85,8 +85,6 @@ class Navbar extends React.Component {
     mobileOpen: false,
     // admin: false,
     // coach: false,
-    leagues: [], // global
-    teams: [], // global
     logout: false,
     settings: false
   };

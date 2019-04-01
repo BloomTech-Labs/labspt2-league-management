@@ -21,7 +21,6 @@ import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
 import { AppContext } from '../Context/AppContext';
 import WeatherWidget from '../Weather/WeatherWidget';
-// import AppContext from '../Context/AppContext';
 
 const drawerWidth = 240;
 
@@ -97,55 +96,16 @@ class MenuAppBar extends React.Component {
     mobileOpen: false,
     // admin: false,
     // coach: false,
-    leagues: [], // global
-    teams: [], // global
     logout: false,
     settings: false
   };
 
-  getLeagues() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
-    const endpoint = '/leagues';
-    const options = {
-      headers: {
-        authorization: token
-      }
-    };
-    axios
-      .get(endpoint, options)
-      .then(res => {
-        this.setState({ leagues: res.data });
-      })
-      .catch(err => {
-        console.log('error from getLeagues', err);
-      });
-  }
-
-  getTeams() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
-    const endpoint = '/teams';
-    const options = {
-      headers: {
-        authorization: token
-      }
-    };
-    axios
-      .get(endpoint, options)
-      .then(res => {
-        this.setState({ teams: res.data });
-      })
-      .catch(err => {
-        console.log('error from getTeams', err);
-      });
-  }
+  static contextType = AppContext;
 
   componentDidMount() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
-
     if (token) {
       this.props.context.signin();
-      this.getLeagues();
-      this.getTeams();
     }
 
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
@@ -190,7 +150,7 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { anchorEl, mobileOpen, admin, coach, leagues, teams } = this.state;
+    const { anchorEl, mobileOpen, admin, coach } = this.state;
     const open = Boolean(anchorEl);
 
     const drawer = (
@@ -207,34 +167,30 @@ class MenuAppBar extends React.Component {
         {!admin && !coach && (
           <HomeDrawer
             classes={classes}
-            leagues={leagues}
-            teams={teams}
+            leagues={this.context.state.leagues}
+            teams={this.context.state.teams}
             handleClose={this.handleClose}
             displayBilling={this.props.displayBilling}
-            // getLeagues={this.getLeagues}
           />
         )}
         {admin && !coach && (
           <AdminDrawer
             handleClose={this.handleClose}
             displayAdminContent={this.props.displayAdminContent}
-            leagues={leagues}
-            teams={teams}
-            // getLeagues={this.getLeagues}
-            // getTeams={this.getTeams}
+            leagues={this.context.state.leagues}
+            teams={this.context.state.teams}
+
           />
         )}
         {coach && !admin && (
           <CoachDrawer
             handleClose={this.handleClose}
             displayCoachContent={this.props.displayCoachContent}
-            teams={teams}
-            // getTeams={this.getTeams}
+            teams={this.context.state.teams}
           />
         )}
       </div>
     );
-
     if (this.state.logout) {
       return <Redirect to="/" />;
     }
