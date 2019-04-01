@@ -33,9 +33,15 @@ class App extends Component {
               <Route path="/signup" component={Signup} />
               <Route
                 path="/signin"
-                render={props => <Signin signin={context.signin} />}
+                render={props => (
+                  <Signin
+                    signin={context.signin}
+                    getLeagues={context.getLeagues}
+                    getTeams={context.getTeams}
+                  />
+                )}
               />
-              <Route 
+              <Route
                 path="/authorize"
                 render={props => <Authorize signin={context.signin} />}
               />
@@ -68,7 +74,7 @@ class App extends Component {
                 path="/dashboard/admin"
                 render={
                   context.state.loggedIn
-                    ? props => <AdminDashboard />
+                    ? props => <AdminDashboard context={context} />
                     : homepage
                 }
               />
@@ -76,7 +82,7 @@ class App extends Component {
                 path="/dashboard/coach"
                 render={
                   context.state.loggedIn
-                    ? props => <CoachDashboard />
+                    ? props => <CoachDashboard context={context} />
                     : homepage
                 }
               />

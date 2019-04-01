@@ -211,19 +211,25 @@ class MenuAppBar extends React.Component {
             teams={teams}
             handleClose={this.handleClose}
             displayBilling={this.props.displayBilling}
-            getLeagues={this.getLeagues}
+            // getLeagues={this.getLeagues}
           />
         )}
         {admin && !coach && (
           <AdminDrawer
             handleClose={this.handleClose}
             displayAdminContent={this.props.displayAdminContent}
+            leagues={leagues}
+            teams={teams}
+            // getLeagues={this.getLeagues}
+            // getTeams={this.getTeams}
           />
         )}
         {coach && !admin && (
           <CoachDrawer
             handleClose={this.handleClose}
             displayCoachContent={this.props.displayCoachContent}
+            teams={teams}
+            // getTeams={this.getTeams}
           />
         )}
       </div>

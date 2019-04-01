@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-// import axios from 'axios';
+import axios from 'axios';
 
 export const AppContext = React.createContext();
 
@@ -55,11 +55,14 @@ export default class AppProvider extends Component {
         title: 'Team 5 vs Team 6',
         location: 'Park'
       }
-    ]
+    ],
+    leagues: [],
+    teams: []
   };
 
   render() {
-    const { events } = this.state;
+    const { events, leagues, teams } = this.state;
+
     return (
       <AppContext.Provider
         value={{
@@ -79,6 +82,41 @@ export default class AppProvider extends Component {
           },
           signOut: () => {
             this.setState({ loggedIn: false });
+          },
+          getLeagues: () => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = '/leagues';
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .get(endpoint, options)
+              .then(res => {
+                this.setState({ leagues: res.data });
+              })
+              .catch(err => {
+                console.log('error from getLeagues', err);
+              });
+          },
+
+          getTeams: () => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = '/teams';
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .get(endpoint, options)
+              .then(res => {
+                this.setState({ teams: res.data });
+              })
+              .catch(err => {
+                console.log('error from getTeams', err);
+              });
           },
           getEvents: id => {
             // An axios request will need to be done here to pull events from DB
