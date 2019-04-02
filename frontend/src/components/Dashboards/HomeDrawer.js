@@ -7,6 +7,9 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
+import AppContext from '../Context/AppContext';
+
+
 
 class HomeDrawer extends Component {
   state = {
@@ -52,15 +55,22 @@ class HomeDrawer extends Component {
         <Divider />
         <Collapse in={this.state.expandLeagues} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {leagues.map(league => (
+            {leagues.map((league, index) => (
               <>
-                <Link to="/dashboard/admin">
+                <Link to={{
+                  pathname:"/dashboard/admin",
+                  state: {
+                    leagueId: league.id,
+                    leagueName: league.name,
+                    leagueIndex: index
+                  }  
+                }}>
                   <ListItem
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
                   >
-                    <ListItemText id={league.id} primary={league.name} />
+                    <ListItemText id={league.id} leagueIndex={index} primary={league.name}/>
                   </ListItem>
                 </Link>
                 <Divider />
@@ -101,5 +111,7 @@ class HomeDrawer extends Component {
     );
   }
 }
+
+HomeDrawer.contextType = AppContext;
 
 export default HomeDrawer;
