@@ -110,7 +110,8 @@ export default class AppProvider extends Component {
               .catch(err => {
                 console.log('error from getLeagues', err);
               });
-              console.log('Admin Dashboard check', this.props.id)          },
+            console.log('Admin Dashboard check', this.props.id);
+          },
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/teams';
