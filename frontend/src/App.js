@@ -11,6 +11,7 @@ import UserSettings from './components/UserSettings/UserSettings';
 import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
+import Search from './components/Search/Search';
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
                 path="/"
                 render={props => <LandingPage context={context} />}
               />
+              <Route path="/search" component={Search} />
               <Route path="/signup" component={Signup} />
               <Route
                 path="/signin"
