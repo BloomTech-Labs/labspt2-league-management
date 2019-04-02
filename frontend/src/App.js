@@ -12,6 +12,8 @@ import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 import Search from './components/Search/Search';
+import PublicCalendar from './components/Calendars/PublicCalendar';
+
 
 class App extends Component {
   render() {
@@ -31,6 +33,7 @@ class App extends Component {
                 render={props => <LandingPage context={context} />}
               />
               <Route path="/search" component={Search} />
+              <Route path="/schedule" component={PublicCalendar} />
               <Route path="/signup" component={Signup} />
               <Route
                 path="/signin"

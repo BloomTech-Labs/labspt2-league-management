@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -35,10 +36,7 @@ class Search extends React.Component {
     leagues: []
   };
 
-  endpoint =
-    process.env.NODE_ENV === 'production'
-      ? 'https://league-management.herokuapp.com/search'
-      : 'http://localhost:4000/search';
+  endpoint = '/search'
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -81,16 +79,9 @@ class Search extends React.Component {
           </IconButton>
         </Paper>
         {this.state.leagues.map(league => (
-          <li key={league.id}>
-            League:
+          <Link to='/schedule' key={league.id}>
             {league.name}
-            <br />
-            League Creator: First Name:
-            {league.first_name}
-            <br />
-            Last Name:  
-            {league.last_name}
-          </li>
+          </Link>
         ))}
       </>
     );
