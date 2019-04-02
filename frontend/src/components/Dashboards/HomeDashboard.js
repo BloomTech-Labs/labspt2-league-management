@@ -10,6 +10,10 @@ class HomeDashboard extends Component {
     coach: false,
     chooseLeague: false
   };
+// componentDidMount() {
+//   // this.props.context.getTeams();
+//   // this.props.context.getLeagues();
+// }
 
   displayBilling = e => {
     e.preventDefault();

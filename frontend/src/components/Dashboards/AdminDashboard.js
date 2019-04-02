@@ -6,6 +6,7 @@ import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
+import { withRouter } from "react-router";
 
 class AdminDashboard extends Component {
   state = {
@@ -16,6 +17,9 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
+    leagueId: this.props.location.state.leagueId,
+    leagueIndex: this.props.location.state.leagueIndex,
+    leagueName: this.props.location.state.leagueName,
     id: this.props.id
   };
 
@@ -39,7 +43,7 @@ class AdminDashboard extends Component {
       editSchedule,
       cancellationRequests
     } = this.state;
-    console.log('this.state.id check in AdminDashboard', this.state)
+    console.log('this.state check in AdminDashboard', this.state);
     return (
       <AppContext.Consumer>
         {context => (
@@ -67,4 +71,4 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+export default withRouter(AdminDashboard);

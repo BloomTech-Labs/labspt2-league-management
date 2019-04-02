@@ -23,7 +23,7 @@ class HomeDrawer extends Component {
 
   selectLeague = () => {
     this.props.handleClose();
-    this.setState({ expandLeagues: false, leagueId: this.id });
+    this.setState({ expandLeagues: false, leagueId: this.id, leagueIndex: this.leagueIndex });
   };
 
   selectTeam = () => {
@@ -55,16 +55,33 @@ class HomeDrawer extends Component {
         <Divider />
         <Collapse in={this.state.expandLeagues} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {leagues.map(league => (
+            {leagues.map((league, index) => (
               <>
-                <Link to="/dashboard/admin">
+                <Link to={{
+                  pathname:"/dashboard/admin",
+                  state: {
+                    leagueId: league.id,
+                    leagueName: league.name,
+                    leagueIndex: index
+                  }  
+                }}>
                   <ListItem
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
                     id={league.id}
+                    leagueIndex={index}
                   >
-                    <ListItemText id={league.id} primary={league.name} />
+                    {/* <ListItemText id={league.id} primary={league.name} /> */}
+                    <ListItemText id={league.id} leagueIndex={index} primary={league.name}/>
+
+{/* <Link to={{
+  pathname: '/tylermcginnis',
+  state: {
+    fromNotifications: true
+  }
+}}>Tyler McGinnis</Link> */}
+
                   </ListItem>
                 </Link>
                 <Divider />
