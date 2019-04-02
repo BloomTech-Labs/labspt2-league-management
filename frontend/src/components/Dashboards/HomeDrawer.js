@@ -23,7 +23,7 @@ class HomeDrawer extends Component {
 
   selectLeague = () => {
     this.props.handleClose();
-    this.setState({ expandLeagues: false, leagueId: this.id, leagueIndex: this.leagueIndex });
+    this.setState({ expandLeagues: false });
   };
 
   selectTeam = () => {
@@ -69,19 +69,8 @@ class HomeDrawer extends Component {
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
-                    id={league.id}
-                    leagueIndex={index}
                   >
-                    {/* <ListItemText id={league.id} primary={league.name} /> */}
                     <ListItemText id={league.id} leagueIndex={index} primary={league.name}/>
-
-{/* <Link to={{
-  pathname: '/tylermcginnis',
-  state: {
-    fromNotifications: true
-  }
-}}>Tyler McGinnis</Link> */}
-
                   </ListItem>
                 </Link>
                 <Divider />

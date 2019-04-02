@@ -58,8 +58,8 @@ export default class AppProvider extends Component {
     ],
     leagues: [],
     teams: [],
-    leagueId: 999999999,
-    teamId: 99999999
+    leagueId: 0,
+    teamId: 0
   };
 
   render() {
@@ -101,18 +101,6 @@ export default class AppProvider extends Component {
               .catch(err => {
                 console.log('error from getLeagues', err);
               });
-          },
-          getLeagueId: () => {
-            const endpoint = `/leagues/${this.state.leagueId}`;
-            axios
-              .get(endpoint)
-              .then(res => {
-                this.setState({ leagues: res.data });
-              })
-              .catch(err => {
-                console.log('error from getLeagues', err);
-              });
-            console.log('getLeagueId check in AppContext', this.state.leagueId);
           },
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();

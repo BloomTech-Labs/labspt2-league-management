@@ -43,7 +43,6 @@ class AdminDashboard extends Component {
       editSchedule,
       cancellationRequests
     } = this.state;
-    console.log('this.state check in AdminDashboard', this.state);
     return (
       <AppContext.Consumer>
         {context => (
