@@ -57,11 +57,13 @@ export default class AppProvider extends Component {
       }
     ],
     leagues: [],
-    teams: []
+    teams: [],
+    leagueId: 0,
+    teamId: 0
   };
 
   render() {
-    const { events, leagues, teams } = this.state;
+    const { events } = this.state;
 
     return (
       <AppContext.Provider
@@ -100,7 +102,6 @@ export default class AppProvider extends Component {
                 console.log('error from getLeagues', err);
               });
           },
-
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/teams';

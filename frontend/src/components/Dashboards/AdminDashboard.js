@@ -5,6 +5,8 @@ import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
+import axios from 'axios';
+import { withRouter } from "react-router";
 
 class AdminDashboard extends Component {
   state = {
@@ -14,7 +16,11 @@ class AdminDashboard extends Component {
     teamList: false,
     leagueSettings: false,
     editSchedule: false,
-    cancellationRequests: false
+    cancellationRequests: false,
+    leagueId: this.props.location.state.leagueId,
+    leagueIndex: this.props.location.state.leagueIndex,
+    leagueName: this.props.location.state.leagueName,
+    id: this.props.id
   };
 
   displayAdminContent = e => {
@@ -64,4 +70,4 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+export default withRouter(AdminDashboard);
