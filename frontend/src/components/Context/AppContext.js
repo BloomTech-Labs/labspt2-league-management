@@ -56,6 +56,7 @@ export default class AppProvider extends Component {
         location: 'Park'
       }
     ],
+    league_index: -1,
     leagues: [],
     teams: []
   };
@@ -82,6 +83,36 @@ export default class AppProvider extends Component {
           },
           signOut: () => {
             this.setState({ loggedIn: false });
+          },
+          createLeague: leagueName => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = '/leagues';
+            let league = {
+              name: leagueName
+            };
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, league, options)
+              .then(res => {
+                league = res.body;
+                const joined = this.state.leagues.concat(league);
+                const index = joined.length - 1;
+                console.log(joined);
+                console.log(joined.length);
+                this.setState({
+                  league_index: index,
+                  leagues: joined
+                });
+                return index;
+              })
+              .catch(err => {
+                console.log('error from createLeague', err);
+                return -1;
+              });
           },
           getLeagues: () => {
             const token = localStorage.getItem('jwt') || this.signOut();

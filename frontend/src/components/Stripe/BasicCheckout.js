@@ -1,49 +1,31 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
+import { AppContext } from '../Context/AppContext';
+
 class BasicCheckout extends Component {
   onToken = token => {
-    const league = {
-      name: null,
-      admin_user_id: null
-    };
     const jwt = localStorage.getItem('jwt') || this.props.context.signOut();
     const options = {
       headers: {
         authorization: jwt
       }
     };
-    // console.log('basic token', token);
-    const endpoint =
-      process.env.NODE_ENV === 'production'
-        ? 'https://league-management.herokuapp.com'
-        : 'http://localhost:4000';
+
+    const endpoint = '/stripe/billing';
 
     axios
-      .post(`${endpoint}/stripe/billing`, token)
+      .post(endpoint, token)
       .then(res => {
-        console.log(res.data);
-        console.log(league);
-        // axios.post to create the new league {this.props.leagueName}
-        axios
-          .post(
-            `${endpoint}/leagues`,
-            {
-              ...league,
-              name: this.props.leagueName
-            },
-            options
-          )
-          .then(res => {
-            this.props.close();
-            console.log(res);
-            this.props.history.push('/league/setup');
-          })
-          .catch(err => {
-            console.log('Error creating a new league', err);
-          });
+        const index = this.context.createLeague(this.props.leagueName);
+        if (index !== -1) {
+          this.props.close();
+          this.props.history.push('/league/setup');
+        } else {
+          console.log('Error creating a new league');
+        }
       })
       .catch(err => {
         console.log('Error in axios call to backend', err);
@@ -64,5 +46,7 @@ class BasicCheckout extends Component {
     );
   }
 }
+
+BasicCheckout.contextType = AppContext;
 
 export default withRouter(BasicCheckout);
