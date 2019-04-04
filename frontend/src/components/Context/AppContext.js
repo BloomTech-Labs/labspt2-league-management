@@ -57,8 +57,8 @@ export default class AppProvider extends Component {
       }
     ],
     league_index: -1,
-    leagues: [], // get from local storage or ge
-    teams: [],
+    leagues: localStorage.getItem('leagues') || [], // get from local storage or ge
+    teams: localStorage.getItem('teams') || [],
     leagueId: 0,
     teamId: 0
   };

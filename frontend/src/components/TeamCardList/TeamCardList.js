@@ -6,19 +6,16 @@ import TeamCard from './TeamCard.js';
 import NewTeamCard from './NewTeamCard.js';
 import AppContext from '../Context/AppContext';
 
-
 class TeamCardList extends React.Component {
   state = {
-    leagues: this.props.context.state.leagues,
+    leagues: this.props.context.state.leagues
   };
-
 
   componentDidMount() {
     // Need to add pull route
     // axios.get() data from Admin User Login - League Id - Team Ids in league
-
   }
-  
+
   render() {
     console.log('context check in TeamCardList', this.props.context);
     return (
@@ -40,13 +37,13 @@ class TeamCardList extends React.Component {
                 />
               </Grid>
             ))}
-            <Grid item>
+            {/* <Grid item>
               <NewTeamCard />
-            </Grid>
+            </Grid> */}
           </Grid>
 
-                    <Grid container justify="center" spacing={16}>
-{this.state.leagues.map(team => (
+          <Grid container justify="center" spacing={16}>
+            {this.state.leagues.map(team => (
               <Grid key={team} item>
                 <TeamCard
                   team={team}
@@ -61,11 +58,10 @@ class TeamCardList extends React.Component {
                 />
               </Grid>
             ))}
-            <Grid item>
+            {/* <Grid item>
               <NewTeamCard />
-            </Grid>
+            </Grid> */}
           </Grid>
-
         </Grid>
       </Grid>
     );
