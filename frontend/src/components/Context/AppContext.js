@@ -57,7 +57,7 @@ export default class AppProvider extends Component {
       }
     ],
     league_index: -1,
-    leagues: [],
+    leagues: [], // get from local storage or ge
     teams: [],
     leagueId: 0,
     teamId: 0
@@ -86,7 +86,7 @@ export default class AppProvider extends Component {
           signOut: () => {
             this.setState({ loggedIn: false });
           },
-          createLeague: leagueName => {
+          createLeague: (leagueName, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/leagues';
             let league = {
@@ -109,7 +109,7 @@ export default class AppProvider extends Component {
                   league_index: index,
                   leagues: joined
                 });
-                return index;
+                cb(index);
               })
               .catch(err => {
                 console.log('error from createLeague', err);
@@ -128,6 +128,7 @@ export default class AppProvider extends Component {
               .get(endpoint, options)
               .then(res => {
                 this.setState({ leagues: res.data });
+                // local storage set item to leagues (use json stringify)
               })
               .catch(err => {
                 console.log('error from getLeagues', err);

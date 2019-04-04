@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppContext } from '../Context/AppContext';
-import Navbar from '../Dashboards/Navbar';import PropTypes from "prop-types";
+import DashboardNavbar from '../Dashboards/DashboardNavbar';
+import PropTypes from "prop-types";
 // import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 // import FormLabel from "@material-ui/core/FormLabel";
@@ -53,15 +54,16 @@ class SetupLeagueForm extends Component {
   render() {
     return (
     <div>
-      <Navbar
+      <DashboardNavbar
         data={this.state}
         displayAdminContent={this.displayAdminContent}
         context={this.context}
       />
       <br />
       <br />
-      <br /><div>
-          <Paper square>
+      <br />
+      {/* <div> */}
+          {/* <Paper square>
             <Tabs
               value={this.state.leagueType}
               indicatorColor="primary"
@@ -221,7 +223,7 @@ class SetupLeagueForm extends Component {
 
         <div>
           <Button variant="contained" color="primary" onClick={this.generateSchedule}>Generate Schedule</Button>
-        </div>
+        </div> */}
     </div>
     );
   }

@@ -19,13 +19,14 @@ class BasicCheckout extends Component {
     axios
       .post(endpoint, token)
       .then(res => {
-        const index = this.context.createLeague(this.props.leagueName);
+        const index = this.context.createLeague(this.props.leagueName, (index) => {
         if (index !== -1) {
           this.props.close();
           this.props.history.push('/league/setup');
         } else {
           console.log('Error creating a new league');
         }
+      });
       })
       .catch(err => {
         console.log('Error in axios call to backend', err);
