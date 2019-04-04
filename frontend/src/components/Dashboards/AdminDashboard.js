@@ -17,10 +17,9 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
-    leagueId: this.props.location.state.leagueId,
     leagueIndex: this.props.location.state.leagueIndex,
-    leagueName: this.props.location.state.leagueName,
-    id: this.props.id
+    leagues: this.props.context.state.leagues,
+    leagueInfo: this.props.context.state.leagues[this.props.location.state.leagueIndex]
   };
 
   displayAdminContent = e => {
@@ -41,8 +40,16 @@ class AdminDashboard extends Component {
       teamList,
       leagueSettings,
       editSchedule,
-      cancellationRequests
+      cancellationRequests,
+      leagueInfo
     } = this.state;
+    console.log('Grabbing individual league info in AdminDashboard', this.state.leagueIndex);
+    console.log('Test 2', this.props.context.state.leagues[this.props.location.state.leagueIndex]);
+    console.log('league State in AdminDashboard', this.props.context.state.leagues);
+    console.log('TestRun getLeagueInfo', leagueInfo);
+    console.log('leagues', this.state.leagues);
+    // this.getLeagueInfo();
+    console.log('TestRun #2', this.state.leagueInfo);
     return (
       <AppContext.Consumer>
         {context => (
@@ -57,8 +64,10 @@ class AdminDashboard extends Component {
                 margin: '100px 40px 20px 280px'
               }}
             >
-              {calendar && <PublicCalendar context={context} />}
-              {teamList && <TeamCardList context={context} />}
+              {calendar && <PublicCalendar context={context} leagueInfo={this.state.leagueInfo} />}
+              {teamList && <TeamCardList 
+              // context={context} 
+              />}
               {leagueSettings && <CreateLeague context={context} />}
               {editSchedule && <DnDCalendar context={context} />}
               {cancellationRequests && <div>Cancellation Requests</div>}

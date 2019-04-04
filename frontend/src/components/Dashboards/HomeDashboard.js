@@ -18,6 +18,7 @@ class HomeDashboard extends Component {
 
   render() {
     const { chooseLeague } = this.state;
+    console.log('Home Drawer context check', this.props.context.state);
     return (
       <>
         <DashboardNavbar
