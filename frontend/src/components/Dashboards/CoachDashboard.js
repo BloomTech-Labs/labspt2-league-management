@@ -21,23 +21,25 @@ class CoachDashboard extends Component {
   render() {
     const { calendar, dashboard } = this.state;
     return (
-      <AppContext.Consumer>
-        {context => (
-          <>
-            <DashboardNavbar
-              data={this.state}
-              displayCoachContent={this.displayCoachContent}
-              context={context}
-            />
-            <div style={{ margin: '100px 80px 20px 280px' }}>
-              {calendar && <CoachCalendar context={context} />}
-              {dashboard && <div>Dashboard</div>}
-            </div>
-          </>
-        )}
-      </AppContext.Consumer>
+      // <AppContext.Consumer>
+      //   {context => (
+      <>
+        <DashboardNavbar
+          data={this.state}
+          displayCoachContent={this.displayCoachContent}
+          // context={context}
+        />
+        <div style={{ margin: '100px 80px 20px 280px' }}>
+          {calendar && <CoachCalendar context={this.context} />}
+          {dashboard && <div>Dashboard</div>}
+        </div>
+      </>
     );
+    //   </AppContext.Consumer>
+    // );
   }
 }
+
+CoachDashboard.contextType = AppContext;
 
 export default CoachDashboard;

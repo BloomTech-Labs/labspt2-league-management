@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Billing from './Billing/Billing';
+import { AppContext } from './Context/AppContext';
 // import WeatherWidget from './Weather/WeatherWidget';
 
 class LandingPage extends Component {
   componentDidMount() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const token = localStorage.getItem('jwt') || this.context.signOut();
     let username = null;
     if (token) {
       const decoded = jwt_decode(token);
       username = decoded.username;
       // console.log('decoded jwt: ', decoded);
-      this.props.context.signedIn(username);
+      this.context.signedIn(username);
     }
   }
 
   render() {
-    const { username, loggedIn } = this.props.context.state;
+    const { username, loggedIn } = this.context.state;
     // const { login } = this.props.context;
     // console.log(this.props.context);
     if (!loggedIn) {
@@ -45,5 +46,7 @@ class LandingPage extends Component {
     );
   }
 }
+
+LandingPage.contextType = AppContext;
 
 export default LandingPage;

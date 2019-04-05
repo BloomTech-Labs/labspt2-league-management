@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
 class BasicCheckout extends Component {
+  state = {
+    created: false
+  };
   onToken = token => {
     const league = {
       name: null,
@@ -36,8 +40,9 @@ class BasicCheckout extends Component {
           )
           .then(res => {
             this.props.close();
+            this.setState({ created: true });
             // console.log(res);
-            window.location.reload();
+            // window.location.reload();
           })
           .catch(err => {
             console.log('Error creating a new league', err);
@@ -49,6 +54,9 @@ class BasicCheckout extends Component {
   };
 
   render() {
+    if (this.state.created) {
+      return <Redirect to="/dashboard/admin/setup" />;
+    }
     return (
       <StripeCheckout
         stripeKey="pk_test_VcEhOLfFL76sBbdyEX8npTmN"

@@ -6,7 +6,7 @@ import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 
 class AdminDashboard extends Component {
   state = {
@@ -17,10 +17,10 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
-    leagueId: this.props.location.state.leagueId,
-    leagueIndex: this.props.location.state.leagueIndex,
-    leagueName: this.props.location.state.leagueName,
-    id: this.props.id
+    leagueId: this.context.location.state.leagueId,
+    leagueIndex: this.context.location.state.leagueIndex,
+    leagueName: this.context.location.state.leagueName,
+    id: this.context.id
   };
 
   displayAdminContent = e => {
@@ -44,30 +44,32 @@ class AdminDashboard extends Component {
       cancellationRequests
     } = this.state;
     return (
-      <AppContext.Consumer>
-        {context => (
-          <>
-            <DashboardNavbar
-              data={this.state}
-              displayAdminContent={this.displayAdminContent}
-              context={context}
-            />
-            <div
-              style={{
-                margin: '100px 40px 20px 280px'
-              }}
-            >
-              {calendar && <PublicCalendar context={context} />}
-              {teamList && <TeamCardList context={context} />}
-              {leagueSettings && <CreateLeague context={context} />}
-              {editSchedule && <DnDCalendar context={context} />}
-              {cancellationRequests && <div>Cancellation Requests</div>}
-            </div>
-          </>
-        )}
-      </AppContext.Consumer>
+      // <AppContext.Consumer>
+      //   {context => (
+      <>
+        <DashboardNavbar
+          data={this.state}
+          displayAdminContent={this.displayAdminContent}
+          // context={context}
+        />
+        <div
+          style={{
+            margin: '100px 40px 20px 280px'
+          }}
+        >
+          {calendar && <PublicCalendar context={this.context} />}
+          {teamList && <TeamCardList context={this.context} />}
+          {leagueSettings && <CreateLeague context={this.context} />}
+          {editSchedule && <DnDCalendar context={this.context} />}
+          {cancellationRequests && <div>Cancellation Requests</div>}
+        </div>
+      </>
+      //   )}
+      // </AppContext.Consumer>
     );
   }
 }
+
+AdminDashboard.contextType = AppContext;
 
 export default withRouter(AdminDashboard);

@@ -90,7 +90,7 @@ const styles = theme => ({
   }
 });
 
-class MenuAppBar extends React.Component {
+class DashboardNavbar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
@@ -103,11 +103,11 @@ class MenuAppBar extends React.Component {
   static contextType = AppContext;
 
   componentDidMount() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const token = localStorage.getItem('jwt') || this.context.signOut();
     if (token) {
-      this.props.context.signin();
-      this.props.context.getTeams();
-      this.props.context.getLeagues();
+      this.context.signin();
+      this.context.getTeams();
+      this.context.getLeagues();
     }
 
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
@@ -147,7 +147,7 @@ class MenuAppBar extends React.Component {
   logout = () => {
     localStorage.removeItem('jwt');
     this.setState({ logout: true });
-    this.props.context.signOut();
+    this.context.signOut();
   };
 
   render() {
@@ -181,7 +181,6 @@ class MenuAppBar extends React.Component {
             displayAdminContent={this.props.displayAdminContent}
             leagues={this.context.state.leagues}
             teams={this.context.state.teams}
-
           />
         )}
         {coach && !admin && (
@@ -214,17 +213,13 @@ class MenuAppBar extends React.Component {
                 League Management
               </Link>
             </Typography>
-            <AppContext.Consumer>
-              {context => (
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  className={classes.grow}
-                >
-                  {context.state.username}
-                </Typography>
-              )}
-            </AppContext.Consumer>
+            {/* <AppContext.Consumer>
+              {context => ( */}
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              {this.context.state.username}
+            </Typography>
+            {/* )}
+            </AppContext.Consumer> */}
             <WeatherWidget />
             <Link to="/dashboard">
               <Button
@@ -305,9 +300,11 @@ class MenuAppBar extends React.Component {
   }
 }
 
-MenuAppBar.propTypes = {
+DashboardNavbar.contextType = AppContext;
+
+DashboardNavbar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(MenuAppBar);
+export default withStyles(styles, { withTheme: true })(DashboardNavbar);
