@@ -1,7 +1,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('league', league => {
     league.increments();
-    league.string('name').notNullable();
+    league.string('name')
+      .notNullable()
+      .unique();
     league
       .integer('admin_user_id')
       .unsigned()
@@ -10,14 +12,6 @@ exports.up = function(knex, Promise) {
     //   .foreign('admin_user_id')
     //   .references('id')
     //   .inTable('users')
-    //   .onDelete('cascade');
-    league
-      .integer('league_type_id')
-      .unsigned()
-    // league
-    //   .foreign('league_type_id')
-    //   .references('id')
-    //   .inTable('league_type')
     //   .onDelete('cascade');
     league.integer('teams_game_count');
     league.datetime('game_length');
