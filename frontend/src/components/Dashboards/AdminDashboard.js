@@ -6,7 +6,7 @@ import { AppContext } from '../Context/AppContext';
 import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 
 class AdminDashboard extends Component {
   state = {

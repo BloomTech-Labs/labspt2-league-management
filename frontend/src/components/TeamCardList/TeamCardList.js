@@ -1,23 +1,16 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-
-import axios from 'axios';
 import TeamCard from './TeamCard.js';
-import NewTeamCard from './NewTeamCard.js';
-import AppContext from '../Context/AppContext';
+// import NewTeamCard from './NewTeamCard.js';
+import { AppContext } from '../Context/AppContext';
+import LeagueSetupTeams from '../LeagueSetupTeams/LeagueSetupTeams';
 
 class TeamCardList extends React.Component {
   state = {
-    leagues: this.props.context.state.leagues
+    leagues: this.context.state.leagues
   };
 
-  componentDidMount() {
-    // Need to add pull route
-    // axios.get() data from Admin User Login - League Id - Team Ids in league
-  }
-
   render() {
-    console.log('context check in TeamCardList', this.props.context);
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
@@ -44,6 +37,7 @@ class TeamCardList extends React.Component {
 
           <Grid container justify="center" spacing={16}>
             {this.state.leagues.map(team => (
+              // {this.state.leagues.leagueIndex(somethingLikeThis).teams.map(team => ();
               <Grid key={team} item>
                 <TeamCard
                   team={team}
@@ -62,6 +56,7 @@ class TeamCardList extends React.Component {
               <NewTeamCard />
             </Grid> */}
           </Grid>
+          <LeagueSetupTeams />
         </Grid>
       </Grid>
     );

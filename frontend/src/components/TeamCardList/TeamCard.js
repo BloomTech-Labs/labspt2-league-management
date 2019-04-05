@@ -136,6 +136,7 @@ class TeamCard extends React.Component {
     //     let teamNameShort = this.state.name;
     // if(teamNameShort.length > 12) { teamNameShort = teamNameShort.substring(0,11)}
     // This will keep team name from Breaking Card styling by Showing Only first 12 characters for team Name without altering team name.
+
     return (
       <div>
         <ReactCardFlip
@@ -154,7 +155,7 @@ class TeamCard extends React.Component {
                 {/* {teamNameShort} */}
                 <div>
                   <EditIcon onClick={this.ClickHandler} />
-                  <DeleteIcon onClick={this.deletePopUp} />
+                  {/* <DeleteIcon onClick={this.deletePopUp} /> */}
                 </div>
               </Typography>
               <Typography className={classes.p}>
@@ -251,6 +252,7 @@ class TeamCard extends React.Component {
                 </FormControl>
               </form>
             </CardContent>
+
             <CardActions>
               <Button
                 size="large"
@@ -264,12 +266,12 @@ class TeamCard extends React.Component {
             </CardActions>
           </Card>
         </ReactCardFlip>
-        {this.state.delete ? (
+        {/* {this.state.delete ? (
           <DeleteModal
             delete={this.deleteCard}
             closeButton={this.closeButton}
           />
-        ) : null}
+        ) : null} */}
       </div>
     );
   }
