@@ -9,8 +9,6 @@ import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
 import AppContext from '../Context/AppContext';
 
-
-
 class HomeDrawer extends Component {
   state = {
     expandLeagues: false,
@@ -57,20 +55,26 @@ class HomeDrawer extends Component {
           <List component="div" disablePadding>
             {leagues.map((league, index) => (
               <>
-                <Link to={{
-                  pathname:"/dashboard/admin",
-                  state: {
-                    leagueId: league.id,
-                    leagueName: league.name,
-                    leagueIndex: index
-                  }  
-                }}>
+                <Link
+                  to={{
+                    pathname: '/dashboard/admin',
+                    state: {
+                      // leagueId: league.id,
+                      // leagueName: league.name,
+                      leagueIndex: index
+                    }
+                  }}
+                >
                   <ListItem
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
                   >
-                    <ListItemText id={league.id} leagueIndex={index} primary={league.name}/>
+                    <ListItemText
+                      id={league.id}
+                      leagueIndex={index}
+                      primary={league.name}
+                    />
                   </ListItem>
                 </Link>
                 <Divider />

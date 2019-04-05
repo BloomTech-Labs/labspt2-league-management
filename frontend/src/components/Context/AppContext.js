@@ -56,10 +56,10 @@ export default class AppProvider extends Component {
         location: 'Park'
       }
     ],
-    leagues: [],
-    teams: [],
-    leagueId: 0,
-    teamId: 0
+    leagues: JSON.parse(localStorage.getItem('leagues')) || [],
+    teams: JSON.parse(localStorage.getItem('teams')) || []
+    // leagueId: 0,
+    // teamId: 0
   };
 
   render() {
@@ -96,7 +96,8 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
-                this.setState({ leagues: res.data });
+                // this.setState({ leagues: res.data });
+                localStorage.setItem('leagues', JSON.stringify(res.data));
               })
               .catch(err => {
                 console.log('error from getLeagues', err);
@@ -113,7 +114,8 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
-                this.setState({ teams: res.data });
+                // this.setState({ teams: res.data });
+                localStorage.setItem('teams', JSON.stringify(res.data));
               })
               .catch(err => {
                 console.log('error from getTeams', err);
@@ -134,6 +136,38 @@ export default class AppProvider extends Component {
             // console.log('global events:', this.state.events);
             // do a put request to update the events on the DB
             // const updateDB = await axios.put()
+          },
+          createLeague: (leagueName, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = '/leagues';
+            let league = {
+              name: leagueName
+            };
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, league, options)
+              .then(res => {
+                console.log(res.data);
+                league = res.data;
+                const joined = this.state.leagues.concat(league);
+                const index = joined.length - 1;
+                localStorage.setItem('leagues', JSON.stringify(joined));
+                // console.log(joined);
+                // console.log(joined.length);
+                // this.setState({
+                //   league_index: index,
+                //   leagues: joined
+                // });
+                cb(index);
+              })
+              .catch(err => {
+                console.log('error from createLeague', err);
+                return -1;
+              });
           }
         }}
       >

@@ -45,7 +45,8 @@ function getStepContent(step) {
 class HorizontalLinearStepper extends React.Component {
   state = {
     activeStep: 0,
-    skipped: new Set()
+    skipped: new Set(),
+    leagueIndex: this.props.location.state.leagueIndex
   };
 
   isStepOptional = step => step === -1;
@@ -102,6 +103,7 @@ class HorizontalLinearStepper extends React.Component {
     const steps = getSteps();
     const { activeStep } = this.state;
 
+    console.log(this.state.leagueIndex);
     return (
       <>
         <Navbar />

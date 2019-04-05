@@ -17,10 +17,10 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
-    leagueId: this.context.location.state.leagueId,
-    leagueIndex: this.context.location.state.leagueIndex,
-    leagueName: this.context.location.state.leagueName,
-    id: this.context.id
+    // leagueId: this.props.location.state.leagueId,
+    leagueIndex: this.props.location.state.leagueIndex
+    // leagueName: this.context.state.leagueName
+    // id: this.context.id
   };
 
   displayAdminContent = e => {
@@ -36,6 +36,9 @@ class AdminDashboard extends Component {
   };
 
   render() {
+    // const { leagueIndex } = this.state;
+    console.log(this.context.state.leagues);
+    console.log(this.context.state.leagues[this.state.leagueIndex]);
     const {
       calendar,
       teamList,
