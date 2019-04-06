@@ -96,8 +96,8 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
-                // this.setState({ leagues: res.data });
                 localStorage.setItem('leagues', JSON.stringify(res.data));
+                this.setState({ leagues: res.data });
               })
               .catch(err => {
                 console.log('error from getLeagues', err);
@@ -114,8 +114,8 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
-                // this.setState({ teams: res.data });
                 localStorage.setItem('teams', JSON.stringify(res.data));
+                this.setState({ teams: res.data });
               })
               .catch(err => {
                 console.log('error from getTeams', err);

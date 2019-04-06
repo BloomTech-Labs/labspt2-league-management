@@ -28,8 +28,8 @@ exports.up = function(knex, Promise) {
     //   .references('id')
     //   .inTable('team')
     //   .onDelete('cascade');
-    game.datetime('start_time');
-    game.datetime('end_time');
+    game.string('start_time');
+    game.string('end_time');
     game.integer('location_id').unsigned();
     // game
     //   .foreign('location_id')
