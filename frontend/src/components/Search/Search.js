@@ -8,6 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Divider from '@material-ui/core/Divider';
+import SearchResults from './SearchResults';
 
 const styles = {
   root: {
@@ -62,6 +63,7 @@ class Search extends React.Component {
     const { classes } = this.props;
     return (
       <>
+      <form onSubmit={this.handleSearch}>
         <Paper className={classes.root} elevation={1}>
           <InputBase
             className={classes.input}
@@ -72,7 +74,7 @@ class Search extends React.Component {
           <Divider className={classes.divider} />
           <IconButton
             className={classes.iconButton}
-            onClick={this.handleSearch}
+            type="submit"
             aria-label="Search"
           >
             <SearchIcon />
@@ -83,6 +85,8 @@ class Search extends React.Component {
             {league.name}
           </Link>
         ))}
+      </form>
+      <SearchResults />
       </>
     );
   }
