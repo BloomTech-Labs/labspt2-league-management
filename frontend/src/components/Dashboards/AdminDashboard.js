@@ -3,7 +3,8 @@ import DashboardNavbar from './DashboardNavbar';
 import PublicCalendar from '../Calendars/PublicCalendar';
 import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
-import CreateLeague from '../Admin/CreateLeague';
+// import CreateLeague from '../Admin/CreateLeague';
+import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings'
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
 import { withRouter } from 'react-router';
@@ -62,7 +63,7 @@ class AdminDashboard extends Component {
         >
           {calendar && <PublicCalendar context={this.context} />}
           {teamList && <TeamCardList context={this.context} />}
-          {leagueSettings && <CreateLeague context={this.context} />}
+          {leagueSettings && <LeagueSetupSettings context={this.context} />}
           {editSchedule && <DnDCalendar context={this.context} />}
           {cancellationRequests && <div>Cancellation Requests</div>}
         </div>

@@ -10,6 +10,7 @@ import CreateLeague from './CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
+import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
 
 const styles = theme => ({
   root: {
@@ -32,7 +33,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <CreateLeague />;
+      return <LeagueSetupSettings />;
     case 1:
       return <TeamCardList />;
     case 2:
