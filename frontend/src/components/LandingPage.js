@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Billing from './Billing/Billing';
 import Search from './Search/Search';
+import SearchForm from './Search/SearchForm';
 // import WeatherWidget from './Weather/WeatherWidget';
 
 class LandingPage extends Component {
@@ -28,6 +29,7 @@ class LandingPage extends Component {
           {/* <WeatherWidget /> */}
           <div>App Name</div>
           <Search />
+          <SearchForm />
           <Link to={'/signin'}>Sign In</Link>
           <br />
           <Link to={'/signup'}>Sign Up</Link>
