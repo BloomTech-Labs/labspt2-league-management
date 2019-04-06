@@ -55,7 +55,7 @@ class LeagueSetupSettings extends Component {
     console.log(this.state);
     return (
       <div>
-        <h1>{this.state.name}</h1>
+        <h1>{this.props.settings.name}</h1>
 
         <div>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
