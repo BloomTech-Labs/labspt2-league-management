@@ -64,15 +64,16 @@ router.get('/:lid', (req, res) => {
 router.put('/:lid', (req, res) => {
   const { lid } = req.params;
   const league = req.body;
-  if (league.name && league.admin_user_id && league.type) {
+  league.admin_user_id = req.user.id;
+  if (league.name && league.admin_user_id) {
     leagueModel
       .update(lid, league)
       .then(updatedLeague => {
         if (updatedLeague) {
           leagueModel
             .findById(lid)
-            .then(leagues => {
-              res.json(leagues);
+            .then(league => {
+              res.json(league);
             })
             .catch(err => {
               res

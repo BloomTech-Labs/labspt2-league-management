@@ -2,6 +2,7 @@ import 'date-fns';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -9,6 +10,7 @@ import {
   TimePicker,
   DatePicker
 } from 'material-ui-pickers';
+import { AppContext } from '../Context/AppContext';
 
 const styles = theme => ({
   root: {
@@ -51,11 +53,22 @@ class LeagueSetupSettings extends Component {
     this.setState({ [name]: datetime.toString() });
   };
 
+  componentDidMount() {
+    console.log('LeagueSetupSettings: componentDidMount()');
+    console.log(this.props.index);
+    console.log(this.state);
+    this.setState({
+        name: this.context.state.leagues[this.props.index].name
+    });
+  }
+
   render() {
     console.log(this.state);
+    console.log(this.context);
+    console.log(this.props.index);
     return (
       <div>
-        <h1>{this.props.settings.name}</h1>
+        <h1>{this.state.name}</h1>
 
         <div>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -94,14 +107,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="monday_start_time"
             value={new Date(this.state.monday_start_time)}
-            onChange={date => this.inputDatetimeHandler('monday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('monday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="monday_end_time"
             value={new Date(this.state.monday_end_time)}
-            onChange={date => this.inputDatetimeHandler('monday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('monday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -111,14 +128,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="tuesday_start_time"
             value={new Date(this.state.tuesday_start_time)}
-            onChange={date => this.inputDatetimeHandler('tuesday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('tuesday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="tuesday_end_time"
             value={new Date(this.state.tuesday_end_time)}
-            onChange={date => this.inputDatetimeHandler('tuesday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('tuesday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -128,14 +149,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="wednesday_start_time"
             value={new Date(this.state.wednesday_start_time)}
-            onChange={date => this.inputDatetimeHandler('wednesday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('wednesday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="wednesday_end_time"
             value={new Date(this.state.wednesday_end_time)}
-            onChange={date => this.inputDatetimeHandler('wednesday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('wednesday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -145,14 +170,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="thursday_start_time"
             value={new Date(this.state.thursday_start_time)}
-            onChange={date => this.inputDatetimeHandler('thursday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('thursday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="thursday_end_time"
             value={new Date(this.state.thursday_end_time)}
-            onChange={date => this.inputDatetimeHandler('thursday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('thursday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -162,14 +191,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="friday_start_time"
             value={new Date(this.state.friday_start_time)}
-            onChange={date => this.inputDatetimeHandler('friday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('friday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="friday_end_time"
             value={new Date(this.state.friday_end_time)}
-            onChange={date => this.inputDatetimeHandler('friday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('friday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -179,14 +212,18 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="saturday_start_time"
             value={new Date(this.state.saturday_start_time)}
-            onChange={date => this.inputDatetimeHandler('saturday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('saturday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="saturday_end_time"
             value={new Date(this.state.saturday_end_time)}
-            onChange={date => this.inputDatetimeHandler('saturday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('saturday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -196,20 +233,35 @@ class LeagueSetupSettings extends Component {
             label="Start Time"
             name="sunday_start_time"
             value={new Date(this.state.sunday_start_time)}
-            onChange={date => this.inputDatetimeHandler('sunday_start_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('sunday_start_time', date)
+            }
           />
           <TimePicker
             margin="normal"
             label="End Time"
             name="sunday_end_time"
             value={new Date(this.state.sunday_end_time)}
-            onChange={date => this.inputDatetimeHandler('sunday_end_time', date)}
+            onChange={date =>
+              this.inputDatetimeHandler('sunday_end_time', date)
+            }
           />
         </MuiPickersUtilsProvider>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            this.props.next(this.state, this.props.index);
+          }}
+        >
+          Next
+        </Button>
       </div>
     );
   }
 }
+
+LeagueSetupSettings.contextType = AppContext;
 
 LeagueSetupSettings.propTypes = {
   classes: PropTypes.object.isRequired

@@ -168,6 +168,38 @@ export default class AppProvider extends Component {
                 console.log('error from createLeague', err);
                 return -1;
               });
+          },
+          editLeague: (leagueSettings, index) => {
+            console.log('AppContext: editLeague()');
+            console.log(leagueSettings);
+            console.log(this.state);
+            console.log(index);
+            const lid = this.state.leagues[index].id;
+            console.log(lid);
+
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = `/leagues/${lid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .put(endpoint, leagueSettings, options)
+              .then(res => {
+                const league = res.data;
+                const leagues = this.state.leagues;
+                leagues[index] = league;
+                console.log(localStorage.getItem('leagues'))
+                localStorage.setItem('leagues', JSON.stringify(leagues));
+                console.log(localStorage.getItem('leagues'))
+                this.setState({ leagues });
+                // cb(index);
+              })
+              .catch(err => {
+                console.log('error from createLeague', err);
+                return -1;
+              });
           }
         }}
       >

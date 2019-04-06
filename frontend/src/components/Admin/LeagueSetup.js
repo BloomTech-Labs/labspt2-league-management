@@ -48,32 +48,12 @@ class HorizontalLinearStepper extends React.Component {
     activeStep: 0,
     skipped: new Set(),
     leagueIndex: this.props.location.state.leagueIndex,
-    settings: {
-      name: 'League Name',
-      start_day: 'March 29, 2019 09:30:00', // using date only
-      teams_game_count: 4,
-      game_length: 2,
-      monday_start_time: 'March 29, 2019 09:30:00', // using time only
-      monday_end_time: 'March 29, 2019 09:30:00', // using time only
-      tuesday_start_time: 'March 29, 2019 09:30:00', // using time only
-      tuesday_end_time: 'March 29, 2019 09:30:00', // using time only
-      wednesday_start_time: 'March 29, 2019 09:30:00', // using time only
-      wednesday_end_time: 'March 29, 2019 09:30:00', // using time only
-      thursday_start_time: 'March 29, 2019 09:30:00', // using time only
-      thursday_end_time: 'March 29, 2019 09:30:00', // using time only
-      friday_start_time: 'March 29, 2019 09:30:00', // using time only
-      friday_end_time: 'March 29, 2019 09:30:00', // using time only
-      saturday_start_time: 'March 29, 2019 09:30:00', // using time only
-      saturday_end_time: 'March 29, 2019 09:30:00', // using time only
-      sunday_start_time: 'March 29, 2019 09:30:00', // using time only
-      sunday_end_time: 'March 29, 2019 09:30:00' // using time only
-    }
   };
 
   getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <LeagueSetupSettings save={this.handleNext} index={this.state.leagueIndex} />;
+        return <LeagueSetupSettings next={this.handleNext} index={this.state.leagueIndex} />;
       case 1:
         return <TeamCardList />;
       case 2:
@@ -85,12 +65,12 @@ class HorizontalLinearStepper extends React.Component {
 
   isStepOptional = step => step === -1;
 
-  handleNext = data => {
+  handleNext = (data, index) => {
     const { activeStep } = this.state;
     switch (activeStep) {
       case 0:
         // do something with data
-        this.context.editLeague(data);
+        this.context.editLeague(data, index);
         break;
       case 1:
         break;
@@ -99,15 +79,15 @@ class HorizontalLinearStepper extends React.Component {
       default:
         break;
     }
-    let { skipped } = this.state;
-    if (this.isStepSkipped(activeStep)) {
-      skipped = new Set(skipped.values());
-      skipped.delete(activeStep);
-    }
-    this.setState({
-      activeStep: activeStep + 1,
-      skipped
-    });
+    // let { skipped } = this.state;
+    // if (this.isStepSkipped(activeStep)) {
+    //   skipped = new Set(skipped.values());
+    //   skipped.delete(activeStep);
+    // }
+    // this.setState({
+    //   activeStep: activeStep + 1,
+    //   skipped
+    // });
   };
 
   handleBack = () => {
@@ -142,15 +122,6 @@ class HorizontalLinearStepper extends React.Component {
 
   isStepSkipped(step) {
     return this.state.skipped.has(step);
-  }
-
-  componentDidMount() {
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        name: this.context.state.leagues[this.state.leagueIndex].name
-      }
-    });
   }
 
   render() {
