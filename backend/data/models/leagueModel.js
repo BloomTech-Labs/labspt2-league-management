@@ -1,6 +1,10 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
+  searchLeagues: () => {
+    return db('league');
+  },
+
   getLeaguesByUser: user => {
     return db('league').where('admin_user_id', user.id);
   },
