@@ -12,7 +12,7 @@
 // const styles = theme => ({
 //   main: {
 //     width: 'auto',
-//     display: 'block', 
+//     display: 'block',
 //     width: '100%',
 //     minWidth: '200px',
 //   },
@@ -90,16 +90,77 @@
 
 // export default withStyles(styles)(AddTeamToLeague);
 
+//  ********************************************* VERSION 1.0 *************************************************
+
+// import React from 'react';
+
+// const AddTeamToLeague = props => {
+//     return(
+//         <div>
+//             <input name='name' value={props.name} type='text' placeholder='Team Name' onChange={props.InputHandler} />
+//             <button onClick={props.addTeam}> Add Team </button>
+//         </div>
+//     )
+// }
+
+// export default AddTeamToLeague;
+
+//  ********************************************** VERSION 2.0 ******************************************************
+
 import React from 'react';
+import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Paper from '@material-ui/core/Paper';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { AppContext } from '../Context/AppContext';
+
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block',
+    width: '100%',
+    minWidth: '200px'
+  },
+  form: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  input: {
+    width: '60%',
+    marginRight: '8%'
+  },
+  submit: {
+    width: '20%'
+  }
+});
 
 const AddTeamToLeague = props => {
-    return(
-        <div>
-            <input name='name' value={props.name} type='text' placeholder='Team Name' onChange={props.InputHandler} />
-            <button onClick={props.addTeam}> Add Team </button>
-        </div>
-    )
-}
+  return (
+    <div className={props.classes.main}>
+      <CssBaseline />
+      <form className={props.classes.form} >
+        <FormControl className={props.classes.input} margin="normal" required>
+          <InputLabel htmlFor="name">Team Name</InputLabel>
+          <Input id="name" name="name" value={props.name} placeholder="" onChange={props.InputHandler} autoFocus/>
+        </FormControl>
+        <Button
+          variant="contained"
+          className={props.classes.submit}
+          color="primary"
+          onClick={props.SubmitHandler}
+        >
+          Add Team
+        </Button>
+      </form>
 
+    </div>
+  );
+};
 
-export default AddTeamToLeague;
+export default withStyles(styles)(AddTeamToLeague);

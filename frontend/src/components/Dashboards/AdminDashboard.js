@@ -7,6 +7,8 @@ import CreateLeague from '../Admin/CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import LeagueSetupTeams from '../LeagueSetupTeams/LeagueSetupTeams';
+
 
 class AdminDashboard extends Component {
   state = {
@@ -17,10 +19,10 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
-    leagueId: this.props.location.state.leagueId,
-    leagueIndex: this.props.location.state.leagueIndex,
-    leagueName: this.props.location.state.leagueName,
-    id: this.props.id
+    // leagueId: this.props.location.state.leagueId,
+    // leagueIndex: this.props.location.state.leagueIndex,
+    // leagueName: this.props.location.state.leagueName,
+    // id: this.props.id
   };
 
   displayAdminContent = e => {
@@ -58,10 +60,10 @@ class AdminDashboard extends Component {
               }}
             >
               {calendar && <PublicCalendar context={context} />}
-              {teamList && <TeamCardList context={context} />}
+              {teamList && <TeamCardList />}
               {leagueSettings && <CreateLeague context={context} />}
               {editSchedule && <DnDCalendar context={context} />}
-              {cancellationRequests && <div>Cancellation Requests</div>}
+              {cancellationRequests && <LeagueSetupTeams />}
             </div>
           </>
         )}

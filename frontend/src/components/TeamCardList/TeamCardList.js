@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import TeamCard from './TeamCard.js';
 // import NewTeamCard from './NewTeamCard.js';
 import { AppContext } from '../Context/AppContext';
-import LeagueSetupTeams from '../LeagueSetupTeams/LeagueSetupTeams';
 
 class TeamCardList extends React.Component {
   state = {
@@ -56,7 +55,6 @@ class TeamCardList extends React.Component {
               <NewTeamCard />
             </Grid> */}
           </Grid>
-          <LeagueSetupTeams />
         </Grid>
       </Grid>
     );
