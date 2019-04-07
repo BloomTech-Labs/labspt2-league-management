@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import ChooseLeague from '../CreateLeague/ChooseLeague';
 // import Billing from '../Billing/Billing';
-import AppContext from '../Context/AppContext';
+import { AppContext } from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {

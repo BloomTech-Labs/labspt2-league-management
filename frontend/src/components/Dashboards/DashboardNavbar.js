@@ -106,8 +106,6 @@ class DashboardNavbar extends React.Component {
     const token = localStorage.getItem('jwt') || this.context.signOut();
     if (token) {
       this.context.signin();
-      this.context.getTeams();
-      this.context.getLeagues();
     }
 
     // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.

@@ -132,7 +132,7 @@ router.post('/:lid/teams', (req, res) => {
 
 router.get('/:lid/teams', (req, res) => {
   const { lid } = req.params;
-  leagueModel
+  teamModel
     .getTeamsByLeague(lid)
     .then(teams => {
       res.json(teams);

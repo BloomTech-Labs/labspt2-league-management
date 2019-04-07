@@ -37,9 +37,7 @@ class AdminDashboard extends Component {
   };
 
   render() {
-    // const { leagueIndex } = this.state;
-    console.log(this.context.state.leagues);
-    console.log(this.context.state.leagues[this.state.leagueIndex]);
+    console.log(this.context.teams_by_league);
     const {
       calendar,
       teamList,
