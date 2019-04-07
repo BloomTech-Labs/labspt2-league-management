@@ -141,7 +141,24 @@ export default class AppProvider extends Component {
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/leagues';
             let league = {
-              name: leagueName
+              name: leagueName,
+              start_day: new Date().toString(), // using date only
+              teams_game_count: null,
+              game_length: null,
+              monday_start_time: 'January 1, 2019 17:00:00',
+              monday_end_time: 'January 1, 2019 21:00:00', // using time only
+              tuesday_start_time: 'January 1, 2019 17:00:00', // using time only
+              tuesday_end_time: 'January 1, 2019 21:00:00', // using time only
+              wednesday_start_time: 'January 1, 2019 17:00:00', // using time only
+              wednesday_end_time: 'January 1, 2019 21:00:00', // using time only
+              thursday_start_time: 'January 1, 2019 17:00:00', // using time only
+              thursday_end_time: 'January 1, 2019 21:00:00', // using time only
+              friday_start_time: 'January 1, 2019 17:00:00', // using time only
+              friday_end_time: 'January 1, 2019 21:00:00', // using time only
+              saturday_start_time: 'January 1, 2019 09:00:00', // using time only
+              saturday_end_time: 'January 1, 2019 21:00:00', // using time only
+              sunday_start_time: 'January 1, 2019 09:00:00', // using time only
+              sunday_end_time: 'January 1, 2019 21:00:00' // using time only
             };
             const options = {
               headers: {
@@ -151,31 +168,21 @@ export default class AppProvider extends Component {
             axios
               .post(endpoint, league, options)
               .then(res => {
-                console.log(res.data);
                 league = res.data;
                 const joined = this.state.leagues.concat(league);
                 const index = joined.length - 1;
                 localStorage.setItem('leagues', JSON.stringify(joined));
-                // console.log(joined);
-                // console.log(joined.length);
-                // this.setState({
-                //   league_index: index,
-                //   leagues: joined
-                // });
+                this.setState({
+                  leagues: joined
+                });
                 cb(index);
               })
               .catch(err => {
                 console.log('error from createLeague', err);
-                return -1;
               });
           },
-          editLeague: (leagueSettings, index) => {
-            console.log('AppContext: editLeague()');
-            console.log(leagueSettings);
-            console.log(this.state);
-            console.log(index);
+          editLeague: (leagueSettings, index, cb) => {
             const lid = this.state.leagues[index].id;
-            console.log(lid);
 
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = `/leagues/${lid}`;
@@ -190,15 +197,12 @@ export default class AppProvider extends Component {
                 const league = res.data;
                 const leagues = this.state.leagues;
                 leagues[index] = league;
-                console.log(localStorage.getItem('leagues'))
                 localStorage.setItem('leagues', JSON.stringify(leagues));
-                console.log(localStorage.getItem('leagues'))
                 this.setState({ leagues });
-                // cb(index);
+                cb();
               })
               .catch(err => {
-                console.log('error from createLeague', err);
-                return -1;
+                console.log('error from editLeague', err);
               });
           }
         }}

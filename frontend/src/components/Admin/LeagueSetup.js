@@ -6,7 +6,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import CreateLeague from './CreateLeague';
 import TeamCardList from '../TeamCardList/TeamCardList';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
@@ -30,30 +29,22 @@ function getSteps() {
   return ['Select league settings', 'Add teams to league', 'Generate schedule'];
 }
 
-// function getStepContent(step) {
-//   switch (step) {
-//     case 0:
-//       return <LeagueSetupSettings />;
-//     case 1:
-//       return <TeamCardList />;
-//     case 2:
-//       return 'This is the bit I really care about!';
-//     default:
-//       return 'Unknown step';
-//   }
-// }
-
 class HorizontalLinearStepper extends React.Component {
   state = {
     activeStep: 0,
     skipped: new Set(),
-    leagueIndex: this.props.location.state.leagueIndex,
+    leagueIndex: this.props.location.state.leagueIndex
   };
 
-  getStepContent = (step) => {
+  getStepContent = step => {
     switch (step) {
       case 0:
-        return <LeagueSetupSettings next={this.handleNext} index={this.state.leagueIndex} />;
+        return (
+          <LeagueSetupSettings
+            next={this.handleNext}
+            index={this.state.leagueIndex}
+          />
+        );
       case 1:
         return <TeamCardList />;
       case 2:
@@ -61,16 +52,21 @@ class HorizontalLinearStepper extends React.Component {
       default:
         return 'Unknown step';
     }
-  }
+  };
 
   isStepOptional = step => step === -1;
+
+  nextStep = () => {
+    this.setState({
+      activeStep: this.state.activeStep + 1
+    });
+  };
 
   handleNext = (data, index) => {
     const { activeStep } = this.state;
     switch (activeStep) {
       case 0:
-        // do something with data
-        this.context.editLeague(data, index);
+        this.context.editLeague(data, index, this.nextStep);
         break;
       case 1:
         break;
@@ -79,15 +75,6 @@ class HorizontalLinearStepper extends React.Component {
       default:
         break;
     }
-    // let { skipped } = this.state;
-    // if (this.isStepSkipped(activeStep)) {
-    //   skipped = new Set(skipped.values());
-    //   skipped.delete(activeStep);
-    // }
-    // this.setState({
-    //   activeStep: activeStep + 1,
-    //   skipped
-    // });
   };
 
   handleBack = () => {
@@ -128,7 +115,6 @@ class HorizontalLinearStepper extends React.Component {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
-    console.log(this.state.settings);
     return (
       <>
         <Navbar />

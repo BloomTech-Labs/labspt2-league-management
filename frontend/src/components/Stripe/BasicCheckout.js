@@ -32,7 +32,6 @@ class BasicCheckout extends Component {
         // console.log(res.data);
         // axios.post to create the new league {this.props.leagueName}
         this.context.createLeague(this.props.leagueName, index => {
-          console.log('inside the callback with index: ', index);
           if (index !== -1) {
             this.props.close();
             this.props.history.push({

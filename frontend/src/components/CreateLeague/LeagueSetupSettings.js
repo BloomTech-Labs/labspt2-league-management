@@ -24,23 +24,6 @@ const styles = theme => ({
 class LeagueSetupSettings extends Component {
   state = {
     name: 'League Name',
-    start_day: 'March 29, 2019 09:30:00', // using date only
-    teams_game_count: 4,
-    game_length: 2,
-    monday_start_time: 'March 29, 2019 09:30:00', // using time only
-    monday_end_time: 'March 29, 2019 09:30:00', // using time only
-    tuesday_start_time: 'March 29, 2019 09:30:00', // using time only
-    tuesday_end_time: 'March 29, 2019 09:30:00', // using time only
-    wednesday_start_time: 'March 29, 2019 09:30:00', // using time only
-    wednesday_end_time: 'March 29, 2019 09:30:00', // using time only
-    thursday_start_time: 'March 29, 2019 09:30:00', // using time only
-    thursday_end_time: 'March 29, 2019 09:30:00', // using time only
-    friday_start_time: 'March 29, 2019 09:30:00', // using time only
-    friday_end_time: 'March 29, 2019 09:30:00', // using time only
-    saturday_start_time: 'March 29, 2019 09:30:00', // using time only
-    saturday_end_time: 'March 29, 2019 09:30:00', // using time only
-    sunday_start_time: 'March 29, 2019 09:30:00', // using time only
-    sunday_end_time: 'March 29, 2019 09:30:00' // using time only
   };
 
   inputHandler = event => {
@@ -54,18 +37,10 @@ class LeagueSetupSettings extends Component {
   };
 
   componentDidMount() {
-    console.log('LeagueSetupSettings: componentDidMount()');
-    console.log(this.props.index);
-    console.log(this.state);
-    this.setState({
-        name: this.context.state.leagues[this.props.index].name
-    });
+    this.setState({...this.context.state.leagues[this.props.index]});
   }
 
   render() {
-    console.log(this.state);
-    console.log(this.context);
-    console.log(this.props.index);
     return (
       <div>
         <h1>{this.state.name}</h1>
