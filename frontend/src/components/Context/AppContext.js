@@ -56,10 +56,10 @@ export default class AppProvider extends Component {
         location: 'Park'
       }
     ],
-    leagues: [],
-    teams: [],
-    leagueId: 0,
-    teamId: 0
+    leagues: JSON.parse(localStorage.getItem('leagues')) || [],
+    teams: JSON.parse(localStorage.getItem('teams')) || []
+    // leagueId: 0,
+    // teamId: 0
   };
 
   render() {
@@ -96,6 +96,7 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
+                localStorage.setItem('leagues', JSON.stringify(res.data));
                 this.setState({ leagues: res.data });
               })
               .catch(err => {
@@ -113,6 +114,7 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
+                localStorage.setItem('teams', JSON.stringify(res.data));
                 this.setState({ teams: res.data });
               })
               .catch(err => {
@@ -134,6 +136,74 @@ export default class AppProvider extends Component {
             // console.log('global events:', this.state.events);
             // do a put request to update the events on the DB
             // const updateDB = await axios.put()
+          },
+          createLeague: (leagueName, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = '/leagues';
+            let league = {
+              name: leagueName,
+              start_day: new Date().toString(), // using date only
+              teams_game_count: null,
+              game_length: null,
+              monday_start_time: 'January 1, 2019 17:00:00',
+              monday_end_time: 'January 1, 2019 21:00:00', // using time only
+              tuesday_start_time: 'January 1, 2019 17:00:00', // using time only
+              tuesday_end_time: 'January 1, 2019 21:00:00', // using time only
+              wednesday_start_time: 'January 1, 2019 17:00:00', // using time only
+              wednesday_end_time: 'January 1, 2019 21:00:00', // using time only
+              thursday_start_time: 'January 1, 2019 17:00:00', // using time only
+              thursday_end_time: 'January 1, 2019 21:00:00', // using time only
+              friday_start_time: 'January 1, 2019 17:00:00', // using time only
+              friday_end_time: 'January 1, 2019 21:00:00', // using time only
+              saturday_start_time: 'January 1, 2019 09:00:00', // using time only
+              saturday_end_time: 'January 1, 2019 21:00:00', // using time only
+              sunday_start_time: 'January 1, 2019 09:00:00', // using time only
+              sunday_end_time: 'January 1, 2019 21:00:00' // using time only
+            };
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, league, options)
+              .then(res => {
+                league = res.data;
+                const joined = this.state.leagues.concat(league);
+                const index = joined.length - 1;
+                localStorage.setItem('leagues', JSON.stringify(joined));
+                this.setState({
+                  leagues: joined
+                });
+                cb(index);
+              })
+              .catch(err => {
+                console.log('error from createLeague', err);
+              });
+          },
+          editLeague: (leagueSettings, index, cb) => {
+            const lid = this.state.leagues[index].id;
+
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const endpoint = `/leagues/${lid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .put(endpoint, leagueSettings, options)
+              .then(res => {
+                const league = res.data;
+                const leagues = this.state.leagues;
+                leagues[index] = league;
+                localStorage.setItem('leagues', JSON.stringify(leagues));
+                this.setState({ leagues });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from editLeague', err);
+              });
           }
         }}
       >

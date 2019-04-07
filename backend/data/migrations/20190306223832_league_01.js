@@ -1,7 +1,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('league', league => {
     league.increments();
-    league.string('name')
+    league
+      .string('name')
       .notNullable()
       .unique();
     league

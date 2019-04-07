@@ -3,10 +3,11 @@ import DashboardNavbar from './DashboardNavbar';
 import PublicCalendar from '../Calendars/PublicCalendar';
 import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
-import CreateLeague from '../Admin/CreateLeague';
+// import CreateLeague from '../Admin/CreateLeague';
+import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings'
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import axios from 'axios';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 
 class AdminDashboard extends Component {
   state = {
@@ -17,10 +18,10 @@ class AdminDashboard extends Component {
     leagueSettings: false,
     editSchedule: false,
     cancellationRequests: false,
-    leagueId: this.props.location.state.leagueId,
-    leagueIndex: this.props.location.state.leagueIndex,
-    leagueName: this.props.location.state.leagueName,
-    id: this.props.id
+    // leagueId: this.props.location.state.leagueId,
+    leagueIndex: this.props.location.state.leagueIndex
+    // leagueName: this.context.state.leagueName
+    // id: this.context.id
   };
 
   displayAdminContent = e => {
@@ -36,6 +37,9 @@ class AdminDashboard extends Component {
   };
 
   render() {
+    // const { leagueIndex } = this.state;
+    console.log(this.context.state.leagues);
+    console.log(this.context.state.leagues[this.state.leagueIndex]);
     const {
       calendar,
       teamList,
@@ -44,30 +48,32 @@ class AdminDashboard extends Component {
       cancellationRequests
     } = this.state;
     return (
-      <AppContext.Consumer>
-        {context => (
-          <>
-            <DashboardNavbar
-              data={this.state}
-              displayAdminContent={this.displayAdminContent}
-              context={context}
-            />
-            <div
-              style={{
-                margin: '100px 40px 20px 280px'
-              }}
-            >
-              {calendar && <PublicCalendar context={context} />}
-              {teamList && <TeamCardList context={context} />}
-              {leagueSettings && <CreateLeague context={context} />}
-              {editSchedule && <DnDCalendar context={context} />}
-              {cancellationRequests && <div>Cancellation Requests</div>}
-            </div>
-          </>
-        )}
-      </AppContext.Consumer>
+      // <AppContext.Consumer>
+      //   {context => (
+      <>
+        <DashboardNavbar
+          data={this.state}
+          displayAdminContent={this.displayAdminContent}
+          // context={context}
+        />
+        <div
+          style={{
+            margin: '100px 40px 20px 280px'
+          }}
+        >
+          {calendar && <PublicCalendar context={this.context} />}
+          {teamList && <TeamCardList context={this.context} />}
+          {leagueSettings && <LeagueSetupSettings context={this.context} />}
+          {editSchedule && <DnDCalendar context={this.context} />}
+          {cancellationRequests && <div>Cancellation Requests</div>}
+        </div>
+      </>
+      //   )}
+      // </AppContext.Consumer>
     );
   }
 }
+
+AdminDashboard.contextType = AppContext;
 
 export default withRouter(AdminDashboard);

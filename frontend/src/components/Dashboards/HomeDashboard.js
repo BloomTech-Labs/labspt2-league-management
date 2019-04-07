@@ -22,9 +22,9 @@ class HomeDashboard extends Component {
       <>
         <DashboardNavbar
           data={this.state}
-          username={this.props.username}
+          // username={this.context.username}
           displayBilling={this.displayBilling}
-          context={this.props.context}
+          // context={this.props.context}
         />
         <div
           style={{

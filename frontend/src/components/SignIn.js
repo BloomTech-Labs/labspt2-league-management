@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Redirect } from 'react-router-dom';
+import { AppContext } from './Context/AppContext';
 
 const styles = theme => ({
   main: {
@@ -73,9 +74,9 @@ class SignIn extends React.Component {
       .post(endpoint, credentials)
       .then(res => {
         localStorage.setItem('jwt', res.data.token);
-        this.props.signin();
-        this.props.getLeagues();
-        this.props.getTeams();
+        this.context.signin();
+        this.context.getLeagues();
+        this.context.getTeams();
         this.setState({ email: '', password: '', signedIn: true });
         // window.location.href = 'http://localhost:3000/dashboard';
         // window.location.href = 'https://leaguemanagement.netlify.com/dashboard';
@@ -148,6 +149,8 @@ class SignIn extends React.Component {
     );
   }
 }
+
+SignIn.contextType = AppContext;
 
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired
