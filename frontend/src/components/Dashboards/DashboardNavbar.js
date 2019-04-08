@@ -144,6 +144,9 @@ class DashboardNavbar extends React.Component {
 
   logout = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('leagues');
+    localStorage.removeItem('teams');
+    localStorage.removeItem('teams_by_league');
     this.setState({ logout: true });
     this.context.signOut();
   };

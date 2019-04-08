@@ -1,15 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import axios from 'axios';
 import TeamCard from './TeamCard.js';
-import NewTeamCard from './NewTeamCard.js';
-import AppContext from '../Context/AppContext';
+import { AppContext } from '../Context/AppContext';
 
 class TeamCardList extends React.Component {
   state = {
     // leagues: this.props.context.state.leagues,
     // leagues: this.context.state.leagues
+    teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || []
   };
 
   componentDidMount() {
@@ -19,15 +18,17 @@ class TeamCardList extends React.Component {
 
   render() {
     // console.log('context check in TeamCardList', this.context.state.leagues);
+    console.log('teams_by_league in TeamCardList', this.state.teams_by_league[this.props.index].teams);
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={16}>
-            {[0, 1, 2, 3, 4, 5, 6, 7].map(team => (
-              <Grid key={team} item>
+            {/* {[0, 1, 2, 3, 4, 5, 6, 7].map(team => ( */}
+              {this.state.teams_by_league[this.props.index].teams.map(team => (
+
+              <Grid key={team.id} item>
                 <TeamCard
-                  team={team}
-                  key={team.id}
+                  // team={team}
                   id={team.id}
                   name={team.name}
                   email={team.coach_email}
@@ -35,12 +36,9 @@ class TeamCardList extends React.Component {
                   wins={team.wins}
                   losses={team.losses}
                   ties={team.ties}
-                />
+                  />
               </Grid>
             ))}
-            <Grid item>
-              <NewTeamCard />
-            </Grid>
           </Grid>
 
           {/* <Grid container justify="center" spacing={16}>

@@ -221,7 +221,112 @@ export default class AppProvider extends Component {
               .catch(err => {
                 console.log('error from editLeague', err);
               });
+          },
+          createTeamInLeague: (teamName, index, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const lid = this.state.leagues[index].id
+            console.log('lid', lid)
+            const endpoint = `/leagues/${lid}/teams`;
+            let team = {
+              name: teamName,
+              league_id: lid,
+              coach_user_id: null,
+              coach_name: null,
+              coach_email: null,
+              coach_phone: null,
+              wins: 0,
+              losses: 0,
+              ties: 0
+            };
+            console.log('team', team);
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, team, options)
+              .then(res => {
+                console.log('createTeamInLeague', res.data)
+                team = res.data;
+                let joined;
+                if(this.state.teams_by_league.find(x => x.id === lid)) {
+                  joined = this.state.teams_by_league.find(x => x.id === lid).teams.concat(team);
+
+                }
+                else {
+                  joined = this.state.teams_by_league.concat({
+                    league_id: lid,
+                    teams: team
+                  });
+                }
+                localStorage.setItem('teams_by_league', JSON.stringify(joined));
+                console.log('teams_by_league', JSON.parse(localStorage.getItem('teams_by_league')));
+                this.setState({
+                  teams_by_league: joined
+                });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from createTeamInLeague', err);
+              });
           }
+          // Doesn't Work
+          // createTeamInLeague: (teamName, index, cb) => {
+          //   const token = localStorage.getItem('jwt') || this.signOut();
+          //   const lid = this.state.leagues[index].id
+          //   const endpoint = `/leagues/${lid}/teams`;
+          //   let team = {
+          //     name: teamName,
+          //     league_id: lid,
+          //     coach_user_id: null,
+          //     coach_name: null,
+          //     coach_email: null,
+          //     coach_phone: null,
+          //     wins: 0,
+          //     losses: 0,
+          //     ties: 0
+          //   };
+          //   console.log('team', team);
+          //   const options = {
+          //     headers: {
+          //       authorization: token
+          //     }
+          //   };
+          //   axios
+          //     .post(endpoint, team, options)
+          //     .then(res => {
+          //       const team = res.data;
+          //       const teams_by_league = this.state.teams_by_league;
+          //       console.log('createTeamInLeague', res.data)
+          //       let joined;
+          //       let foundIndex = teams_by_league.findIndex( x => x.league_id === lid);
+          //       console.log('createTeamInLeague', foundIndex);
+          //       if(teams_by_league[foundIndex].league_id === lid) {
+          //         console.log(this.state.teams_by_league);
+          //         teams_by_league[foundIndex].teams = teams_by_league[foundIndex].teams.concat(team);
+          //         joined = teams_by_league;
+          //         console.log(joined);
+          //         // reseting teams_by_league as opposed to adding to team in league
+          //       }
+          //       else {
+          //         joined = this.state.teams_by_league.concat({
+          //           league_id: lid,
+          //           teams: team
+          //         });
+          //       }
+          //       localStorage.setItem('teams_by_league', JSON.stringify(joined));
+          //       console.log('teams_by_league', JSON.parse(localStorage.getItem('teams_by_league')));
+                
+          //       this.setState({
+          //         teams_by_league: joined
+          //       });
+          //       cb();
+          //     })
+          //     .catch(err => {
+          //       console.log('error from createTeamInLeague', err);
+          //     });
+          // }
         }}
       >
         {this.props.children}
