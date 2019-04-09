@@ -135,9 +135,9 @@ class TeamCard extends React.Component {
                   <EditIcon onClick={this.ClickHandler} />
               </Typography>
               <Typography className={classes.p}>
-                Email {this.state.coach_email}
+                Email {this.state.email}
                 <br />
-                Phone # {this.state.coach_phone_number}
+                Phone # {this.state.phone}
               </Typography>
               <Typography
                 className={classes.pos}
@@ -145,7 +145,7 @@ class TeamCard extends React.Component {
               >
                 Record:
                 <br />
-                Wins: Team-Wins {this.state.wins}
+                Wins: {this.state.wins}
                 <br />
                 Losses: Team-Losses {this.state.losses}
               </Typography>

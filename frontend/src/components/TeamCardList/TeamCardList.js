@@ -28,11 +28,10 @@ class TeamCardList extends React.Component {
 
               <Grid key={team.id} item>
                 <TeamCard
-                  // team={team}
                   id={team.id}
                   name={team.name}
-                  email={team.coach_email}
-                  phone={team.coach_phone_number}
+                  coach_email={team.coach_email}
+                  coach_phone_number={team.coach_phone_number}
                   wins={team.wins}
                   losses={team.losses}
                   ties={team.ties}
@@ -40,27 +39,6 @@ class TeamCardList extends React.Component {
               </Grid>
             ))}
           </Grid>
-
-          {/* <Grid container justify="center" spacing={16}>
-            {this.state.leagues.map(team => (
-              <Grid key={team} item>
-                <TeamCard
-                  team={team}
-                  key={team.id}
-                  id={team.id}
-                  name={team.name}
-                  email={team.coach_email}
-                  phone={team.coach_phone_number}
-                  wins={team.wins}
-                  losses={team.losses}
-                  ties={team.ties}
-                />
-              </Grid>
-            ))}
-            <Grid item>
-              <NewTeamCard />
-            </Grid>
-          </Grid> */}
         </Grid>
       </Grid>
     );

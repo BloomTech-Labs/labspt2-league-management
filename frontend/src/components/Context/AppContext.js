@@ -225,7 +225,6 @@ export default class AppProvider extends Component {
           createTeamInLeague: (teamName, index, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = this.state.leagues[index].id
-            console.log('lid', lid)
             const endpoint = `/leagues/${lid}/teams`;
             let team = {
               name: teamName,
@@ -238,7 +237,6 @@ export default class AppProvider extends Component {
               losses: 0,
               ties: 0
             };
-            console.log('team', team);
             const options = {
               headers: {
                 authorization: token
@@ -247,12 +245,17 @@ export default class AppProvider extends Component {
             axios
               .post(endpoint, team, options)
               .then(res => {
-                console.log('createTeamInLeague', res.data)
                 team = res.data;
                 let joined;
-                if(this.state.teams_by_league.find(x => x.id === lid)) {
-                  joined = this.state.teams_by_league.find(x => x.id === lid).teams.concat(team);
+                if(this.state.teams_by_league.find(x => x.league_id === lid)) {
+                  const foundIndex = this.state.teams_by_league.findIndex( x => x.league_id === lid);
+                  const league = this.state.teams_by_league.splice(foundIndex, 1);
 
+                  const teams = league[0].teams.concat(team)
+                  joined = this.state.teams_by_league.concat({
+                    league_id:lid,
+                    teams: teams
+                  })
                 }
                 else {
                   joined = this.state.teams_by_league.concat({
@@ -261,7 +264,6 @@ export default class AppProvider extends Component {
                   });
                 }
                 localStorage.setItem('teams_by_league', JSON.stringify(joined));
-                console.log('teams_by_league', JSON.parse(localStorage.getItem('teams_by_league')));
                 this.setState({
                   teams_by_league: joined
                 });
