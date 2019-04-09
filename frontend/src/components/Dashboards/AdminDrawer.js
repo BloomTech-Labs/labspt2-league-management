@@ -7,9 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 class AdminDrawer extends Component {
   render() {
     const listItems = [
+      { name: 'leagueSettings', text: 'League Details' },
+      { name: 'teamList', text: 'Teams' },
       { name: 'calendar', text: 'Calendar' },
-      { name: 'teamList', text: 'Team List' },
-      { name: 'leagueSettings', text: 'League Settings' },
       { name: 'editSchedule', text: 'Edit Schedule' },
       { name: 'cancellationRequests', text: 'Cancellation Requests' }
     ];

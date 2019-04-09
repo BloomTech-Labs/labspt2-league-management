@@ -4,8 +4,9 @@ import PublicCalendar from '../Calendars/PublicCalendar';
 import DnDCalendar from '../Calendars/DnDCalendar';
 import { AppContext } from '../Context/AppContext';
 // import CreateLeague from '../Admin/CreateLeague';
-import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings'
+import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
+import LeagueDetails from '../Admin/LeagueDetails';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
@@ -13,9 +14,9 @@ class AdminDashboard extends Component {
   state = {
     admin: true,
     coach: false,
-    calendar: true,
+    calendar: false,
     teamList: false,
-    leagueSettings: false,
+    leagueSettings: true,
     editSchedule: false,
     cancellationRequests: false,
     // leagueId: this.props.location.state.leagueId,
@@ -38,8 +39,10 @@ class AdminDashboard extends Component {
 
   render() {
     // const { leagueIndex } = this.state;
-    console.log(this.context.state.leagues);
-    console.log(this.context.state.leagues[this.state.leagueIndex]);
+    // console.log(this.context.state.leagues);
+    // console.log(this.context.state.leagues[this.state.leagueIndex]);
+    const league = this.context.state.leagues[this.state.leagueIndex];
+    console.log(league);
     const {
       calendar,
       teamList,
@@ -63,7 +66,8 @@ class AdminDashboard extends Component {
         >
           {calendar && <PublicCalendar context={this.context} />}
           {teamList && <TeamCardList context={this.context} />}
-          {leagueSettings && <LeagueSetupSettings context={this.context} />}
+          {leagueSettings && <LeagueDetails league={league} />}
+          {/* {leagueSettings && <LeagueSetupSettings context={this.context} />} */}
           {editSchedule && <DnDCalendar context={this.context} />}
           {cancellationRequests && <div>Cancellation Requests</div>}
         </div>

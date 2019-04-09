@@ -47,7 +47,7 @@ class HomeDrawer extends Component {
           onClick={this.handleClick}
           color="inherit"
         >
-          <ListItemText primary="Manage League" />
+          <ListItemText primary="Your Leagues" />
           {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -89,7 +89,7 @@ class HomeDrawer extends Component {
           onClick={this.handleClick}
           color="inherit"
         >
-          <ListItemText primary="Manage Team" />
+          <ListItemText primary="Your Teams" />
           {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
