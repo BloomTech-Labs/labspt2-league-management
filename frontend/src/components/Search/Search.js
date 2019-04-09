@@ -1,99 +1,224 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+import deburr from 'lodash/deburr';
+import Autosuggest from 'react-autosuggest';
+import match from 'autosuggest-highlight/match';
+import parse from 'autosuggest-highlight/parse';
+import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
+import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import Divider from '@material-ui/core/Divider';
-import SearchResults from './SearchResults';
 
-const styles = {
+
+const styles = theme => ({
   root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
+    margin: "0 auto",
+    padding: "2px 4px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     width: 400
   },
+  container: {
+    position: "relative"
+  },
+  divider: {
+    width: 2,
+    height: 28,
+    margin: 4
+  },
   input: {
+    border: "none",
+    outline: "none",
     marginLeft: 8,
     flex: 1
   },
   iconButton: {
     padding: 10
   },
-  divider: {
-    width: 2,
-    height: 28,
-    margin: 4
+  suggestionsContainerOpen: {
+    position: "absolute",
+    zIndex: 1,
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0
+  },
+  suggestion: {
+    display: "block"
+  },
+  suggestionsList: {
+    margin: 0,
+    padding: 0,
+    listStyleType: "none"
   }
-};
+});
 
-class Search extends React.Component {
-  state = {
-    name: '',
-    leagues: []
-  };
+class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      single: '',
+      leagues: []
+    };
+    this.renderSearchComponent = this.renderSearchComponent.bind(this);
+    this.getSuggestionValue = this.getSuggestionValue.bind(this);
+    this.getSearchSuggestions = this.getSearchSuggestions.bind(this);
+    this.renderSearchComponent = this.renderSearchComponent.bind(this);
+  }
 
   endpoint = '/search'
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+  componentDidMount(){
+    axios
+      .get(this.endpoint)
+      .then(response => {
+        this.setState({
+          leagues:response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
+  renderSearchComponent(inputProps) {
+    const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+
+    return (
+      <>
+          <TextField
+            fullWidth
+            InputProps={{
+              inputRef: node => {
+                ref(node);
+                inputRef(node);
+              },
+              classes: {
+                input: classes.input
+              }
+            }}
+            {...other}
+          />
+      </>
+    );
+  }
+
+  renderSuggestion(league, { query, isHighlighted }) {
+    const matches = match(league.name, query);
+    const parts = parse(league.name, matches);
+
+    return (
+      <MenuItem selected={isHighlighted} component="div">
+        <div>
+          {parts.map((part, index) =>
+            part.highlight ? (
+              <span key={String(index)} style={{ fontWeight: 900 }}>
+                {part.text}
+              </span>
+            ) : (
+              <strong key={String(index)} style={{ fontWeight: 300 }}>
+                {part.text}
+              </strong>
+            )
+          )}
+        </div>
+      </MenuItem>
+    );
+  }
+
+  getSearchSuggestions(value) {
+    const searchValue = deburr(value.trim()).toLowerCase();
+    const inputLength = searchValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : this.state.leagues.filter(league => {
+          const keep =
+            count < 5 &&
+            league.name.slice(0, inputLength).toLowerCase() === searchValue;
+
+          if (keep) {
+            count += 1;
+          }
+
+          return keep;
+        });
+  }
+
+  getSuggestionValue(league) {
+    return league.name;
+  }
+
+  handleSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      leagues: this.getSearchSuggestions(value)
+    });
   };
 
-  handleSearch = async event => {
-    event.preventDefault();
-    const { name } = this.state;
-    await axios
-      .post(this.endpoint, { name: name })
-      .then(res => {
-        this.setState({
-          name: '',
-          leagues: res.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  handleSuggestionsClearRequested = () => {
+    this.setState({
+      leagues: []
+    });
+  };
+
+  handleChange = name => (event, { newValue }) => {
+    this.setState({
+      [name]: newValue
+    });
   };
 
   render() {
     const { classes } = this.props;
+
+    const autosuggestProps = {
+      renderSearchComponent: this.renderSearchComponent,
+      suggestions: this.state.leagues,
+      onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
+      onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
+      getSuggestionValue: this.getSuggestionValue,
+      renderSuggestion: this.renderSuggestion
+    };
+
     return (
-      <>
-      <form onSubmit={this.handleSearch}>
-        <Paper className={classes.root} elevation={1}>
-          <InputBase
-            className={classes.input}
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            placeholder="Search Leagues"
-          />
-          <Divider className={classes.divider} />
-          <IconButton
-            className={classes.iconButton}
-            type="submit"
-            aria-label="Search"
-          >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
-        {this.state.leagues.map(league => (
-          <Link to='/schedule' key={league.id}>
-            {league.name}
-          </Link>
-        ))}
-      </form>
-      <SearchResults />
-      </>
+      <Paper className={classes.root}>
+        <Autosuggest
+          {...autosuggestProps}
+          inputProps={{
+            classes,
+            placeholder: 'Search Leagues',
+            value: this.state.single,
+            onChange: this.handleChange('single')
+          }}
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+            input:classes.input,
+          }}
+          renderSuggestionsContainer={options => (
+            <Paper {...options.containerProps} square>
+              {options.children}
+            </Paper>
+          )}
+        />
+        <IconButton
+          className={classes.iconButton}
+          type="submit"
+          aria-label="Search"
+        >
+          <SearchIcon />
+        </IconButton>
+      </Paper>
     );
   }
 }
 
-Search.propTypes = {
+SearchBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Search);
+export default withStyles(styles)(SearchBar);
+

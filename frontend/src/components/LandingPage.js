@@ -27,7 +27,6 @@ class LandingPage extends Component {
         <>
           {/* <WeatherWidget /> */}
           <div>App Name</div>
-          <Search />
           <Link to={'/signin'}>Sign In</Link>
           <br />
           <Link to={'/signup'}>Sign Up</Link>
