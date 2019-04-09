@@ -56,6 +56,10 @@ const pullTime = datetime => {
   }
 };
 
+const pullDate = datetime => {
+  return datetime.substr(4, 11);
+};
+
 class LeagueDetails extends React.Component {
   handleChange = name => event => {
     this.setState({
@@ -103,7 +107,7 @@ class LeagueDetails extends React.Component {
         <TextField
           id="outlined-read-only-input"
           label="Start Date"
-          defaultValue={start_day || 'No date set'}
+          defaultValue={start_day ? pullDate(start_day) : 'No date set'}
           className={classes.textField}
           margin="normal"
           InputProps={{
