@@ -19,7 +19,7 @@ const ShowTeams = props => {
   return (
     <div>
       {props.teams.map(team => (
-        <h4 key={team.id}>Team {team.id} Name - {team.name}</h4>
+        <h4 key={team.id}>{team.name}</h4>
       ))}
     </div>
   );
