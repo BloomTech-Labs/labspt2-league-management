@@ -6,7 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TeamCardList from '../TeamCardList/TeamCardList';
+import LeagueSetupTeams from '../LeagueSetupTeams/LeagueSetupTeams';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
 import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
@@ -46,7 +46,14 @@ class HorizontalLinearStepper extends React.Component {
           />
         );
       case 1:
-        return <TeamCardList />;
+        return (
+          <LeagueSetupTeams
+            next={this.handleNext}
+            index={this.state.leagueIndex}
+            back={this.handleBack}
+            // activeStep={this.state.activeStep}
+          />
+        );
       case 2:
         return 'This is the bit I really care about!';
       default:
@@ -69,6 +76,7 @@ class HorizontalLinearStepper extends React.Component {
         this.context.editLeague(data, index, this.nextStep);
         break;
       case 1:
+      this.nextStep();
         break;
       case 2:
         break;

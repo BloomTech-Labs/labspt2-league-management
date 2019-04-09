@@ -7,7 +7,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
-import AppContext from '../Context/AppContext';
+import { AppContext } from '../Context/AppContext';
 
 class HomeDrawer extends Component {
   state = {

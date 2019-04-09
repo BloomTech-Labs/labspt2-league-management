@@ -57,9 +57,8 @@ export default class AppProvider extends Component {
       }
     ],
     leagues: JSON.parse(localStorage.getItem('leagues')) || [],
-    teams: JSON.parse(localStorage.getItem('teams')) || []
-    // leagueId: 0,
-    // teamId: 0
+    teams: JSON.parse(localStorage.getItem('teams')) || [],
+    teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || []
   };
 
   render() {
@@ -86,6 +85,7 @@ export default class AppProvider extends Component {
             this.setState({ loggedIn: false });
           },
           getLeagues: () => {
+            console.log('getLeagues()');
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/leagues';
             const options = {
@@ -96,8 +96,25 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
-                localStorage.setItem('leagues', JSON.stringify(res.data));
-                this.setState({ leagues: res.data });
+                const leagues = res.data;
+                localStorage.setItem('leagues', JSON.stringify(leagues));
+                leagues.forEach((league) => {
+                  axios.get(`/leagues/${league.id}/teams`, options)
+                    .then(res => {
+                      const teams = res.data;
+                      const joined = this.state.teams_by_league.concat({
+                        league_id: league.id, teams
+                      });
+                      localStorage.setItem('teams_by_league', JSON.stringify(joined));
+                      this.setState({
+                        teams_by_league: joined
+                      });
+                    })
+                    .catch(err => {
+                      console.log('error from getTeams by league id', err);
+                    })
+                });
+                this.setState({ leagues });
               })
               .catch(err => {
                 console.log('error from getLeagues', err);
@@ -203,6 +220,57 @@ export default class AppProvider extends Component {
               })
               .catch(err => {
                 console.log('error from editLeague', err);
+              });
+          },
+          createTeamInLeague: (teamName, index, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const lid = this.state.leagues[index].id
+            const endpoint = `/leagues/${lid}/teams`;
+            let team = {
+              name: teamName,
+              league_id: lid,
+              coach_user_id: null,
+              coach_name: null,
+              coach_email: null,
+              coach_phone: null,
+              wins: 0,
+              losses: 0,
+              ties: 0
+            };
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, team, options)
+              .then(res => {
+                team = res.data;
+                let joined;
+                if(this.state.teams_by_league.find(x => x.league_id === lid)) {
+                  const foundIndex = this.state.teams_by_league.findIndex( x => x.league_id === lid);
+                  const league = this.state.teams_by_league.splice(foundIndex, 1);
+
+                  const teams = league[0].teams.concat(team)
+                  joined = this.state.teams_by_league.concat({
+                    league_id:lid,
+                    teams: teams
+                  })
+                }
+                else {
+                  joined = this.state.teams_by_league.concat({
+                    league_id: lid,
+                    teams: team
+                  });
+                }
+                localStorage.setItem('teams_by_league', JSON.stringify(joined));
+                this.setState({
+                  teams_by_league: joined
+                });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from createTeamInLeague', err);
               });
           }
         }}
