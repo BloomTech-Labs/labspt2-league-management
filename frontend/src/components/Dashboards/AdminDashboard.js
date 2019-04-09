@@ -37,15 +37,15 @@ class AdminDashboard extends Component {
   };
 
   render() {
-    // const { leagueIndex } = this.state;
-    console.log(this.context.state.leagues);
-    console.log(this.context.state.leagues[this.state.leagueIndex]);
+    console.log(this.context);
+    console.log(this.context.state.teams_by_league);
     const {
       calendar,
       teamList,
       leagueSettings,
       editSchedule,
-      cancellationRequests
+      cancellationRequests,
+      leagueIndex
     } = this.state;
     return (
       // <AppContext.Consumer>
@@ -62,7 +62,7 @@ class AdminDashboard extends Component {
           }}
         >
           {calendar && <PublicCalendar context={this.context} />}
-          {teamList && <TeamCardList context={this.context} />}
+          {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueSetupSettings context={this.context} />}
           {editSchedule && <DnDCalendar context={this.context} />}
           {cancellationRequests && <div>Cancellation Requests</div>}
