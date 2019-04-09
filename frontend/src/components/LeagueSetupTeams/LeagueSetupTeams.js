@@ -185,7 +185,7 @@ const styles = theme => ({
 
 class LeagueSetupTeams extends React.Component {
   state = {
-    // teams: JSON.parse(localStorage.getItem('teams_by_league')) || [],
+    teams: [],
     name: '',
   };
 
@@ -196,17 +196,35 @@ class LeagueSetupTeams extends React.Component {
   };
 
   SubmitHandler = () => {
-    // const newTeam = {
-    //   name: this.state.name,
-    // };
+    const newTeam = {
+      name: this.state.name,
+    };
     this.context.createTeamInLeague(this.state.name, this.props.index, () => {
-      // this.setState({ teams: [...this.state.teams, newTeam] });
-      // this.setState({ teams: this.state.teams[this.props.index].teams})
-      this.setState({ name: '' });
+      const lid = this.context.state.leagues[this.props.index].id;
+      if(this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+        const teams = this.context.state.teams_by_league.find(x => x.league_id === lid).teams
+        this.setState({ 
+          name: '',
+          teams
+        })
+      }
+      console.log(this.state.teams);
     })
   };
+
+  componentDidMount() {
+    const lid = this.context.state.leagues[this.props.index].id;
+    if(this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+      const teams = this.context.state.teams_by_league.find(x => x.league_id === lid).teams
+      this.setState({ 
+        teams
+      })
+    }
+  }
+
   render() {
     const { classes } = this.props;
+    console.log('teams', this.state.teams)
 
     return (
       <div className={classes.main}>
@@ -217,7 +235,7 @@ class LeagueSetupTeams extends React.Component {
             name={this.state.name}
             SubmitHandler={this.SubmitHandler}
           />
-          {/* <ShowTeams teams={this.state.teams} /> */}
+          <ShowTeams teams={this.state.teams} />
           <div>
           <Button
             disabled={this.props.activeStep === 0}
