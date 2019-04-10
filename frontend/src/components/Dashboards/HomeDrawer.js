@@ -48,7 +48,7 @@ class HomeDrawer extends Component {
           color="inherit"
           style={!leagues.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Admin - Your Leagues" />
+          <ListItemText primary="Your Leagues" />
           {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -91,7 +91,7 @@ class HomeDrawer extends Component {
           color="inherit"
           style={!teams.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Coach - Your Teams" />
+          <ListItemText primary="Your Teams" />
           {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
