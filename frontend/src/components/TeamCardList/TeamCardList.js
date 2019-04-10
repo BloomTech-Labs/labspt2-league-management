@@ -8,30 +8,35 @@ class TeamCardList extends React.Component {
   state = {
     // leagues: this.props.context.state.leagues,
     // leagues: this.context.state.leagues
-    teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || []
+    teams: []
   };
 
   componentDidMount() {
-    // Need to add pull route
-    // axios.get() data from Admin User Login - League Id - Team Ids in league
+    const lid = this.context.state.leagues[this.props.index].id;
+    if(this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+      const teams = this.context.state.teams_by_league.find(x => x.league_id === lid).teams
+      this.setState({ 
+        teams
+      })
+      console.log('teams_by_league in TeamCardList', teams);
+    }
   }
 
   render() {
     // console.log('context check in TeamCardList', this.context.state.leagues);
-    console.log('teams_by_league in TeamCardList', this.state.teams_by_league[this.props.index].teams);
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={16}>
             {/* {[0, 1, 2, 3, 4, 5, 6, 7].map(team => ( */}
-              {this.state.teams_by_league[this.props.index].teams.map(team => (
+              {this.state.teams.map(team => (
 
               <Grid key={team.id} item>
                 <TeamCard
                   id={team.id}
                   name={team.name}
                   coach_email={team.coach_email}
-                  coach_phone_number={team.coach_phone_number}
+                  coach_phone={team.coach_phone}
                   wins={team.wins}
                   losses={team.losses}
                   ties={team.ties}
