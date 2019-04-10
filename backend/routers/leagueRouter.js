@@ -64,15 +64,16 @@ router.get('/:lid', (req, res) => {
 router.put('/:lid', (req, res) => {
   const { lid } = req.params;
   const league = req.body;
-  if (league.name && league.admin_user_id && league.type) {
+  league.admin_user_id = req.user.id;
+  if (league.name && league.admin_user_id) {
     leagueModel
       .update(lid, league)
       .then(updatedLeague => {
         if (updatedLeague) {
           leagueModel
             .findById(lid)
-            .then(leagues => {
-              res.json(leagues);
+            .then(league => {
+              res.json(league);
             })
             .catch(err => {
               res
@@ -119,10 +120,18 @@ router.post('/:lid/teams', (req, res) => {
   const { lid } = req.params;
   const team = req.body;
   team.league_id = lid;
+  console.log(team);
   teamModel
     .insert(team)
     .then(ids => {
-      res.status(201).json({ message: `New team added with ${ids[0]}!` });
+      teamModel
+        .getTeamById(ids[0])
+        .then(newTeam => {
+          res.status(201).json(newTeam);
+        })
+        .catch(err => {
+          res.status(404).json({ error: 'Trouble finding new league' });
+        });
     })
     .catch(err => {
       res.status(500).json({ error: 'Problem adding new team!', err });
@@ -131,7 +140,7 @@ router.post('/:lid/teams', (req, res) => {
 
 router.get('/:lid/teams', (req, res) => {
   const { lid } = req.params;
-  leagueModel
+  teamModel
     .getTeamsByLeague(lid)
     .then(teams => {
       res.json(teams);

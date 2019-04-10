@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import ChooseLeague from '../CreateLeague/ChooseLeague';
 // import Billing from '../Billing/Billing';
-// import AppContext from '../Context/AppContext';
+import { AppContext } from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {
@@ -22,9 +22,9 @@ class HomeDashboard extends Component {
       <>
         <DashboardNavbar
           data={this.state}
-          username={this.props.username}
+          // username={this.context.username}
           displayBilling={this.displayBilling}
-          context={this.props.context}
+          // context={this.props.context}
         />
         <div
           style={{
@@ -37,5 +37,7 @@ class HomeDashboard extends Component {
     );
   }
 }
+
+HomeDashboard.contextType = AppContext;
 
 export default HomeDashboard;
