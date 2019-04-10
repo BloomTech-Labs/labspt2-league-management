@@ -288,48 +288,47 @@ export default class AppProvider extends Component {
           createScheduleInLeague: (games, index, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = this.state.leagues[index].id;
-            const endpoint = `/leagues/${lid}/teams`;
-            // may need to iterate over games and add defaults to each game object
+            const endpoint = `/leagues/${lid}/schedule`;
             const options = {
               headers: {
                 authorization: token
               }
             };
-            console.log(games, index, cb);
-            cb();
-            // axios
-            //   .post(endpoint, games, options)
-            //   .then(res => {
-            //     games = res.data;
-            //     if (
-            //       this.state.schedule_by_league.find(x => x.league_id === lid)
-            //     ) {
-            //       // this is just to remove the specific schedule from localstorage if it exists
-            //       const foundIndex = this.state.schedule_by_league.findIndex(
-            //         x => x.league_id === lid
-            //       );
-            //       const league = this.state.teams_by_league.splice(
-            //         foundIndex,
-            //         1
-            //       );
-            //     }
-            //     const joined = this.state.schedule_by_league.concat({
-            //       league_id: lid,
-            //       games: games
-            //     });
 
-            //     localStorage.setItem(
-            //       'schedule_by_league',
-            //       JSON.stringify(joined)
-            //     );
-            //     this.setState({
-            //       schedule_by_league: joined
-            //     });
-            //     cb();
-            //   })
-            //   .catch(err => {
-            //     console.log('error from createScheduleInLeague', err);
-            //   });
+            axios
+              .post(endpoint, games, options)
+              .then(res => {
+                games = res.data;
+                // this is just to remove the specific schedule from local storage if it exists
+                if (
+                  this.state.schedule_by_league.find(x => x.league_id === lid)
+                ) {
+                  const foundIndex = this.state.schedule_by_league.findIndex(
+                    x => x.league_id === lid
+                  );
+                  const league = this.state.teams_by_league.splice(
+                    foundIndex,
+                    1
+                  );
+                }
+                // and we update the array to contain the new values
+                const joined = this.state.schedule_by_league.concat({
+                  league_id: lid,
+                  games: games
+                });
+                // then we put it back in to local storage with the update
+                localStorage.setItem(
+                  'schedule_by_league',
+                  JSON.stringify(joined)
+                );
+                this.setState({
+                  schedule_by_league: joined
+                });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from createScheduleInLeague', err);
+              });
           }
         }}
       >

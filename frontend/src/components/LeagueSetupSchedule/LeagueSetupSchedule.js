@@ -198,10 +198,6 @@ class LeagueSetupSchedule extends React.Component {
           teams[team2].homeGames++;
           weekSchedule.push({ away: team1, home: team2 });
         }
-        console.log(
-          'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
-        );
-        console.log(teams);
         // FOR TESTING
         // teams[team1].played.push(team2);
         // teams[team2].played.push(team1);
@@ -367,7 +363,6 @@ class LeagueSetupSchedule extends React.Component {
       );
 
       // Build matchup array with usable data
-      console.log(allGameMatchUps[i]);
       completedSchedule.push({
         away_team_id: this.state.teams[allGameMatchUps[i].away].id,
         home_team_id: this.state.teams[allGameMatchUps[i].home].id,
@@ -384,7 +379,6 @@ class LeagueSetupSchedule extends React.Component {
     // console.log(this.state.start_day.getDay(), this.state.leagueEndDate);
     // console.log(allGameMatchUps);
     // console.log(gameTimeSlotsPerWeek);
-    console.log(completedSchedule);
     this.context.createScheduleInLeague(
       completedSchedule,
       this.props.index,
@@ -405,7 +399,6 @@ class LeagueSetupSchedule extends React.Component {
       const teams = this.context.state.teams_by_league.find(
         x => x.league_id === lid
       ).teams;
-      console.log(teams);
       this.setState({
         teams,
         ...league

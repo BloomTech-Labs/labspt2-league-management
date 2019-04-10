@@ -227,7 +227,16 @@ router.post('/:lid/schedule', (req, res) => {
   gameModel
     .insert(games)
     .then(ids => {
-      res.status(201).json(ids);
+      gameModel
+        .getGamesByLeague(lid)
+        .then(schedule => {
+          res.status(201).json(schedule);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: 'Trouble retrieving games for league', err });
+        });
     })
     .catch(err => {
       res.status(500).json({ error: 'Problem adding games!', err });
