@@ -35,17 +35,18 @@ class HomeDrawer extends Component {
       <List>
         {/* <Link to="/dashboard"> */}{' '}
         {/* This will eventually link to a component that will collect the name of the league and payment information */}
-        <ListItem button id="create" onClick={this.props.displayBilling}>
+        {/* <ListItem button id="create" onClick={this.props.displayBilling}>
           <ListItemText primary="Create League" />
-        </ListItem>
+        </ListItem> */}
         {/* </Link> */}
-        <Divider />
+        {/* <Divider /> */}
         <ListItem
           button
           key="admin"
           id="expandLeagues"
           onClick={this.handleClick}
           color="inherit"
+          style={!leagues.length ? { display: 'none' } : null}
         >
           <ListItemText primary="Admin - Your Leagues" />
           {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
@@ -88,6 +89,7 @@ class HomeDrawer extends Component {
           id="expandTeams"
           onClick={this.handleClick}
           color="inherit"
+          style={!teams.length ? { display: 'none' } : null}
         >
           <ListItemText primary="Coach - Your Teams" />
           {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
