@@ -31,7 +31,8 @@ class HomeDashboard extends Component {
             margin: '100px 40px 20px 280px'
           }}
         >
-          {chooseLeague && <ChooseLeague />}
+          {/* {chooseLeague && <ChooseLeague />} */}
+          <ChooseLeague />
         </div>
       </>
     );
