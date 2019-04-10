@@ -61,7 +61,8 @@ class SearchBar extends React.Component {
     super();
     this.state = {
       single: '',
-      leagues: []
+      leagues: [],
+      suggestions:[],
     };
     this.renderSearchComponent = this.renderSearchComponent.bind(this);
     this.getSuggestionValue = this.getSuggestionValue.bind(this);
@@ -137,7 +138,7 @@ class SearchBar extends React.Component {
       : this.state.leagues.filter(league => {
           const keep =
             count < 5 &&
-            league.name.slice(0, inputLength).toLowerCase() === searchValue;
+              league.name.slice(0, inputLength).toLowerCase() === searchValue;
 
           if (keep) {
             count += 1;
@@ -153,13 +154,13 @@ class SearchBar extends React.Component {
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      leagues: this.getSearchSuggestions(value)
+      suggestions: this.getSearchSuggestions(value)
     });
   };
 
   handleSuggestionsClearRequested = () => {
     this.setState({
-      leagues: []
+      suggestions: []
     });
   };
 
@@ -168,6 +169,11 @@ class SearchBar extends React.Component {
       [name]: newValue
     });
   };
+
+  handleSubmit = e =>{
+    e.preventDefault();
+    console.log(`I have been clicked as a Search Suggestion`)
+  }
 
   render() {
     const { classes } = this.props;
@@ -182,6 +188,7 @@ class SearchBar extends React.Component {
     };
 
     return (
+      <form onSubmit={this.handleSubmit}>
       <Paper className={classes.root}>
         <Autosuggest
           {...autosuggestProps}
@@ -199,7 +206,7 @@ class SearchBar extends React.Component {
             input:classes.input,
           }}
           renderSuggestionsContainer={options => (
-            <Paper {...options.containerProps} square>
+            <Paper {...options.containerProps} square onClick={this.handleSubmit}>
               {options.children}
             </Paper>
           )}
@@ -212,6 +219,7 @@ class SearchBar extends React.Component {
           <SearchIcon />
         </IconButton>
       </Paper>
+      </form>
     );
   }
 }
