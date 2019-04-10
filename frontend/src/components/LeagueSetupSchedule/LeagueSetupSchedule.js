@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -197,10 +198,13 @@ class LeagueSetupSchedule extends React.Component {
           teams[team2].homeGames++;
           weekSchedule.push({ away: team1, home: team2 });
         }
-
+        console.log(
+          'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
+        );
+        console.log(teams);
         // FOR TESTING
-        teams[team1].played.push(team2);
-        teams[team2].played.push(team1);
+        // teams[team1].played.push(team2);
+        // teams[team2].played.push(team1);
       }
 
       // Push the weekly schedule to the main schedule
@@ -279,10 +283,14 @@ class LeagueSetupSchedule extends React.Component {
     };
     gameTimeSlotsPerWeek = [
       ...gameTimeSlotsPerWeek
-        .filter(day => day.dayOfTheWeek >= this.state.start_day.getDay())
+        .filter(
+          day => day.dayOfTheWeek >= new Date(this.state.start_day).getDay()
+        )
         .sort(sortDays),
       ...gameTimeSlotsPerWeek
-        .filter(day => day.dayOfTheWeek < this.state.start_day.getDay())
+        .filter(
+          day => day.dayOfTheWeek < new Date(this.state.start_day).getDay()
+        )
         .sort(sortDays)
     ];
 
@@ -335,12 +343,12 @@ class LeagueSetupSchedule extends React.Component {
             ]
         )
       );
-      if (currentGameDate > this.state.leagueEndDate) {
-        this.setState({
-          seasonOverrun: true
-        });
-        return;
-      }
+      // if (currentGameDate > this.state.leagueEndDate) {
+      //   this.setState({
+      //     seasonOverrun: true
+      //   });
+      //   return;
+      // }
 
       const gameStartDateTime = new Date(currentGameDate);
       const gameEndDateTime = new Date(currentGameDate);
@@ -359,11 +367,12 @@ class LeagueSetupSchedule extends React.Component {
       );
 
       // Build matchup array with usable data
+      console.log(allGameMatchUps[i]);
       completedSchedule.push({
-        awayTeamIndex: allGameMatchUps[i].away,
-        homeTeamIndex: allGameMatchUps[i].home,
-        startTime: gameStartDateTime,
-        endTime: gameEndDateTime
+        away_team_id: this.state.teams[allGameMatchUps[i].away].id,
+        home_team_id: this.state.teams[allGameMatchUps[i].home].id,
+        start_time: gameStartDateTime,
+        end_time: gameEndDateTime
       });
 
       currentTimeSlot++;
@@ -376,6 +385,17 @@ class LeagueSetupSchedule extends React.Component {
     // console.log(allGameMatchUps);
     // console.log(gameTimeSlotsPerWeek);
     console.log(completedSchedule);
+    this.context.createScheduleInLeague(
+      completedSchedule,
+      this.props.index,
+      () => {
+        console.log('inside cb');
+        this.props.history.push({
+          pathname: '/dashboard/admin',
+          state: { leagueIndex: this.props.index }
+        });
+      }
+    );
   };
 
   componentDidMount() {
@@ -401,7 +421,7 @@ class LeagueSetupSchedule extends React.Component {
         <h1> Buttons work </h1>
         <Button
           onClick={
-            this.generateSchedule()
+            this.generateSchedule
             // Magic Button
           }
           className={classes.button}
@@ -435,4 +455,5 @@ class LeagueSetupSchedule extends React.Component {
 }
 
 LeagueSetupSchedule.contextType = AppContext;
-export default withStyles(styles)(LeagueSetupSchedule);
+
+export default withRouter(withStyles(styles)(LeagueSetupSchedule));
