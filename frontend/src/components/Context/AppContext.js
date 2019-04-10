@@ -60,7 +60,8 @@ export default class AppProvider extends Component {
     teams: JSON.parse(localStorage.getItem('teams')) || [],
     teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || [],
     schedule_by_league:
-      JSON.parse(localStorage.getItem('schedule_by_league')) || []
+      JSON.parse(localStorage.getItem('schedule_by_league')) || [],
+    cancellations_by_league: []
   };
 
   render() {
@@ -167,8 +168,8 @@ export default class AppProvider extends Component {
             let league = {
               name: leagueName,
               start_day: new Date().toString(), // using date only
-              teams_game_count: null,
-              game_length: null,
+              teams_game_count: 6,
+              game_length: 2,
               monday_start_time: 'January 1, 2019 17:00:00',
               monday_end_time: 'January 1, 2019 21:00:00', // using time only
               tuesday_start_time: 'January 1, 2019 17:00:00', // using time only

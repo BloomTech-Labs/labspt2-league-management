@@ -1,60 +1,43 @@
-import 'date-fns';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-// import classNames from "classnames";
-import { withStyles } from '@material-ui/core/styles';
-// import FormLabel from "@material-ui/core/FormLabel";
-// import FormControl from "@material-ui/core/FormControl";
-// import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormHelperText from "@material-ui/core/FormHelperText";
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  TimePicker,
-  DatePicker
-} from 'material-ui-pickers';
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
+import { AppContext } from '../Context/AppContext';
 
 const styles = theme => ({
-  root: {
-    display: 'flex'
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    marginTop: '200px',
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: '80%',
+      minWidth: '200px',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
   },
-  formControl: {
-    margin: theme.spacing.unit * 3
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
+  button: {
+    borderRadius: '50%',
+    backgroundColor: 'red',
+    width: '200px',
+    height: '200px'
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3
   }
 });
 
-// Get this from the context
-const loadedTeams = [
-  'Valley Vipers',
-  'Woodside Warriors',
-  'Bay Brawlers',
-  'Back Alley Snakes',
-  'Big City Boys',
-  'Comeback Kids',
-  'Another Team',
-  "Bill's Ballers",
-  'Yet Another Team'
-];
-
-// change all the state variables to match naming in db on backend
-// load the league settings and league teams data into state from context
-// debug algorithm
-// push to context function which makes axios call and updates localstorage
-// redirect to admin dashboard with proper league loaded
-
-
-const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thurday', 'Friday'];
-const WEEK_END = ['Saturday', 'Sunday'];
-
-class CreateLeague extends Component {
+class LeagueSetupSchedule extends React.Component {
   state = {
     name: 'League Name',
     start_day: new Date('March 29, 2019 09:30:00'),
@@ -94,80 +77,9 @@ class CreateLeague extends Component {
     teams: [],
     schedule: []
   };
+  // possible Handlers
+  // CDM
 
-  // addRemoveTeam = teamName => event => {
-  //   // Check if team needs removed
-  //   const currentTeams = this.state.teams.slice();
-
-  //   if (
-  //     this.state.teams.find(function(element) {
-  //       return element.teamName === teamName;
-  //     })
-  //   ) {
-  //     // Remove team, check box has been deselected
-  //     const newTeams = currentTeams.filter(team => team.teamName !== teamName);
-  //     this.setState({
-  //       teams: newTeams
-  //     });
-  //   } else {
-  //     // Add team to schedule
-  //     currentTeams.push({
-  //       teamName: teamName,
-  //       played: [],
-  //       homeGames: 0,
-  //       numOfByes: 0,
-  //       isBye: false
-  //     });
-  //     this.setState({
-  //       teams: currentTeams
-  //     });
-  //   }
-  // };
-
-  setGameData = stateName => event => {
-    this.setState({ [stateName]: event.target.value });
-  };
-
-  setGameDays = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  setWeekEndStartTime = (index, time) => {
-    const times = [...this.state.weekendStartTimes];
-    times[index] = time;
-    this.setState({ weekendStartTimes: times });
-  };
-
-  // NEED TO CHECK THAT END TIME IS GREATER THEN START TIME
-  setWeekEndEndTime = (index, time) => {
-    const times = [...this.state.weekendEndTimes];
-    times[index] = time;
-    this.setState({ weekendEndTimes: times });
-  };
-
-  setWeekDayStartTime = (index, time) => {
-    const times = [...this.state.weekdayStartTimes];
-    times[index] = time;
-    this.setState({ weekdayStartTimes: times });
-  };
-
-  // NEED TO CHECK THAT END TIME IS GREATER THEN START TIME
-  setWeekDayEndTime = (index, time) => {
-    const times = [...this.state.weekdayEndTimes];
-    times[index] = time;
-    this.setState({ weekdayEndTimes: times });
-  };
-
-  setStartDate = date => {
-    console.log(date);
-    this.setState({ start_day: date });
-  };
-
-  setEndDate = date => {
-    this.setState({ leagueEndDate: date });
-  };
-
-  // ##########################################################
   generateSchedule = () => {
     // If odd number of teams issue warning
     if (this.state.teams.length % 2 !== 0) {
@@ -466,167 +378,55 @@ class CreateLeague extends Component {
     console.log(completedSchedule);
   };
 
+  componentDidMount() {
+    const league = this.context.state.leagues[this.props.index];
+    const lid = this.context.state.leagues[this.props.index].id;
+    if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+      const teams = this.context.state.teams_by_league.find(
+        x => x.league_id === lid
+      ).teams;
+      console.log(teams);
+      this.setState({
+        teams,
+        ...league
+      });
+    }
+  }
   render() {
+    const { classes } = this.props;
+    console.log(this.state);
     return (
-      <div>
-        <h1 onClick={this.showState}>{this.state.name}</h1>
+      <div className={classes.main}>
+        <CssBaseline />
+        <h1> Buttons work </h1>
+        <Button
+          onClick={
+            this.generateSchedule()
+            // Magic Button
+          }
+          className={classes.button}
+        >
+          Magic
+          <br />
+          Button
+        </Button>
         <div>
-          {/* <h2>Season</h2> */}
-          {this.state.seasonOverrun ? (
-            <div>The total number of weeks exceeds the league end date</div>
-          ) : null}
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              margin="normal"
-              label="Start Date"
-              value={this.state.start_day}
-              onChange={this.setStartDate}
-            />
-            {/* <DatePicker
-              margin="normal"
-              label="End Date"
-              value={this.state.leagueEndDate}
-              onChange={this.setEndDate}
-            /> */}
-          </MuiPickersUtilsProvider>
-        </div>
-        <div>
-          {/* <h2>Games</h2> */}
-          <TextField
-            variant="outlined"
-            type="number"
-            label="Total Number of Games Per Team"
-            value={this.state.teams_game_count}
-            onChange={this.setGameData('teams_game_count')}
-          />
-          <TextField
-            variant="outlined"
-            type="number"
-            label="Length of Games (Hours)"
-            value={this.state.game_length}
-            onChange={this.setGameData('game_length')}
-          />
-
-          {/* <TextField
-            variant="outlined"
-            type="number"
-            label="Concurrent Games"
-            value={this.state.gamesPlayedConcurrently}
-            onChange={this.setGameData("gamesPlayedConcurrently")}
-          />
-          <TextField
-            variant="outlined"
-            type="number"
-            label="Games per Team per Week"
-            value={this.state.gamesPerTeamPerWeek}
-            onChange={this.setGameData("gamesPerTeamPerWeek")}
-          /> */}
-          {this.state.toManyGamesPerWeek ? (
-            <div>More games scheduled per week then time slots available</div>
-          ) : null}
-          {/* <FormControlLabel
-            control={
-              <Switch
-                checked={this.state.weekday}
-                onChange={this.setGameDays('weekday')}
-                value={this.state.weekday}
-                color="primary"
-              />
-            }
-            label="Weekday"
-          /> */}
-          {this.state.weekday
-            ? WEEK_DAYS.map((day, index) => {
-                return (
-                  <div key={day}>
-                    <div>{day}</div>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <TimePicker
-                        margin="normal"
-                        label="Start Time"
-                        value={this.state.weekdayStartTimes[index]}
-                        onChange={time => this.setWeekDayStartTime(index, time)}
-                      />
-                      <TimePicker
-                        margin="normal"
-                        label="End Time"
-                        value={this.state.weekdayEndTimes[index]}
-                        onChange={time => this.setWeekDayEndTime(index, time)}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </div>
-                );
-              })
-            : null}
-          {/* <FormControlLabel
-            control={
-              <Switch
-                checked={this.state.weekend}
-                onChange={this.setGameDays('weekend')}
-                value={this.state.weekend}
-                color="primary"
-              />
-            }
-            label="Weekend"
-          /> */}
-          {this.state.weekend
-            ? WEEK_END.map((day, index) => {
-                return (
-                  <div key={day}>
-                    <div>{day}</div>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <TimePicker
-                        margin="normal"
-                        label="Start Time"
-                        value={this.state.weekendStartTimes[index]}
-                        onChange={time => this.setWeekEndStartTime(index, time)}
-                      />
-                      <TimePicker
-                        margin="normal"
-                        label="End Time"
-                        value={this.state.weekendEndTimes[index]}
-                        onChange={time => this.setWeekEndEndTime(index, time)}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </div>
-                );
-              })
-            : null}
-        </div>
-
-        {/* <div>
-          <h2>Teams</h2>
-          {this.state.oddNumOfTeams ? (
-            <div>Please select an even number of teams</div>
-          ) : null}
-          {loadedTeams.map((team, index) => {
-            return (
-              <FormControlLabel
-                key={index}
-                control={
-                  <Checkbox
-                    checked={
-                      this.state.teams.findIndex(function(element) {
-                        return element.teamName === team;
-                      }) !== -1
-                    }
-                    onChange={this.addRemoveTeam(team)}
-                    value={team}
-                  />
-                }
-                label={team}
-              />
-            );
-          })}
-        </div> */}
-
-        <div>
+          <Button
+            disabled={this.props.activeStep === 0}
+            onClick={() => {
+              this.props.back(this.state, this.props.index);
+            }}
+          >
+            Back
+          </Button>
           <Button
             variant="contained"
             color="primary"
-            onClick={this.generateSchedule}
+            onClick={() => {
+              this.props.next(this.state, this.props.index);
+            }}
           >
-            Generate Schedule
+            Next
           </Button>
         </div>
       </div>
@@ -634,8 +434,5 @@ class CreateLeague extends Component {
   }
 }
 
-CreateLeague.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(CreateLeague);
+LeagueSetupSchedule.contextType = AppContext;
+export default withStyles(styles)(LeagueSetupSchedule);
