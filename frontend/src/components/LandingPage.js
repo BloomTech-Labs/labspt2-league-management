@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Billing from './Billing/Billing';
-<<<<<<< HEAD
-import Search from './Search/Search';
-import SearchForm from './Search/SearchForm';
-=======
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
 import football from '../Images/football-and-football-field-1024x648.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
->>>>>>> db53055d5c9e4bf29a1369532cb53ea2403d88cb
 // import WeatherWidget from './Weather/WeatherWidget';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
