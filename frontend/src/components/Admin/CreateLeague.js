@@ -44,19 +44,25 @@ const loadedTeams = [
   'Yet Another Team'
 ];
 
+// change all the state variables to match naming in db on backend
+// load the league settings and league teams data into state from context
+// debug algorithm
+// push to context function which makes axios call and updates localstorage
+// redirect to admin dashboard with proper league loaded
+
+
 const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thurday', 'Friday'];
 const WEEK_END = ['Saturday', 'Sunday'];
 
 class CreateLeague extends Component {
   state = {
-    leagueName: 'League Name',
-    leagueType: 0, // 0 = kid 1 = adult 2 = co-ed
-    leagueStartDate: new Date('March 29, 2019 09:30:00'),
+    name: 'League Name',
+    start_day: new Date('March 29, 2019 09:30:00'),
     leagueEndDate: new Date('May 10, 2019 09:30:00'),
-    numberOfGames: 4,
+    teams_game_count: 4,
     gamesPlayedConcurrently: 1,
     gamesPerTeamPerWeek: 1,
-    lengthOfGames: 2,
+    game_length: 2,
     weekday: true,
     weekend: true,
     weekdayStartTimes: [
@@ -87,22 +93,6 @@ class CreateLeague extends Component {
     seasonOverrun: false,
     teams: [],
     schedule: []
-  };
-
-  showState = () => {
-    console.log(this.state.teams);
-    // console.log(this.state.weekday);
-    // console.log(this.state.weekend);
-    // console.log(this.state.weekdayStartTimes);
-    // console.log(this.state.weekdayEndTimes);
-    // console.log(this.state.weekendStartTimes);
-    // console.log(this.state.weekendEndTimes);
-    // console.log(this.state.leagueType);
-    // console.log(this.state.leagueStartDate);
-    // console.log(this.state.leagueEndDate);
-    console.log(this.state.numberOfGames);
-    console.log(this.state.gamesPerTeamPerWeek);
-    console.log(this.state.lengthOfGames);
   };
 
   addRemoveTeam = teamName => event => {
@@ -168,15 +158,9 @@ class CreateLeague extends Component {
     this.setState({ weekdayEndTimes: times });
   };
 
-  setLeagueType = (event, value) => {
-    if (this.state.leagueType !== value) {
-      this.setState({ leagueType: value });
-    }
-  };
-
   setStartDate = date => {
     console.log(date);
-    this.setState({ leagueStartDate: date });
+    this.setState({ start_day: date });
   };
 
   setEndDate = date => {
@@ -198,7 +182,7 @@ class CreateLeague extends Component {
     //   teams.push({teamName: 'Bye Week', played: [], homeGames: 0, numOfByes: 0, isBye: true});
     // }
 
-    const games = this.state.numberOfGames;
+    const games = this.state.teams_game_count;
     const numOfTeams = teams.length;
     const schedule = [];
 
@@ -325,15 +309,15 @@ class CreateLeague extends Component {
         this.state.weekdayEndTimes[i].getMinutes() / 60 -
         (this.state.weekdayStartTimes[i].getHours() +
           this.state.weekdayStartTimes[i].getMinutes() / 60);
-      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
+      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.game_length);
 
       for (let j = 0; j < numOfTimeSlots; j++) {
         for (let k = 0; k < this.state.gamesPlayedConcurrently; k++) {
           const startTimeHour =
             this.state.weekdayStartTimes[i].getHours() +
-            j * this.state.lengthOfGames;
+            j * this.state.game_length;
           const startTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.lengthOfGames;
+          const endTimeHour = startTimeHour + this.state.game_length;
           const endTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
@@ -353,15 +337,15 @@ class CreateLeague extends Component {
         this.state.weekendEndTimes[i].getMinutes() / 60 -
         (this.state.weekendStartTimes[i].getHours() +
           this.state.weekendStartTimes[i].getMinutes() / 60);
-      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.lengthOfGames);
+      const numOfTimeSlots = Math.trunc(hoursInDay / this.state.game_length);
 
       for (let j = 0; j < numOfTimeSlots; j++) {
         for (let k = 0; k < this.state.gamesPlayedConcurrently; k++) {
           const startTimeHour =
             this.state.weekendStartTimes[i].getHours() +
-            j * this.state.lengthOfGames;
+            j * this.state.game_length;
           const startTimeMinute = this.state.weekendStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.lengthOfGames;
+          const endTimeHour = startTimeHour + this.state.game_length;
           const endTimeMinute = this.state.weekendStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
@@ -383,10 +367,10 @@ class CreateLeague extends Component {
     };
     gameTimeSlotsPerWeek = [
       ...gameTimeSlotsPerWeek
-        .filter(day => day.dayOfTheWeek >= this.state.leagueStartDate.getDay())
+        .filter(day => day.dayOfTheWeek >= this.state.start_day.getDay())
         .sort(sortDays),
       ...gameTimeSlotsPerWeek
-        .filter(day => day.dayOfTheWeek < this.state.leagueStartDate.getDay())
+        .filter(day => day.dayOfTheWeek < this.state.start_day.getDay())
         .sort(sortDays)
     ];
 
@@ -429,7 +413,7 @@ class CreateLeague extends Component {
       if (i % gamesPerWeek === 0) {
         currentWeekOffset++;
       }
-      const startDate = new Date(this.state.leagueStartDate);
+      const startDate = new Date(this.state.start_day);
       const currentGameDate = new Date(
         startDate.setDate(
           startDate.getDate() +
@@ -476,7 +460,7 @@ class CreateLeague extends Component {
       }
     }
 
-    // console.log(this.state.leagueStartDate.getDay(), this.state.leagueEndDate);
+    // console.log(this.state.start_day.getDay(), this.state.leagueEndDate);
     // console.log(allGameMatchUps);
     // console.log(gameTimeSlotsPerWeek);
     console.log(completedSchedule);
@@ -485,22 +469,7 @@ class CreateLeague extends Component {
   render() {
     return (
       <div>
-        <h1 onClick={this.showState}>{this.state.leagueName}</h1>
-
-        {/* <div>
-          <Paper square>
-            <Tabs
-              value={this.state.leagueType}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={this.setLeagueType}
-            >
-              <Tab label="Kids" />
-              <Tab label="Adult" />
-              <Tab label="Co-ed" />
-            </Tabs>
-          </Paper>
-        </div> */}
+        <h1 onClick={this.showState}>{this.state.name}</h1>
         <div>
           {/* <h2>Season</h2> */}
           {this.state.seasonOverrun ? (
@@ -510,7 +479,7 @@ class CreateLeague extends Component {
             <DatePicker
               margin="normal"
               label="Start Date"
-              value={this.state.leagueStartDate}
+              value={this.state.start_day}
               onChange={this.setStartDate}
             />
             {/* <DatePicker
@@ -527,15 +496,15 @@ class CreateLeague extends Component {
             variant="outlined"
             type="number"
             label="Total Number of Games Per Team"
-            value={this.state.numberOfGames}
-            onChange={this.setGameData('numberOfGames')}
+            value={this.state.teams_game_count}
+            onChange={this.setGameData('teams_game_count')}
           />
           <TextField
             variant="outlined"
             type="number"
             label="Length of Games (Hours)"
-            value={this.state.lengthOfGames}
-            onChange={this.setGameData('lengthOfGames')}
+            value={this.state.game_length}
+            onChange={this.setGameData('game_length')}
           />
 
           {/* <TextField
