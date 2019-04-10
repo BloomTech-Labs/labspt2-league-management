@@ -23,7 +23,7 @@ const styles = theme => ({
 
 class LeagueSetupSettings extends Component {
   state = {
-    name: 'League Name',
+    name: 'League Name'
   };
 
   inputHandler = event => {
@@ -37,7 +37,7 @@ class LeagueSetupSettings extends Component {
   };
 
   componentDidMount() {
-    this.setState({...this.context.state.leagues[this.props.index]});
+    this.setState({ ...this.context.state.leagues[this.props.index] });
   }
 
   render() {
@@ -64,6 +64,10 @@ class LeagueSetupSettings extends Component {
             name="teams_game_count"
             value={this.state.teams_game_count}
             onChange={this.inputHandler}
+            InputLabelProps={{
+              shrink: true
+            }}
+            margin="normal"
           />
           <TextField
             variant="outlined"
@@ -72,6 +76,10 @@ class LeagueSetupSettings extends Component {
             name="game_length"
             value={this.state.game_length}
             onChange={this.inputHandler}
+            InputLabelProps={{
+              shrink: true
+            }}
+            margin="normal"
           />
         </div>
 
