@@ -58,7 +58,9 @@ export default class AppProvider extends Component {
     ],
     leagues: JSON.parse(localStorage.getItem('leagues')) || [],
     teams: JSON.parse(localStorage.getItem('teams')) || [],
-    teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || []
+    teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || [],
+    schedule_by_league:
+      JSON.parse(localStorage.getItem('schedule_by_league')) || []
   };
 
   render() {
@@ -98,21 +100,26 @@ export default class AppProvider extends Component {
               .then(res => {
                 const leagues = res.data;
                 localStorage.setItem('leagues', JSON.stringify(leagues));
-                leagues.forEach((league) => {
-                  axios.get(`/leagues/${league.id}/teams`, options)
+                leagues.forEach(league => {
+                  axios
+                    .get(`/leagues/${league.id}/teams`, options)
                     .then(res => {
                       const teams = res.data;
                       const joined = this.state.teams_by_league.concat({
-                        league_id: league.id, teams
+                        league_id: league.id,
+                        teams
                       });
-                      localStorage.setItem('teams_by_league', JSON.stringify(joined));
+                      localStorage.setItem(
+                        'teams_by_league',
+                        JSON.stringify(joined)
+                      );
                       this.setState({
                         teams_by_league: joined
                       });
                     })
                     .catch(err => {
                       console.log('error from getTeams by league id', err);
-                    })
+                    });
                 });
                 this.setState({ leagues });
               })
@@ -224,7 +231,7 @@ export default class AppProvider extends Component {
           },
           createTeamInLeague: (teamName, index, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
-            const lid = this.state.leagues[index].id
+            const lid = this.state.leagues[index].id;
             const endpoint = `/leagues/${lid}/teams`;
             let team = {
               name: teamName,
@@ -247,17 +254,21 @@ export default class AppProvider extends Component {
               .then(res => {
                 team = res.data;
                 let joined;
-                if(this.state.teams_by_league.find(x => x.league_id === lid)) {
-                  const foundIndex = this.state.teams_by_league.findIndex( x => x.league_id === lid);
-                  const league = this.state.teams_by_league.splice(foundIndex, 1);
+                if (this.state.teams_by_league.find(x => x.league_id === lid)) {
+                  const foundIndex = this.state.teams_by_league.findIndex(
+                    x => x.league_id === lid
+                  );
+                  const league = this.state.teams_by_league.splice(
+                    foundIndex,
+                    1
+                  );
 
-                  const teams = league[0].teams.concat(team)
+                  const teams = league[0].teams.concat(team);
                   joined = this.state.teams_by_league.concat({
-                    league_id:lid,
+                    league_id: lid,
                     teams: teams
-                  })
-                }
-                else {
+                  });
+                } else {
                   joined = this.state.teams_by_league.concat({
                     league_id: lid,
                     teams: team
@@ -271,6 +282,50 @@ export default class AppProvider extends Component {
               })
               .catch(err => {
                 console.log('error from createTeamInLeague', err);
+              });
+          },
+          createScheduleInLeague: (games, index, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const lid = this.state.leagues[index].id;
+            const endpoint = `/leagues/${lid}/teams`;
+            // may need to iterate over games and add defaults to each game object
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .post(endpoint, games, options)
+              .then(res => {
+                games = res.data;
+                if (
+                  this.state.schedule_by_league.find(x => x.league_id === lid)
+                ) {
+                  // this is just to remove the specific schedule from localstorage if it exists
+                  const foundIndex = this.state.schedule_by_league.findIndex(
+                    x => x.league_id === lid
+                  );
+                  const league = this.state.teams_by_league.splice(
+                    foundIndex,
+                    1
+                  );
+                }
+                const joined = this.state.schedule_by_league.concat({
+                  league_id: lid,
+                  games: games
+                });
+
+                localStorage.setItem(
+                  'schedule_by_league',
+                  JSON.stringify(joined)
+                );
+                this.setState({
+                  schedule_by_league: joined
+                });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from createScheduleInLeague', err);
               });
           }
         }}
