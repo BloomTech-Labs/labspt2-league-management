@@ -10,6 +10,7 @@ import LeagueSetupTeams from '../LeagueSetupTeams/LeagueSetupTeams';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
 import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
+import LeagueSetupSchedule from '../LeagueSetupSchedule/LeagueSetupSchedule';
 
 const styles = theme => ({
   root: {
@@ -55,7 +56,11 @@ class HorizontalLinearStepper extends React.Component {
           />
         );
       case 2:
-        return 'This is the bit I really care about!';
+        return (
+          <LeagueSetupSchedule next={this.handlexNext} 
+          index={this.state.leagueIndex}
+          back={this.handleBack} />
+        );
       default:
         return 'Unknown step';
     }
@@ -76,7 +81,7 @@ class HorizontalLinearStepper extends React.Component {
         this.context.editLeague(data, index, this.nextStep);
         break;
       case 1:
-      this.nextStep();
+        this.nextStep();
         break;
       case 2:
         break;
@@ -158,42 +163,9 @@ class HorizontalLinearStepper extends React.Component {
               </div>
             ) : (
               <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-
                 <Typography className={classes.instructions}>
                   {this.getStepContent(activeStep)}
                 </Typography>
-                <div>
-                  <Button
-                    disabled={activeStep === 0}
-                    onClick={this.handleBack}
-                    className={classes.button}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
-                </div>
               </div>
             )}
           </div>
