@@ -5,6 +5,7 @@ import moment from 'moment';
 import '../../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 // import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
+import { AppContext } from '../Context/AppContext';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -48,6 +49,8 @@ class PublicCalendar extends Component {
   //   }
   componentDidMount() {
     this.retrieveGames();
+    console.log('Context from Calendar ', this.context);
+    console.log(this.context.state.schedule_by_league[0].games);
   }
 
   retrieveGames = async () => {
@@ -59,16 +62,18 @@ class PublicCalendar extends Component {
   };
 
   showGames = () => {
-    const { publicEvents } = this.props.context.state;
+    // const { publicEvents } = this.props.context.state;
+    const events = this.context.state.schedule_by_league[0].games;
 
-    const displayEvents = publicEvents.map(event => {
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
+    const displayEvents = events.map((event, index) => {
+      event.start = new Date(event.start_time);
+      event.end = new Date(event.end_time);
+      event.title = `Team ${event.away_team_id} vs Team ${event.home_team_id}`;
       return event;
     });
-    setTimeout(() => {
-      this.setState({ publicEvents: displayEvents, isLoading: false });
-    }, 500);
+    // setTimeout(() => {
+    this.setState({ publicEvents: displayEvents, isLoading: false });
+    // }, 500);
   };
 
   //   customEventPropGetter = event => {
@@ -133,6 +138,7 @@ class PublicCalendar extends Component {
           defaultDate={new Date()}
           defaultView="week"
           events={this.state.publicEvents}
+          // events={this.context.state.schedule_by_league[0].games}
           //   eventPropGetter={this.customEventPropGetter}
           style={{ height: '80vh', padding: '10px' }}
         />
@@ -140,5 +146,7 @@ class PublicCalendar extends Component {
     );
   }
 }
+
+PublicCalendar.contextType = AppContext;
 
 export default PublicCalendar;
