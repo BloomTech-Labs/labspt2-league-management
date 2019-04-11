@@ -121,6 +121,26 @@ export default class AppProvider extends Component {
                     .catch(err => {
                       console.log('error from getTeams by league id', err);
                     });
+                  axios
+                    .get(`/leagues/${league.id}/schedule`, options)
+                    .then(res => {
+                      const games = res.data;
+                      console.log('schedule', res.data);
+                      const scheduleJoined = this.state.schedule_by_league.concat({
+                        league_id: league.id,
+                        games
+                      });
+                      localStorage.setItem(
+                        'schedule_by_league',
+                        JSON.stringify(scheduleJoined)
+                      );
+                      this.setState({
+                        schedule_by_league: scheduleJoined
+                      });
+                    })
+                    .catch(err => {
+                      console.log('error from getTeams by league id', err);
+                    });
                 });
                 this.setState({ leagues });
               })
@@ -299,6 +319,8 @@ export default class AppProvider extends Component {
               .post(endpoint, games, options)
               .then(res => {
                 games = res.data;
+                console.log(res.data);
+                console.log(games);
                 // this is just to remove the specific schedule from local storage if it exists
                 if (
                   this.state.schedule_by_league.find(x => x.league_id === lid)

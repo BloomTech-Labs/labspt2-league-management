@@ -66,7 +66,7 @@ class AdminDashboard extends Component {
             margin: '100px 40px 20px 280px'
           }}
         >
-          {calendar && <PublicCalendar context={this.context} />}
+          {calendar && <PublicCalendar index={leagueIndex} />}
           {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueDetails league={league} />}
           {editSchedule && <DnDCalendar context={this.context} />}
