@@ -60,7 +60,8 @@ export default class AppProvider extends Component {
     teams: JSON.parse(localStorage.getItem('teams')) || [],
     teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || [],
     schedule_by_league:
-      JSON.parse(localStorage.getItem('schedule_by_league')) || []
+      JSON.parse(localStorage.getItem('schedule_by_league')) || [],
+    cancellations_by_league: []
   };
 
   render() {
@@ -120,6 +121,26 @@ export default class AppProvider extends Component {
                     .catch(err => {
                       console.log('error from getTeams by league id', err);
                     });
+                  axios
+                    .get(`/leagues/${league.id}/schedule`, options)
+                    .then(res => {
+                      const games = res.data;
+                      console.log('schedule', res.data);
+                      const scheduleJoined = this.state.schedule_by_league.concat({
+                        league_id: league.id,
+                        games
+                      });
+                      localStorage.setItem(
+                        'schedule_by_league',
+                        JSON.stringify(scheduleJoined)
+                      );
+                      this.setState({
+                        schedule_by_league: scheduleJoined
+                      });
+                    })
+                    .catch(err => {
+                      console.log('error from getTeams by league id', err);
+                    });
                 });
                 this.setState({ leagues });
               })
@@ -167,8 +188,8 @@ export default class AppProvider extends Component {
             let league = {
               name: leagueName,
               start_day: new Date().toString(), // using date only
-              teams_game_count: null,
-              game_length: null,
+              teams_game_count: 6,
+              game_length: 2,
               monday_start_time: 'January 1, 2019 17:00:00',
               monday_end_time: 'January 1, 2019 21:00:00', // using time only
               tuesday_start_time: 'January 1, 2019 17:00:00', // using time only
@@ -287,21 +308,23 @@ export default class AppProvider extends Component {
           createScheduleInLeague: (games, index, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = this.state.leagues[index].id;
-            const endpoint = `/leagues/${lid}/teams`;
-            // may need to iterate over games and add defaults to each game object
+            const endpoint = `/leagues/${lid}/schedule`;
             const options = {
               headers: {
                 authorization: token
               }
             };
+
             axios
               .post(endpoint, games, options)
               .then(res => {
                 games = res.data;
+                console.log(res.data);
+                console.log(games);
+                // this is just to remove the specific schedule from local storage if it exists
                 if (
                   this.state.schedule_by_league.find(x => x.league_id === lid)
                 ) {
-                  // this is just to remove the specific schedule from localstorage if it exists
                   const foundIndex = this.state.schedule_by_league.findIndex(
                     x => x.league_id === lid
                   );
@@ -310,11 +333,12 @@ export default class AppProvider extends Component {
                     1
                   );
                 }
+                // and we update the array to contain the new values
                 const joined = this.state.schedule_by_league.concat({
                   league_id: lid,
                   games: games
                 });
-
+                // then we put it back in to local storage with the update
                 localStorage.setItem(
                   'schedule_by_league',
                   JSON.stringify(joined)

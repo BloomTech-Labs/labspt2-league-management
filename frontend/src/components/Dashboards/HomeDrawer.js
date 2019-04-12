@@ -35,19 +35,20 @@ class HomeDrawer extends Component {
       <List>
         {/* <Link to="/dashboard"> */}{' '}
         {/* This will eventually link to a component that will collect the name of the league and payment information */}
-        <ListItem button id="create" onClick={this.props.displayBilling}>
+        {/* <ListItem button id="create" onClick={this.props.displayBilling}>
           <ListItemText primary="Create League" />
-        </ListItem>
+        </ListItem> */}
         {/* </Link> */}
-        <Divider />
+        {/* <Divider /> */}
         <ListItem
           button
           key="admin"
           id="expandLeagues"
           onClick={this.handleClick}
           color="inherit"
+          style={!leagues.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Admin - Your Leagues" />
+          <ListItemText primary="Your Leagues" />
           {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -56,14 +57,23 @@ class HomeDrawer extends Component {
             {leagues.map((league, index) => (
               <>
                 <Link
-                  to={{
-                    pathname: '/dashboard/admin',
-                    state: {
-                      // leagueId: league.id,
-                      // leagueName: league.name,
-                      leagueIndex: index
-                    }
-                  }}
+                  to={
+                    // This will check if there is a schedule created yet, which would signify that the league setup has been completed.
+                    true
+                      ? // this.context.schedule.length
+                        {
+                          pathname: '/dashboard/admin',
+                          state: {
+                            leagueIndex: index
+                          }
+                        }
+                      : {
+                          pathname: '/dashboard/admin/setup',
+                          state: {
+                            leagueIndex: index
+                          }
+                        }
+                  }
                 >
                   <ListItem
                     button
@@ -88,8 +98,9 @@ class HomeDrawer extends Component {
           id="expandTeams"
           onClick={this.handleClick}
           color="inherit"
+          style={!teams.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Coach - Your Teams" />
+          <ListItemText primary="Your Teams" />
           {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
