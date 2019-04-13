@@ -173,6 +173,9 @@ class SearchBar extends React.Component {
   handleSubmit = e =>{
     e.preventDefault();
     console.log(`I have been clicked as a Search Suggestion`)
+    // this.history.push({
+    //   pathname:'/schedule'
+    // })
   }
 
   render() {
