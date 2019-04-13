@@ -8,7 +8,7 @@ import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
 import TeamCardList from '../TeamCardList/TeamCardList.js';
 import LeagueDetails from '../Admin/LeagueDetails';
 import axios from 'axios';
-import { withRouter } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -61,11 +61,6 @@ class AdminDashboard extends Component {
   render() {
     const { classes, theme } = this.props;
     // const { leagueIndex } = this.state;
-    console.log(this.context.state.leagues);
-    console.log(this.context.state.leagues[this.state.leagueIndex]);
-    const league = this.context.state.leagues[this.state.leagueIndex];
-    console.log(league);
-
     const {
       calendar,
       teamList,
@@ -74,6 +69,23 @@ class AdminDashboard extends Component {
       cancellationRequests,
       leagueIndex
     } = this.state;
+    // console.log(this.context.state.leagues);
+    // console.log(this.context.state.leagues[this.state.leagueIndex]);
+    const league = this.context.state.leagues[leagueIndex];
+
+    if (!this.context.state.schedule_by_league[leagueIndex]) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/dashboard/admin/setup',
+            state: {
+              leagueIndex: leagueIndex
+            }
+          }}
+        />
+      );
+    }
+
     return (
       // <AppContext.Consumer>
       //   {context => (

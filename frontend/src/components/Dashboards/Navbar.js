@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   appBar: {
     marginLeft: drawerWidth,
-    // backgroundColor: '#333',
+    backgroundColor: '#1565c0',
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
       width: '100%',
@@ -165,7 +165,7 @@ class Navbar extends React.Component {
             </IconButton> */}
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/" style={{ color: '#fff' }}>
-                League Management
+                LM
               </Link>
             </Typography>
             <Link to="/dashboard">
