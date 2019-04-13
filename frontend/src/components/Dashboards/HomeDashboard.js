@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import ChooseLeague from '../CreateLeague/ChooseLeague';
 // import Billing from '../Billing/Billing';
-import AppContext from '../Context/AppContext';
+import { AppContext } from '../Context/AppContext';
 
 class HomeDashboard extends Component {
   state = {
@@ -22,16 +22,17 @@ class HomeDashboard extends Component {
       <>
         <DashboardNavbar
           data={this.state}
-          username={this.props.username}
+          // username={this.context.username}
           displayBilling={this.displayBilling}
-          context={this.props.context}
+          // context={this.props.context}
         />
         <div
           style={{
             margin: '100px 40px 20px 280px'
           }}
         >
-          {chooseLeague && <ChooseLeague />}
+          {/* {chooseLeague && <ChooseLeague />} */}
+          <ChooseLeague />
         </div>
       </>
     );

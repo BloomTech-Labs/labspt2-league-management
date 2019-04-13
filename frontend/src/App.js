@@ -11,91 +11,80 @@ import UserSettings from './components/UserSettings/UserSettings';
 import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
+import LeagueSetup from './components/Admin/LeagueSetup';
 
 class App extends Component {
   render() {
     // console.log(AppContext.Consumer);
+    const homepage = props => {
+      return <Redirect to="/" />;
+    };
     return (
-      <AppContext.Consumer>
-        {context => {
-          const homepage = props => {
-            return <Redirect to="/" />;
-          };
-          return (
-            <>
-              {/* PUBLIC ROUTES*/}
-              <Route
-                exact
-                path="/"
-                render={props => <LandingPage context={context} />}
-              />
-              <Route path="/signup" component={Signup} />
-              <Route
-                path="/signin"
-                render={props => (
-                  <Signin
-                    signin={context.signin}
-                    getLeagues={context.getLeagues}
-                    getTeams={context.getTeams}
-                  />
-                )}
-              />
-              <Route
-                path="/authorize"
-                render={props => <Authorize signin={context.signin} />}
-              />
-              {/* PROTECTED ROUTES*/}
+      // <AppContext.Consumer>
+      //   {context => {
+      // return (
+      <>
+        {/* PUBLIC ROUTES*/}
+        <Route
+          exact
+          path="/"
+          component={LandingPage} // Wait to pull in Griffin's changes
+          // render={props => <LandingPage context={context} />}
+        />
+        <Route path="/signup" component={Signup} />
+        <Route
+          path="/signin"
+          component={Signin}
+          // render={props => (
+          //   <Signin
+          //     signin={context.signin}
+          //     getLeagues={context.getLeagues}
+          //     getTeams={context.getTeams}
+          //   />
+          // )}
+        />
+        <Route
+          path="/authorize"
+          component={Authorize}
+          // render={props => <Authorize signin={context.signin} />}
+        />
+        {/* PROTECTED ROUTES*/}
 
-              <Route
-                exact
-                path="/dashboard"
-                render={
-                  context.state.loggedIn
-                    ? props => (
-                        <HomeDashboard
-                          username={context.state.username}
-                          context={context}
-                        />
-                      )
-                    : homepage
-                }
-              />
+        <Route
+          exact
+          path="/dashboard"
+          component={this.context.state.loggedIn ? HomeDashboard : homepage}
+        />
 
-              <Route
-                path="/settings"
-                render={
-                  context.state.loggedIn
-                    ? props => <UserSettings context={context} />
-                    : homepage
-                }
-              />
-              <Route
-                path="/dashboard/admin"
-                render={
-                  context.state.loggedIn
-                    ? props => <AdminDashboard context={context} />
-                    : homepage
-                }
-              />
-              <Route
-                path="/dashboard/coach"
-                render={
-                  context.state.loggedIn
-                    ? props => <CoachDashboard context={context} />
-                    : homepage
-                }
-              />
-            </>
-          );
-        }}
-      </AppContext.Consumer>
-
-      // admin dashboard - restricted
-      // coach dashboard - restricted
-      // create league form - restricted
-      // public calendars
+        <Route
+          path="/settings"
+          component={this.context.state.loggedIn ? UserSettings : homepage}
+        />
+        <Route
+          exact
+          path="/dashboard/admin"
+          component={this.context.state.loggedIn ? AdminDashboard : homepage}
+        />
+        <Route
+          path="/dashboard/coach"
+          component={this.context.state.loggedIn ? CoachDashboard : homepage}
+        />
+        <Route
+          path="/dashboard/admin/setup"
+          component={this.context.state.loggedIn ? LeagueSetup : homepage}
+        />
+      </>
     );
+    // }}
+    // </AppContext.Consumer>
+
+    // admin dashboard - restricted
+    // coach dashboard - restricted
+    // create league form - restricted
+    // public calendars
+    // );
   }
 }
+App.contextType = AppContext;
 
 export default App;

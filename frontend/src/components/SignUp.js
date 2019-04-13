@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { AppContext } from './Context/AppContext';
+
 const styles = theme => ({
   main: {
     width: 'auto',
@@ -152,6 +154,9 @@ class Signup extends React.Component {
     );
   }
 }
+
+Signup.contextType = AppContext;
+
 Signup.propTypes = {
   classes: PropTypes.object.isRequired
 };

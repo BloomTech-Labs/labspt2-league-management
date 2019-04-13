@@ -1,84 +1,84 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+.landing-page html,
+.landing-page body,
+.landing-page div,
+.landing-page span,
+.landing-page applet,
+.landing-page object,
+.landing-page iframe,
+.landing-page h1,
+.landing-page h2,
+.landing-page h3,
+.landing-page h4,
+.landing-page h5,
+.landing-page h6,
+.landing-page p,
+.landing-page blockquote,
+.landing-page pre,
+.landing-page a,
+.landing-page abbr,
+.landing-page acronym,
+.landing-page address,
+.landing-page big,
+.landing-page cite,
+.landing-page code,
+.landing-page del,
+.landing-page dfn,
+.landing-page em,
+.landing-page img,
+.landing-page ins,
+.landing-page kbd,
+.landing-page q,
+.landing-page s,
+.landing-page samp,
+.landing-page small,
+.landing-page strike,
+.landing-page strong,
+.landing-page sub,
+.landing-page sup,
+.landing-page tt,
+.landing-page var,
+.landing-page b,
+.landing-page u,
+.landing-page i,
+.landing-page center,
+.landing-page dl,
+.landing-page dt,
+.landing-page dd,
+.landing-page ol,
+.landing-page ul,
+.landing-page li,
+.landing-page fieldset,
+.landing-page form,
+.landing-page label,
+.landing-page legend,
+.landing-page table,
+.landing-page caption,
+.landing-page tbody,
+.landing-page tfoot,
+.landing-page thead,
+.landing-page tr,
+.landing-page th,
+.landing-page td,
+.landing-page article,
+.landing-page aside,
+.landing-page canvas,
+.landing-page details,
+.landing-page embed,
+.landing-page figure,
+.landing-page figcaption,
+.landing-page footer,
+.landing-page header,
+.landing-page hgroup,
+.landing-page menu,
+.landing-page nav,
+.landing-page output,
+.landing-page ruby,
+.landing-page section,
+.landing-page summary,
+.landing-page time,
+.landing-page mark,
+.landing-page audio,
+.landing-page video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -87,121 +87,121 @@ video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+.landing-page article,
+.landing-page aside,
+.landing-page details,
+.landing-page figcaption,
+.landing-page figure,
+.landing-page footer,
+.landing-page header,
+.landing-page hgroup,
+.landing-page menu,
+.landing-page nav,
+.landing-page section {
   display: block;
 }
-body
+.landing-page body
 {
   line-height: 1;
 }
-ol,
-ul {
+.landing-page ol,
+.landing-page ul {
   list-style: none;
 }
-blockquote,
-q {
+.landing-page blockquote,
+.landing-page q {
   quotes: none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+.landing-page blockquote:before,
+.landing-page blockquote:after,
+.landing-page q:before,
+.landing-page q:after {
   content: '';
   content: none;
 }
-table {
+.landing-page table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-* {
+.landing-page * {
   box-sizing: border-box;
 }
-body {
+.landing-page body {
   max-width: 100%;
 }
-html {
+.landing-page html {
   font-size: 62.5%;
 }
-html, body
+.landing-page html, body
 {
   font-family: 'Lato', sans-serif;
 }
-h1,
-h2,
-h3,
-h4,
-h5 {
+.landing-page h1,
+.landing-page h2,
+.landing-page h3,
+.landing-page h4,
+.landing-page h5 {
   font-family: 'Lato', sans-serif;
 }
-h1 {
+.landing-page h1 {
   font-size: 2.8rem;
   font-family: 'Lato', sans-serif;
   letter-spacing: .2rem;
   text-align: center;
 }
-h2 {
+.landing-page h2 {
   font-size: 3.2rem;
   padding-bottom: 10px;
 }
-h3 {
+.landing-page h3 {
   font-size: 2rem;
 }
-h4 {
+.landing-page h4 {
   font-size: 1.7rem;
   padding-bottom: 10px;
 }
-p {
+.landing-page p {
   line-height: 1.5;
   font-size: 1.8rem;
   padding-bottom: 10px;
 }
-img {
+.landing-page img {
   width: inherit;
   height: inherit;
 }
-.container {
+.landing-page .container {
   width: 100%;
   margin: 0 auto;
 }
-span {
+.landing-page span {
   font-size: 1.6rem;
 }
-address {
+.landing-page address {
   font-size: 1.4rem;
 }
-a {
+.landing-page a {
   font-size: 1.4rem;
 }
-body {
+.landing-page body {
   max-width: 649px;
   background-color: #e8eef4;
   display: flex;
   flex-direction: column;
   background-size: cover;
 }
-.content {
+.landing-page .content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.content .header {
-  background-image: url(../src/Images/sports-banner.jpeg);
+.landing-page .content .header {
+  background-image: url(../Images/sports-banner.jpeg);
   background-size: cover;
   padding: 6% 0;
   width: 100%;
 }
-.content .header .header-content {
+.landing-page .content .header .header-content {
   margin-top: 3%;
   background-color: rgba(3, 3, 3, 0.6);
   margin-top: 8%;
@@ -213,7 +213,7 @@ body {
   padding: 3%;
   margin: 0 auto;
 }
-.content .header .links {
+.landing-page .content .header .links {
   float: right;
   padding-bottom: 3%;
   width: 55%;
@@ -222,31 +222,31 @@ body {
   align-items: center;
   width: 60%;
 }
-.content .header .links a {
+.landing-page .content .header .links a {
   text-decoration: none;
   color: red ;
   font-weight: 500;
 }
-.content .header .links a:hover {
+.landing-page .content .header .links a:hover {
   text-decoration: underline;
 }
-.content .header .header-content span {
+.landing-page .content .header .header-content span {
   border-top: 3px solid rgba(255, 255, 255, 0.9);
   border-bottom: 3px solid rgba(255, 255, 255, 0.9);
   padding: 2% 0;
 }
-.content .header .header-content span h1 {
+.landing-page .content .header .header-content span h1 {
   border-top: 3px solid rgba(255, 255, 255, 0.9);
   border-bottom: 3px solid rgba(255, 255, 255, 0.9);
   color: rgba(255, 255, 255, 0.9);
   padding: 6% 0;
 }
-.content .header .header-content p {
+.landing-page .content .header .header-content p {
   color: rgba(255, 255, 255, 0.9);
   padding-top: 3%;
   width: 90%;
 }
-.content .middle-content {
+.landing-page .content .middle-content {
   margin: 0 4%;
   margin-top: 10%;
   display: flex;
@@ -257,7 +257,7 @@ body {
   padding-bottom: 3%;
   background-color: white;
 }
-.content .middle-content .carousel {
+.landing-page .content .middle-content .carousel {
   margin-top: 3%;
   width: 85%;
   display: flex;
@@ -266,7 +266,7 @@ body {
   margin-right: 5%;
   padding: 3% 0;
 }
-.content .middle-content .carousel .left-button {
+.landing-page .content .middle-content .carousel .left-button {
   width: 0;
   height: 0;
   border-top: 12px solid transparent;
@@ -276,10 +276,10 @@ body {
   float: left;
   align-self: center;
 }
-.content .middle-content .carousel .left-button:hover {
+.landing-page .content .middle-content .carousel .left-button:hover {
   opacity: .8;
 }
-.content .middle-content .carousel .right-button {
+.landing-page .content .middle-content .carousel .right-button {
   width: 0;
   height: 0;
   border-top: 12px solid transparent;
@@ -289,40 +289,40 @@ body {
   float: right;
   align-self: center;
 }
-.content .middle-content .carousel .right-button:hover {
+.landing-page .content .middle-content .carousel .right-button:hover {
   opacity: .8;
 }
-.content .middle-content .carousel .carousel-img {
+.landing-page .content .middle-content .carousel .carousel-img {
   display: none;
   height: 30%;
   padding-right: 1%;
   padding-left: 1%;
 }
-.content .middle-content .quote-area {
+.landing-page .content .middle-content .quote-area {
   padding: 2%;
   color: rgba(3, 3, 3, 0.6);
   text-align: center;
   font-size: 1.3rem;
 }
-.content .middle-content .rm {
+.landing-page .content .middle-content .rm {
   width: 30%;
   height: 25%;
 }
-.content .middle-content .rm button {
+.landing-page .content .middle-content .rm button {
   width: 100%;
   background-color: transparent;
   color: rgba(3, 3, 3, 0.6);
   font-size: 1.4rem;
   padding: 4%;
 }
-.content .middle-content .rm button:hover {
+.landing-page .content .middle-content .rm button:hover {
   background-color: rgba(3, 3, 3, 0.6);
   color: white;
 }
-.content .middle-content .story-quote .quote {
+.landing-page .content .middle-content .story-quote .quote {
   display: none;
 }
-.content .user-input {
+.landing-page .content .user-input {
   padding-top: 3.5%;
   padding-bottom: 2%;
   display: flex;
@@ -333,13 +333,13 @@ body {
   width: 95%;
   background-color: white;
 }
-.content .user-input h3 {
+.landing-page .content .user-input h3 {
   color: rgba(3, 3, 3, 0.6);
   padding-bottom: 2%;
   width: 100%;
   text-align: center;
 }
-.content .user-input .share {
+.landing-page .content .user-input .share {
   padding: 1%;
   width: 30%;
   background-color: transparent;
@@ -348,11 +348,11 @@ body {
   box-shadow: none;
   font-size: 1.3rem;
 }
-.content .user-input .share:hover {
+.landing-page .content .user-input .share:hover {
   background-color: rgba(3, 3, 3, 0.6);
   color: white;
 }
-.content .user-input #story {
+.landing-page .content .user-input #story {
   background-color: transparent;
   border: 0.5px solid rgba(255, 255, 255, 0.9);
   color: rgba(255, 255, 255, 0.9);
@@ -360,7 +360,7 @@ body {
   margin-bottom: 3%;
   display: block;
 }
-.content .user-input #input-form #submit {
+.landing-page .content .user-input #input-form #submit {
   background-color: transparent;
   color: rgba(255, 255, 255, 0.9);
   font-family: 'Lato', sans-serif;
@@ -369,13 +369,13 @@ body {
   width: 7em;
   display: block;
 }
-.content .user-input #input-form #submit:hover {
+.landing-page .content .user-input #input-form #submit:hover {
   background-color: rgba(255, 255, 255, 0.9);
 }
-.content .user-input .story--open {
+.landing-page .content .user-input .story--open {
   display: block;
 }
-.footer {
+.landing-page .footer {
   background-color: white;
   border: 1px solid white;
   line-height: 1.3;
@@ -383,25 +383,25 @@ body {
   margin-top: 4%;
   align-self: center;
 }
-.footer h4 {
+.landing-page .footer h4 {
   text-align: center;
   color: rgba(3, 3, 3, 0.6);
 }
-.footer div {
+.landing-page .footer div {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   color: rgba(3, 3, 3, 0.6);
 }
-.footer div p {
+.landing-page .footer div p {
   font-size: 1.3rem;
 }
-.footer div address a {
+.landing-page .footer div address a {
   color: rgba(3, 3, 3, 0.6);
 }
 @media (min-width: 900px) {
-  .content .header .links {
+    .landing-page .content .header .links {
     width: 55%;
     display: flex;
     justify-content: space-evenly;
@@ -409,53 +409,53 @@ body {
     margin-top: -2%;
     width: 40%;
   }
-  .content .header .links a {
+  .landing-page .content .header .links a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
   }
-  .content .header .links a:hover {
+  .landing-page .content .header .links a:hover {
     text-decoration: underline;
   }
-  .content .header .links a {
+  .landing-page .content .header .links a {
     font-size: 2rem;
   }
-  .content .header .header-content h1 {
+  .landing-page .content .header .header-content h1 {
     font-size: 3.8rem;
   }
-  .content .header .header-content p {
+  .landing-page .content .header .header-content p {
     font-size: 2rem;
   }
-  .content .middle-content {
+  .landing-page .content .middle-content {
     margin-top: 5%;
   }
-  .content .middle-content .carousel {
+  .landing-page .content .middle-content .carousel {
     margin-right: 0;
   }
-  .content .middle-content .carousel .left-button {
+  .landing-page .content .middle-content .carousel .left-button {
     border-top: 17px solid transparent;
     border-right: 30px solid rgba(3, 3, 3, 0.6);
     border-bottom: 17px solid transparent;
   }
-  .content .middle-content .carousel .right-button {
+  .landing-page .content .middle-content .carousel .right-button {
     border-top: 17px solid transparent;
     border-left: 30px solid rgba(3, 3, 3, 0.6);
     border-bottom: 17px solid transparent;
   }
-  .content .middle-content .quote-area {
+  .landing-page .content .middle-content .quote-area {
     font-size: 1.8rem;
   }
-  .content .middle-content button {
+  .landing-page .content .middle-content button {
     font-size: 1.6rem;
   }
-  .content .middle-content .carousel-img {
+  .landing-page .content .middle-content .carousel-img {
     height: 20%;
   }
-  .content .user-input .share {
+  .landing-page .content .user-input .share {
     font-size: 1.6rem;
   }
 }
-.top-content .header {
+.landing-page .top-content .header {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -464,200 +464,200 @@ body {
   color: rgba(3, 3, 3, 0.6);
   background-size: cover;
 }
-.top-content .header h1 {
+.landing-page .top-content .header h1 {
   padding-top: 3%;
 }
-.top-content .header nav {
+.landing-page .top-content .header nav {
   width: 55%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.top-content .header nav a {
+.landing-page .top-content .header nav a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
-.top-content .header nav a:hover {
+.landing-page .top-content .header nav a:hover {
   text-decoration: underline;
 }
-.top-content .header nav a {
+.landing-page .top-content .header nav a {
   color: rgba(3, 3, 3, 0.6);
 }
-.container .profiles {
+.landing-page .container .profiles {
   display: flex;
   flex-direction: column;
   padding: 0 3%;
 }
-.container .profiles .PM {
+.landing-page .container .profiles .PM {
   padding-top: 3%;
   border-bottom: 4px solid white;
   padding-bottom: 3%;
 }
-.container .profiles .PM .profile img {
+.landing-page .container .profiles .PM .profile img {
   max-width: 230px;
   max-height: 200px;
   width: 20%;
   height: 25%;
 }
-.container .profiles .PM #pm {
+.landing-page .container .profiles .PM #pm {
   float: right;
   border: 8px solid white;
   height: 30%;
   width: 20%;
 }
-.container .profiles .PM h3 {
+.landing-page .container .profiles .PM h3 {
   padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: underline;
 }
-.container .profiles .PM .bio-content .bio {
+.landing-page .container .profiles .PM .bio-content .bio {
   display: flex;
   flex-direction: column;
   width: 50%;
   float: left;
 }
-.container .profiles .PM .bio-content .bio p {
+.landing-page .container .profiles .PM .bio-content .bio p {
   width: 100%;
   float: left;
 }
-.container .profiles .PM .bio-content .bio .icons {
+.landing-page .container .profiles .PM .bio-content .bio .icons {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.container .profiles .PM .bio-content .bio .icons img {
+.landing-page .container .profiles .PM .bio-content .bio .icons img {
   padding: 0 3%;
 }
-.container .profiles .UI {
+.landing-page .container .profiles .UI {
   padding-top: 3%;
   padding-bottom: 3%;
   border-bottom: 4px solid white;
 }
-.container .profiles .UI .profile img {
+.landing-page .container .profiles .UI .profile img {
   max-width: 230px;
   max-height: 200px;
   width: 20%;
   height: 25%;
 }
-.container .profiles .UI .profile #ui {
+.landing-page .container .profiles .UI .profile #ui {
   float: left;
   border: 8px solid white;
 }
-.container .profiles .UI .profile h3 {
+.landing-page .container .profiles .UI .profile h3 {
   padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: underline;
 }
-.container .profiles .UI .profile .bio-content .bio {
+.landing-page .container .profiles .UI .profile .bio-content .bio {
   display: flex;
   flex-direction: column;
   width: 50%;
   float: right;
 }
-.container .profiles .UI .profile .bio-content .bio p {
+.landing-page .container .profiles .UI .profile .bio-content .bio p {
   width: 100%;
   float: right;
 }
-.container .profiles .UI .profile .bio-content .bio .icons {
+.landing-page .container .profiles .UI .profile .bio-content .bio .icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.container .profiles .UI .profile .bio-content .bio .icons img {
+.landing-page .container .profiles .UI .profile .bio-content .bio .icons img {
   padding: 0 3%;
 }
-.container .profiles .FE {
+.landing-page .container .profiles .FE {
   padding-top: 3%;
   padding-bottom: 3%;
   border-bottom: 4px solid white;
 }
-.container .profiles .FE .profile img {
+.landing-page .container .profiles .FE .profile img {
   max-width: 230px;
   max-height: 200px;
   width: 20%;
   height: 25%;
 }
-.container .profiles .FE #fe {
+.landing-page .container .profiles .FE #fe {
   float: right;
   border: 8px solid white;
 }
-.container .profiles .FE h3 {
+.landing-page .container .profiles .FE h3 {
   padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: underline;
 }
-.container .profiles .FE .bio-content .bio {
+.landing-page .container .profiles .FE .bio-content .bio {
   display: flex;
   flex-direction: column;
   width: 50%;
   float: left;
 }
-.container .profiles .FE .bio-content .bio p {
+.landing-page .container .profiles .FE .bio-content .bio p {
   width: 100%;
   float: left;
 }
-.container .profiles .FE .bio-content .bio .icons {
+.landing-page .container .profiles .FE .bio-content .bio .icons {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.container .profiles .FE .bio-content .bio .icons img {
+.landing-page .container .profiles .FE .bio-content .bio .icons img {
   padding: 0 3%;
 }
-.container .BE {
+.landing-page .container .BE {
   padding-top: 3%;
   padding-bottom: 3%;
 }
-.container .BE .profile img {
+.landing-page .container .BE .profile img {
   max-width: 230px;
   max-height: 200px;
   width: 20%;
   height: 25%;
 }
-.container .BE .profile #be {
+.landing-page .container .BE .profile #be {
   float: left;
   border: 8px solid white;
 }
-.container .BE .profile h3 {
+.landing-page .container .BE .profile h3 {
   padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: underline;
 }
-.container .BE .profile .bio-content .bio {
+.landing-page .container .BE .profile .bio-content .bio {
   display: flex;
   flex-direction: column;
   width: 50%;
   float: right;
 }
-.container .BE .profile .bio-content .bio p {
+.landing-page .container .BE .profile .bio-content .bio p {
   width: 100%;
   float: right;
 }
-.container .BE .profile .bio-content .bio .icons {
+.landing-page .container .BE .profile .bio-content .bio .icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.container .BE .profile .bio-content .bio .icons img {
+.landing-page .container .BE .profile .bio-content .bio .icons img {
   padding: 0 3%;
 }
 @media (min-width: 900px) {
-  body {
+    .landing-page body {
     max-width: 100%;
   }
-  .top-content .header nav {
+  .landing-page .top-content .header nav {
     width: 40%;
   }
-  .top-content .header nav a {
+  .landing-page .top-content .header nav a {
     font-size: 2.6rem;
   }
-} 
+}

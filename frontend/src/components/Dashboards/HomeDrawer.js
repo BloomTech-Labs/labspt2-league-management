@@ -7,9 +7,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import { Link } from 'react-router-dom';
-import AppContext from '../Context/AppContext';
-
-
+import { AppContext } from '../Context/AppContext';
 
 class HomeDrawer extends Component {
   state = {
@@ -37,19 +35,20 @@ class HomeDrawer extends Component {
       <List>
         {/* <Link to="/dashboard"> */}{' '}
         {/* This will eventually link to a component that will collect the name of the league and payment information */}
-        <ListItem button id="create" onClick={this.props.displayBilling}>
+        {/* <ListItem button id="create" onClick={this.props.displayBilling}>
           <ListItemText primary="Create League" />
-        </ListItem>
+        </ListItem> */}
         {/* </Link> */}
-        <Divider />
+        {/* <Divider /> */}
         <ListItem
           button
           key="admin"
           id="expandLeagues"
           onClick={this.handleClick}
           color="inherit"
+          style={!leagues.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Manage League" />
+          <ListItemText primary="Your Leagues" />
           {this.state.expandLeagues ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -57,20 +56,35 @@ class HomeDrawer extends Component {
           <List component="div" disablePadding>
             {leagues.map((league, index) => (
               <>
-                <Link to={{
-                  pathname:"/dashboard/admin",
-                  state: {
-                    leagueId: league.id,
-                    leagueName: league.name,
-                    leagueIndex: index
-                  }  
-                }}>
+                <Link
+                  to={
+                    // This will check if there is a schedule created yet, which would signify that the league setup has been completed.
+                    true
+                      ? // this.context.schedule.length
+                        {
+                          pathname: '/dashboard/admin',
+                          state: {
+                            leagueIndex: index
+                          }
+                        }
+                      : {
+                          pathname: '/dashboard/admin/setup',
+                          state: {
+                            leagueIndex: index
+                          }
+                        }
+                  }
+                >
                   <ListItem
                     button
                     className={classes.nested}
                     onClick={this.selectLeague}
                   >
-                    <ListItemText id={league.id} leagueIndex={index} primary={league.name}/>
+                    <ListItemText
+                      id={league.id}
+                      leagueIndex={index}
+                      primary={league.name}
+                    />
                   </ListItem>
                 </Link>
                 <Divider />
@@ -84,8 +98,9 @@ class HomeDrawer extends Component {
           id="expandTeams"
           onClick={this.handleClick}
           color="inherit"
+          style={!teams.length ? { display: 'none' } : null}
         >
-          <ListItemText primary="Manage Team" />
+          <ListItemText primary="Your Teams" />
           {this.state.expandTeams ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />

@@ -9,32 +9,35 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
 // import WeatherWidget from './Weather/WeatherWidget';
+import { AppContext } from './Context/AppContext';
+import './LandingPage.css';
 
 class LandingPage extends Component {
   componentDidMount() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const token = localStorage.getItem('jwt') || this.context.signOut();
     let username = null;
     if (token) {
       const decoded = jwt_decode(token);
       username = decoded.username;
       // console.log('decoded jwt: ', decoded);
-      this.props.context.signedIn(username);
+      this.context.signedIn(username);
     }
   }
 
   render() {
-    const { username, loggedIn } = this.props.context.state;
-    // const { login } = this.props.context;
-    // console.log(this.props.context);
+    console.log(this.context);
+    const { username, loggedIn } = this.context.state;
+    // const { login } = this.context;
+    // console.log(this.context);
     if (!loggedIn) {
       // console.log(this.props.data);
       return (
-        <>
+        <div className="landing-page">
           <section className="content">
           <header className="header" style={{backgroundImage: `url(${sports})`}}>
         <nav className="links">
-          <a href="https://leaguemanagement.netlify.com/signin">Login</a>
-          <a href="https://leaguemanagement.netlify.com/signup">Sign Up</a>          
+          <a href="/signin">Login</a>
+          <a href="/signup">Sign Up</a>          
         </nav>            
         <div className="header-content">                
           <span><h1>Average Joe League Management</h1></span>     
@@ -78,7 +81,7 @@ class LandingPage extends Component {
       <p>1-800-888-4141</p>
     </div>
   </footer>  
-        </>
+        </div>
       );
     }
     return (
@@ -93,5 +96,7 @@ class LandingPage extends Component {
     );
   }
 }
+
+LandingPage.contextType = AppContext;
 
 export default LandingPage;

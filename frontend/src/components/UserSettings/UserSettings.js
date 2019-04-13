@@ -131,7 +131,8 @@ class UserSettings extends React.Component {
     const { username, email, first_name, last_name, phone } = this.state;
     const body = { username, email, first_name, last_name, phone };
 
-    axios.put(this.endpoint, body, options)
+    axios
+      .put(this.endpoint, body, options)
       .then(res => {
         // put the token in local storage and sign in again
         localStorage.setItem('jwt', res.data.token);
@@ -141,12 +142,12 @@ class UserSettings extends React.Component {
         this.getData();
       })
       .catch(err => {
-        console.log('err from Submit handler in User Settings', err)
-      })
+        console.log('err from Submit handler in User Settings', err);
+      });
   };
 
   getData() {
-    const token = localStorage.getItem('jwt') || this.props.context.signOut();
+    const token = localStorage.getItem('jwt') || this.context.signOut();
     const options = {
       headers: {
         authorization: token
@@ -295,6 +296,8 @@ class UserSettings extends React.Component {
     );
   }
 }
+
+UserSettings.contextType = AppContext;
 
 UserSettings.propTypes = {
   classes: PropTypes.object.isRequired
