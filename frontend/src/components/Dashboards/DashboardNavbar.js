@@ -39,7 +39,9 @@ const styles = theme => ({
   },
   appBar: {
     marginLeft: drawerWidth,
-    backgroundColor: '#333',
+    backgroundColor: '#1565c0',
+    // backgroundColor: '#6573c3',
+
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
       width: '100%',
@@ -55,7 +57,6 @@ const styles = theme => ({
   },
   button: {
     color: 'white'
-    // border: '1px solid white'
   },
   // toolbar: theme.mixins.toolbar,
   toolbar: {
@@ -70,8 +71,16 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: '100%',
+    backgroundColor: '#E2ECF7',
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth
+    }
+  },
+  weather: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      marginRight: '3%'
     }
   },
   content: {
@@ -213,7 +222,7 @@ class DashboardNavbar extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/" style={{ color: '#fff' }}>
-                League Management
+                LM
               </Link>
             </Typography>
             {/* <AppContext.Consumer>
@@ -223,7 +232,9 @@ class DashboardNavbar extends React.Component {
             </Typography>
             {/* )}
             </AppContext.Consumer> */}
-            <WeatherWidget />
+            <div className={classes.weather}>
+              <WeatherWidget />
+            </div>
             <Link to="/dashboard">
               <Button
                 className={!admin && !coach ? classes.selected : classes.button}

@@ -57,23 +57,12 @@ class HomeDrawer extends Component {
             {leagues.map((league, index) => (
               <>
                 <Link
-                  to={
-                    // This will check if there is a schedule created yet, which would signify that the league setup has been completed.
-                    true
-                      ? // this.context.schedule.length
-                        {
-                          pathname: '/dashboard/admin',
-                          state: {
-                            leagueIndex: index
-                          }
-                        }
-                      : {
-                          pathname: '/dashboard/admin/setup',
-                          state: {
-                            leagueIndex: index
-                          }
-                        }
-                  }
+                  to={{
+                    pathname: '/dashboard/admin',
+                    state: {
+                      leagueIndex: index
+                    }
+                  }}
                 >
                   <ListItem
                     button
