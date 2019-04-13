@@ -370,59 +370,74 @@ class TeamCard extends React.Component {
                   fullWidth
                   className={classes.title}
                 >
-                  <InputLabel htmlFor="name">Team Name: {name}</InputLabel>
+                  <InputLabel htmlFor="name">Team Name</InputLabel>
                   <Input
                     id="name"
                     name="name"
+                    value={this.state.name}
                     onChange={this.InputHandler}
                     autoFocus
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
                   <InputLabel htmlFor="coach_name">
-                    Coach Name: {coach_name}
+                    Coach Name:
                   </InputLabel>
                   <Input
                     id="coach_name"
                     name="coach_name"
+                    value={this.state.coach_name}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
                   <InputLabel htmlFor="coach_email">
-                    Coach Email: {coach_email}
+                    Coach Email:
                   </InputLabel>
                   <Input
                     id="coach_email"
                     name="coach_email"
+                    value={this.state.coach_email}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
                 <FormControl margin="none">
                   <InputLabel htmlFor="coach_phone">
-                    Coach #: {coach_phone}
+                    Coach #:
                   </InputLabel>
                   <Input
                     id="coach_phone"
                     name="coach_phone"
+                    value={this.state.coach_phone}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
                 <FormControl margin="none">
-                  <InputLabel htmlFor="wins">Wins: {wins}</InputLabel>
-                  <Input id="wins" name="wins" onChange={this.InputHandler} />
+                  <InputLabel htmlFor="wins">Wins:</InputLabel>
+                  <Input
+                    id="wins"
+                    name="wins"
+                    value={this.state.wins}
+                    onChange={this.InputHandler}
+                  />
                 </FormControl>
                 <FormControl margin="none">
-                  <InputLabel htmlFor="losses">Losses: {losses}</InputLabel>
+                  <InputLabel htmlFor="losses">Losses:</InputLabel>
                   <Input
                     id="losses"
                     name="losses"
+                    value={this.state.losses}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
                 <FormControl margin="none" display="none">
-                  <InputLabel htmlFor="ties">Ties: {ties}</InputLabel>
-                  <Input id="ties" name="ties" onChange={this.InputHandler} />
+                  <InputLabel htmlFor="ties">Ties:</InputLabel>
+                  <Input
+                    id="ties"
+                    name="ties"
+                    value={this.state.ties}
+                    onChange={this.InputHandler}
+                  />
                 </FormControl>
               </form>
             </CardContent>
