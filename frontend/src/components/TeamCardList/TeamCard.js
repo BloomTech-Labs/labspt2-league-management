@@ -13,6 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import ReactCardFlip from 'react-card-flip';
+import { AppContext } from '../Context/AppContext';
 
 const styles = theme => ({
   cardFront: {
@@ -35,7 +36,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    height: '405px'
+    height: '445px'
   },
   container: {
     width: '90%'
@@ -74,6 +75,8 @@ const styles = theme => ({
 class TeamCard extends React.Component {
   state = {
     name: this.props.name,
+    id: this.props.id,
+    coach_name: this.props.coach_name,
     coach_email: this.props.coach_email,
     coach_phone: this.props.coach_phone,
     wins: this.props.wins,
@@ -82,7 +85,7 @@ class TeamCard extends React.Component {
     isFlipped: false,
     containsTies: false,
   };
-
+  
   ClickHandler = event => {
     event.preventDefault();
     this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
@@ -96,20 +99,33 @@ class TeamCard extends React.Component {
 
   EditHandler = event => {
     event.preventDefault();
-    const credentials = this.state;
-    const endpoint = '/';
-    // const endpoint = '/';
-    axios
-      .put(endpoint, credentials)
-      .then(res => {
-        // localStorage.setItem('jwt', res.data.token);
-        // this.props.history.push('/signin');
-        //Have to get this working
+    this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    let teamData = {
+      name: this.state.name,
+      id: this.state.id,
+      coach_name: this.state.coach_name,
+      coach_email: this.state.coach_email,
+      coach_user_id: null,
+      coach_phone: this.state.coach_phone,
+      wins: this.state.wins,
+      losses: this.state.losses,
+      ties: this.state.ties
+    };
+    this.context.editTeamInLeague(teamData, this.props.index, this.state.id);
+    if(this.state.ties > 0) {
+      this.setState({ 
+        containsTies: true
       })
-      .catch(err => {
-        console.log('err from Edit handler in TeamCard', err);
-      });
+    };
   };
+
+  componentDidMount() {
+    if(this.state.ties > 0) {
+      this.setState({ 
+        containsTies: true
+      })
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -131,11 +147,12 @@ class TeamCard extends React.Component {
             <CardContent className={classes.container}>
               <Typography className={classes.title}>
                 {this.state.name}
-                {/* {teamNameShort} */}
                   <EditIcon onClick={this.ClickHandler} />
               </Typography>
               <Typography className={classes.p}>
-                Email: {this.state.email}
+                Name: {this.state.coach_name}
+                <br />
+                Email: {this.state.coach_email}
                 <br />
                 Phone #: {this.state.coach_phone}
               </Typography>
@@ -191,6 +208,16 @@ class TeamCard extends React.Component {
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
+                  <InputLabel htmlFor="coach_name">
+                    Coach Name: {this.state.coach_name}
+                  </InputLabel>
+                  <Input
+                    id="coach_name"
+                    name="coach_name"
+                    onChange={this.InputHandler}
+                  />
+                </FormControl>
+                <FormControl margin="none" fullWidth>
                   <InputLabel htmlFor="coach_email">
                     Coach Email: {this.state.coach_email}
                   </InputLabel>
@@ -201,12 +228,12 @@ class TeamCard extends React.Component {
                   />
                 </FormControl>
                 <FormControl margin="none">
-                  <InputLabel htmlFor="coach_phone_number">
+                  <InputLabel htmlFor="coach_phone">
                     Coach #: {this.state.coach_phone}
                   </InputLabel>
                   <Input
-                    id="coach_phone_number"
-                    name="coach_phone_number"
+                    id="coach_phone"
+                    name="coach_phone"
                     onChange={this.InputHandler}
                   />
                 </FormControl>
@@ -235,6 +262,7 @@ class TeamCard extends React.Component {
                 type="submit"
                 variant="contained"
                 className={classes.button}
+                onClick={this.EditHandler}
               >
                 Edit Team
               </Button>
@@ -249,5 +277,7 @@ class TeamCard extends React.Component {
 TeamCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
+
+TeamCard.contextType = AppContext;
 
 export default withStyles(styles)(TeamCard);
