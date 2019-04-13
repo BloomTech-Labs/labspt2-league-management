@@ -96,7 +96,10 @@ class TeamCard extends React.Component {
       game2Day: null,
       game2Time: null,
       game2Opp: null
-    }
+    },
+    game1Exists: false,
+    bothGamesExist: false,
+    seasonComplete: false
   };
 
   ClickHandler = event => {
@@ -177,97 +180,107 @@ class TeamCard extends React.Component {
   displayGames() {
     let editedTeamSchedule = this.state.teamSchedule;
     const lid = this.context.state.leagues[this.props.index].id;
-    editedTeamSchedule.length = 2;
-    let game1Opp;
-    // Opponent Testing
-    if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
-      const teamsInLeague = this.context.state.teams_by_league.find(
-        x => x.league_id === lid
-      ).teams;
-      if (editedTeamSchedule[0].home_team_id !== this.state.id) {
-        const OppTeamIndex = teamsInLeague.findIndex(
-          x => x.id === editedTeamSchedule[0].home_team_id
+    if (editedTeamSchedule.length > 2) {
+      editedTeamSchedule.length = 2;
+    }
+    if (editedTeamSchedule[0]) {
+      let game1Opp;
+      // Opponent Testing
+      if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+        const teamsInLeague = this.context.state.teams_by_league.find(
+          x => x.league_id === lid
+        ).teams;
+        if (editedTeamSchedule[0].home_team_id !== this.state.id) {
+          const OppTeamIndex = teamsInLeague.findIndex(
+            x => x.id === editedTeamSchedule[0].home_team_id
+          );
+          game1Opp = teamsInLeague[OppTeamIndex].name;
+        } else if (editedTeamSchedule[0].away_team_id !== this.state.id) {
+          const OppTeamIndex = teamsInLeague.findIndex(
+            x => x.id === editedTeamSchedule[0].away_team_id
+          );
+          game1Opp = teamsInLeague[OppTeamIndex].name;
+        }
+        const game1 = new Date(editedTeamSchedule[0].start_time);
+        let options = { month: 'long' };
+        let game1Month = new Intl.DateTimeFormat('en-US', options).format(
+          game1
         );
-        game1Opp = teamsInLeague[OppTeamIndex].name;
-      } else if (editedTeamSchedule[0].away_team_id !== this.state.id) {
-        const OppTeamIndex = teamsInLeague.findIndex(
-          x => x.id === editedTeamSchedule[0].away_team_id
-        );
-        game1Opp = teamsInLeague[OppTeamIndex].name;
-      }
-      const game1 = new Date(editedTeamSchedule[0].start_time);
-      let options = { month: 'long' };
-      let game1Month = new Intl.DateTimeFormat('en-US', options).format(game1);
-      let game1Day = game1.getDate();
-      let game1Hours = game1.getHours();
-      let game1Minutes = game1.getMinutes();
-      if (game1Minutes < 10) {
-        game1Minutes = '0' + game1Minutes;
-      }
-      let game1Time = game1Hours + ':' + game1Minutes;
-      if (game1Hours < 12) {
-        game1Time += ' AM';
-      }
-      if (game1Hours > 12) {
-        game1Time += ' PM';
-      }
+        let game1Day = game1.getDate();
+        let game1Hours = game1.getHours();
+        let game1Minutes = game1.getMinutes();
+        if (game1Minutes < 10) {
+          game1Minutes = '0' + game1Minutes;
+        }
+        let game1Time = game1Hours + ':' + game1Minutes;
+        if (game1Hours < 12) {
+          game1Time += ' AM';
+        }
+        if (game1Hours > 12) {
+          game1Time += ' PM';
+        }
 
-      let scheduleGame1 = {
-        game1Month,
-        game1Day,
-        game1Time,
-        game1Opp
-      };
-      this.setState({
-        scheduleGame1
-      });
+        let scheduleGame1 = {
+          game1Month,
+          game1Day,
+          game1Time,
+          game1Opp
+        };
+        this.setState({
+          scheduleGame1
+        });
+      }
     }
 
-    let game2Opp;
+    if (editedTeamSchedule[1]) {
+      let game2Opp;
 
-    // Opponent Testing
-    if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
-      const teamsInLeague = this.context.state.teams_by_league.find(
-        x => x.league_id === lid
-      ).teams;
-      if (editedTeamSchedule[1].home_team_id !== this.state.id) {
-        const OppTeamIndex = teamsInLeague.findIndex(
-          x => x.id === editedTeamSchedule[1].home_team_id
+      // Opponent Testing
+      if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+        const teamsInLeague = this.context.state.teams_by_league.find(
+          x => x.league_id === lid
+        ).teams;
+        if (editedTeamSchedule[1].home_team_id !== this.state.id) {
+          const OppTeamIndex = teamsInLeague.findIndex(
+            x => x.id === editedTeamSchedule[1].home_team_id
+          );
+          game2Opp = teamsInLeague[OppTeamIndex].name;
+        } else if (editedTeamSchedule[1].away_team_id !== this.state.id) {
+          const OppTeamIndex = teamsInLeague.findIndex(
+            x => x.id === editedTeamSchedule[1].away_team_id
+          );
+          game2Opp = teamsInLeague[OppTeamIndex].name;
+        }
+        const game2 = new Date(editedTeamSchedule[1].start_time);
+        let options = { month: 'long' };
+
+        let game2Month = new Intl.DateTimeFormat('en-US', options).format(
+          game2
         );
-        game2Opp = teamsInLeague[OppTeamIndex].name;
-      } else if (editedTeamSchedule[1].away_team_id !== this.state.id) {
-        const OppTeamIndex = teamsInLeague.findIndex(
-          x => x.id === editedTeamSchedule[1].away_team_id
-        );
-        game2Opp = teamsInLeague[OppTeamIndex].name;
-      }
-      const game2 = new Date(editedTeamSchedule[1].start_time);
-      let options = { month: 'long' };
+        let game2Day = game2.getDate();
+        let game2Hours = game2.getHours();
+        let game2Minutes = game2.getMinutes();
+        if (game2Minutes < 10) {
+          game2Minutes = '0' + game2Minutes;
+        }
+        let game2Time = game2Hours + ':' + game2Minutes;
+        if (game2Hours < 12) {
+          game2Time += ' AM';
+        }
+        if (game2Hours > 12) {
+          game2Time += ' PM';
+        }
 
-      let game2Month = new Intl.DateTimeFormat('en-US', options).format(game2);
-      let game2Day = game2.getDate();
-      let game2Hours = game2.getHours();
-      let game2Minutes = game2.getMinutes();
-      if (game2Minutes < 10) {
-        game2Minutes = '0' + game2Minutes;
+        let scheduleGame2 = {
+          game2Month,
+          game2Day,
+          game2Time,
+          game2Opp
+        };
+        this.setState({
+          scheduleGame2
+        });
       }
-      let game2Time = game2Hours + ':' + game2Minutes;
-      if (game2Hours < 12) {
-        game2Time += ' AM';
-      }
-      if (game2Hours > 12) {
-        game2Time += ' PM';
-      }
-
-      let scheduleGame2 = {
-        game2Month,
-        game2Day,
-        game2Time,
-        game2Opp
-      };
-      this.setState({
-        scheduleGame2
-      });
     }
   }
 
@@ -279,6 +292,20 @@ class TeamCard extends React.Component {
     }
     await this.getTeamSchedule();
     await this.displayGames();
+    if (this.state.scheduleGame1.game1Month && this.state.scheduleGame2.game2Month) {
+      this.setState({
+        bothGamesExist: true
+      });
+    } else if (this.state.scheduleGame1.game1Month) {
+      this.setState({
+        game1Exists: true
+      });
+    }
+    else {
+      this.setState({
+        seasonComplete:true
+      });
+    }
   };
 
   render() {
@@ -343,7 +370,12 @@ class TeamCard extends React.Component {
                 <br />
                 Ties: {ties}
               </Typography>
-              <Typography className={classes.upcoming}>
+              <Typography
+                className={classes.upcoming}
+                style={{
+                  display: this.state.bothGamesExist ? 'block' : 'none'
+                }}
+              >
                 Upcoming:
                 <br />
                 {this.state.scheduleGame1.game1Month}{' '}
@@ -356,7 +388,25 @@ class TeamCard extends React.Component {
                 {this.state.scheduleGame2.game2Time} vs{' '}
                 {this.state.scheduleGame2.game2Opp}
               </Typography>
-              {/* Still not quite Sure how we are going to do the upcoming games part. */}
+
+              <Typography
+                className={classes.upcoming}
+                style={{ display: this.state.game1Exists ? 'block' : 'none' }}
+              >
+                Upcoming:
+                <br />
+                {this.state.scheduleGame1.game1Month}{' '}
+                {this.state.scheduleGame1.game1Day}{' '}
+                {this.state.scheduleGame1.game1Time} vs{' '}
+                {this.state.scheduleGame1.game1Opp}
+              </Typography>
+
+              <Typography
+                className={classes.upcoming}
+                style={{ display: this.state.seasonComplete ? 'block' : 'none' }}
+              >
+                Season Completed
+              </Typography>
             </CardContent>
           </Card>
 
@@ -380,9 +430,7 @@ class TeamCard extends React.Component {
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
-                  <InputLabel htmlFor="coach_name">
-                    Coach Name:
-                  </InputLabel>
+                  <InputLabel htmlFor="coach_name">Coach Name:</InputLabel>
                   <Input
                     id="coach_name"
                     name="coach_name"
@@ -391,9 +439,7 @@ class TeamCard extends React.Component {
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
-                  <InputLabel htmlFor="coach_email">
-                    Coach Email:
-                  </InputLabel>
+                  <InputLabel htmlFor="coach_email">Coach Email:</InputLabel>
                   <Input
                     id="coach_email"
                     name="coach_email"
@@ -402,9 +448,7 @@ class TeamCard extends React.Component {
                   />
                 </FormControl>
                 <FormControl margin="none">
-                  <InputLabel htmlFor="coach_phone">
-                    Coach #:
-                  </InputLabel>
+                  <InputLabel htmlFor="coach_phone">Coach #:</InputLabel>
                   <Input
                     id="coach_phone"
                     name="coach_phone"
