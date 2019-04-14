@@ -1,12 +1,16 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-
-  getGamesByLeague: (leagueId) =>{
-      return db('game').where('league_id', leagueId);
+  getGamesByLeague: leagueId => {
+    return db('game').where('league_id', leagueId);
   },
 
-  insert: (games) =>{
-      return db('game').insert(games, 'id');
+  insert: games => {
+    return db('game').insert(games, 'id');
   },
+  updateGame: (id, game) => {
+    return db('game')
+      .where('id', id)
+      .update(game);
+  }
 };
