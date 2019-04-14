@@ -23,12 +23,6 @@ class DragAndDropCalendar extends Component {
     this.showGames();
   }
 
-  updateEvents = () => {
-    // SEND LOCAL STATE BACK TO CONTEXT, THEN CONTEXT STATE WILL BE UPDATED WITH THIS LOCAL STATE
-    // console.log(this.state.events);
-    this.context.updateEvents();
-  };
-
   showGames = async () => {
     console.log('this.context.state ', this.context.state);
     const lid = this.context.state.leagues[this.props.index].id;
@@ -46,7 +40,7 @@ class DragAndDropCalendar extends Component {
     const displayEvents = this.state.games.map(event => {
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
-      event.title = `Team ${event.away_team_id} vs Team ${event.home_team_id}`;
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
 
@@ -58,33 +52,7 @@ class DragAndDropCalendar extends Component {
 
   // ========== DRAG AND DROP FUNCTIONS START HERE ==========
 
-  onEventResize = async ({ event, start, end, allDay }) => {
-    const lid = this.context.state.leagues[this.props.index].id;
-    const index = this.state.games.indexOf(event);
-
-    await this.setState(state => {
-      state.games[index].start = start;
-      state.games[index].end = end;
-      return { games: state.games };
-    });
-
-    const updatedEvent = {
-      id: event.id,
-      league_id: event.league_id,
-      home_team_id: event.home_team_id,
-      away_team_id: event.away_team_id,
-      start_time: event.start,
-      end_time: event.end,
-      location_id: event.location_id,
-      cancelled: event.cancelled
-    };
-
-    await this.context.editGame(updatedEvent, lid, () => {
-      return null;
-    });
-  };
-
-  onEventDrop = async ({ event, start, end, allDay }) => {
+  onEventChange = async ({ event, start, end, allDay }) => {
     const lid = this.context.state.leagues[this.props.index].id;
     const index = this.state.games.indexOf(event);
     // console.log(start);
@@ -105,9 +73,15 @@ class DragAndDropCalendar extends Component {
       cancelled: event.cancelled
     };
 
-    await this.context.editGame(updatedEvent, lid, () => {
-      return null;
-    });
+    await this.context.editGame(
+      updatedEvent,
+      lid,
+      event.home_team_name,
+      event.away_team_name,
+      () => {
+        return null;
+      }
+    );
   };
 
   // ========== DRAG AND DROP FUNCTIONS END HERE ==========
@@ -135,7 +109,7 @@ class DragAndDropCalendar extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <h1 className="App-title">League Name Here</h1>
         </header>
 
@@ -148,7 +122,7 @@ class DragAndDropCalendar extends Component {
           }}
         >
           Save Changes
-        </Button>
+        </Button> */}
         <DnDCalendar
           localizer={localizer}
           min={new Date(2019, 0, 0, 8, 0)}
@@ -156,8 +130,8 @@ class DragAndDropCalendar extends Component {
           defaultDate={new Date()}
           defaultView="week"
           events={this.state.games}
-          onEventDrop={this.onEventDrop}
-          onEventResize={this.onEventResize}
+          onEventDrop={this.onEventChange}
+          onEventResize={this.onEventChange}
           resizable
           style={{ height: '80vh', padding: '10px' }}
         />

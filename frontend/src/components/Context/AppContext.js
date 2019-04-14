@@ -310,7 +310,7 @@ export default class AppProvider extends Component {
                 console.log('error from createScheduleInLeague', err);
               });
           },
-          editGame: (game, league_id, cb) => {
+          editGame: (game, league_id, home_team_name, away_team_name, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = league_id;
             const gid = game.id;
@@ -337,7 +337,8 @@ export default class AppProvider extends Component {
                 const foundGameIndex = league.games.findIndex(
                   x => x.id === gid
                 );
-
+                  game.home_team_name = home_team_name;
+                  game.away_team_name = away_team_name;
                 league.games[foundGameIndex] = game;
                 // const game = league.games.splice(
                 //   foundGameIndex,
