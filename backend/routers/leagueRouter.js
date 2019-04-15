@@ -258,20 +258,20 @@ router.get('/:lid/schedule', (req, res) => {
     });
 });
 
-router.put('/:lid/schedule/:gid', (req, res) => {
-  const { lid, gid } = req.params;
-  const game = req.body;
-  console.log(game)
-  gameModel
-    .updateGame(gid, game)
-    .then(count => {
-      console.log(count);
-      res.json(count);
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'Error updating schedule', err });
-    });
-});
+// router.put('/:lid/schedule/:gid', (req, res) => {
+//     const { lid, gid } = req.params;
+//     const game = req.body;
+//     console.log(game)
+//     gameModel
+//       .updateGame(gid, game)
+//       .then(count => {
+//         console.log(count);
+//         res.json(count);
+//       })
+//       .catch(err => {
+//         res.status(500).json({ error: 'Error updating schedule', err });
+//       });
+//   });
 
 // The beginning of the league game cancellation endpoints
 
