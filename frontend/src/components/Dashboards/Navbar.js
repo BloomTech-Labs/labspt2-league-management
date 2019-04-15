@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   appBar: {
     marginLeft: drawerWidth,
-    backgroundColor: '#333',
+    backgroundColor: '#1565c0',
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
       width: '100%',
@@ -165,20 +165,9 @@ class Navbar extends React.Component {
             </IconButton> */}
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/" style={{ color: '#fff' }}>
-                League Management
+                LM
               </Link>
             </Typography>
-            {/* <AppContext.Consumer>
-              {context => (
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  className={classes.grow}
-                >
-                  {context.state.username}
-                </Typography>
-              )}
-            </AppContext.Consumer> */}
             <Link to="/dashboard">
               <Button className={classes.button} onClick={this.homeView}>
                 Home
