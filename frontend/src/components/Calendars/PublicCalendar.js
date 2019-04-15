@@ -32,7 +32,7 @@ class PublicCalendar extends Component {
     const displayEvents = this.state.games.map(event => {
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
-      event.title = `Team ${event.away_team_id} vs Team ${event.home_team_id}`;
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
     this.setState({ publicEvents: displayEvents, isLoading: false });

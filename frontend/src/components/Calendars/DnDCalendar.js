@@ -7,6 +7,7 @@ import '../../App.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '@material-ui/core';
+import { AppContext } from '../Context/AppContext';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -14,62 +15,73 @@ const DnDCalendar = withDragAndDrop(Calendar);
 
 class DragAndDropCalendar extends Component {
   state = {
-    //   events: [],
-    isLoading: true
+    isLoading: true,
+    games: []
   };
 
   componentDidMount() {
-    this.retrieveGames();
+    this.showGames();
   }
 
-  updateEvents = () => {
-    // SEND LOCAL STATE BACK TO CONTEXT, THEN CONTEXT STATE WILL BE UPDATED WITH THIS LOCAL STATE
-    // console.log(this.state.events);
-    this.props.context.updateEvents();
-  };
+  showGames = async () => {
+    console.log('this.context.state ', this.context.state);
+    const lid = this.context.state.leagues[this.props.index].id;
+    console.log('league id: ', lid);
 
-  retrieveGames = async () => {
-    // GRAB EVENTS FROM DATABASE TO SET GLOBAL STATE
-    await this.props.context.getEvents();
+    if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
+      const games = this.context.state.schedule_by_league.find(
+        x => x.league_id === lid
+      ).games;
+      await this.setState({
+        games
+      });
+    }
 
-    // GRAB EVENTS FROM GLOBAL STATE TO SET LOCAL STATE
-    await this.showGames();
-    // console.log(this.state);
-  };
-
-  showGames = () => {
-    const { events } = this.props.context.state;
-
-    const displayEvents = events.map(event => {
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
+    const displayEvents = this.state.games.map(event => {
+      event.start = new Date(event.start_time);
+      event.end = new Date(event.end_time);
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
-    setTimeout(() => {
-      this.setState({ events: displayEvents, isLoading: false });
-    }, 500);
+
+    await this.setState({
+      games: displayEvents,
+      isLoading: false
+    });
   };
 
   // ========== DRAG AND DROP FUNCTIONS START HERE ==========
 
-  onEventResize = ({ event, start, end, allDay }) => {
-    const index = this.state.events.indexOf(event);
-
-    this.setState(state => {
-      state.events[index].start = start;
-      state.events[index].end = end;
-      return { events: state.events };
-    });
-  };
-
-  onEventDrop = ({ event, start, end, allDay }) => {
-    const index = this.state.events.indexOf(event);
+  onEventChange = async ({ event, start, end, allDay }) => {
+    const lid = this.context.state.leagues[this.props.index].id;
+    const index = this.state.games.indexOf(event);
     // console.log(start);
-    this.setState(state => {
-      state.events[index].start = start;
-      state.events[index].end = end;
-      return { events: state.events };
+    await this.setState(state => {
+      state.games[index].start = start;
+      state.games[index].end = end;
+      return { games: state.games };
     });
+
+    const updatedEvent = {
+      id: event.id,
+      league_id: event.league_id,
+      home_team_id: event.home_team_id,
+      away_team_id: event.away_team_id,
+      start_time: event.start,
+      end_time: event.end,
+      location_id: event.location_id,
+      cancelled: event.cancelled
+    };
+
+    await this.context.editGame(
+      updatedEvent,
+      lid,
+      event.home_team_name,
+      event.away_team_name,
+      () => {
+        return null;
+      }
+    );
   };
 
   // ========== DRAG AND DROP FUNCTIONS END HERE ==========
@@ -97,7 +109,7 @@ class DragAndDropCalendar extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <h1 className="App-title">League Name Here</h1>
         </header>
 
@@ -110,16 +122,16 @@ class DragAndDropCalendar extends Component {
           }}
         >
           Save Changes
-        </Button>
+        </Button> */}
         <DnDCalendar
           localizer={localizer}
           min={new Date(2019, 0, 0, 8, 0)}
           max={new Date(2019, 0, 0, 23, 0)}
           defaultDate={new Date()}
           defaultView="week"
-          events={this.state.events}
-          onEventDrop={this.onEventDrop}
-          onEventResize={this.onEventResize}
+          events={this.state.games}
+          onEventDrop={this.onEventChange}
+          onEventResize={this.onEventChange}
           resizable
           style={{ height: '80vh', padding: '10px' }}
         />
@@ -127,5 +139,7 @@ class DragAndDropCalendar extends Component {
     );
   }
 }
+
+DragAndDropCalendar.contextType = AppContext;
 
 export default DragAndDropCalendar;

@@ -10,52 +10,8 @@ export default class AppProvider extends Component {
     admin: false,
     coach: false,
     loggedIn: true,
-    publicEvents: [
-      {
-        id: '1',
-        start: 'mar 4 2019 10: 00: 00',
-        end: 'mar 4 2019 12: 00: 00',
-        title: 'Team 1 vs Team 2',
-        location: 'Park'
-      },
-      {
-        id: '2',
-        start: 'mar 5 2019 12: 00: 00',
-        end: 'mar 5 2019 14: 00: 00',
-        title: 'Team 3 vs Team 4',
-        location: 'Park'
-      },
-      {
-        id: '3',
-        start: 'mar 6 2019 10: 00: 00',
-        end: 'mar 6 2019 12: 00: 00',
-        title: ['Team 5 vs Team 6'],
-        location: 'Park'
-      }
-    ],
-    events: [
-      {
-        id: '1',
-        start: 'mar 4 2019 10: 00: 00',
-        end: 'mar 4 2019 12: 00: 00',
-        title: 'Team 1 vs Team 2',
-        location: 'Park'
-      },
-      {
-        id: '2',
-        start: 'mar 5 2019 12: 00: 00',
-        end: 'mar 5 2019 14: 00: 00',
-        title: 'Team 3 vs Team 4',
-        location: 'Park'
-      },
-      {
-        id: '3',
-        start: 'mar 6 2019 10: 00: 00',
-        end: 'mar 6 2019 12: 00: 00',
-        title: 'Team 5 vs Team 6',
-        location: 'Park'
-      }
-    ],
+    publicEvents: [],
+    events: [],
     leagues: JSON.parse(localStorage.getItem('leagues')) || [],
     teams: JSON.parse(localStorage.getItem('teams')) || [],
     teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || [],
@@ -382,6 +338,65 @@ export default class AppProvider extends Component {
               })
               .catch(err => {
                 console.log('error from createScheduleInLeague', err);
+              });
+          },
+          editGame: (game, league_id, home_team_name, away_team_name, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const lid = league_id;
+            const gid = game.id;
+            const endpoint = `/leagues/${lid}/schedule/${gid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .put(endpoint, game, options)
+              .then(res => {
+                // if (
+                //   this.state.schedule_by_league.find(x => x.league_id === lid)
+                // ) {
+                const foundIndex = this.state.schedule_by_league.findIndex(
+                  x => x.league_id === lid
+                );
+                const league = this.state.schedule_by_league.splice(
+                  foundIndex,
+                  1
+                )[0];
+                console.log(league.games);
+                const foundGameIndex = league.games.findIndex(
+                  x => x.id === gid
+                );
+                  game.home_team_name = home_team_name;
+                  game.away_team_name = away_team_name;
+                league.games[foundGameIndex] = game;
+                // const game = league.games.splice(
+                //   foundGameIndex,
+                //   1
+                // );
+                // }
+                // and we update the array to contain the new values
+                const joined = this.state.schedule_by_league.concat({
+                  league_id: league.league_id,
+                  games: league.games
+                });
+                // then we put it back in to local storage with the update
+                localStorage.setItem(
+                  'schedule_by_league',
+                  JSON.stringify(joined)
+                );
+                this.setState({
+                  schedule_by_league: joined
+                });
+                cb();
+                // const league = this.state.leagues;
+                // leagues[index] = league;
+                // localStorage.setItem('leagues', JSON.stringify(leagues));
+                // this.setState({ leagues });
+                // cb();
+              })
+              .catch(err => {
+                console.log('error from editGame', err);
               });
           }
         }}
