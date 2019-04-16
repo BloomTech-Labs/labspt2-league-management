@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { AppContext } from './components/Context/AppContext';
 import LandingPage from './components/LandingPage';
+import Search from './components/Search/Search';
 
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
@@ -12,6 +13,7 @@ import Authorize from './components/Authorize';
 import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 import LeagueSetup from './components/Admin/LeagueSetup';
+import PublicCalendar from './components/Calendars/PublicCalendar';
 
 class App extends Component {
   render() {
@@ -31,6 +33,8 @@ class App extends Component {
           component={LandingPage} // Wait to pull in Griffin's changes
           // render={props => <LandingPage context={context} />}
         />
+        <Route path="/search" component={Search} />
+        <Route path="/schedule" component={PublicCalendar} />
         <Route path="/signup" component={Signup} />
         <Route
           path="/signin"
