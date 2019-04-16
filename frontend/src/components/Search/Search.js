@@ -184,7 +184,7 @@ class SearchBar extends React.Component {
 
     const autosuggestProps = {
       renderSearchComponent: this.renderSearchComponent,
-      suggestions: this.state.leagues,
+      suggestions: this.state.suggestions,
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue: this.getSuggestionValue,
