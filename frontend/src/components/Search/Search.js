@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import deburr from 'lodash/deburr';
@@ -47,7 +48,7 @@ const styles = theme => ({
     right: 0
   },
   suggestion: {
-    display: "block"
+    display: "block",
   },
   suggestionsList: {
     margin: 0,
@@ -57,8 +58,8 @@ const styles = theme => ({
 });
 
 class SearchBar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       single: '',
       leagues: [],
@@ -114,7 +115,7 @@ class SearchBar extends React.Component {
         <div>
           {parts.map((part, index) =>
             part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 900 }}>
+              <span key={String(index)} style={{ fontWeight: 500 }}>
                 {part.text}
               </span>
             ) : (
@@ -173,9 +174,9 @@ class SearchBar extends React.Component {
   handleSubmit = e =>{
     e.preventDefault();
     console.log(`I have been clicked as a Search Suggestion`)
-    // this.history.push({
-    //   pathname:'/schedule'
-    // })
+    this.props.history.push({
+      pathname: '/schedule',
+    })
   }
 
   render() {
@@ -231,5 +232,5 @@ SearchBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SearchBar);
+export default withRouter(withStyles(styles)(SearchBar));
 
