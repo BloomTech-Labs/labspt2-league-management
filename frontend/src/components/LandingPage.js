@@ -11,6 +11,7 @@ import sports from '../Images/sports-banner.jpeg';
 // import WeatherWidget from './Weather/WeatherWidget';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
+import Search from './Search/Search';
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ class LandingPage extends Component {
           <a href="/signup">Sign Up</a>          
         </nav>            
         <div className="header-content">                
+            <Search />
           <span><h1>Average Joe League Management</h1></span>     
           <p>Do you want a fast easy way to organize your sports league?  Look no further we have the solution you have been looking for!</p>
         </div> 

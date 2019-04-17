@@ -16,6 +16,18 @@ router.post('/', (req, res) =>{
         })
 })
 
+//league search endpoint
+
+router.get('/', (req, res) => {
+    leagueModel
+      .searchLeagues()
+      .then(leagues => {
+        res.json(leagues);
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'Cannot get all leagues', err });
+      });
+  });
 
 
 module.exports = router;
