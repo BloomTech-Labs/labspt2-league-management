@@ -1,7 +1,8 @@
 const express = require('express');
 
 const authenticate = require('../middleware/authenticate.js');
-const teamModel = require('../data/models/teamModel.js');
+const gameModel = require('../data/models/gameModel');
+const teamModel = require('../data/models/teamModel');
 
 const router = express.Router();
 
