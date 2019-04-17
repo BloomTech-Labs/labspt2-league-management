@@ -24,7 +24,7 @@ const styles = theme => ({
     margin: '75px 10px 10px 10px',
     // backgroundColor: '#6573c3',
     fontFamily: 'Montserrat',
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     height: '85vh',
     // width: '100%',
 
