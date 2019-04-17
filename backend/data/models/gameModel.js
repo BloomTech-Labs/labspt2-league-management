@@ -8,6 +8,12 @@ module.exports = {
     );
   },
 
+  getGamesByTeam: teamId => {
+    return db.raw(
+      ``
+    );
+  },
+
   insert: games => {
     return db('game').insert(games, 'id');
   },

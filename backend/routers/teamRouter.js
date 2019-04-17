@@ -19,4 +19,8 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:tid/schedule', (req, res) => {
+  
+});
+
 module.exports = router;

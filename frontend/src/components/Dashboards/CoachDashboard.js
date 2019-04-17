@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
+import CoachCancellationList from '../Cancellations/CoachCancellationList';
 import { AppContext } from '../Context/AppContext';
 
 class CoachDashboard extends Component {
@@ -8,18 +9,18 @@ class CoachDashboard extends Component {
     admin: false,
     coach: true,
     calendar: true,
-    dashboard: false
+    cancellations: false
   };
 
   displayCoachContent = e => {
     this.setState({
       calendar: false,
-      dashboard: false
+      cancellations: false
     });
     this.setState({ [e.currentTarget.id]: true });
   };
   render() {
-    const { calendar, dashboard } = this.state;
+    const { calendar, cancellations } = this.state;
     return (
       // <AppContext.Consumer>
       //   {context => (
@@ -31,7 +32,7 @@ class CoachDashboard extends Component {
         />
         <div style={{ margin: '100px 80px 20px 280px' }}>
           {calendar && <CoachCalendar context={this.context} />}
-          {dashboard && <div>Dashboard</div>}
+          {cancellations && <CoachCancellationList />}
         </div>
       </>
     );
