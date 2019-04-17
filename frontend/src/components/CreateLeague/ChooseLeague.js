@@ -53,10 +53,11 @@ function ChooseLeague(props) {
           </Typography>
           <Typography className={classes.title}>League Description</Typography>
           <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-            minus consequatur soluta possimus dicta quae necessitatibus minima
-            consequuntur voluptatem iste dolores, amet fugit, incidunt tempore.
-          </Typography>
+            Create a Custom Sports League
+            Generate a Custom Schedule
+            Drag and Drop Edit Schedule
+            Public Calendar 
+         </Typography>
         </CardContent>
         <CardActions>
           <CreateLeagueForm leagueType="basic" />
