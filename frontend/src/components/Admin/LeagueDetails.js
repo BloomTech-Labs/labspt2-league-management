@@ -17,7 +17,10 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: '20%',
-    minWidth: 180
+    minWidth: 180,
+    backgroundColor: 'white',
+    borderRadius: 6,
+    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0'
   },
   time: {
     marginLeft: theme.spacing.unit,
@@ -111,7 +114,21 @@ class LeagueDetails extends React.Component {
           className={classes.textField}
           margin="normal"
           InputProps={{
-            readOnly: true
+            readOnly: true,
+            style: {
+              color: '#333',
+              fontFamily: 'Monserrat'
+              // fontSize: '1.2rem'
+            }
+          }}
+          InputLabelProps={{
+            style: {
+              color: '#333',
+              textAlign: 'center',
+              // fontSize: '1.2rem',
+              // display: 'none',
+              fontFamily: 'Monserrat'
+            }
           }}
           variant="outlined"
         />
