@@ -36,7 +36,7 @@ class AdminDrawer extends Component {
       { name: 'leagueSettings', text: 'League Details' },
       { name: 'teamList', text: 'Teams' },
       { name: 'calendar', text: 'Calendar' },
-      { name: 'editSchedule', text: 'Edit Schedule' },
+      // { name: 'editSchedule', text: 'Edit Schedule' },
       { name: 'cancellationRequests', text: 'Cancellation Requests' }
     ];
     return (

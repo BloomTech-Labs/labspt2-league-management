@@ -23,6 +23,10 @@ const styles = theme => ({
     // backgroundColor: '#1565c0',
     margin: '75px 10px 10px 10px',
     // backgroundColor: '#6573c3',
+    fontFamily: 'Montserrat',
+    backgroundColor: 'lightblue',
+    height: '85vh',
+    // width: '100%',
 
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
@@ -37,6 +41,7 @@ class AdminDashboard extends Component {
     admin: true,
     coach: false,
     calendar: false,
+    edit: false,
     teamList: false,
     leagueSettings: true,
     editSchedule: false,
@@ -58,11 +63,16 @@ class AdminDashboard extends Component {
     this.setState({ [e.currentTarget.id]: true });
   };
 
+  toggleEdit = () => {
+    this.setState({ edit: !this.state.edit });
+  };
+
   render() {
     const { classes, theme } = this.props;
     // const { leagueIndex } = this.state;
     const {
       calendar,
+      edit,
       teamList,
       leagueSettings,
       editSchedule,
@@ -101,10 +111,15 @@ class AdminDashboard extends Component {
           //   margin: '100px 40px 20px 280px'
           // }}
         >
-          {calendar && <PublicCalendar index={leagueIndex} />}
+          {calendar && !edit ? (
+            <PublicCalendar index={leagueIndex} toggleEdit={this.toggleEdit} />
+          ) : null}
+          {calendar && edit ? (
+            <DnDCalendar index={leagueIndex} toggleEdit={this.toggleEdit} />
+          ) : null}
           {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueDetails league={league} />}
-          {editSchedule && <DnDCalendar index={leagueIndex} />}
+          {/* {editSchedule && <DnDCalendar index={leagueIndex} />} */}
           {cancellationRequests && <div>Cancellation Requests</div>}
         </div>
       </>
