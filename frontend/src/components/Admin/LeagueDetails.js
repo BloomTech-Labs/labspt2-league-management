@@ -11,13 +11,13 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    backgroundColor: '#eeeeee'
+    paddingTop: 20
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: '20%',
-    minWidth: 200
+    minWidth: 180
   },
   time: {
     marginLeft: theme.spacing.unit,
@@ -29,12 +29,24 @@ const styles = theme => ({
     justifyContent: 'space-between',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingRight: 50
+    paddingRight: 50,
+    [theme.breakpoints.down('sm')]: {
+      // border: '1px solid red',
+      flexDirection: 'column',
+      margin: 0,
+      padding: 0,
+      paddingBottom: 20
+    }
   },
   day: {
     width: '20%',
     minWidth: '15%',
-    paddingLeft: 50
+    paddingLeft: 50,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      padding: 0,
+      textAlign: 'center'
+    }
   },
   dense: {
     marginTop: 16

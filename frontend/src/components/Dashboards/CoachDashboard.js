@@ -2,6 +2,27 @@ import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
 import { AppContext } from '../Context/AppContext';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  content: {
+    marginTop: 50,
+    fontFamily: 'Montserrat',
+    backgroundColor: '#eee',
+    height: 'auto',
+    minHeight: 'calc(100vh - 63px)',
+
+    [theme.breakpoints.up('sm')]: {
+      margin: '63px 0px 00px 240px'
+    }
+  }
+});
 
 class CoachDashboard extends Component {
   state = {
@@ -19,6 +40,7 @@ class CoachDashboard extends Component {
     this.setState({ [e.currentTarget.id]: true });
   };
   render() {
+    const { classes, theme } = this.props;
     const { calendar, dashboard } = this.state;
     return (
       // <AppContext.Consumer>
@@ -29,7 +51,7 @@ class CoachDashboard extends Component {
           displayCoachContent={this.displayCoachContent}
           // context={context}
         />
-        <div style={{ margin: '100px 80px 20px 280px' }}>
+        <div className={classes.content}>
           {calendar && <CoachCalendar context={this.context} />}
           {dashboard && <div>Dashboard</div>}
         </div>
@@ -42,4 +64,4 @@ class CoachDashboard extends Component {
 
 CoachDashboard.contextType = AppContext;
 
-export default CoachDashboard;
+export default withStyles(styles, { withTheme: true })(CoachDashboard);
