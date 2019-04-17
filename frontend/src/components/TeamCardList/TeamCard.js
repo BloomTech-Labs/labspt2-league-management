@@ -18,24 +18,26 @@ import { AppContext } from '../Context/AppContext';
 const styles = theme => ({
   cardFront: {
     minWidth: '285px',
-    maxWidth: '310px',
-    border: '2px solid lightgrey',
+    maxWidth: '320px',
+    // border: '1px solid lightgrey',
     width: '45%',
-    borderRadius: '4%',
+    borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    height: '350px'
+    boxShadow: '1px 1px 4px #333, 2px 2px 7px #1565c0',
+    minHeight: '350px'
   },
   cardBack: {
     minWidth: '275px',
     maxWidth: '300px',
-    border: '2px solid lightgrey',
+    // border: '2px solid lightgrey',
     width: '45%',
-    borderRadius: '4%',
+    borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    boxShadow: '1px 1px 4px #333, 2px 2px 7px #ef6c00',
     height: '445px'
   },
   container: {
@@ -44,31 +46,38 @@ const styles = theme => ({
   title: {
     fontSize: '1.6rem',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    fontFamily: 'Montserrat'
   },
   pos: {
     border: '1px solid black',
-    marginTop: '8px',
+    marginTop: '12px',
     width: '65%',
+    margin: '0 auto',
     maxWidth: '180px',
-    borderRadius: '8%',
+    borderRadius: '15px',
     marginBottom: '12px',
-    padding: '10px'
+    padding: '10px',
+    fontFamily: 'Montserrat'
   },
   upcoming: {
     border: '1px solid black',
     marginTop: '8px',
-    width: '90%',
-    borderRadius: '8%',
-    marginBottom: '7px',
-    padding: '10px'
+    // width: '95%',
+    margin: '0 auto',
+    borderRadius: '15px',
+    // marginBottom: '5px',
+    padding: '10px',
+    fontFamily: 'Montserrat'
   },
   button: {
     border: '1px solid lightgrey',
-    borderRadius: '6%'
+    borderRadius: '8px',
+    fontFamily: 'Montserrat'
   },
   p: {
-    fontSize: 13
+    fontSize: 13,
+    fontFamily: 'Montserrat'
   }
 });
 
@@ -216,6 +225,9 @@ class TeamCard extends React.Component {
         if (game1Hours < 12) {
           game1Time += ' AM';
         }
+        if ((game1Hours = 12)) {
+          game1Time += ' PM';
+        }
         if (game1Hours > 12) {
           game1Time += ' PM';
         }
@@ -292,7 +304,10 @@ class TeamCard extends React.Component {
     }
     await this.getTeamSchedule();
     await this.displayGames();
-    if (this.state.scheduleGame1.game1Month && this.state.scheduleGame2.game2Month) {
+    if (
+      this.state.scheduleGame1.game1Month &&
+      this.state.scheduleGame2.game2Month
+    ) {
       this.setState({
         bothGamesExist: true
       });
@@ -300,10 +315,9 @@ class TeamCard extends React.Component {
       this.setState({
         game1Exists: true
       });
-    }
-    else {
+    } else {
       this.setState({
-        seasonComplete:true
+        seasonComplete: true
       });
     }
   };
@@ -339,7 +353,10 @@ class TeamCard extends React.Component {
             <CardContent className={classes.container}>
               <Typography className={classes.title}>
                 {name}
-                <EditIcon onClick={this.ClickHandler} />
+                <EditIcon
+                  onClick={this.ClickHandler}
+                  style={{ cursor: 'pointer' }}
+                />
               </Typography>
               <Typography className={classes.p}>
                 Name: {coach_name}
@@ -376,7 +393,7 @@ class TeamCard extends React.Component {
                   display: this.state.bothGamesExist ? 'block' : 'none'
                 }}
               >
-                Upcoming:
+                Upcoming Games:
                 <br />
                 {this.state.scheduleGame1.game1Month}{' '}
                 {this.state.scheduleGame1.game1Day}{' '}
@@ -403,7 +420,9 @@ class TeamCard extends React.Component {
 
               <Typography
                 className={classes.upcoming}
-                style={{ display: this.state.seasonComplete ? 'block' : 'none' }}
+                style={{
+                  display: this.state.seasonComplete ? 'block' : 'none'
+                }}
               >
                 Season Completed
               </Typography>
