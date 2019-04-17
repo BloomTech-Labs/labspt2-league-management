@@ -20,7 +20,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:tid/schedule', (req, res) => {
-  
+  const { tid } = req.params;
+  gameModel
+    .getGamesByTeam(tid)
+    .then(games => {
+      res.json(games);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Cannot retrieve games by team', err });
+    });
 });
 
 module.exports = router;
