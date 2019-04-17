@@ -185,9 +185,7 @@ export default class AppProvider extends Component {
               });
           },
           editLeague: (leagueSettings, index, cb) => {
-            const leagues = localStorage.getItem('leagues')
-            const lid = leagues[index].id;
-
+            const lid = this.state.leagues[index].id;
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = `/leagues/${lid}`;
             const options = {
