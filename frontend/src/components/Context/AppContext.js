@@ -185,7 +185,8 @@ export default class AppProvider extends Component {
               });
           },
           editLeague: (leagueSettings, index, cb) => {
-            const lid = this.state.leagues[index].id;
+            const leagues = localStorage.getItem('leagues')
+            const lid = leagues[index].id;
 
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = `/leagues/${lid}`;
@@ -261,6 +262,35 @@ export default class AppProvider extends Component {
               })
               .catch(err => {
                 console.log('error from createTeamInLeague', err);
+              });
+          },
+          editTeamInLeague: (teamData, index, tid) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const leagues = JSON.parse(localStorage.getItem('leagues'))
+            const lid = leagues[index].id;
+            const endpoint = `/leagues/${lid}/teams/${tid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            axios
+              .put(endpoint, teamData, options)
+                .then(res => {
+                  const team = res.data;
+                  const teams_by_league = JSON.parse(localStorage.getItem('teams_by_league'))
+                  const foundIndex = teams_by_league.findIndex(
+                    x => x.league_id === lid
+                  );
+                  const teamIndex = teams_by_league[foundIndex].teams.findIndex(
+                    x => x.id === tid
+                  );
+                  teams_by_league[foundIndex].teams[teamIndex] = team[0];
+                  localStorage.setItem('teams_by_league', JSON.stringify(teams_by_league));
+                  this.setState({ teams_by_league });
+                })
+              .catch(err => {
+                console.log('error from editTeamInLeague', err);
               });
           },
           createScheduleInLeague: (games, index, cb) => {

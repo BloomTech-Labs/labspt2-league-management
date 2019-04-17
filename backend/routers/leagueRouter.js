@@ -4,6 +4,7 @@ const authenticate = require('../middleware/authenticate.js');
 const leagueModel = require('../data/models/leagueModel.js');
 const teamModel = require('../data/models/teamModel.js');
 const gameModel = require('../data/models/gameModel.js');
+const cancellationRequestModel = require('../data/models/cancellationRequestModel.js');
 
 const router = express.Router();
 
@@ -257,10 +258,11 @@ router.get('/:lid/schedule', (req, res) => {
     });
 });
 
+
 router.put('/:lid/schedule/:gid', (req, res) => {
   const { lid, gid } = req.params;
   const game = req.body;
-  console.log(game)
+  console.log(game);
   gameModel
     .updateGame(gid, game)
     .then(count => {
@@ -271,5 +273,63 @@ router.put('/:lid/schedule/:gid', (req, res) => {
       res.status(500).json({ error: 'Error updating schedule', err });
     });
 });
+
+
+// The beginning of the league game cancellation endpoints
+
+router.get('/:lid/cancellations', (req, res) => {
+  const { lid } = req.params;
+  cancellationRequestModel
+    .getRequests(lid)
+    .then(request => {
+      res.json(request);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Trouble getting cancellation requests!', err });
+    });
+});
+
+router.post('/:lid/cancellations', (req, res) => {
+  const gameId = req.body;
+
+  cancellationRequestModel
+    .makeRequest(gameId)
+    .then(ids => {
+      res.status(201).json(ids);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Problem making request!', err });
+    });
+});
+
+router.put('/:lid/cancellations/:cid', (req, res) => {
+  const { lid } = req.params;
+  const request = req.body;
+  if (request.game_id) {
+    cancellationRequestModel
+      .editRequest(lid, request)
+      .then(updatedRequest => {
+        if (updatedRequest) {
+              res.json({message:"Succesfully updated Request!"});
+        } else {
+          res.status(404).json({
+            error: 'The request with the specified id does not exist!'
+          });
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: 'The request could not be modified!', err });
+      });
+  } else {
+    res
+      .status(400)
+      .json({ message: 'You are missing required request information!' });
+  }
+});
+
 
 module.exports = router;
