@@ -4,10 +4,13 @@ import moment from 'moment';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
 import '../../App.css';
+// import './dndCalendar.css';
+import './calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '@material-ui/core';
 import { AppContext } from '../Context/AppContext';
+import { LockOpenOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -86,6 +89,20 @@ class DragAndDropCalendar extends Component {
 
   // ========== DRAG AND DROP FUNCTIONS END HERE ==========
 
+  customEventPropGetter = event => {
+    return {
+      style: {
+        color: '#333',
+        textAlign: 'center',
+        boxShadow: '0px 0px 5px #ef6c00',
+        margin: '0 5px',
+        fontFamily: 'Montserrat',
+        border: '1px solid #ef6c00',
+        backgroundColor: 'rgba(220, 220, 220, .9)'
+      }
+    };
+  };
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -123,6 +140,12 @@ class DragAndDropCalendar extends Component {
         >
           Save Changes
         </Button> */}
+        <div className="topBar">
+          {/* <div className="topBar-text">Update Mode</div> */}
+          <div className="doneBtn" onClick={this.props.toggleEdit}>
+            <LockOpenOutlined />
+          </div>
+        </div>
         <DnDCalendar
           localizer={localizer}
           min={new Date(2019, 0, 0, 8, 0)}
@@ -133,7 +156,15 @@ class DragAndDropCalendar extends Component {
           onEventDrop={this.onEventChange}
           onEventResize={this.onEventChange}
           resizable
-          style={{ height: '80vh', padding: '10px' }}
+          style={{
+            height: '85vh',
+            padding: '10px .5%',
+            fontFamily: 'Montserrat'
+            // display: 'flex'
+            // alignItems: 'center'
+            // justifyContent: 'center'
+          }}
+          eventPropGetter={this.customEventPropGetter}
         />
       </div>
     );

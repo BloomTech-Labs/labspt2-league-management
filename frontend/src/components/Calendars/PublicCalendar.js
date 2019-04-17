@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import '../../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../../App.css';
+import './calendar.css';
 import { AppContext } from '../Context/AppContext';
+import DragAndDropCalendar from './DnDCalendar';
+import { LockOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 
 class PublicCalendar extends Component {
   state = {
     isLoading: true,
+    edit: false,
     games: []
   };
 
@@ -38,6 +42,19 @@ class PublicCalendar extends Component {
     this.setState({ publicEvents: displayEvents, isLoading: false });
   };
 
+  customEventPropGetter = event => {
+    return {
+      style: {
+        color: '#fff',
+        textAlign: 'center',
+        boxShadow: '1px 1px 5px black',
+        backgroundColor: '#ef6c00ed',
+        margin: '0 5px',
+        fontFamily: 'Montserrat'
+      }
+    };
+  };
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -56,20 +73,31 @@ class PublicCalendar extends Component {
         </div>
       );
     }
-
-    return (
-      <div className="App">
-        <Calendar
-          localizer={localizer}
-          min={new Date(2019, 0, 0, 8, 0)}
-          max={new Date(2019, 0, 0, 23, 0)}
-          defaultDate={new Date()}
-          defaultView="week"
-          events={this.state.publicEvents}
-          style={{ height: '80vh', padding: '10px' }}
-        />
-      </div>
-    );
+    if (!this.state.edit) {
+      return (
+        <div className="App">
+          <div className="updateBtn" onClick={this.props.toggleEdit}>
+            <LockOutlined />
+          </div>
+          <Calendar
+            localizer={localizer}
+            min={new Date(2019, 0, 0, 8, 0)}
+            max={new Date(2019, 0, 0, 23, 0)}
+            defaultDate={new Date()}
+            defaultView="week"
+            events={this.state.publicEvents}
+            style={{
+              height: '85vh',
+              padding: '10px .5%',
+              fontFamily: 'Montserrat'
+            }}
+            eventPropGetter={this.customEventPropGetter}
+          />
+        </div>
+      );
+    } else {
+      return <DragAndDropCalendar />;
+    }
   }
 }
 
