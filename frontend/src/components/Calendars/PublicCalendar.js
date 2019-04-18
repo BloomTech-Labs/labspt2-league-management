@@ -29,7 +29,7 @@ class PublicCalendar extends Component {
         x => x.league_id === lid
       ).games;
       await this.setState({
-        games
+        games: games.rows || games
       });
     }
 
