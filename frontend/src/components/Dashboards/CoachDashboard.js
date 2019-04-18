@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
+import CoachCancellationList from '../Cancellations/CoachCancellationList';
 import { AppContext } from '../Context/AppContext';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -29,19 +31,24 @@ class CoachDashboard extends Component {
     admin: false,
     coach: true,
     calendar: true,
-    dashboard: false
+    cancellations: false,
+    teamIndex: this.props.location.state.teamIndex
   };
 
   displayCoachContent = e => {
     this.setState({
       calendar: false,
-      dashboard: false
+      cancellations: false
     });
     this.setState({ [e.currentTarget.id]: true });
   };
+
   render() {
     const { classes, theme } = this.props;
-    const { calendar, dashboard } = this.state;
+    const { calendar, dashboard, cancellations, teamIndex } = this.state;
+    console.log(this.state);
+    console.log(this.props.location.state);
+
     return (
       // <AppContext.Consumer>
       //   {context => (
@@ -53,7 +60,7 @@ class CoachDashboard extends Component {
         />
         <div className={classes.content}>
           {calendar && <CoachCalendar context={this.context} />}
-          {dashboard && <div>Dashboard</div>}
+          {cancellations && <CoachCancellationList index={teamIndex} />}
         </div>
       </>
     );
@@ -64,4 +71,6 @@ class CoachDashboard extends Component {
 
 CoachDashboard.contextType = AppContext;
 
-export default withStyles(styles, { withTheme: true })(CoachDashboard);
+export default withStyles(styles, { withTheme: true })(
+  withRouter(CoachDashboard)
+);

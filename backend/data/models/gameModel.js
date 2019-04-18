@@ -8,6 +8,17 @@ module.exports = {
     );
   },
 
+  getGamesByTeam: teamId => {
+    return db.raw(
+      `select t2.*, team.name as away_team_name from team join
+      (select t1.*, team.name as home_team_name from team join
+      (select * from game where home_team_id = ${teamId} or away_team_id = ${teamId})  t1
+      on team.id = t1.home_team_id) t2
+      on team.id = t2.away_team_id
+      order by start_time;`
+    );
+  },
+
   insert: games => {
     return db('game').insert(games, 'id');
   },
