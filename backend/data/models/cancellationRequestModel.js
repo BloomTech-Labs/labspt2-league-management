@@ -1,15 +1,15 @@
 const db = require('../dbConfig.js');
 
 module.exports = {
-    getRequests: (gameId) => {
-        return db('cancellation_requests').where('game_id',gameId)
+    getRequests: (leagueId) => {
+        return db('cancellation_requests').where('league_id', leagueId)
     },
 
-    makeRequest: (game) =>{
-        return db('cancellation_requests').insert(game,'id');
+    makeRequest: (request) =>{
+        return db('cancellation_requests').insert(request,'id');
     },
 
-    editRequest: (id, game) =>{
-        return db('cancellation_requests').where('game_id', id).update(game);
+    editRequest: (id, request) =>{
+        return db('cancellation_requests').where('id', id).update(request);
     },
 }

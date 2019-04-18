@@ -17,6 +17,8 @@ export default class AppProvider extends Component {
     teams_by_league: JSON.parse(localStorage.getItem('teams_by_league')) || [],
     schedule_by_league:
       JSON.parse(localStorage.getItem('schedule_by_league')) || [],
+    schedule_by_team:
+      JSON.parse(localStorage.getItem('schedule_by_team')) || [],
     cancellations_by_league: []
   };
 
@@ -117,7 +119,29 @@ export default class AppProvider extends Component {
             axios
               .get(endpoint, options)
               .then(res => {
+                const teams = res.data;
                 localStorage.setItem('teams', JSON.stringify(res.data));
+                teams.forEach(team => {
+                  axios
+                    .get(`/teams/${team.id}/schedule`, options)
+                    .then(res => {
+                      const games = res.data;
+                      const joined = this.state.schedule_by_team.concat({
+                        team_id: team.id,
+                        games
+                      });
+                      localStorage.setItem(
+                        'schedule_by_team',
+                        JSON.stringify(joined)
+                      );
+                      this.setState({
+                        schedule_by_team: joined
+                      });
+                    })
+                    .catch(err => {
+                      console.log('error from getTeams by league id', err);
+                    });
+                });
                 this.setState({ teams: res.data });
               })
               .catch(err => {
@@ -264,7 +288,7 @@ export default class AppProvider extends Component {
           },
           editTeamInLeague: (teamData, index, tid) => {
             const token = localStorage.getItem('jwt') || this.signOut();
-            const leagues = JSON.parse(localStorage.getItem('leagues'))
+            const leagues = JSON.parse(localStorage.getItem('leagues'));
             const lid = leagues[index].id;
             const endpoint = `/leagues/${lid}/teams/${tid}`;
             const options = {
@@ -274,19 +298,24 @@ export default class AppProvider extends Component {
             };
             axios
               .put(endpoint, teamData, options)
-                .then(res => {
-                  const team = res.data;
-                  const teams_by_league = JSON.parse(localStorage.getItem('teams_by_league'))
-                  const foundIndex = teams_by_league.findIndex(
-                    x => x.league_id === lid
-                  );
-                  const teamIndex = teams_by_league[foundIndex].teams.findIndex(
-                    x => x.id === tid
-                  );
-                  teams_by_league[foundIndex].teams[teamIndex] = team[0];
-                  localStorage.setItem('teams_by_league', JSON.stringify(teams_by_league));
-                  this.setState({ teams_by_league });
-                })
+              .then(res => {
+                const team = res.data;
+                const teams_by_league = JSON.parse(
+                  localStorage.getItem('teams_by_league')
+                );
+                const foundIndex = teams_by_league.findIndex(
+                  x => x.league_id === lid
+                );
+                const teamIndex = teams_by_league[foundIndex].teams.findIndex(
+                  x => x.id === tid
+                );
+                teams_by_league[foundIndex].teams[teamIndex] = team[0];
+                localStorage.setItem(
+                  'teams_by_league',
+                  JSON.stringify(teams_by_league)
+                );
+                this.setState({ teams_by_league });
+              })
               .catch(err => {
                 console.log('error from editTeamInLeague', err);
               });
@@ -365,8 +394,8 @@ export default class AppProvider extends Component {
                 const foundGameIndex = league.games.findIndex(
                   x => x.id === gid
                 );
-                  game.home_team_name = home_team_name;
-                  game.away_team_name = away_team_name;
+                game.home_team_name = home_team_name;
+                game.away_team_name = away_team_name;
                 league.games[foundGameIndex] = game;
                 // const game = league.games.splice(
                 //   foundGameIndex,

@@ -10,7 +10,7 @@ class CoachDrawer extends Component {
       <List onClick={this.props.handleClose}>
         {[
           { name: 'calendar', text: 'Calendar' },
-          { name: 'dashboard', text: 'Dashboard' }
+          { name: 'cancellations', text: 'Cancellations' }
         ].map((item, index) => (
           <>
             <ListItem

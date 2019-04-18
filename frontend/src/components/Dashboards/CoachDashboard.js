@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
+import CoachCancellationList from '../Cancellations/CoachCancellationList';
 import { AppContext } from '../Context/AppContext';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -29,16 +30,18 @@ class CoachDashboard extends Component {
     admin: false,
     coach: true,
     calendar: true,
-    dashboard: false
+    cancellations: false,
+    teamIndex: this.props.location.state.teamIndex
   };
 
   displayCoachContent = e => {
     this.setState({
       calendar: false,
-      dashboard: false
+      cancellations: false
     });
     this.setState({ [e.currentTarget.id]: true });
   };
+
   render() {
     const { classes, theme } = this.props;
     const { calendar, dashboard } = this.state;
@@ -53,7 +56,7 @@ class CoachDashboard extends Component {
         />
         <div className={classes.content}>
           {calendar && <CoachCalendar context={this.context} />}
-          {dashboard && <div>Dashboard</div>}
+          {cancellations && <CoachCancellationList index={teamIndex} />}
         </div>
       </>
     );
