@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -85,9 +84,9 @@ class TeamCard extends React.Component {
   state = {
     name: this.props.name,
     id: this.props.id,
-    coach_name: this.props.coach_name,
-    coach_email: this.props.coach_email,
-    coach_phone: this.props.coach_phone,
+    coach_name: this.props.coach_name || '',
+    coach_email: this.props.coach_email || '',
+    coach_phone: this.props.coach_phone || '',
     wins: this.props.wins,
     losses: this.props.losses,
     ties: this.props.ties,
@@ -146,22 +145,6 @@ class TeamCard extends React.Component {
 
   getTeamSchedule() {
     const lid = this.context.state.leagues[this.props.index].id;
-    const today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    if (month < 10) {
-      month = '0' + month;
-    }
-    let day = today.getDate();
-    if (day < 10) {
-      day = '0' + day;
-    }
-    let date = year + '-' + month + '-' + day;
-    let hours = today.getHours();
-    let time =
-      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-
-    let dateTime = date + 'T' + time;
     const teamSchedule = [];
     if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
       const leagueSchedule = this.context.state.schedule_by_league.find(
@@ -174,11 +157,6 @@ class TeamCard extends React.Component {
         if (leagueSchedule[i].away_team_id === this.state.id) {
           teamSchedule.push(leagueSchedule[i]);
         }
-      }
-    }
-    for (let j = 0; j < teamSchedule.length; j++) {
-      if (Date.parse(teamSchedule[j].start_time) < Date.parse(today)) {
-        let removedGames = teamSchedule.splice(j, 1);
       }
     }
     this.setState({
@@ -326,7 +304,6 @@ class TeamCard extends React.Component {
     const { classes } = this.props;
     const {
       name,
-      id,
       coach_name,
       coach_email,
       coach_phone,
@@ -335,9 +312,6 @@ class TeamCard extends React.Component {
       ties
     } = this.state;
 
-    //     let teamNameShort = this.state.name;
-    // if(teamNameShort.length > 12) { teamNameShort = teamNameShort.substring(0,11)}
-    // This will keep team name from Breaking Card styling by Showing Only first 12 characters for team Name without altering team name.
     return (
       <div>
         <ReactCardFlip
