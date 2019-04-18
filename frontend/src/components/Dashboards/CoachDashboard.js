@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
+import CoachCancellationList from '../Cancellations/CoachCancellationList';
 import { AppContext } from '../Context/AppContext';
+import { withRouter } from 'react-router';
+import { withStyles } from '@material-ui/core/styles';
 
 class CoachDashboard extends Component {
   state = {
     admin: false,
     coach: true,
     calendar: true,
-    dashboard: false
+    cancellations: false,
+    teamIndex: this.props.location.state.teamIndex
   };
 
   displayCoachContent = e => {
     this.setState({
       calendar: false,
-      dashboard: false
+      cancellations: false
     });
     this.setState({ [e.currentTarget.id]: true });
   };
+
   render() {
-    const { calendar, dashboard } = this.state;
+    console.log(this.state);
+    console.log(this.props.location.state);
+    const { calendar, cancellations, teamIndex } = this.state;
     return (
       // <AppContext.Consumer>
       //   {context => (
@@ -31,7 +38,7 @@ class CoachDashboard extends Component {
         />
         <div style={{ margin: '100px 80px 20px 280px' }}>
           {calendar && <CoachCalendar context={this.context} />}
-          {dashboard && <div>Dashboard</div>}
+          {cancellations && <CoachCancellationList index={teamIndex} />}
         </div>
       </>
     );
@@ -42,4 +49,4 @@ class CoachDashboard extends Component {
 
 CoachDashboard.contextType = AppContext;
 
-export default CoachDashboard;
+export default withRouter(CoachDashboard);

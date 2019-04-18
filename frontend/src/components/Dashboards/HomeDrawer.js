@@ -97,13 +97,24 @@ class HomeDrawer extends Component {
           <List component="div" disablePadding>
             {teams.map((team, index) => (
               <>
-                <Link to="/dashboard/coach">
+                <Link
+                  to={{
+                    pathname: '/dashboard/coach',
+                    state: {
+                      teamIndex: index
+                    }
+                  }}
+                >
                   <ListItem
                     button
                     className={classes.nested}
                     onClick={this.selectTeam}
                   >
-                    <ListItemText primary={team.name} />
+                    <ListItemText
+                      id={team.id}
+                      teamIndex={index}
+                      primary={team.name}
+                    />
                   </ListItem>
                 </Link>
                 <Divider />
