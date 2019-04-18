@@ -13,15 +13,14 @@ const styles = theme => ({
     flexGrow: 1
   },
   content: {
-    // marginLeft: drawerWidth,
-    // backgroundColor: '#1565c0',
-    margin: '75px 10px 10px 10px',
-    // backgroundColor: '#6573c3',
+    marginTop: 50,
+    fontFamily: 'Montserrat',
+    backgroundColor: '#eee',
+    height: 'auto',
+    minHeight: 'calc(100vh - 63px)',
 
     [theme.breakpoints.up('sm')]: {
-      // width: `calc(100% - ${drawerWidth}px)`
-      margin: '75px 20px 20px 260px'
-      // zIndex: theme.zIndex.drawer + 1
+      margin: '63px 0px 0px 240px'
     }
   }
 });

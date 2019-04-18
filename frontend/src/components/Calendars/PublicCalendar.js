@@ -6,7 +6,7 @@ import '../../App.css';
 import './calendar.css';
 import { AppContext } from '../Context/AppContext';
 import DragAndDropCalendar from './DnDCalendar';
-import { LockOutlined } from '@material-ui/icons';
+import { LockOutlined, EditOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -77,7 +77,7 @@ class PublicCalendar extends Component {
       return (
         <div className="App">
           <div className="updateBtn" onClick={this.props.toggleEdit}>
-            <LockOutlined />
+            <EditOutlined />
           </div>
           <Calendar
             localizer={localizer}
@@ -87,9 +87,10 @@ class PublicCalendar extends Component {
             defaultView="week"
             events={this.state.publicEvents}
             style={{
-              height: '85vh',
+              height: '83vh',
               padding: '10px .5%',
-              fontFamily: 'Montserrat'
+              fontFamily: 'Montserrat',
+              backgroundColor: 'white'
             }}
             eventPropGetter={this.customEventPropGetter}
           />

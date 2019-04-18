@@ -10,7 +10,7 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Button } from '@material-ui/core';
 import { AppContext } from '../Context/AppContext';
-import { LockOpenOutlined } from '@material-ui/icons';
+import { LockOpenOutlined, DoneOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -143,7 +143,7 @@ class DragAndDropCalendar extends Component {
         <div className="topBar">
           {/* <div className="topBar-text">Update Mode</div> */}
           <div className="doneBtn" onClick={this.props.toggleEdit}>
-            <LockOpenOutlined />
+            <DoneOutlined />
           </div>
         </div>
         <DnDCalendar
@@ -157,12 +157,10 @@ class DragAndDropCalendar extends Component {
           onEventResize={this.onEventChange}
           resizable
           style={{
-            height: '85vh',
+            height: '83vh',
             padding: '10px .5%',
-            fontFamily: 'Montserrat'
-            // display: 'flex'
-            // alignItems: 'center'
-            // justifyContent: 'center'
+            fontFamily: 'Montserrat',
+            backgroundColor: 'white'
           }}
           eventPropGetter={this.customEventPropGetter}
         />
