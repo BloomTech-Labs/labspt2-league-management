@@ -20,7 +20,7 @@ const styles = theme => ({
     minWidth: 180,
     backgroundColor: 'white',
     borderRadius: 6,
-    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0'
+    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0cc'
   },
   time: {
     marginLeft: theme.spacing.unit,
@@ -104,7 +104,20 @@ class LeagueDetails extends React.Component {
       sunday_start_time,
       sunday_end_time
     } = this.props.league;
-    console.log(this.context);
+    // console.log(this.context);
+    const labelStyle = {
+      color: 'rgb(20,20,20)',
+      textAlign: 'center',
+      fontFamily: 'Monserrat',
+      fontSize: '1.2rem'
+    };
+    const inputStyle = {
+      color: '#333',
+      fontFamily: 'Monserrat',
+      fontSize: '1.2rem'
+      // paddingLeft: 'calc(20%)'
+      // border: '1px solid red'
+    };
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
@@ -115,20 +128,10 @@ class LeagueDetails extends React.Component {
           margin="normal"
           InputProps={{
             readOnly: true,
-            style: {
-              color: '#333',
-              fontFamily: 'Monserrat'
-              // fontSize: '1.2rem'
-            }
+            style: inputStyle
           }}
           InputLabelProps={{
-            style: {
-              color: '#333',
-              textAlign: 'center',
-              // fontSize: '1.2rem',
-              // display: 'none',
-              fontFamily: 'Monserrat'
-            }
+            style: labelStyle
           }}
           variant="outlined"
         />
@@ -140,7 +143,11 @@ class LeagueDetails extends React.Component {
           className={classes.textField}
           margin="normal"
           InputProps={{
-            readOnly: true
+            readOnly: true,
+            style: inputStyle
+          }}
+          InputLabelProps={{
+            style: labelStyle
           }}
           variant="outlined"
         />
@@ -151,7 +158,11 @@ class LeagueDetails extends React.Component {
           className={classes.textField}
           margin="normal"
           InputProps={{
-            readOnly: true
+            readOnly: true,
+            style: inputStyle
+          }}
+          InputLabelProps={{
+            style: labelStyle
           }}
           variant="outlined"
         />
@@ -162,7 +173,11 @@ class LeagueDetails extends React.Component {
           className={classes.textField}
           margin="normal"
           InputProps={{
-            readOnly: true
+            readOnly: true,
+            style: inputStyle
+          }}
+          InputLabelProps={{
+            style: labelStyle
           }}
           variant="outlined"
         />
@@ -177,7 +192,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -190,7 +209,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -206,7 +229,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -219,7 +246,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -235,7 +266,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -248,7 +283,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -264,7 +303,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -277,7 +320,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -293,7 +340,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -306,7 +357,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -322,7 +377,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -335,7 +394,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -351,7 +414,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
@@ -364,7 +431,11 @@ class LeagueDetails extends React.Component {
             className={classes.textField}
             margin="normal"
             InputProps={{
-              readOnly: true
+              readOnly: true,
+              style: inputStyle
+            }}
+            InputLabelProps={{
+              style: labelStyle
             }}
             variant="outlined"
           />
