@@ -401,8 +401,31 @@ class LeagueSetupSchedule extends React.Component {
       ).teams;
       this.setState({
         teams,
-        ...league
+        ...league,
+        weekdayStartTimes: [
+          new Date(`${league.monday_start_time}`),
+          new Date(`${league.tuesday_start_time}`),
+          new Date(`${league.wednesday_start_time}`),
+          new Date(`${league.thursday_start_time}`),
+          new Date(`${league.friday_start_time}`)
+        ],
+        weekdayEndTimes: [
+          new Date(`${league.monday_end_time}`),
+          new Date(`${league.tuesday_end_time}`),
+          new Date(`${league.wednesday_end_time}`),
+          new Date(`${league.thursday_end_time}`),
+          new Date(`${league.friday_end_time}`)
+        ],
+        weekendStartTimes: [
+          new Date(`${league.saturday_start_time}`),
+          new Date(`${league.sunday_start_time}`)
+        ],
+        weekendEndTimes: [
+          new Date(`${league.saturday_end_time}`),
+          new Date(`${league.sunday_end_time}`)
+        ]
       });
+      console.log(this.state);
     }
   }
   render() {
