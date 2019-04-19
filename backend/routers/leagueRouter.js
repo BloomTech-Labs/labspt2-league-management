@@ -248,7 +248,10 @@ router.get('/:lid/schedule', (req, res) => {
   const { lid } = req.params;
   gameModel
     .getGamesByLeague(lid)
-    .then(games => {
+    .then(result => {
+      const games = result.map(game => {
+          return game.rows ? game.rows : game;
+      });
       res.json(games);
     })
     .catch(err => {
