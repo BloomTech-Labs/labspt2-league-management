@@ -250,9 +250,7 @@ router.get('/:lid/schedule', (req, res) => {
     .getGamesByLeague(lid)
     .then(result => {
       console.log("leagueRouter, result", result);
-      const games = result.map(game => {
-          return game.rows ? game.rows : game;
-      });
+      const games = result.rows ? result.rows : result;
       console.log("leagueRouter, games", games);
       res.json(games);
     })
