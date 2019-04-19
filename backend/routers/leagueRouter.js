@@ -249,9 +249,11 @@ router.get('/:lid/schedule', (req, res) => {
   gameModel
     .getGamesByLeague(lid)
     .then(result => {
+      console.log("leagueRouter, result", result);
       const games = result.map(game => {
           return game.rows ? game.rows : game;
       });
+      console.log("leagueRouter, games", games);
       res.json(games);
     })
     .catch(err => {
