@@ -33,7 +33,7 @@ class PublicCalendar extends Component {
       });
     }
 
-    const displayEvents = this.state.games.map(event => {
+    const displayEvents = await this.state.games.map(event => {
       console.log(event);
       console.log(
         'Public Calendar. Mapping through events - Start: ',
@@ -48,7 +48,7 @@ class PublicCalendar extends Component {
       event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
-    this.setState({ publicEvents: displayEvents, isLoading: false });
+    await this.setState({ publicEvents: displayEvents, isLoading: false });
   };
 
   customEventPropGetter = event => {

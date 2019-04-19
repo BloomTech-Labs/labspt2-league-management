@@ -329,7 +329,10 @@ export default class AppProvider extends Component {
                 authorization: token
               }
             };
-
+            console.log(
+              'Games being passed to the backend to be entered into the database: ',
+              games
+            );
             axios
               .post(endpoint, games, options)
               .then(res => {

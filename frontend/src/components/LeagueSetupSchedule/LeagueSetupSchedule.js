@@ -370,6 +370,8 @@ class LeagueSetupSchedule extends React.Component {
         end_time: gameEndDateTime
       });
 
+      console.log(completedSchedule);
+
       currentTimeSlot++;
       if (currentTimeSlot >= gamesPerWeek) {
         currentTimeSlot = 0;
