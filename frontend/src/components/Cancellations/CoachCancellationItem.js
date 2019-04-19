@@ -9,14 +9,19 @@ const styles = theme => ({
 });
 
 class CoachCancellationItem extends React.Component {
-  render() {
-    console.log(this.props);
-    console.log(this.state);
-    const { game, classes } = this.props;
+  clickHandler = e => {
+    e.preventDefault();
+    this.context.createCancellationRequest(this.props.game, () => {
+      console.log('callback');
+    });
+  }
 
+  render() {
+    const { game, classes } = this.props;
     return (
       <div>
         {game.away_team_name} vs. {game.home_team_name}
+        <button onClick={this.clickHandler}>Request Cancellation</button>
       </div>
     );
   }
