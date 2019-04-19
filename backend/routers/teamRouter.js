@@ -26,9 +26,7 @@ router.get('/:tid/schedule', (req, res) => {
     .getGamesByTeam(tid)
     .then(result => {
       console.log("teamRouter, result", result);
-      const games = result.map(game => {
-          return game.rows ? game.rows : game;
-      });
+      const games = result.rows ? result.rows : result;
       console.log("teamRouter, games", games);
       res.json(games);
     })
