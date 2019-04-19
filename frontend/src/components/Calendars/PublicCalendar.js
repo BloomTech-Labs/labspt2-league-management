@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
+import axios from 'axios';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../App.css';
 import './calendar.css';
@@ -14,7 +15,8 @@ class PublicCalendar extends Component {
   state = {
     isLoading: true,
     edit: false,
-    games: []
+    games: [],
+    schedule_by_league: []
   };
 
   componentDidMount() {
@@ -22,23 +24,55 @@ class PublicCalendar extends Component {
   }
 
   showGames = async () => {
-    const lid = this.context.state.leagues[this.props.index].id;
-
-    if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
-      const games = this.context.state.schedule_by_league.find(
-        x => x.league_id === lid
-      ).games;
-      await this.setState({
-        games: games
-      });
+    if (this.props.index) {
+      const lid = this.context.state.leagues[this.props.index].id;
+      if (
+        this.context.state.schedule_by_league.find(x => x.league_id === lid)
+      ) {
+        const games = this.context.state.schedule_by_league.find(
+          x => x.league_id === lid
+        ).games;
+        await this.setState({
+          games
+        });
+      }
+    } else if (this.props.location.state.leagues) {
+      const leagues = this.props.location.state.leagues;
+      const lid = this.props.location.state.lid;
+      console.log('leagues', leagues);
+      console.log('lid', lid);
+      console.log(
+        'this.context.state.schedule_by_league',
+        this.context.state.schedule_by_league
+      );
+      axios
+        .get(`/search/${lid}/schedule`)
+        .then(res => {
+          const games = res.data;
+          // console.log('schedule', res.data);
+          // const scheduleJoined = this.state.schedule_by_league.concat({
+          //   games
+          // });
+          this.setState({
+            games
+            // : scheduleJoined[0].games
+          });
+          console.log(this.state.games);
+          // const newGames = schedule_by_league[0].games;
+          // console.log(newGames);
+        })
+        .catch(err => {
+          console.log('error from getTeams by league id', err);
+        });
     }
-
+    console.log(this.state.games);
     const displayEvents = this.state.games.map(event => {
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
       event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
+    console.log(displayEvents);
     this.setState({ publicEvents: displayEvents, isLoading: false });
   };
 

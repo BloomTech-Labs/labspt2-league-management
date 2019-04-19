@@ -53,7 +53,7 @@ const styles = theme => ({
   suggestionsList: {
     margin: 0,
     padding: 0,
-    listStyleType: "none"
+    listStyleType: "none",
   }
 });
 
@@ -74,7 +74,8 @@ class SearchBar extends React.Component {
   endpoint = '/search'
 
   componentDidMount(){
-    axios
+    {
+      axios
       .get(this.endpoint)
       .then(response => {
         this.setState({
@@ -82,6 +83,7 @@ class SearchBar extends React.Component {
         })
       })
       .catch(error => console.log(error))
+    }
   }
 
   renderSearchComponent(inputProps) {
@@ -171,12 +173,22 @@ class SearchBar extends React.Component {
     });
   };
 
-  handleSubmit = e =>{
+
+  handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log(`I have been clicked as a Search Suggestion`)
-    this.props.history.push({
-      pathname: '/schedule',
-    })
+   await this.state.single;
+       const lName = this.state.single;
+       if(this.state.leagues.find(x => x.name === lName)) {
+        const lid = this.state.leagues.find(x => x.name === lName).id;
+        await this.props.history.push({
+          pathname: `/schedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g,'-')}`,
+          state: {
+            leagues: this.state.leagues,
+            lid,
+          }
+        })
+      }
+
   }
 
   render() {
@@ -188,7 +200,7 @@ class SearchBar extends React.Component {
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue: this.getSuggestionValue,
-      renderSuggestion: this.renderSuggestion
+      renderSuggestion: this.renderSuggestion,
     };
 
     return (
