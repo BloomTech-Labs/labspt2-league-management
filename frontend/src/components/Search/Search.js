@@ -74,7 +74,8 @@ class SearchBar extends React.Component {
   endpoint = '/search'
 
   componentDidMount(){
-    axios
+    {
+      axios
       .get(this.endpoint)
       .then(response => {
         this.setState({
@@ -82,6 +83,7 @@ class SearchBar extends React.Component {
         })
       })
       .catch(error => console.log(error))
+    }
   }
 
   renderSearchComponent(inputProps) {
@@ -174,14 +176,16 @@ class SearchBar extends React.Component {
 
   handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log(`I have been clicked as a Search Suggestion`);
    await this.state.single;
        const lName = this.state.single;
        if(this.state.leagues.find(x => x.name === lName)) {
         const lid = this.state.leagues.find(x => x.name === lName).id;
-        console.log('result',lid);
         await this.props.history.push({
-          pathname: `/schedule/${lid}`
+          pathname: `/schedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g,'-')}`,
+          state: {
+            leagues: this.state.leagues,
+            lid,
+          }
         })
       }
 
