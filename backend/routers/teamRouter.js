@@ -24,7 +24,10 @@ router.get('/:tid/schedule', (req, res) => {
   const { tid } = req.params;
   gameModel
     .getGamesByTeam(tid)
-    .then(games => {
+    .then(result => {
+      const games = result.map(game => {
+          return game.rows ? game.rows : game;
+      });
       res.json(games);
     })
     .catch(err => {
