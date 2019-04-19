@@ -248,7 +248,10 @@ router.get('/:lid/schedule', (req, res) => {
   const { lid } = req.params;
   gameModel
     .getGamesByLeague(lid)
-    .then(games => {
+    .then(result => {
+      console.log("leagueRouter, result", result);
+      const games = result.rows ? result.rows : result;
+      console.log("leagueRouter, games", games);
       res.json(games);
     })
     .catch(err => {
@@ -292,15 +295,14 @@ router.get('/:lid/cancellations', (req, res) => {
 });
 
 router.post('/:lid/cancellations', (req, res) => {
-  const gameId = req.body;
-
+  const request = req.body;
   cancellationRequestModel
-    .makeRequest(gameId)
+    .makeRequest(request)
     .then(ids => {
       res.status(201).json(ids);
     })
     .catch(err => {
-      res.status(500).json({ error: 'Problem making request!', err });
+      res.status(500).json({ error: 'Problem creating cancellation request', err });
     });
 });
 

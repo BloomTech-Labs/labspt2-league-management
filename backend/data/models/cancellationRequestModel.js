@@ -6,7 +6,7 @@ module.exports = {
     },
 
     makeRequest: (request) =>{
-        return db('cancellation_requests').insert(request,'id');
+        return db('cancellation_requests').insert(request, 'id');
     },
 
     editRequest: (id, request) =>{
