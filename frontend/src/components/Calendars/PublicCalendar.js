@@ -67,7 +67,16 @@ class PublicCalendar extends Component {
     }
     console.log(this.state.games);
     const displayEvents = this.state.games.map(event => {
+      console.log(event);
+      console.log(
+        'Public Calendar. Mapping through events - Start: ',
+        event.start_time
+      );
       event.start = new Date(event.start_time);
+      console.log(
+        'Public Calendar. Mapping through events - End: ',
+        event.end_time
+      );
       event.end = new Date(event.end_time);
       event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
