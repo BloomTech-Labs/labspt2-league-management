@@ -25,17 +25,15 @@ class PublicCalendar extends Component {
 
   showGames = async () => {
     if (this.props.index) {
-      const lid = this.context.state.leagues[this.props.index].id;
-      if (
-        this.context.state.schedule_by_league.find(x => x.league_id === lid)
-      ) {
-        const games = this.context.state.schedule_by_league.find(
-          x => x.league_id === lid
-        ).games;
-        await this.setState({
-          games
-        });
-      }
+    }
+    const lid = this.context.state.leagues[this.props.index].id;
+    if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
+      const games = this.context.state.schedule_by_league.find(
+        x => x.league_id === lid
+      ).games;
+      await this.setState({
+        games: games.rows || games
+      });
     } else if (this.props.location.state.leagues) {
       const leagues = this.props.location.state.leagues;
       const lid = this.props.location.state.lid;
@@ -67,8 +65,7 @@ class PublicCalendar extends Component {
     }
 
     const displayEvents = await this.state.games.map(event => {
-    console.log(this.state.games);
-
+      console.log(this.state.games);
       console.log(event);
       console.log(
         'Public Calendar. Mapping through events - Start: ',
@@ -85,7 +82,6 @@ class PublicCalendar extends Component {
     });
     await this.setState({ publicEvents: displayEvents, isLoading: false });
     console.log(displayEvents);
-
   };
 
   customEventPropGetter = event => {
