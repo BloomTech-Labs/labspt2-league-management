@@ -16,47 +16,41 @@ class PublicCalendar extends Component {
     isLoading: true,
     edit: false,
     games: [],
-    schedule_by_league: []
   };
 
   componentDidMount() {
     this.showGames();
-    this.publicShowGames();
   }
 
   showGames = async () => {
-    if (this.props.index) {
-      const lid = this.context.state.leagues[this.props.index].id;
-      if (
-        this.context.state.schedule_by_league.find(x => x.league_id === lid)
-      ) {
-        const games = this.context.state.schedule_by_league.find(
-          x => x.league_id === lid
-        ).games;
-        await this.setState({
-          games: games.rows || games
-        });
-      }
-
-      const displayEvents = await this.state.games.map(event => {
-        console.log(this.state.games);
-        console.log(event);
-        console.log(
-          'Public Calendar. Mapping through events - Start: ',
-          event.start_time
-        );
-        event.start = new Date(event.start_time);
-        console.log(
-          'Public Calendar. Mapping through events - End: ',
-          event.end_time
-        );
-        event.end = new Date(event.end_time);
-        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
-        return event;
+    const lid = this.context.state.leagues[this.props.index].id;
+    if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
+      const games = this.context.state.schedule_by_league.find(
+        x => x.league_id === lid
+      ).games;
+      await this.setState({
+        games: games.rows || games
       });
-      await this.setState({ publicEvents: displayEvents, isLoading: false });
-      console.log(displayEvents);
     }
+
+    const displayEvents = await this.state.games.map(event => {
+      console.log(this.state.games);
+      console.log(event);
+      console.log(
+        'Public Calendar. Mapping through events - Start: ',
+        event.start_time
+      );
+      event.start = new Date(event.start_time);
+      console.log(
+        'Public Calendar. Mapping through events - End: ',
+        event.end_time
+      );
+      event.end = new Date(event.end_time);
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+      return event;
+    });
+    await this.setState({ publicEvents: displayEvents, isLoading: false });
+    console.log(displayEvents);
   };
 
   customEventPropGetter = event => {
@@ -71,48 +65,6 @@ class PublicCalendar extends Component {
       }
     };
   };
-
-  async publicShowGames() {
-    if (this.props.location.state.leagues) {
-      const leagues = this.props.location.state.leagues;
-      const lid = this.props.location.state.lid;
-
-      console.log('this.state.games', this.state.games);
-      await axios
-        .get(`/search/${lid}/schedule`)
-        .then(res => {
-          const schedule = res.data;
-          this.setState({
-            games: schedule
-          });
-          console.log(this.state.games);
-          let data = this.state.games;
-          console.log(data);
-        })
-        .catch(err => {
-          console.log('error from Axios call in publicShowGames', err);
-        });
-
-      const displayEvents = await this.state.games.map(event => {
-        console.log(this.state.games);
-        console.log(event);
-        console.log(
-          'Public Calendar. Mapping through events - Start: ',
-          event.start_time
-        );
-        event.start = new Date(event.start_time);
-        console.log(
-          'Public Calendar. Mapping through events - End: ',
-          event.end_time
-        );
-        event.end = new Date(event.end_time);
-        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
-        return event;
-      });
-      await this.setState({ publicEvents: displayEvents, isLoading: false });
-      console.log(displayEvents);
-    }
-  }
 
   render() {
     if (this.state.isLoading) {

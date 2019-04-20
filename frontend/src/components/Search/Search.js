@@ -61,7 +61,7 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       single: '',
-      leagues: [],
+      publicLeagues: [],
       suggestions: []
     };
     this.renderSearchComponent = this.renderSearchComponent.bind(this);
@@ -78,7 +78,7 @@ class SearchBar extends React.Component {
         .get(this.endpoint)
         .then(response => {
           this.setState({
-            leagues: response.data
+            publicLeagues: response.data
           });
         })
         .catch(error => console.log(error));
@@ -137,7 +137,7 @@ class SearchBar extends React.Component {
 
     return inputLength === 0
       ? []
-      : this.state.leagues.filter(league => {
+      : this.state.publicLeagues.filter(league => {
           const keep =
             count < 5 &&
             league.name.slice(0, inputLength).toLowerCase() === searchValue;
@@ -176,12 +176,12 @@ class SearchBar extends React.Component {
     e.preventDefault();
     await this.state.single;
     const lName = this.state.single;
-    if (this.state.leagues.find(x => x.name === lName)) {
-      const lid = this.state.leagues.find(x => x.name === lName).id;
+    if (this.state.publicLeagues.find(x => x.name === lName)) {
+      const lid = this.state.publicLeagues.find(x => x.name === lName).id;
       await this.props.history.push({
-        pathname: `/schedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g, '-')}`,
+        pathname: `/publicSchedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g, '-')}`,
         state: {
-          leagues: this.state.leagues,
+          publicLeagues: this.state.publicLeagues,
           lid,
         }
       });

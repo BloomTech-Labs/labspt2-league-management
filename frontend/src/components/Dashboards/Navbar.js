@@ -164,7 +164,16 @@ class Navbar extends React.Component {
               <MenuIcon />
             </IconButton> */}
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link to="/" style={{ color: '#fff' }}>
+              <Link
+                to="/"
+                style={{
+                  color: '#fff',
+                  backgroundColor: '#333',
+                  padding: 10,
+                  fontFamily: 'Audiowide',
+                  borderRadius: 5
+                }}
+              >
                 LM
               </Link>
             </Typography>

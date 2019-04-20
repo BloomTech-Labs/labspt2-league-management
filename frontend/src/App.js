@@ -14,6 +14,7 @@ import Signup from './components/SignUp.js';
 import Signin from './components/SignIn.js';
 import LeagueSetup from './components/Admin/LeagueSetup';
 import PublicCalendar from './components/Calendars/PublicCalendar';
+import SearchCalendar from './components/Search/SearchCalendar.js';
 
 class App extends Component {
   render() {
@@ -35,7 +36,8 @@ class App extends Component {
         />
         <Route path="/search" component={Search} />
         <Route path="/schedule" component={PublicCalendar} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/publicSchedule" component={SearchCalendar} />
+        <Route path="/signup" component={Signup} /> 
         <Route
           path="/signin"
           component={Signin}
