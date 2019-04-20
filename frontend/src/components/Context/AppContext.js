@@ -394,9 +394,9 @@ export default class AppProvider extends Component {
                   1
                 )[0];
                 console.log(league.games);
-                const foundGameIndex = league.games.findIndex(
-                  x => x.id === gid
-                );
+                const foundGameIndex =
+                  league.games.findIndex(x => x.id === gid) ||
+                  league.games.rows.findIndex(x => x.id === gid);
                 game.home_team_name = home_team_name;
                 game.away_team_name = away_team_name;
                 league.games[foundGameIndex] = game;
@@ -432,7 +432,7 @@ export default class AppProvider extends Component {
           createCancellationRequest: (game, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = game.league_id;
-            const request = { 'game_id': game.id };
+            const request = { game_id: game.id };
             const endpoint = `/leagues/${lid}/cancellations`;
             const options = {
               headers: {
