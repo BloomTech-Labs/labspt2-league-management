@@ -32,7 +32,7 @@ class PublicCalendar extends Component {
         x => x.league_id === lid
       ).games;
       await this.setState({
-        games: games
+        games: games.rows || games
       });
     } else if (this.props.location.state.leagues) {
       const leagues = this.props.location.state.leagues;
