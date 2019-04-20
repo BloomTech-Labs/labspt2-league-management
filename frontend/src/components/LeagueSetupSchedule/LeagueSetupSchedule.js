@@ -229,7 +229,7 @@ class LeagueSetupSchedule extends React.Component {
             this.state.weekdayStartTimes[i].getHours() +
             j * this.state.game_length;
           const startTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.game_length;
+          const endTimeHour = +startTimeHour + +this.state.game_length;
           const endTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
@@ -257,7 +257,7 @@ class LeagueSetupSchedule extends React.Component {
             this.state.weekendStartTimes[i].getHours() +
             j * this.state.game_length;
           const startTimeMinute = this.state.weekendStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.game_length;
+          const endTimeHour = +startTimeHour + +this.state.game_length;
           const endTimeMinute = this.state.weekendStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
