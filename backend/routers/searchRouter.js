@@ -1,6 +1,7 @@
 const express = require('express');
 
 const leagueModel = require('../data/models/leagueModel.js');
+const gameModel = require('../data/models/gameModel.js');
 
 const router = express.Router();
 
@@ -29,5 +30,18 @@ router.get('/', (req, res) => {
       });
   });
 
-
+router.get('/:lid/schedule', (req, res) => {
+    const { lid } = req.params;
+    gameModel
+      .getGamesByLeague(lid)
+      .then(games => {
+        res.json(games);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: 'Trouble retrieving games for league', err });
+      });
+      console.log(games);
+})
 module.exports = router;
