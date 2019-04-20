@@ -81,7 +81,7 @@ class LeagueSetupSchedule extends React.Component {
   // possible Handlers
   // CDM
 
-  generateSchedule = () => {
+  generateSchedule = async () => {
     // If odd number of teams issue warning
     if (this.state.teams.length % 2 !== 0) {
       this.setState({ oddNumOfTeams: true });
@@ -208,7 +208,7 @@ class LeagueSetupSchedule extends React.Component {
       currentWeek++;
     }
 
-    this.setState({
+    await this.setState({
       schedule: schedule
     });
     // #####################################################################################
@@ -270,6 +270,8 @@ class LeagueSetupSchedule extends React.Component {
         }
       }
     }
+
+    console.log('Time Slots: ', gameTimeSlotsPerWeek);
 
     // Sync up league to start on league start day
     // Then run the week from that day of the week thru day - 1
@@ -394,14 +396,14 @@ class LeagueSetupSchedule extends React.Component {
     );
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const league = this.context.state.leagues[this.props.index];
     const lid = this.context.state.leagues[this.props.index].id;
     if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
       const teams = this.context.state.teams_by_league.find(
         x => x.league_id === lid
       ).teams;
-      this.setState({
+      await this.setState({
         teams,
         ...league,
         weekdayStartTimes: [
@@ -427,7 +429,7 @@ class LeagueSetupSchedule extends React.Component {
           new Date(`${league.sunday_end_time}`)
         ]
       });
-      console.log(this.state);
+      await console.log(this.state);
     }
   }
   render() {
