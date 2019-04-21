@@ -394,12 +394,19 @@ export default class AppProvider extends Component {
                   1
                 )[0];
                 console.log(league.games);
-                const foundGameIndex =
-                  league.games.findIndex(x => x.id === gid) ||
-                  league.games.rows.findIndex(x => x.id === gid);
+                const foundGameIndex = league.games.rows
+                  ? league.games.findIndex(x => x.id === gid)
+                  : league.games.rows.findIndex(x => x.id === gid);
+                // league.games.findIndex(x => x.id === gid)
+
                 game.home_team_name = home_team_name;
                 game.away_team_name = away_team_name;
-                league.games[foundGameIndex] = game;
+
+                if (league.games.rows) {
+                  league.games.rows[foundGameIndex] = game;
+                } else {
+                  league.games[foundGameIndex] = game;
+                }
                 // const game = league.games.splice(
                 //   foundGameIndex,
                 //   1
@@ -408,7 +415,7 @@ export default class AppProvider extends Component {
                 // and we update the array to contain the new values
                 const joined = this.state.schedule_by_league.concat({
                   league_id: league.league_id,
-                  games: league.games
+                  games: league.games.rows || league.games
                 });
                 // then we put it back in to local storage with the update
                 localStorage.setItem(
