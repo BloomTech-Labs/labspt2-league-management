@@ -37,6 +37,7 @@ exports.up = function(knex, Promise) {
     //   .inTable('location')
     //   .onDelete('cascade');
     game.boolean('cancelled').defaultTo(false);
+    game.boolean('pending_cancelled').defaultTo(false);
   });
 };
 exports.down = function(knex, Promise) {

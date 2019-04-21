@@ -263,11 +263,9 @@ router.get('/:lid/schedule', (req, res) => {
 router.put('/:lid/schedule/:gid', (req, res) => {
   const { lid, gid } = req.params;
   const game = req.body;
-  console.log(game);
   gameModel
     .updateGame(gid, game)
     .then(count => {
-      console.log(count);
       res.json(count);
     })
     .catch(err => {
@@ -298,9 +296,17 @@ router.post('/:lid/cancellations', (req, res) => {
   cancellationRequestModel
     .makeRequest(request)
     .then(ids => {
-      res.status(201).json(ids);
+      gameModel.updateGame(request.game_id, { "pending_cancelled": true })
+      .then(count => {
+        res.json({ids, count});
+      })
+      .catch(err => {
+        console.log('check');
+        res.status(500).json({ error: 'Problem set game pending cancellation to true', err });
+      });
     })
     .catch(err => {
+      console.log('check check')
       res.status(500).json({ error: 'Problem creating cancellation request', err });
     });
 });
