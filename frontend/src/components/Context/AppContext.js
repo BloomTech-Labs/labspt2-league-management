@@ -394,9 +394,17 @@ export default class AppProvider extends Component {
                   1
                 )[0];
                 console.log(league.games);
-                const foundGameIndex = league.games.rows
-                  ? league.games.findIndex(x => x.id === gid)
-                  : league.games.rows.findIndex(x => x.id === gid);
+                let foundGameIndex = null;
+
+                if (league.games.rows) {
+                  console.log('inside league.games.rows check');
+                  foundGameIndex = league.games.rows.findIndex(
+                    x => x.id === gid
+                  );
+                } else {
+                  console.log('inside league.games check');
+                  foundGameIndex = league.games.findIndex(x => x.id === gid);
+                }
                 // league.games.findIndex(x => x.id === gid)
 
                 game.home_team_name = home_team_name;
