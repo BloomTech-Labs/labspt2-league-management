@@ -249,9 +249,7 @@ router.get('/:lid/schedule', (req, res) => {
   gameModel
     .getGamesByLeague(lid)
     .then(result => {
-      console.log("leagueRouter, result", result);
       const games = result.rows ? result.rows : result;
-      console.log("leagueRouter, games", games);
       res.json(games);
     })
     .catch(err => {
@@ -284,13 +282,14 @@ router.get('/:lid/cancellations', (req, res) => {
   const { lid } = req.params;
   cancellationRequestModel
     .getRequests(lid)
-    .then(request => {
-      res.json(request);
+    .then(result => {
+      const requests = result.rows ? result.rows : result;
+      res.json(requests);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: 'Trouble getting cancellation requests!', err });
+        .json({ error: 'Problem getting cancellation requests', err });
     });
 });
 
@@ -307,7 +306,7 @@ router.post('/:lid/cancellations', (req, res) => {
 });
 
 router.put('/:lid/cancellations/:cid', (req, res) => {
-  const { lid } = req.params;
+  const { lid, cid } = req.params;
   const request = req.body;
   if (request.game_id) {
     cancellationRequestModel

@@ -19,7 +19,8 @@ export default class AppProvider extends Component {
       JSON.parse(localStorage.getItem('schedule_by_league')) || [],
     schedule_by_team:
       JSON.parse(localStorage.getItem('schedule_by_team')) || [],
-    cancellations_by_league: []
+    cancellations_by_league: 
+    JSON.parse(localStorage.getItem('cancellations_by_league')) || [],
   };
 
   render() {
@@ -99,14 +100,36 @@ export default class AppProvider extends Component {
                       });
                     })
                     .catch(err => {
-                      console.log('error from getTeams by league id', err);
+                      console.log('error from get schedules by league id', err);
                     });
-                });
+                axios
+                  .get(`/leagues/${league.id}/cancellations`, options)
+                  .then(res => {
+                    const cancellations = res.data;
+                    console.log('cancellations', res.data);
+                    const cancellationsJoined = this.state.cancellations_by_league.concat(
+                      {
+                        league_id: league.id,
+                        cancellations
+                      }
+                    );
+                    localStorage.setItem(
+                      'cancellations_by_league',
+                      JSON.stringify(cancellationsJoined)
+                    );
+                    this.setState({
+                      cancellations_by_league: cancellationsJoined
+                    });
+                  })
+                  .catch(err => {
+                    console.log('error from get cancellations by league id', err);
+                  });
                 this.setState({ leagues });
               })
               .catch(err => {
                 console.log('error from getLeagues', err);
               });
+            });
           },
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();
