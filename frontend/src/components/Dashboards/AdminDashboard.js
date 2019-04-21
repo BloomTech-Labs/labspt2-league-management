@@ -76,6 +76,7 @@ class AdminDashboard extends Component {
     } = this.state;
     // console.log(this.context.state.leagues);
     // console.log(this.context.state.leagues[this.state.leagueIndex]);
+    console.log('leagueIndex from Admin Dashboard', leagueIndex);
     const league = this.context.state.leagues[leagueIndex];
 
     if (!this.context.state.schedule_by_league[leagueIndex]) {

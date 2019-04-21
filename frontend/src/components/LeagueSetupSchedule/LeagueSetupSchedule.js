@@ -81,7 +81,7 @@ class LeagueSetupSchedule extends React.Component {
   // possible Handlers
   // CDM
 
-  generateSchedule = () => {
+  generateSchedule = async () => {
     // If odd number of teams issue warning
     if (this.state.teams.length % 2 !== 0) {
       this.setState({ oddNumOfTeams: true });
@@ -208,7 +208,7 @@ class LeagueSetupSchedule extends React.Component {
       currentWeek++;
     }
 
-    this.setState({
+    await this.setState({
       schedule: schedule
     });
     // #####################################################################################
@@ -229,7 +229,7 @@ class LeagueSetupSchedule extends React.Component {
             this.state.weekdayStartTimes[i].getHours() +
             j * this.state.game_length;
           const startTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.game_length;
+          const endTimeHour = +startTimeHour + +this.state.game_length;
           const endTimeMinute = this.state.weekdayStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
@@ -257,7 +257,7 @@ class LeagueSetupSchedule extends React.Component {
             this.state.weekendStartTimes[i].getHours() +
             j * this.state.game_length;
           const startTimeMinute = this.state.weekendStartTimes[i].getMinutes();
-          const endTimeHour = startTimeHour + this.state.game_length;
+          const endTimeHour = +startTimeHour + +this.state.game_length;
           const endTimeMinute = this.state.weekendStartTimes[i].getMinutes();
 
           gameTimeSlotsPerWeek.push({
@@ -270,6 +270,8 @@ class LeagueSetupSchedule extends React.Component {
         }
       }
     }
+
+    console.log('Time Slots: ', gameTimeSlotsPerWeek);
 
     // Sync up league to start on league start day
     // Then run the week from that day of the week thru day - 1
@@ -370,6 +372,8 @@ class LeagueSetupSchedule extends React.Component {
         end_time: gameEndDateTime
       });
 
+      console.log(completedSchedule);
+
       currentTimeSlot++;
       if (currentTimeSlot >= gamesPerWeek) {
         currentTimeSlot = 0;
@@ -392,17 +396,40 @@ class LeagueSetupSchedule extends React.Component {
     );
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const league = this.context.state.leagues[this.props.index];
     const lid = this.context.state.leagues[this.props.index].id;
     if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
       const teams = this.context.state.teams_by_league.find(
         x => x.league_id === lid
       ).teams;
-      this.setState({
+      await this.setState({
         teams,
-        ...league
+        ...league,
+        weekdayStartTimes: [
+          new Date(`${league.monday_start_time}`),
+          new Date(`${league.tuesday_start_time}`),
+          new Date(`${league.wednesday_start_time}`),
+          new Date(`${league.thursday_start_time}`),
+          new Date(`${league.friday_start_time}`)
+        ],
+        weekdayEndTimes: [
+          new Date(`${league.monday_end_time}`),
+          new Date(`${league.tuesday_end_time}`),
+          new Date(`${league.wednesday_end_time}`),
+          new Date(`${league.thursday_end_time}`),
+          new Date(`${league.friday_end_time}`)
+        ],
+        weekendStartTimes: [
+          new Date(`${league.saturday_start_time}`),
+          new Date(`${league.sunday_start_time}`)
+        ],
+        weekendEndTimes: [
+          new Date(`${league.saturday_end_time}`),
+          new Date(`${league.sunday_end_time}`)
+        ]
       });
+      await console.log(this.state);
     }
   }
   render() {

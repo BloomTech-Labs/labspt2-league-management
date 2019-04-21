@@ -13,18 +13,17 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-
 const styles = theme => ({
   root: {
-    margin: "0 auto",
-    padding: "2px 4px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    margin: '0 auto',
+    padding: '2px 4px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: 400
   },
   container: {
-    position: "relative"
+    position: 'relative'
   },
   divider: {
     width: 2,
@@ -32,8 +31,8 @@ const styles = theme => ({
     margin: 4
   },
   input: {
-    border: "none",
-    outline: "none",
+    border: 'none',
+    outline: 'none',
     marginLeft: 8,
     flex: 1
   },
@@ -41,19 +40,19 @@ const styles = theme => ({
     padding: 10
   },
   suggestionsContainerOpen: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0
   },
   suggestion: {
-    display: "block",
+    display: 'block'
   },
   suggestionsList: {
     margin: 0,
     padding: 0,
-    listStyleType: "none"
+    listStyleType: 'none'
   }
 });
 
@@ -62,8 +61,8 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       single: '',
-      leagues: [],
-      suggestions:[],
+      publicLeagues: [],
+      suggestions: []
     };
     this.renderSearchComponent = this.renderSearchComponent.bind(this);
     this.getSuggestionValue = this.getSuggestionValue.bind(this);
@@ -71,17 +70,19 @@ class SearchBar extends React.Component {
     this.renderSearchComponent = this.renderSearchComponent.bind(this);
   }
 
-  endpoint = '/search'
+  endpoint = '/search';
 
-  componentDidMount(){
-    axios
-      .get(this.endpoint)
-      .then(response => {
-        this.setState({
-          leagues:response.data
+  componentDidMount() {
+    {
+      axios
+        .get(this.endpoint)
+        .then(response => {
+          this.setState({
+            publicLeagues: response.data
+          });
         })
-      })
-      .catch(error => console.log(error))
+        .catch(error => console.log(error));
+    }
   }
 
   renderSearchComponent(inputProps) {
@@ -89,19 +90,19 @@ class SearchBar extends React.Component {
 
     return (
       <>
-          <TextField
-            fullWidth
-            InputProps={{
-              inputRef: node => {
-                ref(node);
-                inputRef(node);
-              },
-              classes: {
-                input: classes.input
-              }
-            }}
-            {...other}
-          />
+        <TextField
+          fullWidth
+          InputProps={{
+            inputRef: node => {
+              ref(node);
+              inputRef(node);
+            },
+            classes: {
+              input: classes.input
+            }
+          }}
+          {...other}
+        />
       </>
     );
   }
@@ -136,10 +137,10 @@ class SearchBar extends React.Component {
 
     return inputLength === 0
       ? []
-      : this.state.leagues.filter(league => {
+      : this.state.publicLeagues.filter(league => {
           const keep =
             count < 5 &&
-              league.name.slice(0, inputLength).toLowerCase() === searchValue;
+            league.name.slice(0, inputLength).toLowerCase() === searchValue;
 
           if (keep) {
             count += 1;
@@ -171,13 +172,21 @@ class SearchBar extends React.Component {
     });
   };
 
-  handleSubmit = e =>{
+  handleSubmit = async e => {
     e.preventDefault();
-    console.log(`I have been clicked as a Search Suggestion`)
-    this.props.history.push({
-      pathname: '/schedule',
-    })
-  }
+    await this.state.single;
+    const lName = this.state.single;
+    if (this.state.publicLeagues.find(x => x.name === lName)) {
+      const lid = this.state.publicLeagues.find(x => x.name === lName).id;
+      await this.props.history.push({
+        pathname: `/publicSchedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g, '-')}`,
+        state: {
+          publicLeagues: this.state.publicLeagues,
+          lid,
+        }
+      });
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -193,36 +202,40 @@ class SearchBar extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-      <Paper className={classes.root}>
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            placeholder: 'Search Leagues',
-            value: this.state.single,
-            onChange: this.handleChange('single')
-          }}
-          theme={{
-            container: classes.container,
-            suggestionsContainerOpen: classes.suggestionsContainerOpen,
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-            input:classes.input,
-          }}
-          renderSuggestionsContainer={options => (
-            <Paper {...options.containerProps} square onClick={this.handleSubmit}>
-              {options.children}
-            </Paper>
-          )}
-        />
-        <IconButton
-          className={classes.iconButton}
-          type="submit"
-          aria-label="Search"
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
+        <Paper className={classes.root}>
+          <Autosuggest
+            {...autosuggestProps}
+            inputProps={{
+              classes,
+              placeholder: 'Search Leagues',
+              value: this.state.single,
+              onChange: this.handleChange('single')
+            }}
+            theme={{
+              container: classes.container,
+              suggestionsContainerOpen: classes.suggestionsContainerOpen,
+              suggestionsList: classes.suggestionsList,
+              suggestion: classes.suggestion,
+              input: classes.input
+            }}
+            renderSuggestionsContainer={options => (
+              <Paper
+                {...options.containerProps}
+                square
+                onClick={this.handleSubmit}
+              >
+                {options.children}
+              </Paper>
+            )}
+          />
+          <IconButton
+            className={classes.iconButton}
+            type="submit"
+            aria-label="Search"
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
       </form>
     );
   }
@@ -233,4 +246,3 @@ SearchBar.propTypes = {
 };
 
 export default withRouter(withStyles(styles)(SearchBar));
-

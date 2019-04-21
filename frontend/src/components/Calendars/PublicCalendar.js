@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
+import axios from 'axios';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../App.css';
 import './calendar.css';
@@ -14,7 +15,7 @@ class PublicCalendar extends Component {
   state = {
     isLoading: true,
     edit: false,
-    games: []
+    games: [],
   };
 
   componentDidMount() {
@@ -23,7 +24,6 @@ class PublicCalendar extends Component {
 
   showGames = async () => {
     const lid = this.context.state.leagues[this.props.index].id;
-
     if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
       const games = this.context.state.schedule_by_league.find(
         x => x.league_id === lid
@@ -33,13 +33,24 @@ class PublicCalendar extends Component {
       });
     }
 
-    const displayEvents = this.state.games.map(event => {
+    const displayEvents = await this.state.games.map(event => {
+      console.log(this.state.games);
+      console.log(event);
+      console.log(
+        'Public Calendar. Mapping through events - Start: ',
+        event.start_time
+      );
       event.start = new Date(event.start_time);
+      console.log(
+        'Public Calendar. Mapping through events - End: ',
+        event.end_time
+      );
       event.end = new Date(event.end_time);
       event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
-    this.setState({ publicEvents: displayEvents, isLoading: false });
+    await this.setState({ publicEvents: displayEvents, isLoading: false });
+    console.log(displayEvents);
   };
 
   customEventPropGetter = event => {
