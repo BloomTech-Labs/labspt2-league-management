@@ -106,7 +106,6 @@ export default class AppProvider extends Component {
                   .get(`/leagues/${league.id}/cancellations`, options)
                   .then(res => {
                     const cancellations = res.data;
-                    console.log('cancellations', res.data);
                     const cancellationsJoined = this.state.cancellations_by_league.concat(
                       {
                         league_id: league.id,
@@ -124,12 +123,12 @@ export default class AppProvider extends Component {
                   .catch(err => {
                     console.log('error from get cancellations by league id', err);
                   });
+                });
                 this.setState({ leagues });
               })
               .catch(err => {
                 console.log('error from getLeagues', err);
               });
-            });
           },
           getTeams: () => {
             const token = localStorage.getItem('jwt') || this.signOut();
