@@ -16,7 +16,6 @@ class PublicCalendar extends Component {
     isLoading: true,
     edit: false,
     games: [],
-    schedule_by_league: []
   };
 
   componentDidMount() {
@@ -24,8 +23,6 @@ class PublicCalendar extends Component {
   }
 
   showGames = async () => {
-    if (this.props.index) {
-    }
     const lid = this.context.state.leagues[this.props.index].id;
     if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
       const games = this.context.state.schedule_by_league.find(
@@ -34,34 +31,6 @@ class PublicCalendar extends Component {
       await this.setState({
         games: games.rows || games
       });
-    } else if (this.props.location.state.leagues) {
-      const leagues = this.props.location.state.leagues;
-      const lid = this.props.location.state.lid;
-      console.log('leagues', leagues);
-      console.log('lid', lid);
-      console.log(
-        'this.context.state.schedule_by_league',
-        this.context.state.schedule_by_league
-      );
-      axios
-        .get(`/search/${lid}/schedule`)
-        .then(res => {
-          const games = res.data;
-          // console.log('schedule', res.data);
-          // const scheduleJoined = this.state.schedule_by_league.concat({
-          //   games
-          // });
-          this.setState({
-            games
-            // : scheduleJoined[0].games
-          });
-          console.log(this.state.games);
-          // const newGames = schedule_by_league[0].games;
-          // console.log(newGames);
-        })
-        .catch(err => {
-          console.log('error from getTeams by league id', err);
-        });
     }
 
     const displayEvents = await this.state.games.map(event => {
