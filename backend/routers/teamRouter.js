@@ -25,9 +25,7 @@ router.get('/:tid/schedule', (req, res) => {
   gameModel
     .getGamesByTeam(tid)
     .then(result => {
-      console.log("teamRouter, result", result);
       const games = result.rows ? result.rows : result;
-      console.log("teamRouter, games", games);
       res.json(games);
     })
     .catch(err => {

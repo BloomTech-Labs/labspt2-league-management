@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import DashboardNavbar from './DashboardNavbar';
-import PublicCalendar from '../Calendars/PublicCalendar';
-import DnDCalendar from '../Calendars/DnDCalendar';
-import { AppContext } from '../Context/AppContext';
-// import CreateLeague from '../Admin/CreateLeague';
-import LeagueSetupSettings from '../CreateLeague/LeagueSetupSettings';
-import TeamCardList from '../TeamCardList/TeamCardList.js';
-import LeagueDetails from '../Admin/LeagueDetails';
-import axios from 'axios';
-import { withRouter, Redirect } from 'react-router';
 import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router';
+import LeagueDetails from '../Admin/LeagueDetails';
+import DnDCalendar from '../Calendars/DnDCalendar';
+import PublicCalendar from '../Calendars/PublicCalendar';
+import { AppContext } from '../Context/AppContext';
+import TeamCardList from '../TeamCardList/TeamCardList.js';
+import DashboardNavbar from './DashboardNavbar';
+import AdminCancellationList from '../Cancellations/AdminCancellationList';
 
 const styles = theme => ({
   root: {
@@ -116,7 +114,7 @@ class AdminDashboard extends Component {
           {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueDetails league={league} />}
           {/* {editSchedule && <DnDCalendar index={leagueIndex} />} */}
-          {cancellationRequests && <div>Cancellation Requests</div>}
+          {cancellationRequests && <AdminCancellationList index={leagueIndex} />}
         </div>
       </>
       //   )}
