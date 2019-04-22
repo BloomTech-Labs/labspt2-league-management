@@ -95,12 +95,58 @@ class SearchCalendar extends Component {
 
   async componentDidMount() {
     if (this.props.location.state !== undefined) {
+      await console.log(this.state.games);
       await this.publicShowGames();
+      await console.log(this.state.games);
+      await this.displayEvents();
+      await console.log(this.state.games);
     } else {
       await this.getPublicLeagues();
+      await console.log(this.state.games);
       await this.getThisLeague();
-      console.log('Oh Shit');
+      await console.log(this.state.games);
+      await this.displayEvents();
+      await console.log(this.state.games);
     }
+  }
+
+  async displayEvents() {
+    console.log('displayEvents', this.state.games);
+    await console.log(this.state.games);
+    const displayedEvents = await this.state.games.map(event => {
+      event.start = new Date(event.start_time);
+      event.end = new Date(event.end_time);
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+      return event;
+    });
+    await this.setState({ publicEvents: displayedEvents, isLoading: false });
+    console.log(displayedEvents);
+    await console.log(this.state.publicLeagues);
+  }
+
+  async getThisLeague() {
+    console.log('window.location.pathname', window.location.pathname);
+    let pathName = window.location.pathname.slice(
+      16,
+      window.location.pathname.length - 1
+    );
+    console.log('pathName', pathName);
+    let lid = pathName.substr(0, pathName.indexOf('/'));
+    console.log('lid', lid);
+
+    await axios
+      .get(`/search/${lid}/schedule`)
+      .then(res => {
+        const schedule = res.data;
+        console.log(schedule);
+        console.log(schedule.rows);
+        this.setState({
+          games: schedule
+        });
+      })
+      .catch(err => {
+        console.log('error from Axios call in publicShowGames', err);
+      });
   }
 
   async getPublicLeagues() {
@@ -116,20 +162,10 @@ class SearchCalendar extends Component {
       .catch(error => console.log(error));
   }
 
-  async getThisLeague() {
-    // parse url to get league ID
-    // grab league index (league id - 1) from public Leagues
-    // get league ID
-    console.log('window.location.pathname', window.location.pathname);
-    let pathName = window.location.pathname.slice(
-      16,
-      window.location.pathname.length - 1
-    );
-    console.log('pathName', pathName);
-    let lid = pathName.substr(0, pathName.indexOf('/'));
-    console.log('lid', lid);
-    console.log(this.state.publicLeagues[lid - 1]);
-
+  async publicShowGames() {
+    console.log(this.props.location.state.publicLeagues);
+    const lid = this.props.location.state.lid;
+    console.log(lid);
     await axios
       .get(`/search/${lid}/schedule`)
       .then(res => {
@@ -141,20 +177,6 @@ class SearchCalendar extends Component {
       .catch(err => {
         console.log('error from Axios call in publicShowGames', err);
       });
-
-    await console.log(this.state.games);
-    const displayEvents = await this.state.games.map(event => {
-      event.start = new Date(event.start_time);
-      event.end = new Date(event.end_time);
-      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
-      return event;
-    });
-    await this.setState({ publicEvents: displayEvents, isLoading: false });
-    console.log(displayEvents);
-    // let getLocation = function(href) {
-    //   let
-    // }
-    await console.log(this.state.publicLeagues);
   }
 
   customEventPropGetter = event => {
@@ -169,33 +191,6 @@ class SearchCalendar extends Component {
       }
     };
   };
-
-  async publicShowGames() {
-    if (this.props.location.state.publicLeagues) {
-      console.log(this.props.location.state.publicLeagues);
-      const lid = this.props.location.state.lid;
-      await axios
-        .get(`/search/${lid}/schedule`)
-        .then(res => {
-          const schedule = res.data;
-          this.setState({
-            games: schedule
-          });
-        })
-        .catch(err => {
-          console.log('error from Axios call in publicShowGames', err);
-        });
-
-      const displayEvents = await this.state.games.map(event => {
-        event.start = new Date(event.start_time);
-        event.end = new Date(event.end_time);
-        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
-        return event;
-      });
-      await this.setState({ publicEvents: displayEvents, isLoading: false });
-      console.log(displayEvents);
-    }
-  }
 
   render() {
     const { classes } = this.props;
