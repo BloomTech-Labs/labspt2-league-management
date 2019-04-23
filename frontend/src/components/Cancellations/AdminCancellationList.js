@@ -4,6 +4,7 @@ import AdminCancellationItem from './AdminCancellationItem';
 
 class AdminCancellationList extends Component {
     state = {
+      lid: null,
       cancellations: []
     };
   
@@ -11,7 +12,8 @@ class AdminCancellationList extends Component {
       const lid = this.context.state.leagues[this.props.index].id;
       if(this.context.state.cancellations_by_league.find(x => x.league_id === lid)) {
         const cancellations = this.context.state.cancellations_by_league.find(x => x.league_id === lid).cancellations
-        this.setState({ 
+        this.setState({
+          lid, 
           cancellations
         })
       }
@@ -24,6 +26,7 @@ class AdminCancellationList extends Component {
                   <AdminCancellationItem
                     cancellation={cancellation}
                     index={this.props.index}
+                    lid={this.state.lid}
                     />
               ))}
             </div>

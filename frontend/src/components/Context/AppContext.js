@@ -484,6 +484,47 @@ export default class AppProvider extends Component {
               .catch(err => {
                 console.log('error from createCancellationRequest', err);
               });
+          },
+          updateCancellationRequest: (cancelRequest, bCancel, lid, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const cid = cancelRequest.id;
+            const request = { 
+              isCancelled: bCancel,
+              cancellation: cancelRequest
+            };
+            const endpoint = `/leagues/${lid}/cancellations/${cid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            console.log(endpoint);
+            console.log(request);
+            axios
+              .put(endpoint, request, options)
+              .then(res => {
+                cancelRequest.acknowledged = true;
+                cancelRequest.cancelled = bCancel;
+                const cancellations_by_league = JSON.parse(
+                  localStorage.getItem('cancellations_by_league')
+                );
+                const foundIndex = cancellations_by_league.findIndex(
+                  x => x.league_id === lid
+                );
+                const cancellationIndex = cancellations_by_league[foundIndex].cancellations.findIndex(
+                  x => x.id === cid
+                );
+                cancellations_by_league[foundIndex].cancellations[cancellationIndex] = cancelRequest;
+                localStorage.setItem(
+                  'cancellations_by_league',
+                  JSON.stringify(cancellations_by_league)
+                );
+                this.setState({ cancellations_by_league });
+                cb();
+              })
+              .catch(err => {
+                console.log('error from updateCancellationRequest', err);
+              });
           }
         }}
       >
