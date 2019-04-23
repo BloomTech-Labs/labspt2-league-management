@@ -95,7 +95,6 @@ class SearchCalendar extends Component {
 
   async componentDidMount() {
     if (this.props.location.state !== undefined) {
-      await console.log(this.state.games);
       await this.publicShowGames();
       await console.log(this.state.games);
       await this.displayEvents();
@@ -113,15 +112,28 @@ class SearchCalendar extends Component {
   async displayEvents() {
     console.log('displayEvents', this.state.games);
     await console.log(this.state.games);
-    const displayedEvents = await this.state.games.map(event => {
-      event.start = new Date(event.start_time);
-      event.end = new Date(event.end_time);
-      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
-      return event;
-    });
-    await this.setState({ publicEvents: displayedEvents, isLoading: false });
-    console.log(displayedEvents);
-    await console.log(this.state.publicLeagues);
+    if(this.state.games.rows) {
+      const displayedEvents = await this.state.games.rows.map(event => {
+        event.start = new Date(event.start_time);
+        event.end = new Date(event.end_time);
+        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+        return event;
+      });
+      await this.setState({ publicEvents: displayedEvents, isLoading: false });
+      console.log(displayedEvents);
+      await console.log(this.state.publicLeagues);
+    }
+    else {
+      const displayedEvents = await this.state.games.map(event => {
+        event.start = new Date(event.start_time);
+        event.end = new Date(event.end_time);
+        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+        return event;
+      });
+      await this.setState({ publicEvents: displayedEvents, isLoading: false });
+      console.log(displayedEvents);
+      await console.log(this.state.publicLeagues);
+    }
   }
 
   async getThisLeague() {
