@@ -19,8 +19,8 @@ export default class AppProvider extends Component {
       JSON.parse(localStorage.getItem('schedule_by_league')) || [],
     schedule_by_team:
       JSON.parse(localStorage.getItem('schedule_by_team')) || [],
-    cancellations_by_league: 
-    JSON.parse(localStorage.getItem('cancellations_by_league')) || [],
+    cancellations_by_league:
+      JSON.parse(localStorage.getItem('cancellations_by_league')) || []
   };
 
   render() {
@@ -60,12 +60,19 @@ export default class AppProvider extends Component {
               .then(res => {
                 const leagues = res.data;
                 localStorage.setItem('leagues', JSON.stringify(leagues));
+                let teamsByLeague = [];
+                let scheduleByLeague = [];
+                let cancellationsByLeague = [];
                 leagues.forEach(league => {
                   axios
                     .get(`/leagues/${league.id}/teams`, options)
                     .then(res => {
                       const teams = res.data;
-                      const joined = this.state.teams_by_league.concat({
+                      // const joined = this.state.teams_by_league.concat({
+                      //   league_id: league.id,
+                      //   teams
+                      // });
+                      const joined = teamsByLeague.concat({
                         league_id: league.id,
                         teams
                       });
@@ -85,12 +92,16 @@ export default class AppProvider extends Component {
                     .then(res => {
                       const games = res.data;
                       console.log('schedule', res.data);
-                      const scheduleJoined = this.state.schedule_by_league.concat(
-                        {
-                          league_id: league.id,
-                          games
-                        }
-                      );
+                      // const scheduleJoined = this.state.schedule_by_league.concat(
+                      //   {
+                      //     league_id: league.id,
+                      //     games
+                      //   }
+                      // );
+                      const scheduleJoined = scheduleByLeague.concat({
+                        league_id: league.id,
+                        games
+                      });
                       localStorage.setItem(
                         'schedule_by_league',
                         JSON.stringify(scheduleJoined)
@@ -102,27 +113,34 @@ export default class AppProvider extends Component {
                     .catch(err => {
                       console.log('error from get schedules by league id', err);
                     });
-                axios
-                  .get(`/leagues/${league.id}/cancellations`, options)
-                  .then(res => {
-                    const cancellations = res.data;
-                    const cancellationsJoined = this.state.cancellations_by_league.concat(
-                      {
+                  axios
+                    .get(`/leagues/${league.id}/cancellations`, options)
+                    .then(res => {
+                      const cancellations = res.data;
+                      // const cancellationsJoined = this.state.cancellations_by_league.concat(
+                      //   {
+                      //     league_id: league.id,
+                      //     cancellations
+                      //   }
+                      // );
+                      const cancellationsJoined = cancellationsByLeague.concat({
                         league_id: league.id,
                         cancellations
-                      }
-                    );
-                    localStorage.setItem(
-                      'cancellations_by_league',
-                      JSON.stringify(cancellationsJoined)
-                    );
-                    this.setState({
-                      cancellations_by_league: cancellationsJoined
+                      });
+                      localStorage.setItem(
+                        'cancellations_by_league',
+                        JSON.stringify(cancellationsJoined)
+                      );
+                      this.setState({
+                        cancellations_by_league: cancellationsJoined
+                      });
+                    })
+                    .catch(err => {
+                      console.log(
+                        'error from get cancellations by league id',
+                        err
+                      );
                     });
-                  })
-                  .catch(err => {
-                    console.log('error from get cancellations by league id', err);
-                  });
                 });
                 this.setState({ leagues });
               })
@@ -143,12 +161,17 @@ export default class AppProvider extends Component {
               .then(res => {
                 const teams = res.data;
                 localStorage.setItem('teams', JSON.stringify(res.data));
+                let scheduleByTeam = [];
                 teams.forEach(team => {
                   axios
                     .get(`/teams/${team.id}/schedule`, options)
                     .then(res => {
                       const games = res.data;
-                      const joined = this.state.schedule_by_team.concat({
+                      // const joined = this.state.schedule_by_team.concat({
+                      //   team_id: team.id,
+                      //   games
+                      // });
+                      const joined = scheduleByTeam.concat({
                         team_id: team.id,
                         games
                       });
@@ -488,7 +511,7 @@ export default class AppProvider extends Component {
           updateCancellationRequest: (cancelRequest, bCancel, lid, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const cid = cancelRequest.id;
-            const request = { 
+            const request = {
               isCancelled: bCancel,
               cancellation: cancelRequest
             };
@@ -511,10 +534,12 @@ export default class AppProvider extends Component {
                 const foundIndex = cancellations_by_league.findIndex(
                   x => x.league_id === lid
                 );
-                const cancellationIndex = cancellations_by_league[foundIndex].cancellations.findIndex(
-                  x => x.id === cid
-                );
-                cancellations_by_league[foundIndex].cancellations[cancellationIndex] = cancelRequest;
+                const cancellationIndex = cancellations_by_league[
+                  foundIndex
+                ].cancellations.findIndex(x => x.id === cid);
+                cancellations_by_league[foundIndex].cancellations[
+                  cancellationIndex
+                ] = cancelRequest;
                 localStorage.setItem(
                   'cancellations_by_league',
                   JSON.stringify(cancellations_by_league)

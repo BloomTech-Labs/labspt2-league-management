@@ -32,6 +32,11 @@ class HomeDashboard extends Component {
     chooseLeague: false
   };
 
+  // componentDidMount() {
+  //   this.context.getLeagues();
+  //   this.context.getTeams();
+  // }
+
   displayBilling = e => {
     e.preventDefault();
     this.setState({ chooseLeague: !this.state.chooseLeague });
