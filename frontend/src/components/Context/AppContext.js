@@ -467,7 +467,8 @@ export default class AppProvider extends Component {
           createCancellationRequest: (game, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const lid = game.league_id;
-            const request = { game_id: game.id };
+            const gid = game.id;
+            const request = { game_id: gid };
             const endpoint = `/leagues/${lid}/cancellations`;
             const options = {
               headers: {
@@ -477,6 +478,45 @@ export default class AppProvider extends Component {
             axios
               .post(endpoint, request, options)
               .then(res => {
+                const foundIndex = this.state.schedule_by_league.findIndex(
+                  x => x.league_id === lid
+                );
+                const league = this.state.schedule_by_league.splice(
+                  foundIndex,
+                  1
+                )[0];
+
+                let foundGameIndex = null;
+                if (league.games.rows) {
+                  foundGameIndex = league.games.rows.findIndex(
+                    x => x.id === gid
+                  );
+                } else {
+                  foundGameIndex = league.games.findIndex(x => x.id === gid);
+                }
+
+                game.pending_cancelled = true;
+
+                if (league.games.rows) {
+                  league.games.rows[foundGameIndex] = game;
+                } else {
+                  league.games[foundGameIndex] = game;
+                }
+
+                const joined = this.state.schedule_by_league.concat({
+                  league_id: league.league_id,
+                  games: league.games.rows || league.games
+                });
+
+                localStorage.setItem(
+                  'schedule_by_league',
+                  JSON.stringify(joined)
+                );
+                
+                this.setState({
+                  schedule_by_league: joined
+                });
+
                 cb();
               })
               .catch(err => {
