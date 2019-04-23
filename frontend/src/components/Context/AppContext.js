@@ -484,6 +484,30 @@ export default class AppProvider extends Component {
               .catch(err => {
                 console.log('error from createCancellationRequest', err);
               });
+          },
+          updateCancellationRequest: (cancelRequest, bCancel, lid, cb) => {
+            const token = localStorage.getItem('jwt') || this.signOut();
+            const cid = cancelRequest.id;
+            const request = { 
+              isCancelled: bCancel,
+              cancellation: cancelRequest
+            };
+            const endpoint = `/leagues/${lid}/cancellations/${cid}`;
+            const options = {
+              headers: {
+                authorization: token
+              }
+            };
+            console.log(endpoint);
+            console.log(request);
+            axios
+              .put(endpoint, request, options)
+              .then(res => {
+                cb();
+              })
+              .catch(err => {
+                console.log('error from updateCancellationRequest', err);
+              });
           }
         }}
       >
