@@ -249,9 +249,7 @@ router.get('/:lid/schedule', (req, res) => {
   gameModel
     .getGamesByLeague(lid)
     .then(result => {
-      console.log("leagueRouter, result", result);
       const games = result.rows ? result.rows : result;
-      console.log("leagueRouter, games", games);
       res.json(games);
     })
     .catch(err => {
@@ -265,11 +263,9 @@ router.get('/:lid/schedule', (req, res) => {
 router.put('/:lid/schedule/:gid', (req, res) => {
   const { lid, gid } = req.params;
   const game = req.body;
-  console.log(game);
   gameModel
     .updateGame(gid, game)
     .then(count => {
-      console.log(count);
       res.json(count);
     })
     .catch(err => {
@@ -284,13 +280,14 @@ router.get('/:lid/cancellations', (req, res) => {
   const { lid } = req.params;
   cancellationRequestModel
     .getRequests(lid)
-    .then(request => {
-      res.json(request);
+    .then(result => {
+      const requests = result.rows ? result.rows : result;
+      res.json(requests);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: 'Trouble getting cancellation requests!', err });
+        .json({ error: 'Problem getting cancellation requests', err });
     });
 });
 
@@ -299,15 +296,23 @@ router.post('/:lid/cancellations', (req, res) => {
   cancellationRequestModel
     .makeRequest(request)
     .then(ids => {
-      res.status(201).json(ids);
+      gameModel.updateGame(request.game_id, { "pending_cancelled": true })
+      .then(count => {
+        res.json({ids, count});
+      })
+      .catch(err => {
+        console.log('check');
+        res.status(500).json({ error: 'Problem set game pending cancellation to true', err });
+      });
     })
     .catch(err => {
+      console.log('check check')
       res.status(500).json({ error: 'Problem creating cancellation request', err });
     });
 });
 
 router.put('/:lid/cancellations/:cid', (req, res) => {
-  const { lid } = req.params;
+  const { lid, cid } = req.params;
   const request = req.body;
   if (request.game_id) {
     cancellationRequestModel
