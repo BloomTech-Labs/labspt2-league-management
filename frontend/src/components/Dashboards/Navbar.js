@@ -12,6 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import { Link, Redirect } from 'react-router-dom';
 import WeatherWidget from '../Weather/WeatherWidget';
 import { AppContext } from '../Context/AppContext';
+import Search from '../Search/Search';
 
 const drawerWidth = 240;
 
@@ -78,6 +79,12 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingLeft: 40
+  },
+  search: {
+    marginRight: '20%'
+  },
+  weather: {
+    
   }
 });
 
@@ -162,9 +169,15 @@ class Navbar extends React.Component {
                 LM
               </Link>
             </Typography>
+
+            <div className={classes.search}>
+              <Search />
+            </div>
+
             <div className={classes.weather}>
               <WeatherWidget />
             </div>
+
             <Link to="/dashboard">
               <Button className={classes.button} onClick={this.homeView}>
                 Home
@@ -196,7 +209,7 @@ class Navbar extends React.Component {
                 onClose={this.handleClose}
               >
                 <MenuItem onClick={this.handleSettings}>
-                  <Link to="/settings">Account Settings</Link>
+                  <Link to="/settings">User Settings</Link>
                 </MenuItem>
                 <MenuItem onClick={this.logout}>Log Out</MenuItem>
               </Menu>
