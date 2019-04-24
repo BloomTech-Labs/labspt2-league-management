@@ -3,26 +3,34 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { AppContext } from '../Context/AppContext';
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 class AdminCancellationItem extends React.Component {
   clickAcceptHandler = e => {
     e.preventDefault();
-    console.log("clickAcceptHandler()");
-    // this.context.createCancellationRequest(this.props.game, () => {
-    //   console.log('callback');
-    // });
-  }
+    console.log('clickAcceptHandler()');
+    this.context.updateCancellationRequest(
+      this.props.cancellation,
+      true,
+      this.props.lid,
+      () => {
+        console.log('clickAcceptHandler(): callback');
+      }
+    );
+  };
 
   clickDenyHandler = e => {
     e.preventDefault();
-    console.log("clickDenyHandler()");
-    // this.context.createCancellationRequest(this.props.game, () => {
-    //   console.log('callback');
-    // });
-  }
+    console.log('clickDenyHandler()');
+    this.context.updateCancellationRequest(
+      this.props.cancellation,
+      false,
+      this.props.lid,
+      () => {
+        console.log('clickDenyHandler(): callback');
+      }
+    );
+  };
 
   render() {
     const { cancellation, classes } = this.props;

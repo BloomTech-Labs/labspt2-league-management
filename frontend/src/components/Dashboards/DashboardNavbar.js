@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import HomeDrawer from './HomeDrawer';
 import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
@@ -151,6 +151,20 @@ class DashboardNavbar extends React.Component {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
+  homeview = async e => {
+    e.preventDefault();
+    console.log('homeview function');
+    localStorage.removeItem('leagues');
+    localStorage.removeItem('teams');
+    localStorage.removeItem('teams_by_league');
+    localStorage.removeItem('schedule_by_league');
+    localStorage.removeItem('schedule_by_team');
+    localStorage.removeItem('cancellations_by_league');
+    await this.context.getLeagues();
+    await this.context.getTeams();
+    await this.props.history.push('/dashboard');
+  };
+
   logout = () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('leagues');
@@ -245,14 +259,14 @@ class DashboardNavbar extends React.Component {
             <div className={classes.weather}>
               <WeatherWidget />
             </div>
-            <Link to="/dashboard">
-              <Button
-                className={!admin && !coach ? classes.selected : classes.button}
-                onClick={this.homeView}
-              >
-                Home
-              </Button>
-            </Link>
+            {/* <Link to="/dashboard"> */}
+            <Button
+              className={!admin && !coach ? classes.selected : classes.button}
+              onClick={this.homeview}
+            >
+              Home
+            </Button>
+            {/* </Link> */}
 
             <div>
               <IconButton
@@ -331,4 +345,6 @@ DashboardNavbar.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(DashboardNavbar);
+export default withStyles(styles, { withTheme: true })(
+  withRouter(DashboardNavbar)
+);

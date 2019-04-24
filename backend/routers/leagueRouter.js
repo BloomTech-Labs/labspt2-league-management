@@ -259,7 +259,6 @@ router.get('/:lid/schedule', (req, res) => {
     });
 });
 
-
 router.put('/:lid/schedule/:gid', (req, res) => {
   const { lid, gid } = req.params;
   const game = req.body;
@@ -272,7 +271,6 @@ router.put('/:lid/schedule/:gid', (req, res) => {
       res.status(500).json({ error: 'Error updating schedule', err });
     });
 });
-
 
 // The beginning of the league game cancellation endpoints
 
@@ -296,47 +294,50 @@ router.post('/:lid/cancellations', (req, res) => {
   cancellationRequestModel
     .makeRequest(request)
     .then(ids => {
-      gameModel.updateGame(request.game_id, { "pending_cancelled": true })
-      .then(count => {
-        res.json({ids, count});
-      })
-      .catch(err => {
-        console.log('check');
-        res.status(500).json({ error: 'Problem set game pending cancellation to true', err });
-      });
+      gameModel
+        .updateGame(request.game_id, { pending_cancelled: true })
+        .then(count => {
+          res.json({ ids, count });
+        })
+        .catch(err => {
+          console.log('check');
+          res.status(500).json({
+            error: 'Problem set game pending cancellation to true',
+            err
+          });
+        });
     })
     .catch(err => {
-      console.log('check check')
-      res.status(500).json({ error: 'Problem creating cancellation request', err });
+      console.log('check check');
+      res
+        .status(500)
+        .json({ error: 'Problem creating cancellation request', err });
     });
 });
 
 router.put('/:lid/cancellations/:cid', (req, res) => {
+  console.log('/:lid/cancellations/:cid');
   const { lid, cid } = req.params;
-  const request = req.body;
-  if (request.game_id) {
-    cancellationRequestModel
-      .editRequest(lid, request)
-      .then(updatedRequest => {
-        if (updatedRequest) {
-              res.json({message:"Succesfully updated Request!"});
-        } else {
-          res.status(404).json({
-            error: 'The request with the specified id does not exist!'
-          });
-        }
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: 'The request could not be modified!', err });
-      });
-  } else {
-    res
-      .status(400)
-      .json({ message: 'You are missing required request information!' });
-  }
+  const { isCancelled, cancellation } = req.body;
+  cancellationRequestModel
+    .editRequest(cancellation.id, { acknowledged: true })
+    .then(updatedRequest => {
+      gameModel
+        .updateGame(cancellation.game_id, { cancelled: isCancelled })
+        .then(count => {
+          res.json(count);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: 'Problem updating game is cancelled', err });
+        });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: 'Problem updating cancellation request', err });
+    });
 });
-
 
 module.exports = router;
