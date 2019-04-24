@@ -21,6 +21,7 @@ import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
 import { AppContext } from '../Context/AppContext';
 import WeatherWidget from '../Weather/WeatherWidget';
+import Navbar from './Navbar';
 
 const drawerWidth = 240;
 
@@ -103,13 +104,9 @@ class DashboardNavbar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
-    // admin: false,
-    // coach: false,
     logout: false,
     settings: false
   };
-
-  static contextType = AppContext;
 
   componentDidMount() {
     const token = localStorage.getItem('jwt') || this.context.signOut();
@@ -117,8 +114,6 @@ class DashboardNavbar extends React.Component {
       this.context.signin();
     }
 
-    // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
-    // state would also include user settings, and other info on the user (global state?)
     const { admin, coach } = this.props.data;
     this.setState({
       admin,
@@ -217,81 +212,7 @@ class DashboardNavbar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              onClick={this.handleDrawerToggle}
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link
-                to="/"
-                style={{
-                  color: '#fff',
-                  backgroundColor: '#333',
-                  padding: 10,
-                  fontFamily: 'Audiowide',
-                  borderRadius: 5
-                }}
-              >
-                LM
-              </Link>
-            </Typography>
-            {/* <AppContext.Consumer>
-              {context => ( */}
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              {this.context.state.username}
-            </Typography>
-            {/* )}
-            </AppContext.Consumer> */}
-            <div className={classes.weather}>
-              <WeatherWidget />
-            </div>
-            {/* <Link to="/dashboard"> */}
-            <Button
-              className={!admin && !coach ? classes.selected : classes.button}
-              onClick={this.homeview}
-            >
-              Home
-            </Button>
-            {/* </Link> */}
-
-            <div>
-              <IconButton
-                id="anchorEl"
-                aria-owns={open ? 'menu-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                open={open}
-                onClose={this.handleClose}
-              >
-                <MenuItem onClick={this.handleSettings}>
-                  <Link to="/settings">Account Settings</Link>
-                </MenuItem>
-                <MenuItem onClick={this.logout}>Log Out</MenuItem>
-              </Menu>
-            </div>
-          </Toolbar>
-        </AppBar>
+        <Navbar />
 
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

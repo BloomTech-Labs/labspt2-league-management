@@ -10,6 +10,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link, Redirect } from 'react-router-dom';
+import WeatherWidget from '../Weather/WeatherWidget';
 import { AppContext } from '../Context/AppContext';
 
 const drawerWidth = 240;
@@ -84,8 +85,6 @@ class Navbar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
-    // admin: false,
-    // coach: false,
     logout: false,
     settings: false
   };
@@ -93,22 +92,8 @@ class Navbar extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem('jwt') || this.props.context.signOut();
     if (token) {
-      // this.props.context.signin();
-      console.log('context: ', this.context);
       this.context.signin();
     }
-    // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
-    // state would also include user settings, and other info on the user (global state?)
-    // const { admin, coach } = this.props.data;
-    // this.setState({
-    //   leagues: [
-    //     { id: 1, name: 'League 1 - Name' },
-    //     { id: 2, name: 'League 2 - Name' }
-    //   ],
-    //   teams: [{ id: 1, name: 'Team 1' }],
-    //   admin,
-    //   coach
-    // });
   }
 
   //   handleDrawerToggle = () => {
@@ -177,6 +162,9 @@ class Navbar extends React.Component {
                 LM
               </Link>
             </Typography>
+            <div className={classes.weather}>
+              <WeatherWidget />
+            </div>
             <Link to="/dashboard">
               <Button className={classes.button} onClick={this.homeView}>
                 Home
