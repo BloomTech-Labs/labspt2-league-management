@@ -2,7 +2,7 @@ const express = require('express');
 
 const leagueModel = require('../data/models/leagueModel.js');
 const gameModel = require('../data/models/gameModel.js');
-
+const userModel = require('../data/models/userModel.js');
 const router = express.Router();
 
 router.post('/', (req, res) => {
@@ -43,6 +43,18 @@ router.get('/:lid/schedule', (req, res) => {
       res
         .status(500)
         .json({ error: 'Trouble retrieving games for league', err });
+    });
+});
+
+router.get('/users', (req, res) => {
+  userModel
+    .findAllUsers()
+    .then(users => {
+      res.json(users);
+      console.log(users);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Cannot grab users', err });
     });
 });
 module.exports = router;

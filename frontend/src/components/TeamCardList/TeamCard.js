@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,6 +14,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import ReactCardFlip from 'react-card-flip';
 import { AppContext } from '../Context/AppContext';
+import UserSearch from './UserSearch.js';
 
 const styles = theme => ({
   cardFront: {
@@ -107,7 +109,8 @@ class TeamCard extends React.Component {
     },
     game1Exists: false,
     bothGamesExist: false,
-    seasonComplete: false
+    seasonComplete: false,
+    users: []
   };
 
   ClickHandler = event => {
@@ -119,23 +122,51 @@ class TeamCard extends React.Component {
     event.preventDefault();
     const target = event.target;
     this.setState({ [target.name]: target.value });
+    console.log('Something', target.value);
   };
+  async GetUsers() {
+    await axios
+      .get('/search/users')
+      .then(response => {
+        let users = [];
+        users = response.data;
+        let coachEmail = this.state.coach_email;
+        const coachId = users.find(x => x.email === coachEmail).id;
+        console.log(coachId);
+        this.setState({
+          users: response.data,
+          coach_user_id: coachId
+        });
+        console.log(this.state.users);
+        console.log(this.state.users[1]);
+      })
+      .catch(error => console.log(error));
+    console.log(this.state.users);
+  }
 
-  EditHandler = event => {
+  EditHandler = async event => {
     event.preventDefault();
     this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    if (this.state.coach_email !== '') {
+      await this.GetUsers();
+    }
     let teamData = {
       name: this.state.name,
       id: this.state.id,
       coach_name: this.state.coach_name,
       coach_email: this.state.coach_email,
-      coach_user_id: null,
+      coach_user_id: this.state.coach_user_id || null,
       coach_phone: this.state.coach_phone,
       wins: this.state.wins,
       losses: this.state.losses,
       ties: this.state.ties
     };
-    this.context.editTeamInLeague(teamData, this.props.index, this.state.id);
+    await console.log(teamData);
+    await this.context.editTeamInLeague(
+      teamData,
+      this.props.index,
+      this.state.id
+    );
     if (this.state.ties > 0) {
       this.setState({
         containsTies: true
@@ -167,6 +198,10 @@ class TeamCard extends React.Component {
   displayGames() {
     let editedTeamSchedule = this.state.teamSchedule;
     const lid = this.context.state.leagues[this.props.index].id;
+    for (let i = 0; i < editedTeamSchedule.length; i++) {
+      let today = new Date();
+      editedTeamSchedule.splice(i, 1);
+    }
     if (editedTeamSchedule.length > 2) {
       editedTeamSchedule.length = 2;
     }
@@ -203,9 +238,7 @@ class TeamCard extends React.Component {
         if (game1Hours < 12) {
           game1Time += ' AM';
         }
-        if ((game1Hours = 12)) {
-          game1Time += ' PM';
-        }
+
         if (game1Hours > 12) {
           game1Time += ' PM';
         }
@@ -300,6 +333,13 @@ class TeamCard extends React.Component {
     }
   };
 
+  handleChange = name => (event, { newValue }) => {
+    this.setState({
+      [name]: newValue
+    });
+    console.log('newValue in UserSearch', newValue);
+  };
+
   render() {
     const { classes } = this.props;
     const {
@@ -307,11 +347,11 @@ class TeamCard extends React.Component {
       coach_name,
       coach_email,
       coach_phone,
+      coach_user_id,
       wins,
       losses,
       ties
     } = this.state;
-
     return (
       <div>
         <ReactCardFlip
@@ -427,17 +467,18 @@ class TeamCard extends React.Component {
                   <Input
                     id="coach_name"
                     name="coach_name"
-                    value={this.state.coach_name}
+                    value={coach_name}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
                 <FormControl margin="none" fullWidth>
                   <InputLabel htmlFor="coach_email">Coach Email:</InputLabel>
-                  <Input
+                  <UserSearch
                     id="coach_email"
                     name="coach_email"
                     value={this.state.coach_email}
-                    onChange={this.InputHandler}
+                    handleChange={this.handleChange}
+                    coach_email={coach_email}
                   />
                 </FormControl>
                 <FormControl margin="none">
@@ -445,7 +486,7 @@ class TeamCard extends React.Component {
                   <Input
                     id="coach_phone"
                     name="coach_phone"
-                    value={this.state.coach_phone}
+                    value={coach_phone}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
@@ -454,7 +495,7 @@ class TeamCard extends React.Component {
                   <Input
                     id="wins"
                     name="wins"
-                    value={this.state.wins}
+                    value={wins}
                     onChange={this.InputHandler}
                   />
                 </FormControl>
