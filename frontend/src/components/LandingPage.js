@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Billing from './Billing/Billing';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
@@ -88,12 +88,13 @@ class LandingPage extends Component {
     }
     return (
       <>
-        {/* <WeatherWidget /> */}
+        {/* <WeatherWidget />
         <div>App Name</div>
         <div>{username}</div>
         <Link to="/settings">My Settings</Link>
         <br />
-        <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div>
+        <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div> */}
+        <Redirect to="/dashboard" />
       </>
     );
   }

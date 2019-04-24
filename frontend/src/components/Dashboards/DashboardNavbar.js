@@ -124,6 +124,7 @@ class DashboardNavbar extends React.Component {
       admin,
       coach
     });
+
   }
 
   handleDrawerToggle = () => {
@@ -151,18 +152,9 @@ class DashboardNavbar extends React.Component {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
-  homeview = async e => {
+  homeview = e => {
     e.preventDefault();
-    console.log('homeview function');
-    localStorage.removeItem('leagues');
-    localStorage.removeItem('teams');
-    localStorage.removeItem('teams_by_league');
-    localStorage.removeItem('schedule_by_league');
-    localStorage.removeItem('schedule_by_team');
-    localStorage.removeItem('cancellations_by_league');
-    await this.context.getLeagues();
-    await this.context.getTeams();
-    await this.props.history.push('/dashboard');
+    this.props.history.push('/dashboard');
   };
 
   logout = () => {
