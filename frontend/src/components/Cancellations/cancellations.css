@@ -76,10 +76,12 @@
 .cancellation-title {
   font-size: 1.15rem;
   font-weight: 500;
+  padding-bottom: 7px;
 }
 
 .btns {
   display: flex;
+  padding-top: 7px;
 }
 
 .cancellation-approve-btn,
