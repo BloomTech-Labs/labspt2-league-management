@@ -210,10 +210,6 @@ class Navbar extends React.Component {
                 <MenuItem onClick={this.handleSettings}>
                   <Link to="/settings">Account Settings</Link>
                 </MenuItem>
-                <MenuItem onClick={this.handleClose}>
-                  Billing Information
-                </MenuItem>
-
                 <MenuItem onClick={this.logout}>Log Out</MenuItem>
               </Menu>
             </div>
