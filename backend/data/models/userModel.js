@@ -27,5 +27,9 @@ module.exports = {
     return db('users')
       .where('id', uid)
       .update(changes);
-  } 
+  },
+  findAllUsers: () => {
+    return db('users')
+      .select('email', 'id')
+  },
 };
