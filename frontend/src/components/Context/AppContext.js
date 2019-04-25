@@ -526,42 +526,89 @@ export default class AppProvider extends Component {
           updateCancellationRequest: (cancelRequest, bCancel, lid, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const cid = cancelRequest.id;
+            console.log('cid', cid);
             const request = {
               isCancelled: bCancel,
               cancellation: cancelRequest
             };
+            console.log('request', request);
             const endpoint = `/leagues/${lid}/cancellations/${cid}`;
             const options = {
               headers: {
                 authorization: token
               }
             };
-            console.log(endpoint);
-            console.log(request);
+            console.log('endpoint', endpoint);
             axios
               .put(endpoint, request, options)
               .then(res => {
-                cancelRequest.acknowledged = Boolean(1);
-                cancelRequest.cancelled = bCancel;
+                console.log('res', res);
                 // const cancellations_by_league = JSON.parse(
                 //   localStorage.getItem('cancellations_by_league')
                 // );
-                const cancellations_by_league = this.state
-                  .cancellations_by_league;
-                const foundIndex = cancellations_by_league.findIndex(
+              //   const cancellations_by_league = this.state
+              //   .cancellations_by_league;
+              // const foundIndex = cancellations_by_league.findIndex(
+              //   x => x.league_id === lid
+              // );
+                const foundIndex = this.state.cancellations_by_league.findIndex(
                   x => x.league_id === lid
                 );
-                const cancellationIndex = cancellations_by_league[
-                  foundIndex
-                ].cancellations.findIndex(x => x.id === cid);
-                cancellations_by_league[foundIndex].cancellations[
-                  cancellationIndex
-                ] = cancelRequest;
+                console.log('foundIndex', foundIndex);
+                const league = this.state.cancellations_by_league.splice(
+                  foundIndex,
+                  1
+                )[0];
+                console.log('league', league)
+                
+                // const cancellationIndex = cancellations_by_league[
+                //   foundIndex
+                // ].cancellations.findIndex(x => x.id === cid);
+                // cancellations_by_league[foundIndex].cancellations[
+                //   cancellationIndex
+                // ] = cancelRequest;
+
+                let foundCancellationIndex = null;
+                if (league.cancellations.rows) {
+                  foundCancellationIndex = league.cancellations.rows.findIndex(
+                    x => x.id === cid
+                  );
+                } else {
+                  foundCancellationIndex = league.cancellations.findIndex(x => x.id === cid);
+                }
+
+                console.log('foundCancellationIndex', foundCancellationIndex)
+
+                cancelRequest.acknowledged = true;
+                cancelRequest.cancelled = bCancel;
+                console.log('cancelRequest', cancelRequest);
+
+                if (league.cancellations.rows) {
+                  league.cancellations.rows[foundCancellationIndex] = cancelRequest;
+                } else {
+                  league.cancellations[foundCancellationIndex] = cancelRequest;
+                }
+
+                console.log('league.cancellations', league.cancellations);
+
+                const joined = this.state.cancellations_by_league.concat({
+                  league_id: lid,
+                  cancellations: league.cancellations.rows || league.cancellations
+                });
+
+                console.log('joined', joined);
+
                 localStorage.setItem(
                   'cancellations_by_league',
-                  JSON.stringify(cancellations_by_league)
+                  JSON.stringify(joined)
                 );
-                this.setState({ cancellations_by_league });
+
+                console.log('localStorage updated');
+
+                this.setState({ cancellations_by_league: joined });
+                
+                console.log('context state updated');
+                
                 cb();
               })
               .catch(err => {

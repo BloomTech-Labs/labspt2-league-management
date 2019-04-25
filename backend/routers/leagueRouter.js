@@ -326,11 +326,11 @@ router.put('/:lid/cancellations/:cid', (req, res) => {
   cancellationRequestModel
     .editRequest(cancellation.id, { acknowledged: true })
     .then(updatedRequest => {
-      console.log('Updated Request: ', updatedRequest);
+      console.log('updatedRequest', updatedRequest);
       gameModel
         .updateGame(cancellation.game_id, { cancelled: isCancelled })
         .then(count => {
-          console.log('number of games updated: ', count);
+          console.log('count', count);
           res.json(count);
         })
         .catch(err => {

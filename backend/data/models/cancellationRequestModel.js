@@ -16,6 +16,8 @@ module.exports = {
   },
 
   editRequest: (id, request) => {
+    console.log('editRequest(): id', id)
+    console.log('editRequest(): request', request);
     return db('cancellation_requests')
       .where('id', id)
       .update(request);
