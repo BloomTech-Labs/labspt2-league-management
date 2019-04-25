@@ -318,13 +318,19 @@ router.post('/:lid/cancellations', (req, res) => {
 router.put('/:lid/cancellations/:cid', (req, res) => {
   console.log('/:lid/cancellations/:cid');
   const { lid, cid } = req.params;
+  console.log('lid: ', lid);
+  console.log('cid: ', cid);
   const { isCancelled, cancellation } = req.body;
+  console.log('isCancelled: ', isCancelled);
+  console.log('Cancellation: ', cancellation);
   cancellationRequestModel
     .editRequest(cancellation.id, { acknowledged: true })
     .then(updatedRequest => {
+      console.log('Updated Request: ', updatedRequest);
       gameModel
         .updateGame(cancellation.game_id, { cancelled: isCancelled })
         .then(count => {
+          console.log('number of games updated: ', count);
           res.json(count);
         })
         .catch(err => {

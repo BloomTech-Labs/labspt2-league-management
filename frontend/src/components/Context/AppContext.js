@@ -512,7 +512,7 @@ export default class AppProvider extends Component {
                   'schedule_by_league',
                   JSON.stringify(joined)
                 );
-                
+
                 this.setState({
                   schedule_by_league: joined
                 });
@@ -541,11 +541,13 @@ export default class AppProvider extends Component {
             axios
               .put(endpoint, request, options)
               .then(res => {
-                cancelRequest.acknowledged = true;
+                cancelRequest.acknowledged = Boolean(1);
                 cancelRequest.cancelled = bCancel;
-                const cancellations_by_league = JSON.parse(
-                  localStorage.getItem('cancellations_by_league')
-                );
+                // const cancellations_by_league = JSON.parse(
+                //   localStorage.getItem('cancellations_by_league')
+                // );
+                const cancellations_by_league = this.state
+                  .cancellations_by_league;
                 const foundIndex = cancellations_by_league.findIndex(
                   x => x.league_id === lid
                 );
