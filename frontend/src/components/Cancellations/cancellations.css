@@ -12,6 +12,16 @@
   margin-bottom: 25px;
 }
 
+.page-header {
+  width: 30%;
+  margin: 70px auto 0 auto;
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-size: 1.5rem;
+  padding-bottom: 4px;
+  margin-bottom: 25px;
+}
+
 .cancellations {
   display: flex;
   flex-direction: row;
@@ -37,7 +47,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   border-radius: 7px;
   box-shadow: 2px 2px 3px #333, 3px 3px 3px rgba(0, 0, 255, 0.409);
   padding: 5px 1%;
@@ -51,8 +61,10 @@
   min-height: 100vh;
 }
 
-.pending {
-  background-color: rgba(83, 83, 255, 0.601);
+.pending,
+.pending-request {
+  background-color: #1565c0b7;
+  /* color: white; */
 }
 
 .cancellation-cancelled {
@@ -60,8 +72,9 @@
   /* border: 2px solid green; */
 }
 
-.cancelled {
-  background-color: rgba(20, 254, 4, 0.519);
+.cancelled,
+.approved-request {
+  background-color: rgba(0, 255, 0, 0.786);
 }
 
 .cancellation-denied {
@@ -69,12 +82,14 @@
   /* border: 2px solid red; */
 }
 
-.denied {
-  background-color: rgba(255, 0, 0, 0.45);
+.denied,
+.denied-request {
+  background-color: rgba(255, 0, 0, 0.669);
 }
 
 .cancellation-title {
-  font-size: 1.15rem;
+  font-size: 1.45rem;
+  color: #333;
   font-weight: 500;
   padding-bottom: 7px;
 }
@@ -96,9 +111,109 @@
 }
 
 .cancellation-approve-btn {
-  background-color: rgba(21, 254, 4, 0.765);
+  background-color: rgba(0, 255, 0, 0.786);
+  transition: 0.15s;
+}
+
+.cancellation-approve-btn:hover {
+  background-color: rgb(0, 255, 0);
 }
 
 .cancellation-deny-btn {
-  background-color: rgba(255, 0, 0, 0.697);
+  background-color: rgba(255, 0, 0, 0.738);
+  transition: 0.15s;
+}
+
+.cancellation-deny-btn:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+/**********************/
+/* COACH VIEW STYLING */
+/**********************/
+
+.games {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  color: #333;
+  padding: 5px;
+  /* border: 1px solid black; */
+  /* background-color: snow; */
+  /* box-shadow: 1px 1px 3px #333; */
+  margin: 20px 0px;
+  /* height: 350px; */
+  /* overflow: scroll; */
+}
+
+.coach-cancellations {
+  /* border: 1px solid aqua; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pending-cancellation-list,
+.approved-cancellation-list,
+.denied-cancellation-list {
+  width: 30%;
+  /* background-color: snow; */
+  /* box-shadow: 1px 1px 3px #333; */
+  /* padding: 10px; */
+  margin-bottom: 20px;
+}
+
+.pending-cancellation-requests,
+.approved-cancellation-requests,
+.denied-cancellation-requests {
+  /* border: 1px solid pink; */
+  /* width: 30%; */
+  color: #333;
+  /* font-weight: 600; */
+}
+
+.pending-request,
+.approved-request,
+.denied-request {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 3px #333;
+  border-radius: 7px;
+  margin: 8px 5px;
+  height: 100px;
+}
+
+.available-games {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 3px #333;
+  border-radius: 7px;
+  margin: 5px;
+  min-height: 100px;
+  width: 30%;
+}
+
+.available-games {
+  /* border: 1px solid black; */
+  background-color: rgba(255, 255, 255, 0.84);
+}
+
+.request-btn {
+  /* border: 1px solid black; */
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #1565c0;
+  margin-top: 7px;
+  padding: 5px 3%;
+  color: white;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.request-btn:hover {
+  background-color: rgba(51, 51, 51, 0.792);
 }
