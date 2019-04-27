@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import Billing from './Billing/Billing';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
 import football from '../Images/football-and-football-field-1024x648.jpg';
@@ -26,7 +25,6 @@ class LandingPage extends Component {
   }
 
   render() {
-    console.log(this.context);
     const { username, loggedIn } = this.context.state;
     // const { login } = this.context;
     // console.log(this.context);

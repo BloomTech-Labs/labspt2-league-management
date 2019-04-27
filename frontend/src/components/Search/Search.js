@@ -73,7 +73,6 @@ class SearchBar extends React.Component {
   endpoint = '/search';
 
   componentDidMount() {
-    {
       axios
         .get(this.endpoint)
         .then(response => {
@@ -82,7 +81,6 @@ class SearchBar extends React.Component {
           });
         })
         .catch(error => console.log(error));
-    }
   }
 
   renderSearchComponent(inputProps) {
