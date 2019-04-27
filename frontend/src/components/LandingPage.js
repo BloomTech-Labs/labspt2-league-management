@@ -7,7 +7,6 @@ import football from '../Images/football-and-football-field-1024x648.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
-// import WeatherWidget from './Weather/WeatherWidget';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
 import Search from './Search/Search';
