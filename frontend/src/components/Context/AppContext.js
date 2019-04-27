@@ -496,6 +496,7 @@ export default class AppProvider extends Component {
                 }
 
                 game.pending_cancelled = true;
+                game.cancelled = true;
 
                 if (league.games.rows) {
                   league.games.rows[foundGameIndex] = game;
@@ -546,11 +547,11 @@ export default class AppProvider extends Component {
                 // const cancellations_by_league = JSON.parse(
                 //   localStorage.getItem('cancellations_by_league')
                 // );
-              //   const cancellations_by_league = this.state
-              //   .cancellations_by_league;
-              // const foundIndex = cancellations_by_league.findIndex(
-              //   x => x.league_id === lid
-              // );
+                //   const cancellations_by_league = this.state
+                //   .cancellations_by_league;
+                // const foundIndex = cancellations_by_league.findIndex(
+                //   x => x.league_id === lid
+                // );
                 const foundIndex = this.state.cancellations_by_league.findIndex(
                   x => x.league_id === lid
                 );
@@ -559,8 +560,8 @@ export default class AppProvider extends Component {
                   foundIndex,
                   1
                 )[0];
-                console.log('league', league)
-                
+                console.log('league', league);
+
                 // const cancellationIndex = cancellations_by_league[
                 //   foundIndex
                 // ].cancellations.findIndex(x => x.id === cid);
@@ -574,17 +575,22 @@ export default class AppProvider extends Component {
                     x => x.id === cid
                   );
                 } else {
-                  foundCancellationIndex = league.cancellations.findIndex(x => x.id === cid);
+                  foundCancellationIndex = league.cancellations.findIndex(
+                    x => x.id === cid
+                  );
                 }
 
-                console.log('foundCancellationIndex', foundCancellationIndex)
+                console.log('foundCancellationIndex', foundCancellationIndex);
 
                 cancelRequest.acknowledged = true;
                 cancelRequest.cancelled = bCancel;
+                cancelRequest.pending_cancelled = !bCancel;
                 console.log('cancelRequest', cancelRequest);
 
                 if (league.cancellations.rows) {
-                  league.cancellations.rows[foundCancellationIndex] = cancelRequest;
+                  league.cancellations.rows[
+                    foundCancellationIndex
+                  ] = cancelRequest;
                 } else {
                   league.cancellations[foundCancellationIndex] = cancelRequest;
                 }
@@ -593,7 +599,8 @@ export default class AppProvider extends Component {
 
                 const joined = this.state.cancellations_by_league.concat({
                   league_id: lid,
-                  cancellations: league.cancellations.rows || league.cancellations
+                  cancellations:
+                    league.cancellations.rows || league.cancellations
                 });
 
                 console.log('joined', joined);
@@ -606,9 +613,9 @@ export default class AppProvider extends Component {
                 console.log('localStorage updated');
 
                 this.setState({ cancellations_by_league: joined });
-                
+
                 console.log('context state updated');
-                
+
                 cb();
               })
               .catch(err => {

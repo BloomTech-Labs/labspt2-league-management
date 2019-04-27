@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { AppContext } from '../Context/AppContext';
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 class CoachCancellationItem extends React.Component {
   clickHandler = e => {
@@ -13,14 +11,27 @@ class CoachCancellationItem extends React.Component {
     this.context.createCancellationRequest(this.props.game, () => {
       console.log('callback');
     });
-  }
+  };
 
   render() {
-    const { game, classes } = this.props;
+    const { game, classes, classname } = this.props;
+    const year = String(new Date(game.start_time).getYear());
     return (
-      <div>
-        {game.away_team_name} vs. {game.home_team_name}
-        <button onClick={this.clickHandler}>Request Cancellation</button>
+      <div className={classname}>
+        {/* <div className="cancellation-title"> */}
+        <p className="cancellation-title">
+          {game.away_team_name} vs. {game.home_team_name}
+        </p>
+        <p className="cancellation-time">
+          {new Date(game.start_time).getMonth() + 1}/
+          {new Date(game.start_time).getDate()}/{'20' + year.substr(1, 2)}
+        </p>
+        {!game.pending_cancelled && !game.cancelled ? (
+          <div className="request-btn" onClick={this.clickHandler}>
+            Request Cancellation
+          </div>
+        ) : null}
+        {/* </div> */}
       </div>
     );
   }
