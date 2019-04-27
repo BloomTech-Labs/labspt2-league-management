@@ -295,7 +295,10 @@ router.post('/:lid/cancellations', (req, res) => {
     .makeRequest(request)
     .then(ids => {
       gameModel
-        .updateGame(request.game_id, { pending_cancelled: true })
+        .updateGame(request.game_id, {
+          pending_cancelled: true,
+          cancelled: true
+        })
         .then(count => {
           res.json({ ids, count });
         })
@@ -318,13 +321,22 @@ router.post('/:lid/cancellations', (req, res) => {
 router.put('/:lid/cancellations/:cid', (req, res) => {
   console.log('/:lid/cancellations/:cid');
   const { lid, cid } = req.params;
+  console.log('lid: ', lid);
+  console.log('cid: ', cid);
   const { isCancelled, cancellation } = req.body;
+  console.log('isCancelled: ', isCancelled);
+  console.log('Cancellation: ', cancellation);
   cancellationRequestModel
     .editRequest(cancellation.id, { acknowledged: true })
     .then(updatedRequest => {
+      console.log('updatedRequest', updatedRequest);
       gameModel
-        .updateGame(cancellation.game_id, { cancelled: isCancelled })
+        .updateGame(cancellation.game_id, {
+          pending_cancelled: !isCancelled,
+          cancelled: isCancelled
+        })
         .then(count => {
+          console.log('count', count);
           res.json(count);
         })
         .catch(err => {

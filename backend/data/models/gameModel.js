@@ -23,6 +23,8 @@ module.exports = {
     return db('game').insert(games, 'id');
   },
   updateGame: (id, game) => {
+    console.log('updateGame(): id', id);
+    console.log('updateGame(): game', game);
     return db('game')
       .where('id', id)
       .update(game);

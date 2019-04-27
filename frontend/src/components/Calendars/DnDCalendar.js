@@ -8,9 +8,8 @@ import '../../App.css';
 import './calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Button } from '@material-ui/core';
 import { AppContext } from '../Context/AppContext';
-import { LockOpenOutlined, DoneOutlined } from '@material-ui/icons';
+import { DoneOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 

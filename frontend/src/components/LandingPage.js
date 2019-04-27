@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import Billing from './Billing/Billing';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
 import football from '../Images/football-and-football-field-1024x648.jpg';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
-// import WeatherWidget from './Weather/WeatherWidget';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
 import Search from './Search/Search';
@@ -26,7 +24,6 @@ class LandingPage extends Component {
   }
 
   render() {
-    console.log(this.context);
     const { username, loggedIn } = this.context.state;
     // const { login } = this.context;
     // console.log(this.context);
