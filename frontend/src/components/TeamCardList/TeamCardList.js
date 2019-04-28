@@ -5,19 +5,15 @@ import { AppContext } from '../Context/AppContext';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  // root: {
-  //   flexGrow: 1
-  // },
-  // grow: {
-  //   flexGrow: 1
-  // },
   content: {
-    marginTop: 50,
     fontFamily: 'Montserrat',
     backgroundColor: '#eee',
     height: 'auto',
     minHeight: 'calc(100vh - 63px)',
-    paddingTop: 20
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: '95%'
   }
 });
 
@@ -39,12 +35,12 @@ class TeamCardList extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.content}>
         <Grid container spacing={16}>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={16}>
+            <Grid container justify="center" spacing={24}>
               {this.state.teams.map(team => (
                 <Grid key={team.id} item>
                   <TeamCard
