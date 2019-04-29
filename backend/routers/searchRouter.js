@@ -51,7 +51,6 @@ router.get('/users', (req, res) => {
     .findAllUsers()
     .then(users => {
       res.json(users);
-      console.log(users);
     })
     .catch(err => {
       res.status(500).json({ error: 'Cannot grab users', err });

@@ -10,49 +10,77 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 
 const styles = theme => ({
   root: {
     margin: '0 auto',
-    padding: '2px 4px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 400
+    width: '100%',
+    position: 'relative',
+    backgroundColor: '#E2ECF7',
+    height: '60px',
+    marginTop: '10px',
+    marginBottom: '-5px',
+    border: 'none'
   },
   container: {
-    position: 'relative'
-  },
-  divider: {
-    width: 2,
-    height: 28,
-    margin: 4
+    position: 'relative',
+    width: '100%',
+    boxSizing: 'border-box',
+    height: '60px'
   },
   input: {
-    border: 'none',
-    outline: 'none',
-    marginLeft: 8,
-    flex: 1
-  },
-  iconButton: {
-    padding: 10
+    width: '100%',
+    padding: '15px',
+    borderRadius: 6,
+    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0cc',
+    color: '#333',
+    fontFamily: 'Monserrat',
+    fontSize: '1.0rem',
+    fontWeight: 100,
+    backgroundColor: '#E2ECF7',
+    boxSizing: 'border-box',
+    border: '1px solid #A5AEB7'
   },
   suggestionsContainerOpen: {
+    // Whole Container
     position: 'absolute',
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
+    zIndex: 2,
+    marginTop: '5px',
     left: 0,
-    right: 0
+    right: 0,
+    width: '100%',
+    minWidth: '245px'
   },
   suggestion: {
-    display: 'block'
+    //Each Suggestion in List
+    display: 'block',
+    width: '100%',
+    // minWidth: '250px',
+    background: 'white'
   },
   suggestionsList: {
+    //Suggestions List this over Container Open
     margin: 0,
     padding: 0,
     listStyleType: 'none'
+  },
+  label: {
+    fontFamily: 'Monserrat',
+    fontSize: '0.9rem',
+    color: '#333',
+    textAlign: 'center',
+    position: 'absolute',
+    top: -7,
+    left: 10,
+    width: '80px',
+    height: '20px',
+    display: 'flex',
+    backgroundColor: '#E2ECF7',
+    paddingLeft: '5px',
+    justifyContent: 'center'
   }
 });
 
@@ -68,20 +96,19 @@ class UserSearch extends React.Component {
     this.renderSearchComponent = this.renderSearchComponent.bind(this);
     this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.getSearchSuggestions = this.getSearchSuggestions.bind(this);
-    this.renderSearchComponent = this.renderSearchComponent.bind(this);
   }
 
   endpoint = '/search';
 
   componentDidMount() {
-      axios
-        .get('/search/users')
-        .then(response => {
-          this.setState({
-            users: response.data
-          });
-        })
-        .catch(error => console.log(error));
+    axios
+      .get('/search/users')
+      .then(response => {
+        this.setState({
+          users: response.data
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   renderSearchComponent(inputProps) {
@@ -90,7 +117,6 @@ class UserSearch extends React.Component {
     return (
       <>
         <TextField
-          fullWidth
           InputProps={{
             inputRef: node => {
               ref(node);
@@ -98,6 +124,12 @@ class UserSearch extends React.Component {
             },
             classes: {
               input: classes.input
+            },
+            style: {
+              color: '#333',
+              fontFamily: 'Monserrat, sans-serif',
+              fontSize: '1.0rem',
+              fontWeight: 100
             }
           }}
           {...other}
@@ -115,13 +147,13 @@ class UserSearch extends React.Component {
         <div>
           {parts.map((part, index) =>
             part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 500 }}>
+              <span key={String(index)} style={{ fontWeight: 800 }}>
                 {part.text}
               </span>
             ) : (
-              <strong key={String(index)} style={{ fontWeight: 300 }}>
+              <span key={String(index)} style={{ fontWeight: 300 }}>
                 {part.text}
-              </strong>
+              </span>
             )
           )}
         </div>
@@ -165,20 +197,11 @@ class UserSearch extends React.Component {
     });
   };
 
-  // handleChange = name => (event, { newValue }) => {
-  //   this.setState({
-  //     [name]: newValue
-  //   });
-  //   console.log('newValue in UserSearch', newValue);
-  // };
-
   handleSubmit = async e => {
     e.preventDefault();
-    console.log('this.state.coach_email', this.state.coach_email);
     await this.setState({
       coach_email: this.state.coach_email
     });
-    await console.log(this.state.coach_email);
   };
 
   render() {
@@ -194,37 +217,34 @@ class UserSearch extends React.Component {
     };
 
     return (
-      <form>
-        {/* // <form onSubmit={this.props.handleSubmit}> */}
-        <Paper className={classes.root}>
-          <Autosuggest
-            {...autosuggestProps}
-            inputProps={{
-              classes,
-              //   placeholder: '',
-              value: this.props.coach_email,
-              // onChange: this.props.InputHandler
-              onChange: this.props.handleChange('coach_email')
-            }}
-            theme={{
-              container: classes.container,
-              suggestionsContainerOpen: classes.suggestionsContainerOpen,
-              suggestionsList: classes.suggestionsList,
-              suggestion: classes.suggestion,
-              input: classes.input
-            }}
-            renderSuggestionsContainer={options => (
-              <Paper
-                {...options.containerProps}
-                square
-                // onClick={this.handleSubmit}
-              >
-                {options.children}
-              </Paper>
-            )}
-          />
-        </Paper>
-      </form>
+      <div className={classes.root}>
+        <Autosuggest
+          {...autosuggestProps}
+          inputProps={{
+            classes,
+            value: this.props.coach_email,
+            onChange: this.props.handleChange('coach_email'),
+            style: {
+              fontFamily: 'Monserrat, sans-serif',
+              fontSize: '1.0rem',
+              fontWeight: 100
+            }
+          }}
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+            input: classes.input
+          }}
+          renderSuggestionsContainer={options => (
+            <Paper {...options.containerProps} fullWidth>
+              {options.children}
+            </Paper>
+          )}
+        />
+        <div className={classes.label}>Coach Email</div>
+      </div>
     );
   }
 }
