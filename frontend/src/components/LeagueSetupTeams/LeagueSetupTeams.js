@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import ShowTeams from './ShowTeams.js';
 import AddTeamToLeague from './AddTeamToLeague.js';
 import { AppContext } from '../Context/AppContext';
