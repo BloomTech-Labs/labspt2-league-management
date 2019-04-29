@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-// import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import MaskedInput from 'react-text-mask';
 import Input from '@material-ui/core/Input';
@@ -106,11 +105,6 @@ class UserSettings extends React.Component {
     allowUpdate: false
   };
 
-  endpoint =
-    process.env.NODE_ENV === 'production'
-      ? 'https://league-management.herokuapp.com/settings'
-      : 'http://localhost:4000/settings';
-
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
@@ -128,11 +122,13 @@ class UserSettings extends React.Component {
       }
     };
 
+    const endpoint = '/settings';
+
     const { username, email, first_name, last_name, phone } = this.state;
     const body = { username, email, first_name, last_name, phone };
 
     axios
-      .put(this.endpoint, body, options)
+      .put(endpoint, body, options)
       .then(res => {
         // put the token in local storage and sign in again
         localStorage.setItem('jwt', res.data.token);
@@ -153,13 +149,11 @@ class UserSettings extends React.Component {
         authorization: token
       }
     };
-    const endpoint =
-      process.env.NODE_ENV === 'production'
-        ? 'https://league-management.herokuapp.com/settings'
-        : 'http://localhost:4000/settings';
+
+    const endpoint = '/settings';
 
     axios
-      .get(this.endpoint, options)
+      .get(endpoint, options)
       .then(res => {
         const { username, email, first_name, last_name, phone } = res.data;
         this.setState({ username, email, first_name, last_name, phone });
