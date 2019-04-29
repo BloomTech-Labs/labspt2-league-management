@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import EditIcon from '@material-ui/icons/Edit';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -20,29 +21,47 @@ const styles = theme => ({
   cardFront: {
     minWidth: '285px',
     maxWidth: '320px',
-    // border: '1px solid lightgrey',
     width: '45%',
     borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     boxShadow: '1px 1px 4px #333, 2px 2px 7px #1565c0',
-    minHeight: '350px'
+    minHeight: '330px',
+    backgroundColor: '#E2ECF7',
+    padding: 0,
+    margin: 0,
+    height: 'auto',
+    marginBottom: '20px'
   },
   cardBack: {
     minWidth: '275px',
     maxWidth: '300px',
-    // border: '2px solid lightgrey',
     width: '45%',
     borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     boxShadow: '1px 1px 4px #333, 2px 2px 7px #ef6c00',
-    height: '445px'
+    minHeight: '375px',
+    backgroundColor: '#E2ECF7',
+    padding: 0,
+    margin: 0,
+    height: 'auto'
   },
   container: {
-    width: '90%'
+    width: '100%',
+    padding: '15px'
+  },
+  textField: {
+    borderRadius: 6,
+    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0cc',
+    height: 'auto'
+  },
+  textFieldBack: {
+    borderRadius: 6,
+    boxShadow: '1px 1px 2px #333, 2px 2px 3px #1565c0cc',
+    position: 'relative'
   },
   title: {
     fontSize: '1.6rem',
@@ -50,34 +69,9 @@ const styles = theme => ({
     justifyContent: 'space-between',
     fontFamily: 'Montserrat'
   },
-  pos: {
-    border: '1px solid black',
-    marginTop: '12px',
-    width: '65%',
-    margin: '0 auto',
-    maxWidth: '180px',
-    borderRadius: '15px',
-    marginBottom: '12px',
-    padding: '10px',
-    fontFamily: 'Montserrat'
-  },
-  upcoming: {
-    border: '1px solid black',
-    marginTop: '8px',
-    // width: '95%',
-    margin: '0 auto',
-    borderRadius: '15px',
-    // marginBottom: '5px',
-    padding: '10px',
-    fontFamily: 'Montserrat'
-  },
   button: {
     border: '1px solid lightgrey',
     borderRadius: '8px',
-    fontFamily: 'Montserrat'
-  },
-  p: {
-    fontSize: 13,
     fontFamily: 'Montserrat'
   }
 });
@@ -110,7 +104,10 @@ class TeamCard extends React.Component {
     game1Exists: false,
     bothGamesExist: false,
     seasonComplete: false,
-    users: []
+    users: [],
+    coachNameExists: false,
+    coachEmailExists: false,
+    coachPhoneExists: false
   };
 
   ClickHandler = event => {
@@ -122,7 +119,6 @@ class TeamCard extends React.Component {
     event.preventDefault();
     const target = event.target;
     this.setState({ [target.name]: target.value });
-    console.log('Something', target.value);
   };
   async GetUsers() {
     await axios
@@ -132,16 +128,12 @@ class TeamCard extends React.Component {
         users = response.data;
         let coachEmail = this.state.coach_email;
         const coachId = users.find(x => x.email === coachEmail).id;
-        console.log(coachId);
         this.setState({
           users: response.data,
           coach_user_id: coachId
         });
-        console.log(this.state.users);
-        console.log(this.state.users[1]);
       })
       .catch(error => console.log(error));
-    console.log(this.state.users);
   }
 
   EditHandler = async event => {
@@ -161,7 +153,6 @@ class TeamCard extends React.Component {
       losses: this.state.losses,
       ties: this.state.ties
     };
-    await console.log(teamData);
     await this.context.editTeamInLeague(
       teamData,
       this.props.index,
@@ -199,7 +190,6 @@ class TeamCard extends React.Component {
     let editedTeamSchedule = this.state.teamSchedule;
     const lid = this.context.state.leagues[this.props.index].id;
     for (let i = 0; i < editedTeamSchedule.length; i++) {
-      let today = new Date();
       editedTeamSchedule.splice(i, 1);
     }
     if (editedTeamSchedule.length > 2) {
@@ -331,13 +321,27 @@ class TeamCard extends React.Component {
         seasonComplete: true
       });
     }
+    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
+      this.setState({
+        coachNameExists: true
+      });
+    }
+    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
+      this.setState({
+        coachEmailExists: true
+      });
+    }
+    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
+      this.setState({
+        coachPhoneExists: true
+      });
+    }
   };
 
   handleChange = name => (event, { newValue }) => {
     this.setState({
       [name]: newValue
     });
-    console.log('newValue in UserSearch', newValue);
   };
 
   render() {
@@ -347,11 +351,36 @@ class TeamCard extends React.Component {
       coach_name,
       coach_email,
       coach_phone,
-      coach_user_id,
       wins,
       losses,
       ties
     } = this.state;
+
+    const labelStyle = {
+      color: 'rgb(20,20,20)',
+      textAlign: 'center',
+      fontFamily: 'Monserrat',
+      fontSize: '1.2rem'
+    };
+
+    const inputStyle = {
+      color: '#333',
+      fontFamily: 'Monserrat',
+      fontSize: '0.9rem',
+      lineHeight: '1.5'
+    };
+
+    const inputStyleBack = {
+      color: '#333',
+      fontFamily: 'Monserrat',
+      fontSize: '0.9rem'
+    };
+
+    const inputStyleCoach = {
+      color: '#333',
+      fontFamily: 'Monserrat',
+      fontSize: '0.85rem'
+    };
     return (
       <div>
         <ReactCardFlip
@@ -359,11 +388,7 @@ class TeamCard extends React.Component {
           flipDirection="horizontal"
         >
           {/* Card only flips when EditIcon is clicked. */}
-          <Card
-            className={classes.cardFront}
-            key="front"
-            style={{ height: this.state.containsTies ? '365px' : '350px' }}
-          >
+          <Card className={classes.cardFront} key="front">
             <CardContent className={classes.container}>
               <Typography className={classes.title}>
                 {name}
@@ -372,151 +397,431 @@ class TeamCard extends React.Component {
                   style={{ cursor: 'pointer' }}
                 />
               </Typography>
-              <Typography className={classes.p}>
-                Name: {coach_name}
-                <br />
-                Email: {coach_email}
-                <br />
-                Phone #: {coach_phone}
-              </Typography>
-              <Typography
-                className={classes.pos}
+
+              <TextField /* Contains all 3 fields */
+                fullWidth
+                multiline
+                label="Coach Info"
+                value={`Name: ${coach_name}\nEmail: ${coach_email}\nPhone #: ${coach_phone}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                rows={4}
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    this.state.coachNameExists &&
+                    this.state.coachEmailExists &&
+                    this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Name and Email */
+                fullWidth
+                multiline
+                label="Coach Info"
+                value={`Name: ${coach_name}\nEmail: ${coach_email}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                rows={3}
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    this.state.coachNameExists &&
+                    this.state.coachEmailExists &&
+                    !this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Name and Phone */
+                fullWidth
+                multiline
+                label="Coach Info"
+                value={`Name: ${coach_name}\nPhone #: ${coach_phone}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                rows={2}
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    this.state.coachNameExists &&
+                    !this.state.coachEmailExists &&
+                    this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Email and Phone */
+                fullWidth
+                multiline
+                label="Coach Info"
+                value={`Email: ${coach_email}\nPhone #: ${coach_phone}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                rows={3}
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    !this.state.coachNameExists &&
+                    this.state.coachEmailExists &&
+                    this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Name only */
+                fullWidth
+                label="Coach Info"
+                value={`Name: ${coach_name}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    this.state.coachNameExists &&
+                    !this.state.coachEmailExists &&
+                    !this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Email only */
+                fullWidth
+                label="Coach Info"
+                value={`Email: ${coach_email}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    !this.state.coachNameExists &&
+                    this.state.coachEmailExists &&
+                    !this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* Contains Phone only */
+                fullWidth
+                label="Coach Info"
+                value={`Phone #: ${coach_phone}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    !this.state.coachNameExists &&
+                    !this.state.coachEmailExists &&
+                    this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+
+              <TextField /* No info */
+                fullWidth
+                label="Coach Info"
+                value={`No coach info for this team`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyleCoach
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display:
+                    !this.state.coachNameExists &&
+                    !this.state.coachEmailExists &&
+                    !this.state.coachPhoneExists
+                      ? 'block'
+                      : 'none'
+                }}
+              />
+              <TextField
+                fullWidth
+                label="Record"
+                value={`Wins: ${wins}   Losses: ${losses}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyle
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
                 style={{ display: this.state.containsTies ? 'none' : 'block' }}
-              >
-                Record:
-                <br />
-                Wins: {wins}
-                <br />
-                Losses: {losses}
-              </Typography>
-              <Typography
-                className={classes.pos}
+              />
+
+              <TextField
+                fullWidth
+                label="Record"
+                value={`Wins: ${wins}   Losses: ${losses}   Ties: ${ties}`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyle
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
                 style={{ display: this.state.containsTies ? 'block' : 'none' }}
-              >
-                Record:
-                <br />
-                Wins: {wins}
-                <br />
-                Losses: {losses}
-                <br />
-                Ties: {ties}
-              </Typography>
-              <Typography
-                className={classes.upcoming}
+              />
+
+              <TextField
+                fullWidth
+                multiline
+                label="Upcoming Games"
+                value={`${this.state.scheduleGame1.game1Month} ${
+                  this.state.scheduleGame1.game1Day
+                } ${this.state.scheduleGame1.game1Time} vs ${
+                  this.state.scheduleGame1.game1Opp
+                }\n${this.state.scheduleGame2.game2Month} ${
+                  this.state.scheduleGame2.game2Day
+                } ${this.state.scheduleGame2.game2Time} vs ${
+                  this.state.scheduleGame2.game2Opp
+                }`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyle
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
                 style={{
                   display: this.state.bothGamesExist ? 'block' : 'none'
                 }}
-              >
-                Upcoming Games:
-                <br />
-                {this.state.scheduleGame1.game1Month}{' '}
-                {this.state.scheduleGame1.game1Day}{' '}
-                {this.state.scheduleGame1.game1Time} vs{' '}
-                {this.state.scheduleGame1.game1Opp}
-                <br />
-                {this.state.scheduleGame2.game2Month}{' '}
-                {this.state.scheduleGame2.game2Day}{' '}
-                {this.state.scheduleGame2.game2Time} vs{' '}
-                {this.state.scheduleGame2.game2Opp}
-              </Typography>
+              />
 
-              <Typography
-                className={classes.upcoming}
-                style={{ display: this.state.game1Exists ? 'block' : 'none' }}
-              >
-                Upcoming:
-                <br />
-                {this.state.scheduleGame1.game1Month}{' '}
-                {this.state.scheduleGame1.game1Day}{' '}
-                {this.state.scheduleGame1.game1Time} vs{' '}
-                {this.state.scheduleGame1.game1Opp}
-              </Typography>
+              <TextField
+                fullWidth
+                multiline
+                label="Upcoming Games"
+                value={`${this.state.scheduleGame1.game1Month} ${
+                  this.state.scheduleGame1.game1Day
+                } ${this.state.scheduleGame1.game1Time} vs ${
+                  this.state.scheduleGame1.game1Opp
+                }`}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyle
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
+                style={{
+                  display: this.state.game1Exists ? 'block' : 'none'
+                }}
+              />
 
-              <Typography
-                className={classes.upcoming}
+              <TextField
+                fullWidth
+                label="Upcoming Games"
+                value={'Season Completed'}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                InputProps={{
+                  readOnly: true,
+                  style: inputStyle
+                }}
+                InputLabelProps={{
+                  style: labelStyle
+                }}
                 style={{
                   display: this.state.seasonComplete ? 'block' : 'none'
                 }}
-              >
-                Season Completed
-              </Typography>
+              />
             </CardContent>
           </Card>
 
           <Card className={classes.cardBack} key="back">
-            <CssBaseline />
             <CardContent className={classes.container}>
               <form onSubmit={this.EditHandler}>
-                <FormControl
-                  margin="none"
-                  required
+                <TextField
                   fullWidth
-                  className={classes.title}
-                >
-                  <InputLabel htmlFor="name">Team Name</InputLabel>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.InputHandler}
-                    autoFocus
-                  />
-                </FormControl>
-                <FormControl margin="none" fullWidth>
-                  <InputLabel htmlFor="coach_name">Coach Name:</InputLabel>
-                  <Input
-                    id="coach_name"
-                    name="coach_name"
-                    value={coach_name}
-                    onChange={this.InputHandler}
-                  />
-                </FormControl>
-                <FormControl margin="none" fullWidth>
-                  <InputLabel htmlFor="coach_email">Coach Email:</InputLabel>
-                  <UserSearch
-                    id="coach_email"
-                    name="coach_email"
-                    value={this.state.coach_email}
-                    handleChange={this.handleChange}
-                    coach_email={coach_email}
-                  />
-                </FormControl>
-                <FormControl margin="none">
-                  <InputLabel htmlFor="coach_phone">Coach #:</InputLabel>
-                  <Input
-                    id="coach_phone"
-                    name="coach_phone"
-                    value={coach_phone}
-                    onChange={this.InputHandler}
-                  />
-                </FormControl>
-                <FormControl margin="none">
-                  <InputLabel htmlFor="wins">Wins:</InputLabel>
-                  <Input
-                    id="wins"
-                    name="wins"
-                    value={wins}
-                    onChange={this.InputHandler}
-                  />
-                </FormControl>
-                <FormControl margin="none">
-                  <InputLabel htmlFor="losses">Losses:</InputLabel>
-                  <Input
-                    id="losses"
-                    name="losses"
-                    value={this.state.losses}
-                    onChange={this.InputHandler}
-                  />
-                </FormControl>
-                <FormControl margin="none" display="none">
-                  <InputLabel htmlFor="ties">Ties:</InputLabel>
-                  <Input
-                    id="ties"
-                    name="ties"
-                    value={this.state.ties}
-                    onChange={this.InputHandler}
-                  />
-                </FormControl>
+                  label="Team Name"
+                  id="name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.InputHandler}
+                  autofocus
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Coach Name"
+                  id="coach_name"
+                  name="coach_name"
+                  value={coach_name}
+                  onChange={this.InputHandler}
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
+
+                <UserSearch
+                  name="coach_email"
+                  value={coach_email}
+                  handleChange={this.handleChange}
+                  coach_email={coach_email}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Coach Phone"
+                  id="coach_phone"
+                  name="coach_phone"
+                  value={coach_phone}
+                  onChange={this.InputHandler}
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Wins"
+                  id="wins"
+                  name="wins"
+                  value={wins}
+                  onChange={this.InputHandler}
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Losses"
+                  id="losses"
+                  name="losses"
+                  value={losses}
+                  onChange={this.InputHandler}
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Ties"
+                  id="ties"
+                  name="ties"
+                  value={ties}
+                  onChange={this.InputHandler}
+                  className={classes.textFieldBack}
+                  margin="dense"
+                  variant="outlined"
+                  InputProps={{
+                    style: inputStyleBack
+                  }}
+                  InputLabelProps={{
+                    style: labelStyle
+                  }}
+                />
               </form>
             </CardContent>
             <CardActions>
