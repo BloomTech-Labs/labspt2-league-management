@@ -213,6 +213,14 @@ class DashboardNavbar extends React.Component {
     return (
       <div className={classes.root}>
         <Navbar />
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              onClick={this.handleDrawerToggle}
+              aria-label="Menu"
+            >
+              <MenuIcon />
+            </IconButton>
 
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

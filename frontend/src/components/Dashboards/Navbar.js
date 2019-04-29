@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountBox from '@material-ui/icons/AccountBox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link, Redirect } from 'react-router-dom';
@@ -49,11 +49,6 @@ const styles = theme => ({
     color: 'white'
     // border: '1px solid white'
   },
-  // toolbar: theme.mixins.toolbar,
-  toolbar: {
-    height: 63,
-    textAlign: 'right'
-  },
   closeButton: {
     cursor: 'pointer',
     padding: 15,
@@ -80,12 +75,39 @@ const styles = theme => ({
     alignItems: 'flex-start',
     paddingLeft: 40
   },
-  search: {
-    marginRight: '20%'
+  // toolbar: theme.mixins.toolbar,
+  toolbar: {
+    height: 60,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
-  weather: {
-    
-  }
+  toolbarRightContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarCenterContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarLeftContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  // page logo
+  logo: {
+    color: '#fff',
+    backgroundColor: '#333',
+    padding: 5,
+    borderRadius: 5,
+    fontFamily: 'Graduate',
+    fontWeight: 'bold',
+    fontSize: '1.8rem'
+  },
+  // account icon
+  accountIcon: {
+    fontSize: '3.4rem'
+  },
 });
 
 class Navbar extends React.Component {
@@ -146,7 +168,7 @@ class Navbar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
+          <Toolbar className={classes.toolbar}>
             {/* <IconButton
               className={classes.menuButton}
               color="inherit"
@@ -155,64 +177,61 @@ class Navbar extends React.Component {
             >
               <MenuIcon />
             </IconButton> */}
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link
-                to="/"
-                style={{
-                  color: '#fff',
-                  backgroundColor: '#333',
-                  padding: 10,
-                  fontFamily: 'Audiowide',
-                  borderRadius: 5
-                }}
-              >
-                LM
-              </Link>
-            </Typography>
+            <div className={classes.toolbarRightContent}>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                <Link to="/" className={classes.logo}>
+                  LM
+                </Link>
+              </Typography>
 
-            <div className={classes.search}>
-              <Search />
+              {/* <Link to="/dashboard">
+                <Button className={classes.button} onClick={this.homeView}>
+                  Home
+                </Button>
+              </Link> */}
             </div>
 
-            <div className={classes.weather}>
-              <WeatherWidget />
+            <div className={classes.toolbarCenterContent}>
+              <div className={classes.search}>
+                <Search />
+              </div>
             </div>
 
-            <Link to="/dashboard">
-              <Button className={classes.button} onClick={this.homeView}>
-                Home
-              </Button>
-            </Link>
+            <div className={classes.toolbarRightContent}>
+              <div className={classes.weather}>
+                <WeatherWidget />
+              </div>
 
-            <div>
-              <IconButton
-                id="anchorEl"
-                aria-owns={open ? 'menu-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                open={open}
-                onClose={this.handleClose}
-              >
-                <MenuItem onClick={this.handleSettings}>
-                  <Link to="/settings">User Settings</Link>
-                </MenuItem>
-                <MenuItem onClick={this.logout}>Log Out</MenuItem>
-              </Menu>
+              <div>
+                <IconButton
+                  id="anchorEl"
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                <AccountBox className={classes.accountIcon} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleSettings}>
+                    <Link to="/settings">User Settings</Link>
+                  </MenuItem>
+                  <MenuItem onClick={this.logout}>Log Out</MenuItem>
+                </Menu>
+              </div>
             </div>
           </Toolbar>
         </AppBar>
