@@ -44,8 +44,8 @@ class CoachDashboard extends Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
-    const { calendar, dashboard, cancellations, teamIndex } = this.state;
+    const { classes } = this.props;
+    const { calendar, cancellations, teamIndex } = this.state;
     console.log(this.state);
     console.log(this.props.location.state);
 
