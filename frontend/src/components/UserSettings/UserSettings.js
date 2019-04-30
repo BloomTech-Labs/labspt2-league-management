@@ -173,7 +173,7 @@ class UserSettings extends React.Component {
       <AppContext.Consumer>
         {context => (
           <div style={{ backgroundColor: '#999' }}>
-            <Navbar context={context} />
+            <Navbar context={context} loggedIn={true} />
             <form
               className={classes.container}
               noValidate

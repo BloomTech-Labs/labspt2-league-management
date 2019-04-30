@@ -28,7 +28,8 @@ const styles = theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    // marginTop: theme.spacing.unit * 8,
+    marginTop: 100,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -85,7 +86,7 @@ class Signup extends React.Component {
 
     return (
       <main className={classes.main}>
-      <Navbar />
+        <Navbar />
         <CssBaseline />
         <Paper className={classes.paper}>
           {/* <Avatar className={classes.avatar}>

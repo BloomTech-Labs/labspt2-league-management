@@ -20,7 +20,13 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 400
+    width: 400,
+    [theme.breakpoints.down('sm')]: {
+      width: 200
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: 200
+    }
   },
   container: {
     position: 'relative',
@@ -76,14 +82,14 @@ class SearchBar extends React.Component {
   endpoint = '/search';
 
   componentDidMount() {
-      axios
-        .get(this.endpoint)
-        .then(response => {
-          this.setState({
-            publicLeagues: response.data
-          });
-        })
-        .catch(error => console.log(error));
+    axios
+      .get(this.endpoint)
+      .then(response => {
+        this.setState({
+          publicLeagues: response.data
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   renderSearchComponent(inputProps) {
@@ -180,10 +186,13 @@ class SearchBar extends React.Component {
     if (this.state.publicLeagues.find(x => x.name === lName)) {
       const lid = this.state.publicLeagues.find(x => x.name === lName).id;
       await this.props.history.push({
-        pathname: `/publicSchedule/${lid}/${lName.replace(/[^a-zA-Z0-9]/g, '-')}`,
+        pathname: `/publicSchedule/${lid}/${lName.replace(
+          /[^a-zA-Z0-9]/g,
+          '-'
+        )}`,
         state: {
           publicLeagues: this.state.publicLeagues,
-          lid,
+          lid
         }
       });
     }
