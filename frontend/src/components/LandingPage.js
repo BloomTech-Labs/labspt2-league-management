@@ -56,15 +56,15 @@ class LandingPage extends Component {
         </div>        */}
         <Carousel showArrows={true} infiniteLoop autoPlay >
                 <div>
-                    <img src={baseball} />
+                    <img src={baseball} alt="Baseball and Bat"/>
                     <p className="legend">TAKE ME OUT TO THE BALL GAME....</p>
                 </div>
                 <div>
-                    <img src={soccer} />
+                    <img src={soccer} alt="Soccer Ball" />
                     <p className="legend">GOOOAAAALLLLL!!!!!</p>
                 </div>
                 <div>
-                    <img  src={football} />
+                    <img  src={football} alt="Footbal on field" />
                     <p className="legend">TOUCHDOWN!!!!</p>
                 </div> 
             </Carousel>
