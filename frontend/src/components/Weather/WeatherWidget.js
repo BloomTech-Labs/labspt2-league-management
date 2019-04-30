@@ -38,12 +38,12 @@ class WeatherWidget extends Component {
       display: 'flex',
       flexDirection: 'column',
       width: 150,
-      height: 60,
+      height: 50,
       alignItems: 'center',
       justifyContent: 'center',
       // boxShadow: '0px 2px 6px #111111',
       // border: '1px solid lightgray',
-      borderRadius: 35,
+      borderRadius: 5,
       color: this.state.daytime ? '#333' : '#fff',
       backgroundColor: this.state.daytime ? '#fff' : '#333',
       margin: this.state.loading ? 0 : null,
@@ -57,7 +57,8 @@ class WeatherWidget extends Component {
       alignItems: 'center',
       justifyContent: 'space-evenly',
       margin: 0,
-      marginBottom: -10
+      marginBottom: -10,
+      fontSize: '1.1rem'
     };
 
     if (this.state.loading) {
@@ -70,7 +71,7 @@ class WeatherWidget extends Component {
           <img
             src={require(`../../Icons/${this.state.condition}.png`)}
             alt={this.state.condition}
-            height="40px"
+            height="30px"
           />
         </h3>
         <a

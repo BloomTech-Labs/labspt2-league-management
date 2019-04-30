@@ -32,10 +32,16 @@ class HomeDashboard extends Component {
     chooseLeague: false
   };
 
-  // componentDidMount() {
-  //   this.context.getLeagues();
-  //   this.context.getTeams();
-  // }
+  componentDidMount() {
+    localStorage.removeItem('leagues');
+    localStorage.removeItem('teams');
+    localStorage.removeItem('teams_by_league');
+    localStorage.removeItem('schedule_by_league');
+    localStorage.removeItem('schedule_by_team');
+    localStorage.removeItem('cancellations_by_league');
+    this.context.getLeagues();
+    this.context.getTeams();
+  }
 
   displayBilling = e => {
     e.preventDefault();

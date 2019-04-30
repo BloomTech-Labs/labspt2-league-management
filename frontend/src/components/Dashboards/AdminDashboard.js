@@ -77,7 +77,7 @@ class AdminDashboard extends Component {
     console.log('leagueIndex from Admin Dashboard', leagueIndex);
     const league = this.context.state.leagues[leagueIndex];
 
-    if (!this.context.state.schedule_by_league[leagueIndex]) {
+    if (!this.context.state.schedule_by_league[leagueIndex].games.length) {
       return (
         <Redirect
           to={{

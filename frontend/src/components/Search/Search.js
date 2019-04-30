@@ -23,7 +23,8 @@ const styles = theme => ({
     width: 400
   },
   container: {
-    position: 'relative'
+    position: 'relative',
+    width: '100%'
   },
   divider: {
     width: 2,
@@ -34,7 +35,9 @@ const styles = theme => ({
     border: 'none',
     outline: 'none',
     marginLeft: 8,
-    flex: 1
+    flex: 1,
+    width: '100%',
+    fontSize: '1.2rem'
   },
   iconButton: {
     padding: 10

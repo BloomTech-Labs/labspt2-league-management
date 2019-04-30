@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Redirect } from 'react-router-dom';
 import { AppContext } from './Context/AppContext';
+import Navbar from './Dashboards/Navbar';
 
 const styles = theme => ({
   main: {
@@ -94,6 +95,7 @@ class SignIn extends React.Component {
 
     return (
       <main className={classes.main}>
+      <Navbar />
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
