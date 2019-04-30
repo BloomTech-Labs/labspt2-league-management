@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import ChooseLeague from '../CreateLeague/ChooseLeague';
-// import Billing from '../Billing/Billing';
 import { AppContext } from '../Context/AppContext';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -49,7 +48,7 @@ class HomeDashboard extends Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { chooseLeague } = this.state;
     return (
       <>

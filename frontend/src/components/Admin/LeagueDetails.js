@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { AppContext } from '../Context/AppContext';
 
@@ -29,7 +27,6 @@ const styles = theme => ({
     borderBottom: '1px solid darkgray',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 50,

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
