@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
@@ -9,7 +9,6 @@ import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
-import Search from './Search/Search';
 import Navbar from './Dashboards/Navbar';
 
 class LandingPage extends Component {
@@ -25,7 +24,7 @@ class LandingPage extends Component {
   }
 
   render() {
-    const { username, loggedIn } = this.context.state;
+    const { loggedIn } = this.context.state;
     // const { login } = this.context;
     // console.log(this.context);
     if (!loggedIn) {
@@ -64,17 +63,17 @@ class LandingPage extends Component {
           <p className="quote" data-img="2">GOOOAAAALLLLL!!!!</p>
           <p className="quote" data-img="3">TOUCHDOWN!!!</p>
         </div>        */}
-                <Carousel showArrows={true} infiniteLoop autoPlay>
-                  <div>
-                    <img src={baseball} />
+        <Carousel showArrows={true} infiniteLoop autoPlay >
+                <div>
+                    <img src={baseball} alt="Baseball and Bat"/>
                     <p className="legend">TAKE ME OUT TO THE BALL GAME....</p>
-                  </div>
-                  <div>
-                    <img src={soccer} />
+                </div>
+                <div>
+                    <img src={soccer} alt="Soccer Ball" />
                     <p className="legend">GOOOAAAALLLLL!!!!!</p>
-                  </div>
-                  <div>
-                    <img src={football} />
+                </div>
+                <div>
+                    <img  src={football} alt="Footbal on field" />
                     <p className="legend">TOUCHDOWN!!!!</p>
                   </div>
                 </Carousel>

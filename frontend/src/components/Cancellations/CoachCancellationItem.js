@@ -14,7 +14,7 @@ class CoachCancellationItem extends React.Component {
   };
 
   render() {
-    const { game, classes, classname } = this.props;
+    const { game, classname } = this.props;
     const year = String(new Date(game.start_time).getYear());
     return (
       <div className={classname}>

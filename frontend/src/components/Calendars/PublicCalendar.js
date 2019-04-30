@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import axios from 'axios';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../App.css';
 import './calendar.css';
 import { AppContext } from '../Context/AppContext';
 import DragAndDropCalendar from './DnDCalendar';
-import { LockOutlined, EditOutlined } from '@material-ui/icons';
+import { EditOutlined } from '@material-ui/icons';
 
 const localizer = Calendar.momentLocalizer(moment);
 

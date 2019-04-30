@@ -81,7 +81,7 @@ const styles = theme => ({
 
 class Navbar extends React.Component {
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.appBar}>

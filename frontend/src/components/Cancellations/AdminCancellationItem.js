@@ -33,7 +33,7 @@ class AdminCancellationItem extends React.Component {
   };
 
   render() {
-    const { cancellation, classes, classname } = this.props;
+    const { cancellation, classname } = this.props;
     const year = String(new Date(cancellation.start_time).getYear());
     return (
       <div className={classname}>
