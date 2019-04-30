@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
@@ -9,7 +9,6 @@ import { Carousel } from 'react-responsive-carousel';
 import sports from '../Images/sports-banner.jpeg';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
-import Search from './Search/Search';
 import Navbar from './Dashboards/Navbar';
 
 class LandingPage extends Component {
@@ -25,7 +24,7 @@ class LandingPage extends Component {
   }
 
   render() {
-    const { username, loggedIn } = this.context.state;
+    const { loggedIn } = this.context.state;
     // const { login } = this.context;
     // console.log(this.context);
     if (!loggedIn) {
