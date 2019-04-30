@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountBox from '@material-ui/icons/AccountBox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link, Redirect, withRouter } from 'react-router-dom';
@@ -21,6 +21,7 @@ import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
 import { AppContext } from '../Context/AppContext';
 import WeatherWidget from '../Weather/WeatherWidget';
+import Search from '../Search/Search';
 
 const drawerWidth = 240;
 
@@ -40,8 +41,6 @@ const styles = theme => ({
   appBar: {
     marginLeft: drawerWidth,
     backgroundColor: '#1565c0',
-    // backgroundColor: '#6573c3',
-
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
       width: '100%',
@@ -57,11 +56,7 @@ const styles = theme => ({
   },
   button: {
     color: 'white'
-  },
-  // toolbar: theme.mixins.toolbar,
-  toolbar: {
-    height: 63,
-    textAlign: 'right'
+    // border: '1px solid white'
   },
   closeButton: {
     cursor: 'pointer',
@@ -71,16 +66,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: '100%',
-    backgroundColor: '#E2ECF7',
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth
-    }
-  },
-  weather: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      marginRight: '3%'
     }
   },
   content: {
@@ -96,20 +83,49 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingLeft: 40
-  }
+  },
+  // toolbar: theme.mixins.toolbar,
+  toolbar: {
+    height: 60,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  toolbarRightContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarCenterContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarLeftContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  // page logo
+  logo: {
+    color: '#fff',
+    backgroundColor: '#333',
+    padding: 5,
+    borderRadius: 5,
+    fontFamily: 'Graduate',
+    fontWeight: 'bold',
+    fontSize: '1.8rem'
+  },
+  // account icon
+  accountIcon: {
+    fontSize: '3.4rem'
+  },
 });
 
 class DashboardNavbar extends React.Component {
   state = {
     anchorEl: null,
     mobileOpen: false,
-    // admin: false,
-    // coach: false,
     logout: false,
     settings: false
   };
-
-  static contextType = AppContext;
 
   componentDidMount() {
     const token = localStorage.getItem('jwt') || this.context.signOut();
@@ -117,13 +133,12 @@ class DashboardNavbar extends React.Component {
       this.context.signin();
     }
 
-    // This is where an axios request would be done to get the user's info so the correct leagues and teams show up in the lists.
-    // state would also include user settings, and other info on the user (global state?)
     const { admin, coach } = this.props.data;
     this.setState({
       admin,
       coach
     });
+
   }
 
   handleDrawerToggle = () => {
@@ -151,18 +166,9 @@ class DashboardNavbar extends React.Component {
     this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] });
   };
 
-  homeview = async e => {
+  homeview = e => {
     e.preventDefault();
-    console.log('homeview function');
-    localStorage.removeItem('leagues');
-    localStorage.removeItem('teams');
-    localStorage.removeItem('teams_by_league');
-    localStorage.removeItem('schedule_by_league');
-    localStorage.removeItem('schedule_by_team');
-    localStorage.removeItem('cancellations_by_league');
-    await this.context.getLeagues();
-    await this.context.getTeams();
-    await this.props.history.push('/dashboard');
+    this.props.history.push('/dashboard');
   };
 
   logout = () => {
@@ -226,7 +232,7 @@ class DashboardNavbar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
+          <Toolbar className={classes.toolbar}>
             <IconButton
               className={classes.menuButton}
               color="inherit"
@@ -235,72 +241,61 @@ class DashboardNavbar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link
-                to="/"
-                style={{
-                  color: '#fff',
-                  backgroundColor: '#333',
-                  padding: 10,
-                  fontFamily: 'Audiowide',
-                  borderRadius: 5
-                }}
-              >
-                LM
-              </Link>
-            </Typography>
-            {/* <AppContext.Consumer>
-              {context => ( */}
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              {this.context.state.username}
-            </Typography>
-            {/* )}
-            </AppContext.Consumer> */}
-            <div className={classes.weather}>
-              <WeatherWidget />
+            <div className={classes.toolbarRightContent}>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                <Link to="/" className={classes.logo}>
+                  LM
+                </Link>
+              </Typography>
+
+              {/* <Link to="/dashboard">
+                <Button className={classes.button} onClick={this.homeView}>
+                  Home
+                </Button>
+              </Link> */}
             </div>
-            {/* <Link to="/dashboard"> */}
-            <Button
-              className={!admin && !coach ? classes.selected : classes.button}
-              onClick={this.homeview}
-            >
-              Home
-            </Button>
-            {/* </Link> */}
 
-            <div>
-              <IconButton
-                id="anchorEl"
-                aria-owns={open ? 'menu-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                open={open}
-                onClose={this.handleClose}
-              >
-                <MenuItem onClick={this.handleSettings}>
-                  <Link to="/settings">Account Settings</Link>
-                </MenuItem>
-                <MenuItem onClick={this.handleClose}>
-                  Billing Information
-                </MenuItem>
+            <div className={classes.toolbarCenterContent}>
+              <div className={classes.search}>
+                <Search />
+              </div>
+            </div>
 
-                <MenuItem onClick={this.logout}>Log Out</MenuItem>
-              </Menu>
+            <div className={classes.toolbarRightContent}>
+              <div className={classes.weather}>
+                <WeatherWidget />
+              </div>
+
+              <div>
+                <IconButton
+                  id="anchorEl"
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                <AccountBox className={classes.accountIcon} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleSettings}>
+                    <Link to="/settings">User Settings</Link>
+                  </MenuItem>
+                  <MenuItem onClick={this.logout}>Log Out</MenuItem>
+                </Menu>
+              </div>
             </div>
           </Toolbar>
         </AppBar>

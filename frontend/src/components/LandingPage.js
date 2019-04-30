@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
@@ -10,6 +10,7 @@ import sports from '../Images/sports-banner.jpeg';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
 import Search from './Search/Search';
+import Navbar from './Dashboards/Navbar';
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -31,14 +32,10 @@ class LandingPage extends Component {
       // console.log(this.props.data);
       return (
         <div className="landing-page">
+        <Navbar />
           <section className="content">
           <header className="header" style={{backgroundImage: `url(${sports})`}}>
-        <nav className="links">
-          <a href="/signin">Login</a>
-          <a href="/signup">Sign Up</a>          
-        </nav>            
-        <div className="header-content">                
-            <Search />
+        <div className="header-content">    
           <span><h1>Average Joe League Management</h1></span>     
           <p>Do you want a fast easy way to organize your sports league?  Look no further we have the solution you have been looking for!</p>
         </div> 
@@ -85,12 +82,13 @@ class LandingPage extends Component {
     }
     return (
       <>
-        {/* <WeatherWidget /> */}
+        {/* <WeatherWidget />
         <div>App Name</div>
         <div>{username}</div>
         <Link to="/settings">My Settings</Link>
         <br />
-        <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div>
+        <Link to="/dashboard">My Account</Link> <div>Landing Page Content</div> */}
+        <Redirect to="/dashboard" />
       </>
     );
   }
