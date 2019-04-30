@@ -63,7 +63,6 @@ class LandingPage extends Component {
           <p className="quote" data-img="2">GOOOAAAALLLLL!!!!</p>
           <p className="quote" data-img="3">TOUCHDOWN!!!</p>
         </div>        */}
-
                 <Carousel showArrows={true} infiniteLoop autoPlay>
                   <div>
                     <img src={baseball} alt="Baseball and Bat" />
@@ -75,7 +74,6 @@ class LandingPage extends Component {
                   </div>
                   <div>
                     <img src={football} alt="Footbal on field" />
-
                     <p className="legend">TOUCHDOWN!!!!</p>
                   </div>
                 </Carousel>
