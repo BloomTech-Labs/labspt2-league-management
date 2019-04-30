@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -40,7 +41,15 @@ const styles = theme => ({
   },
   toolbarCenterContent: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'absolute',
+    left: 'calc(50% - 200px)',
+    [theme.breakpoints.down('sm')]: {
+      left: 'calc(50% - 200px)'
+    },
+    [theme.breakpoints.down('xs')]: {
+      left: 'calc(50% - 145px)'
+    }
   },
   toolbarLeftContent: {
     display: 'flex',
@@ -50,11 +59,12 @@ const styles = theme => ({
   logo: {
     color: '#fff',
     backgroundColor: '#333',
-    padding: 5,
+    padding: 7,
     borderRadius: 5,
-    fontFamily: 'Graduate',
+    // fontFamily: 'Graduate',
+    fontFamily: 'Audiowide',
     fontWeight: 'bold',
-    fontSize: '1.8rem'
+    fontSize: '1.4rem'
   },
   // account icon
   accountIcon: {
@@ -62,6 +72,10 @@ const styles = theme => ({
   },
   lpLink: {
     color: '#ffffff'
+  },
+  button: {
+    color: 'white',
+    fontSize: '1rem'
   }
 });
 
@@ -87,8 +101,22 @@ class Navbar extends React.Component {
             </div>
 
             <div className={classes.toolbarRightContent}>
-              <Link to="/signin" className={classes.lpLink}>Sign In</Link>
-              <Link to="/signup" className={classes.lpLink}>Sign Up</Link>
+              {!this.props.loggedIn ? (
+                <>
+                  <Link to="/signin" className={classes.lpLink}>
+                    <Button className={classes.button}>Sign In</Button>
+                  </Link>
+                  <Link to="/signup" className={classes.lpLink}>
+                    <Button className={classes.button}>Sign Up</Button>
+                  </Link>
+                </>
+              ) : (
+                <Link to="/dashboard">
+                  <Button className={classes.button} onClick={this.homeView}>
+                    Home
+                  </Button>
+                </Link>
+              )}
             </div>
           </Toolbar>
         </AppBar>

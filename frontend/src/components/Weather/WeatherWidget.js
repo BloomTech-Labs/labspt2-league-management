@@ -34,6 +34,7 @@ class WeatherWidget extends Component {
   render() {
     const widget = {
       textAlign: 'center',
+      paddingTop: 4,
       fontSize: '1.25rem',
       display: 'flex',
       flexDirection: 'column',

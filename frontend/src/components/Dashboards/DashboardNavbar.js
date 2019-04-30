@@ -47,6 +47,13 @@ const styles = theme => ({
       zIndex: theme.zIndex.drawer + 1
     }
   },
+  weather: {
+    display: 'flex',
+    marginRight: '3%',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -66,6 +73,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: '100%',
+    // backgroundColor: '#E2ECF7',
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth
     }
@@ -97,7 +105,15 @@ const styles = theme => ({
   },
   toolbarCenterContent: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'absolute',
+    left: 'calc(50% - 200px)',
+    [theme.breakpoints.down('sm')]: {
+      left: 'calc(50% - 200px)'
+    },
+    [theme.breakpoints.down('xs')]: {
+      left: 'calc(50% - 145px)'
+    }
   },
   toolbarLeftContent: {
     display: 'flex',
@@ -107,16 +123,17 @@ const styles = theme => ({
   logo: {
     color: '#fff',
     backgroundColor: '#333',
-    padding: 5,
+    padding: 7,
     borderRadius: 5,
     fontFamily: 'Graduate',
-    fontWeight: 'bold',
-    fontSize: '1.8rem'
+    fontFamily: 'Audiowide',
+    // fontWeight: 'bold',
+    fontSize: '1.4rem'
   },
   // account icon
   accountIcon: {
-    fontSize: '3.4rem'
-  },
+    fontSize: '1.7rem'
+  }
 });
 
 class DashboardNavbar extends React.Component {
@@ -138,7 +155,6 @@ class DashboardNavbar extends React.Component {
       admin,
       coach
     });
-
   }
 
   handleDrawerToggle = () => {
@@ -256,9 +272,9 @@ class DashboardNavbar extends React.Component {
             </div>
 
             <div className={classes.toolbarCenterContent}>
-              <div className={classes.search}>
-                <Search />
-              </div>
+              {/* <div className={classes.search}> */}
+              <Search />
+              {/* </div> */}
             </div>
 
             <div className={classes.toolbarRightContent}>
@@ -266,6 +282,11 @@ class DashboardNavbar extends React.Component {
                 <WeatherWidget />
               </div>
 
+              <Link to="/dashboard">
+                <Button className={classes.button} onClick={this.homeView}>
+                  Home
+                </Button>
+              </Link>
               <div>
                 <IconButton
                   id="anchorEl"
@@ -274,7 +295,7 @@ class DashboardNavbar extends React.Component {
                   onClick={this.handleMenu}
                   color="inherit"
                 >
-                <AccountBox className={classes.accountIcon} />
+                  <AccountBox className={classes.accountIcon} />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
