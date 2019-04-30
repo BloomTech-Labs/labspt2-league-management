@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Navbar from './Dashboards/Navbar';
 
 import { AppContext } from './Context/AppContext';
 
@@ -84,6 +85,7 @@ class Signup extends React.Component {
 
     return (
       <main className={classes.main}>
+      <Navbar />
         <CssBaseline />
         <Paper className={classes.paper}>
           {/* <Avatar className={classes.avatar}>
