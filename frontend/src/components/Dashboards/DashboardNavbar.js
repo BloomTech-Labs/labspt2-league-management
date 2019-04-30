@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountBox from '@material-ui/icons/AccountBox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link, Redirect, withRouter } from 'react-router-dom';
@@ -21,7 +21,7 @@ import AdminDrawer from './AdminDrawer';
 import CoachDrawer from './CoachDrawer';
 import { AppContext } from '../Context/AppContext';
 import WeatherWidget from '../Weather/WeatherWidget';
-import Navbar from './Navbar';
+import Search from '../Search/Search';
 
 const drawerWidth = 240;
 
@@ -41,8 +41,6 @@ const styles = theme => ({
   appBar: {
     marginLeft: drawerWidth,
     backgroundColor: '#1565c0',
-    // backgroundColor: '#6573c3',
-
     [theme.breakpoints.up('sm')]: {
       // width: `calc(100% - ${drawerWidth}px)`
       width: '100%',
@@ -58,11 +56,7 @@ const styles = theme => ({
   },
   button: {
     color: 'white'
-  },
-  // toolbar: theme.mixins.toolbar,
-  toolbar: {
-    height: 63,
-    textAlign: 'right'
+    // border: '1px solid white'
   },
   closeButton: {
     cursor: 'pointer',
@@ -72,16 +66,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: '100%',
-    backgroundColor: '#E2ECF7',
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth
-    }
-  },
-  weather: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      marginRight: '3%'
     }
   },
   content: {
@@ -97,7 +83,40 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingLeft: 40
-  }
+  },
+  // toolbar: theme.mixins.toolbar,
+  toolbar: {
+    height: 60,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  toolbarRightContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarCenterContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  toolbarLeftContent: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  // page logo
+  logo: {
+    color: '#fff',
+    backgroundColor: '#333',
+    padding: 5,
+    borderRadius: 5,
+    fontFamily: 'Graduate',
+    fontWeight: 'bold',
+    fontSize: '1.8rem'
+  },
+  // account icon
+  accountIcon: {
+    fontSize: '3.4rem'
+  },
 });
 
 class DashboardNavbar extends React.Component {
@@ -212,7 +231,8 @@ class DashboardNavbar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Navbar />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
             <IconButton
               className={classes.menuButton}
               color="inherit"
@@ -221,6 +241,64 @@ class DashboardNavbar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+            <div className={classes.toolbarRightContent}>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                <Link to="/" className={classes.logo}>
+                  LM
+                </Link>
+              </Typography>
+
+              {/* <Link to="/dashboard">
+                <Button className={classes.button} onClick={this.homeView}>
+                  Home
+                </Button>
+              </Link> */}
+            </div>
+
+            <div className={classes.toolbarCenterContent}>
+              <div className={classes.search}>
+                <Search />
+              </div>
+            </div>
+
+            <div className={classes.toolbarRightContent}>
+              <div className={classes.weather}>
+                <WeatherWidget />
+              </div>
+
+              <div>
+                <IconButton
+                  id="anchorEl"
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                <AccountBox className={classes.accountIcon} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleSettings}>
+                    <Link to="/settings">User Settings</Link>
+                  </MenuItem>
+                  <MenuItem onClick={this.logout}>Log Out</MenuItem>
+                </Menu>
+              </div>
+            </div>
+          </Toolbar>
+        </AppBar>
 
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
