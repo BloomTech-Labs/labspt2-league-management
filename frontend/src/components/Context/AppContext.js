@@ -47,7 +47,6 @@ export default class AppProvider extends Component {
             this.setState({ loggedIn: false });
           },
           getLeagues: () => {
-            console.log('getLeagues()');
             const token = localStorage.getItem('jwt') || this.signOut();
             const endpoint = '/leagues';
             const options = {

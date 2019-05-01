@@ -75,10 +75,8 @@ class LeagueSetupTeams extends React.Component {
     this.setState({ [target.name]: target.value });
   };
 
-  SubmitHandler = () => {
-    const newTeam = {
-      name: this.state.name
-    };
+  SubmitHandler = event => {
+    event.preventDefault();
     this.context.createTeamInLeague(this.state.name, this.props.index, () => {
       const lid = this.context.state.leagues[this.props.index].id;
       if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
@@ -90,7 +88,6 @@ class LeagueSetupTeams extends React.Component {
           teams
         });
       }
-      console.log(this.state.teams);
     });
   };
 

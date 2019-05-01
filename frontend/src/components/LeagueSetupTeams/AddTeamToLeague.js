@@ -31,7 +31,7 @@ const AddTeamToLeague = props => {
   return (
     <div className={props.classes.main}>
       <CssBaseline />
-      <form className={props.classes.form}>
+      <form className={props.classes.form} onSubmit={props.SubmitHandler}>
         <FormControl className={props.classes.input} margin="normal" required>
           <InputLabel htmlFor="name">Team Name</InputLabel>
           <Input
