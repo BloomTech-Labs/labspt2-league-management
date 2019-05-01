@@ -355,7 +355,11 @@ export default class AppProvider extends Component {
             axios
               .post(endpoint, games, options)
               .then(res => {
-                games = res.data;
+                if (res.data.rows) {
+                  games = res.data.rows;
+                } else {
+                  games = res.data;
+                }
                 console.log(res.data);
                 console.log(games);
                 // this is just to remove the specific schedule from local storage if it exists
