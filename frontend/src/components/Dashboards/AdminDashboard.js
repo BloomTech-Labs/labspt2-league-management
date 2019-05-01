@@ -76,10 +76,7 @@ class AdminDashboard extends Component {
     // console.log(this.context.state.leagues[this.state.leagueIndex]);
     const league = this.context.state.leagues[leagueIndex];
 
-    if (
-      !this.context.state.schedule_by_league[leagueIndex].games.length &&
-      !this.context.state.schedule_by_league[leagueIndex].games.rows.length
-    ) {
+    if (!this.context.state.schedule_by_league[leagueIndex].games.length) {
       return (
         <Redirect
           to={{
@@ -90,6 +87,22 @@ class AdminDashboard extends Component {
           }}
         />
       );
+    }
+    if (this.context.state.schedule_by_league[leagueIndex].games.rows) {
+      if (
+        !this.context.state.schedule_by_league[leagueIndex].games.rows.length
+      ) {
+        return (
+          <Redirect
+            to={{
+              pathname: '/dashboard/admin/setup',
+              state: {
+                leagueIndex: leagueIndex
+              }
+            }}
+          />
+        );
+      }
     }
 
     return (
