@@ -88,22 +88,6 @@ class AdminDashboard extends Component {
         />
       );
     }
-    if (this.context.state.schedule_by_league[leagueIndex].games.rows) {
-      if (
-        !this.context.state.schedule_by_league[leagueIndex].games.rows.length
-      ) {
-        return (
-          <Redirect
-            to={{
-              pathname: '/dashboard/admin/setup',
-              state: {
-                leagueIndex: leagueIndex
-              }
-            }}
-          />
-        );
-      }
-    }
 
     return (
       // <AppContext.Consumer>
