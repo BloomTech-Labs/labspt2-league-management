@@ -8,6 +8,11 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
@@ -56,6 +61,9 @@ const styles = theme => ({
     margin: '0 1% 15px 1%',
     minWidth: 175,
     border: '1px solid gray'
+  },
+  dialogMessage: {
+    color: 'red'
   }
 });
 
@@ -102,7 +110,24 @@ class UserSettings extends React.Component {
     last_name: '',
     phone: '',
     password: '',
-    allowUpdate: false
+    allowUpdate: false,
+    open: false,
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ 
+      open: false, 
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    });
   };
 
   handleChange = name => event => {
@@ -141,6 +166,31 @@ class UserSettings extends React.Component {
         console.log('err from Submit handler in User Settings', err);
       });
   };
+
+  handleSubmitDialog = e => {
+    e.preventDefault();
+    const token = localStorage.getItem('jwt');
+    const options = {
+      headers: {
+        authorization: token
+      }
+    };
+
+    const endpoint = '/settings/password';
+
+    const { oldPassword, newPassword, confirmPassword } = this.state;
+    const body = { oldPassword, newPassword, confirmPassword };
+
+    axios
+      .put(endpoint, body, options)
+      .then(res => {
+
+      })
+      .catch(err => {
+        console.log('Error from submit handler in Change Password', err);
+      });
+
+  }
 
   getData() {
     const token = localStorage.getItem('jwt') || this.context.signOut();
@@ -217,18 +267,6 @@ class UserSettings extends React.Component {
                 }}
               />
 
-              {/* <TextField
-          id="standard-email"
-          label="Email"
-          className={classes.textField}
-          value={this.state.password}
-          onChange={this.handleChange('password')}
-          margin="normal"
-          InputProps={{
-            readOnly: this.state.allowUpdate
-          }}
-        /> */}
-
               <TextField
                 required
                 id="standard-firstName"
@@ -269,6 +307,7 @@ class UserSettings extends React.Component {
                   readOnly={!this.state.allowUpdate}
                 />
               </FormControl>
+
               <div className={classes.buttons}>
                 <Button
                   className={classes.button}
@@ -283,7 +322,60 @@ class UserSettings extends React.Component {
                   Submit Updates
                 </Button>
               </div>
+              <div className={classes.buttons}>
+                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                  Change Password
+                </Button>
+              </div>
             </form>
+            <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
+          <DialogContent>
+            <DialogContentText className={classes.dialogMessage}>
+              Errors will go here
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="oldPassword"
+              label="Old Password"
+              type="password"
+              value={this.state.oldPassword}
+              onChange={this.handleChange('oldPassword')}
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="newPassword"
+              label="New Password"
+              type="password"
+              value={this.state.newPassword}
+              onChange={this.handleChange('newPassword')}
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              value={this.state.confirmPassword}
+              onChange={this.handleChange('confirmPassword')}
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleSubmitDialog} color="primary">
+              Change
+            </Button>
+          </DialogActions>
+        </Dialog>
           </div>
         )}
       </AppContext.Consumer>
