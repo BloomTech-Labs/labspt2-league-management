@@ -46,7 +46,7 @@ const styles = theme => ({
 class LeagueSetupTeams extends React.Component {
   state = {
     teams: [],
-    name: '',
+    name: ''
   };
 
   InputHandler = event => {
@@ -55,30 +55,31 @@ class LeagueSetupTeams extends React.Component {
     this.setState({ [target.name]: target.value });
   };
 
-  SubmitHandler = () => {
-    const newTeam = {
-      name: this.state.name,
-    };
+  SubmitHandler = event => {
+    event.preventDefault();
     this.context.createTeamInLeague(this.state.name, this.props.index, () => {
       const lid = this.context.state.leagues[this.props.index].id;
-      if(this.context.state.teams_by_league.find(x => x.league_id === lid)) {
-        const teams = this.context.state.teams_by_league.find(x => x.league_id === lid).teams
-        this.setState({ 
+      if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+        const teams = this.context.state.teams_by_league.find(
+          x => x.league_id === lid
+        ).teams;
+        this.setState({
           name: '',
           teams
-        })
+        });
       }
-      console.log(this.state.teams);
-    })
+    });
   };
 
   componentDidMount() {
     const lid = this.context.state.leagues[this.props.index].id;
-    if(this.context.state.teams_by_league.find(x => x.league_id === lid)) {
-      const teams = this.context.state.teams_by_league.find(x => x.league_id === lid).teams
-      this.setState({ 
+    if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+      const teams = this.context.state.teams_by_league.find(
+        x => x.league_id === lid
+      ).teams;
+      this.setState({
         teams
-      })
+      });
     }
   }
 
@@ -96,24 +97,24 @@ class LeagueSetupTeams extends React.Component {
           />
           <ShowTeams teams={this.state.teams} />
           <div>
-          <Button
-            disabled={this.props.activeStep === 0}
-            onClick={() => {
-              this.props.back(this.state, this.props.index)
-            }}
-            className={classes.button}
-          >
-            Back
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              this.props.next(this.state, this.props.index);
-            }}
-          >
-            Next
-          </Button>
+            <Button
+              disabled={this.props.activeStep === 0}
+              onClick={() => {
+                this.props.back(this.state, this.props.index);
+              }}
+              className={classes.button}
+            >
+              Back
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                this.props.next(this.state, this.props.index);
+              }}
+            >
+              Next
+            </Button>
           </div>
         </Paper>
       </div>
