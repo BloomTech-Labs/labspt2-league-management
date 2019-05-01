@@ -76,7 +76,10 @@ class AdminDashboard extends Component {
     // console.log(this.context.state.leagues[this.state.leagueIndex]);
     const league = this.context.state.leagues[leagueIndex];
 
-    if (!this.context.state.schedule_by_league[leagueIndex].games.length) {
+    if (
+      !this.context.state.schedule_by_league[leagueIndex].games.length &&
+      !this.context.state.schedule_by_league[leagueIndex].games.rows.length
+    ) {
       return (
         <Redirect
           to={{
@@ -113,7 +116,9 @@ class AdminDashboard extends Component {
           {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueDetails league={league} />}
           {/* {editSchedule && <DnDCalendar index={leagueIndex} />} */}
-          {cancellationRequests && <AdminCancellationList index={leagueIndex} />}
+          {cancellationRequests && (
+            <AdminCancellationList index={leagueIndex} />
+          )}
         </div>
       </>
       //   )}

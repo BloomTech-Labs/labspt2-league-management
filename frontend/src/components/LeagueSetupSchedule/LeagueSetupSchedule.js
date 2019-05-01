@@ -7,17 +7,24 @@ import { AppContext } from '../Context/AppContext';
 
 const styles = theme => ({
   main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    marginTop: '200px',
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: '80%',
-      minWidth: '200px',
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
+    width: '60%',
+    minWidth: 300,
+    margin: '90px auto',
+    display: 'flex', // Fix IE 11 issue.
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center'
+    // marginLeft: theme.spacing.unit * 3,
+    // marginRight: theme.spacing.unit * 3,
+    // marginTop: '200px',
+    // border: '1px solid red'
+    // [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+    //   width: '80%',
+    //   minWidth: '200px',
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto'
+    // }
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
@@ -28,13 +35,23 @@ const styles = theme => ({
       .spacing.unit * 3}px`
   },
   button: {
-    borderRadius: '50%',
+    borderRadius: '7px',
     backgroundColor: 'red',
     width: '200px',
-    height: '200px'
+    height: '100px',
+    margin: '50px 0'
   },
   submit: {
     marginTop: theme.spacing.unit * 3
+  },
+  warning: {
+    fontSize: '1.5rem',
+    borderRadius: '7px',
+    lineHeight: '1.3',
+    padding: '25px 3%',
+    backgroundColor: 'white',
+    boxShadow: '1px 2px 3px #333'
+    // border: '1px solid red'
   }
 });
 
@@ -436,30 +453,44 @@ class LeagueSetupSchedule extends React.Component {
     const { classes } = this.props;
     console.log(this.state);
     return (
-      <div className={classes.main}>
-        <CssBaseline />
-        <h1> Buttons work </h1>
+      <>
         <Button
-          onClick={
-            this.generateSchedule
-            // Magic Button
-          }
-          className={classes.button}
+          variant="contained"
+          disabled={this.props.activeStep === 0}
+          onClick={() => {
+            this.props.back(this.state, this.props.index);
+          }}
         >
-          Magic
-          <br />
-          Button
+          Back
         </Button>
-        <div>
+        <div className={classes.main}>
+          <CssBaseline />
+          <p className={classes.warning}>
+            {' '}
+            Once you generate the schedule, your settings are locked and teams
+            can not be added or removed.{' '}
+          </p>
           <Button
-            disabled={this.props.activeStep === 0}
-            onClick={() => {
-              this.props.back(this.state, this.props.index);
-            }}
+            onClick={
+              this.generateSchedule
+              // Magic Button
+            }
+            className={classes.button}
           >
-            Back
+            Generate
+            <br />
+            Schedule
           </Button>
-          <Button
+          {/* <div>
+            <Button
+              disabled={this.props.activeStep === 0}
+              onClick={() => {
+                this.props.back(this.state, this.props.index);
+              }}
+            >
+              Back
+            </Button>
+            <Button
             variant="contained"
             color="primary"
             onClick={() => {
@@ -468,8 +499,9 @@ class LeagueSetupSchedule extends React.Component {
           >
             Next
           </Button>
+          </div> */}
         </div>
-      </div>
+      </>
     );
   }
 }

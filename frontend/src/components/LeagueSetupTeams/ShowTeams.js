@@ -15,11 +15,19 @@
 
 import React from 'react';
 
+const teamStyle = {
+  fontSize: '1.2rem',
+  padding: 10
+  // border: '1px solid red'
+};
+
 const ShowTeams = props => {
   return (
     <div>
       {props.teams.map(team => (
-        <h4 key={team.id}>{team.name}</h4>
+        <div key={team.id} style={teamStyle}>
+          {team.name}
+        </div>
       ))}
     </div>
   );

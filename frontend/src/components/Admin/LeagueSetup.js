@@ -15,6 +15,7 @@ import LeagueSetupSchedule from '../LeagueSetupSchedule/LeagueSetupSchedule';
 const styles = theme => ({
   root: {
     width: '90%',
+    margin: '0 auto',
     marginTop: 63
   },
   button: {
@@ -57,9 +58,11 @@ class HorizontalLinearStepper extends React.Component {
         );
       case 2:
         return (
-          <LeagueSetupSchedule next={this.handlexNext} 
-          index={this.state.leagueIndex}
-          back={this.handleBack} />
+          <LeagueSetupSchedule
+            next={this.handlexNext}
+            index={this.state.leagueIndex}
+            back={this.handleBack}
+          />
         );
       default:
         return 'Unknown step';
@@ -130,7 +133,7 @@ class HorizontalLinearStepper extends React.Component {
     const { activeStep } = this.state;
     return (
       <>
-        <Navbar />
+        <Navbar loggedIn={true} />
         <div className={classes.root}>
           <Stepper activeStep={activeStep}>
             {steps.map((label, index) => {
