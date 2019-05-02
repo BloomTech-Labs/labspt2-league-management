@@ -317,21 +317,6 @@ class TeamCard extends React.Component {
         seasonComplete: true
       });
     }
-    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
-      this.setState({
-        coachNameExists: true
-      });
-    }
-    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
-      this.setState({
-        coachEmailExists: true
-      });
-    }
-    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
-      this.setState({
-        coachPhoneExists: true
-      });
-    }
   };
 
   handleChange = name => (event, { newValue }) => {
@@ -377,6 +362,23 @@ class TeamCard extends React.Component {
       fontFamily: 'Monserrat',
       fontSize: '0.85rem'
     };
+
+    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
+      this.setState({
+        coachNameExists: true
+      });
+    }
+    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
+      this.setState({
+        coachEmailExists: true
+      });
+    }
+    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
+      this.setState({
+        coachPhoneExists: true
+      });
+    }
+
     return (
       <div>
         <ReactCardFlip
@@ -454,7 +456,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
-                rows={2}
+                rowsMax={2}
                 InputProps={{
                   readOnly: true,
                   style: inputStyleCoach
@@ -480,7 +482,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
-                rows={3}
+                rowsMax={3}
                 InputProps={{
                   readOnly: true,
                   style: inputStyleCoach
@@ -643,6 +645,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
+                rowsMax={4}
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
@@ -666,6 +669,7 @@ class TeamCard extends React.Component {
                 }`}
                 className={classes.textField}
                 margin="normal"
+                rowsMax={2}
                 variant="outlined"
                 InputProps={{
                   readOnly: true,
@@ -829,7 +833,7 @@ class TeamCard extends React.Component {
                 className={classes.button}
                 onClick={this.EditHandler}
               >
-                Edit Team
+                Save Team
               </Button>
             </CardActions>
           </Card>

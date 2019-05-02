@@ -57,18 +57,24 @@ class LeagueSetupTeams extends React.Component {
 
   SubmitHandler = event => {
     event.preventDefault();
-    this.context.createTeamInLeague(this.state.name, this.props.index, () => {
-      const lid = this.context.state.leagues[this.props.index].id;
-      if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
-        const teams = this.context.state.teams_by_league.find(
-          x => x.league_id === lid
-        ).teams;
-        this.setState({
-          name: '',
-          teams
-        });
-      }
-    });
+    console.log('Doug');
+    // console.log(name);
+    console.log(this.state.name);
+    if (this.state.name !== '') {
+      console.log('Does not equal !==', this.state.name);
+      this.context.createTeamInLeague(this.state.name, this.props.index, () => {
+        const lid = this.context.state.leagues[this.props.index].id;
+        if (this.context.state.teams_by_league.find(x => x.league_id === lid)) {
+          const teams = this.context.state.teams_by_league.find(
+            x => x.league_id === lid
+          ).teams;
+          this.setState({
+            name: '',
+            teams
+          });
+        }
+      });
+    }
   };
 
   componentDidMount() {
