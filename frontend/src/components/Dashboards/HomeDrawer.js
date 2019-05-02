@@ -95,31 +95,37 @@ class HomeDrawer extends Component {
         <Divider />
         <Collapse in={this.state.expandTeams} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {teams.map((team, index) => (
-              <>
-                <Link
-                  to={{
-                    pathname: '/dashboard/coach',
-                    state: {
-                      teamIndex: index
-                    }
-                  }}
-                >
-                  <ListItem
-                    button
-                    className={classes.nested}
-                    onClick={this.selectTeam}
+            {teams.map((team, index) => {
+              const id = team.id;
+              console.log('Team ID: ', id);
+              return (
+                <>
+                  <Link
+                    to={{
+                      pathname: '/dashboard/coach',
+                      state: {
+                        teamIndex: index,
+                        teamId: team.id
+                      }
+                    }}
                   >
-                    <ListItemText
-                      id={team.id}
-                      teamIndex={index}
-                      primary={team.name}
-                    />
-                  </ListItem>
-                </Link>
-                <Divider />
-              </>
-            ))}
+                    <ListItem
+                      button
+                      className={classes.nested}
+                      onClick={this.selectTeam}
+                    >
+                      <ListItemText
+                        id={team.id}
+                        teamId={team.id}
+                        teamIndex={index}
+                        primary={team.name}
+                      />
+                    </ListItem>
+                  </Link>
+                  <Divider />
+                </>
+              );
+            })}
           </List>
         </Collapse>
       </List>
