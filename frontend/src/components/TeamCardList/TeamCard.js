@@ -388,7 +388,9 @@ class TeamCard extends React.Component {
       color: 'rgb(20,20,20)',
       textAlign: 'center',
       fontFamily: 'Monserrat',
-      fontSize: '1.2rem'
+      fontSize: '1.2rem',
+      backgroundColor: '#E2ECF7',
+      padding: '0px 5px'
     };
 
     const inputStyle = {
@@ -401,12 +403,6 @@ class TeamCard extends React.Component {
       color: '#333',
       fontFamily: 'Monserrat',
       fontSize: '0.9rem'
-    };
-
-    const inputStyleCoach = {
-      color: '#333',
-      fontFamily: 'Monserrat',
-      fontSize: '0.85rem'
     };
 
     return (
@@ -425,7 +421,6 @@ class TeamCard extends React.Component {
                   style={{ cursor: 'pointer' }}
                 />
               </Typography>
-
               <TextField /* Contains all 3 fields */
                 fullWidth
                 multiline
@@ -433,14 +428,14 @@ class TeamCard extends React.Component {
                 value={`Name: ${coach_name}\nEmail: ${coach_email}\nPhone #: ${coach_phone}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 rows={4}
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -450,6 +445,7 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
 
               <TextField /* Contains Name and Email */
@@ -459,14 +455,14 @@ class TeamCard extends React.Component {
                 value={`Name: ${coach_name}\nEmail: ${coach_email}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 rows={3}
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -476,8 +472,8 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* Contains Name and Phone */
                 fullWidth
                 multiline
@@ -485,14 +481,14 @@ class TeamCard extends React.Component {
                 value={`Name: ${coach_name}\nPhone #: ${coach_phone}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 rows={2}
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -502,8 +498,8 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* Contains Email and Phone */
                 fullWidth
                 multiline
@@ -511,14 +507,14 @@ class TeamCard extends React.Component {
                 value={`Email: ${coach_email}\nPhone #: ${coach_phone}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 rows={3}
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -528,21 +524,21 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* Contains Name only */
                 fullWidth
                 label="Coach Info"
                 value={`Name: ${coach_name}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -552,21 +548,21 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* Contains Email only */
                 fullWidth
                 label="Coach Info"
                 value={`Email: ${coach_email}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -576,21 +572,21 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* Contains Phone only */
                 fullWidth
                 label="Coach Info"
                 value={`Phone #: ${coach_phone}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -600,21 +596,21 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField /* No info */
                 fullWidth
                 label="Coach Info"
                 value={`No coach info for this team`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
-                  style: inputStyleCoach
+                  style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display:
@@ -624,6 +620,7 @@ class TeamCard extends React.Component {
                       ? 'block'
                       : 'none'
                 }}
+                variant="outlined"
               />
               <TextField
                 fullWidth
@@ -631,34 +628,34 @@ class TeamCard extends React.Component {
                 value={`Wins: ${wins}   Losses: ${losses}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{ display: this.state.containsTies ? 'none' : 'block' }}
+                variant="outlined"
               />
-
               <TextField
                 fullWidth
                 label="Record"
                 value={`Wins: ${wins}   Losses: ${losses}   Ties: ${ties}`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{ display: this.state.containsTies ? 'block' : 'none' }}
+                variant="outlined"
               />
-
               <TextField
                 fullWidth
                 multiline
@@ -674,20 +671,20 @@ class TeamCard extends React.Component {
                 }`}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 rows={4}
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display: this.state.bothGamesExist ? 'block' : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField
                 fullWidth
                 multiline
@@ -699,37 +696,38 @@ class TeamCard extends React.Component {
                 }`}
                 className={classes.textField}
                 margin="normal"
-                rowsMax={2}
-                variant="outlined"
+                rows={3}
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display: this.state.game1Exists ? 'block' : 'none'
                 }}
+                variant="outlined"
               />
-
               <TextField
                 fullWidth
                 label="Upcoming Games"
                 value={'Season Completed'}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
                 }}
                 InputLabelProps={{
-                  style: labelStyle
+                  style: labelStyle,
+                  padding: '0px'
                 }}
                 style={{
                   display: this.state.seasonComplete ? 'block' : 'none'
                 }}
+                variant="outlined"
               />
             </CardContent>
           </Card>
