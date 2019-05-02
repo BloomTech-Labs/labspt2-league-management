@@ -67,7 +67,6 @@ class Signup extends React.Component {
 
   SubmitHandler = event => {
     event.preventDefault();
-    console.log(this.state);
     const credentials = this.state;
     const endpoint = '/auth/register';
     axios
