@@ -67,7 +67,6 @@ class Signup extends React.Component {
 
   SubmitHandler = event => {
     event.preventDefault();
-    console.log(this.state);
     const credentials = this.state;
     const endpoint = '/auth/register';
     axios
@@ -77,7 +76,7 @@ class Signup extends React.Component {
         this.props.history.push('/signin');
       })
       .catch(err => {
-        console.log('err from Submit handler in SignUp', err);
+
       });
   };
 
@@ -159,7 +158,6 @@ class Signup extends React.Component {
 }
 
 Signup.contextType = AppContext;
-
 Signup.propTypes = {
   classes: PropTypes.object.isRequired
 };
