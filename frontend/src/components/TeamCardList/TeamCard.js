@@ -159,6 +159,37 @@ class TeamCard extends React.Component {
         containsTies: true
       });
     }
+
+    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
+      this.setState({
+        coachNameExists: true
+      });
+    }
+    if (this.state.coach_name === '') {
+      this.setState({
+        coachNameExists: false
+      });
+    }
+    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
+      this.setState({
+        coachEmailExists: true
+      });
+    }
+    if (this.state.coach_email === '') {
+      this.setState({
+        coachEmailExists: false
+      });
+    }
+    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
+      this.setState({
+        coachPhoneExists: true
+      });
+    }
+    if (this.state.coach_phone === '') {
+      this.setState({
+        coachPhoneExists: false
+      });
+    }
   };
 
   getTeamSchedule() {
@@ -317,6 +348,22 @@ class TeamCard extends React.Component {
         seasonComplete: true
       });
     }
+
+    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
+      this.setState({
+        coachNameExists: true
+      });
+    }
+    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
+      this.setState({
+        coachEmailExists: true
+      });
+    }
+    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
+      this.setState({
+        coachPhoneExists: true
+      });
+    }
   };
 
   handleChange = name => (event, { newValue }) => {
@@ -347,8 +394,7 @@ class TeamCard extends React.Component {
     const inputStyle = {
       color: '#333',
       fontFamily: 'Monserrat',
-      fontSize: '0.9rem',
-      lineHeight: '1.5'
+      fontSize: '0.9rem'
     };
 
     const inputStyleBack = {
@@ -362,22 +408,6 @@ class TeamCard extends React.Component {
       fontFamily: 'Monserrat',
       fontSize: '0.85rem'
     };
-
-    if (this.state.coach_name !== '' && this.state.coach_name !== null) {
-      this.setState({
-        coachNameExists: true
-      });
-    }
-    if (this.state.coach_email !== '' && this.state.coach_email !== null) {
-      this.setState({
-        coachEmailExists: true
-      });
-    }
-    if (this.state.coach_phone !== '' && this.state.coach_phone !== null) {
-      this.setState({
-        coachPhoneExists: true
-      });
-    }
 
     return (
       <div>
@@ -456,7 +486,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
-                rowsMax={2}
+                rows={2}
                 InputProps={{
                   readOnly: true,
                   style: inputStyleCoach
@@ -482,7 +512,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
-                rowsMax={3}
+                rows={3}
                 InputProps={{
                   readOnly: true,
                   style: inputStyleCoach
@@ -645,7 +675,7 @@ class TeamCard extends React.Component {
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
-                rowsMax={4}
+                rows={4}
                 InputProps={{
                   readOnly: true,
                   style: inputStyle
