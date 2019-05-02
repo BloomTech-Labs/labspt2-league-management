@@ -66,7 +66,6 @@ class SignIn extends React.Component {
 
   SubmitHandler = event => {
     event.preventDefault();
-    console.log(this.props);
     const credentials = {
       email: this.state.email,
       password: this.state.password
