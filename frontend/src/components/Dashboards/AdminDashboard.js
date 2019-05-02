@@ -113,7 +113,9 @@ class AdminDashboard extends Component {
           {teamList && <TeamCardList index={leagueIndex} />}
           {leagueSettings && <LeagueDetails league={league} />}
           {/* {editSchedule && <DnDCalendar index={leagueIndex} />} */}
-          {cancellationRequests && <AdminCancellationList index={leagueIndex} />}
+          {cancellationRequests && (
+            <AdminCancellationList index={leagueIndex} />
+          )}
         </div>
       </>
       //   )}

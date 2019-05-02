@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    marginTop: '200px',
+    marginTop: '100px',
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: '80%',
       minWidth: '200px',
@@ -40,6 +40,26 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3
+  },
+  btns: {
+    marginTop: 10
+  },
+  btnTop: {
+    width: '6%',
+    minWidth: '75px'
+    // position: 'relative',
+    // left: '88%'
+  },
+  btnTopLeft: {
+    width: '6%',
+    minWidth: '75px'
+    // position: 'relative',
+    // left: '21%'
+  },
+  btnContainer: {
+    display: 'flex',
+    justifyContent: 'space-between'
+    // paddingRight: 18
   }
 });
 
@@ -93,37 +113,66 @@ class LeagueSetupTeams extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.main}>
-        <CssBaseline />
-        <Paper className={classes.paper}>
-          <AddTeamToLeague
-            InputHandler={this.InputHandler}
-            name={this.state.name}
-            SubmitHandler={this.SubmitHandler}
-          />
-          <ShowTeams teams={this.state.teams} />
-          <div>
-            <Button
-              disabled={this.props.activeStep === 0}
-              onClick={() => {
-                this.props.back(this.state, this.props.index);
-              }}
-              className={classes.button}
-            >
-              Back
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                this.props.next(this.state, this.props.index);
-              }}
-            >
-              Next
-            </Button>
-          </div>
-        </Paper>
-      </div>
+      <>
+        <div className={classes.btnContainer}>
+          <Button
+            className={classes.btnTopLeft}
+            variant="contained"
+            disabled={this.props.activeStep === 0}
+            onClick={() => {
+              this.props.back(this.state, this.props.index);
+            }}
+            className={classes.button}
+          >
+            Back
+          </Button>
+          <Button
+            className={classes.btnTop}
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              this.props.next(this.state, this.props.index);
+            }}
+          >
+            Next
+          </Button>
+        </div>
+        <div className={classes.main}>
+          <CssBaseline />
+          <Paper className={classes.paper}>
+            <p>
+              Please enter team names. You will be able to add more details and
+              edit teams after initial setup.
+            </p>
+            <AddTeamToLeague
+              InputHandler={this.InputHandler}
+              name={this.state.name}
+              SubmitHandler={this.SubmitHandler}
+            />
+            <ShowTeams teams={this.state.teams} />
+            <div className={classes.btns}>
+              <Button
+                disabled={this.props.activeStep === 0}
+                onClick={() => {
+                  this.props.back(this.state, this.props.index);
+                }}
+                className={classes.button}
+              >
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  this.props.next(this.state, this.props.index);
+                }}
+              >
+                Next
+              </Button>
+            </div>
+          </Paper>
+        </div>
+      </>
     );
   }
 }
