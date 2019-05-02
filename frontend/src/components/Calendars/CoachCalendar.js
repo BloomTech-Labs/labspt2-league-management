@@ -1,78 +1,72 @@
 import React, { Component } from 'react';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
+import { AppContext } from '../Context/AppContext';
 // import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import '../../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../../App.css';
+import './calendar.css';
 // import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 
 const localizer = Calendar.momentLocalizer(moment);
 
-// const events = [
-//   {
-//     id: '1',
-//     start: 'mar 4 2019 10: 00: 00',
-//     end: 'mar 4 2019 12: 00: 00',
-//     title: 'Team 1 vs Team 2'
-//   },
-//   {
-//     id: '2',
-//     start: 'mar 5 2019 12: 00: 00',
-//     end: 'mar 5 2019 14: 00: 00',
-//     title: 'Team 3 vs Team 4'
-//   },
-//   {
-//     id: '3',
-//     start: 'mar 6 2019 10: 00: 00',
-//     end: 'mar 6 2019 12: 00: 00',
-//     title: 'Team 5 vs Team 6'
-//   }
-// ];
-
 class CoachCalendar extends Component {
   state = {
-    // events: [],
-    isLoading: true
+    isLoading: true,
+    games: []
   };
 
-  //   componentDidMount() {
-  //     console.log(events);
-  //     const displayEvents = events.map(event => {
-  //       event.start = new Date(event.start);
-  //       event.end = new Date(event.end);
-  //       return event;
-  //     });
-  //     setTimeout(() => {
-  //       this.setState({ events: displayEvents, isLoading: false });
-  //     }, 500);
-  //   }
   componentDidMount() {
-    this.retrieveGames();
+    this.showGames();
   }
 
-  retrieveGames = async () => {
-    // GRAB EVENTS FROM DATABASE TO SET GLOBAL STATE
-    await this.props.context.getEvents();
+  showGames = async () => {
+    const lid = this.context.state.teams[this.props.index].league_id;
+    console.log('Props: ', this.props);
+    if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
+      const games = this.context.state.schedule_by_league.find(
+        x => x.league_id === lid
+      ).games;
+      await this.setState({
+        games: games.rows || games
+      });
+    }
 
-    // GRAB EVENTS FROM GLOBAL STATE TO SET LOCAL STATE
-    await this.showGames();
-  };
-
-  showGames = () => {
-    const { publicEvents } = this.props.context.state;
-
-    const displayEvents = publicEvents.map(event => {
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
+    const displayEvents = await this.state.games.map(event => {
+      console.log(this.state.games);
+      console.log(event);
+      console.log(
+        'Public Calendar. Mapping through events - Start: ',
+        event.start_time
+      );
+      event.start = new Date(event.start_time);
+      console.log(
+        'Public Calendar. Mapping through events - End: ',
+        event.end_time
+      );
+      event.end = new Date(event.end_time);
+      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
-    setTimeout(() => {
-      this.setState({ publicEvents: displayEvents, isLoading: false });
-    }, 500);
+    await this.setState({ publicEvents: displayEvents, isLoading: false });
+    console.log(displayEvents);
+    // const { publicEvents } = this.props.context.state;
+
+    // const displayEvents = publicEvents.map(event => {
+    //   event.start = new Date(event.start);
+    //   event.end = new Date(event.end);
+    //   return event;
+    // });
+    // setTimeout(() => {
+    //   this.setState({ publicEvents: displayEvents, isLoading: false });
+    // }, 500);
   };
 
   customEventPropGetter = event => {
-    if (event.id === '2') {
+    if (
+      event.home_team_id === this.props.teamId ||
+      event.away_team_id === this.props.teamId
+    ) {
       console.log(event);
       return {
         style: {
@@ -89,14 +83,12 @@ class CoachCalendar extends Component {
     }
     return {
       style: {
-        //   backgroundColor: '#ffc851',
-        //   color: '#333',
-        //   border: '1px solid #333',
+        color: '#fff',
         textAlign: 'center',
         boxShadow: '1px 1px 5px black',
+        backgroundColor: '#ef6c00ed',
         margin: '0 5px',
-        paddingTop: '10px',
-        lineHeight: '28px'
+        fontFamily: 'Montserrat'
       }
     };
   };
@@ -134,11 +126,18 @@ class CoachCalendar extends Component {
           defaultView="week"
           events={this.state.publicEvents}
           eventPropGetter={this.customEventPropGetter}
-          style={{ height: '80vh', padding: '10px' }}
+          style={{
+            height: '83vh',
+            padding: '10px .5%',
+            fontFamily: 'Montserrat',
+            backgroundColor: 'white'
+          }}
         />
       </div>
     );
   }
 }
+
+CoachCalendar.contextType = AppContext;
 
 export default CoachCalendar;

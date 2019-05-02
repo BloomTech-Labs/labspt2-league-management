@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DashboardNavbar from './DashboardNavbar';
 import CoachCalendar from '../Calendars/CoachCalendar';
+import PublicCalendar from '../Calendars/PublicCalendar';
 import CoachCancellationList from '../Cancellations/CoachCancellationList';
 import { AppContext } from '../Context/AppContext';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,7 +33,8 @@ class CoachDashboard extends Component {
     coach: true,
     calendar: true,
     cancellations: false,
-    teamIndex: this.props.location.state.teamIndex
+    teamIndex: this.props.location.state.teamIndex,
+    teamId: this.props.location.state.teamId
   };
 
   displayCoachContent = e => {
@@ -45,7 +47,7 @@ class CoachDashboard extends Component {
 
   render() {
     const { classes } = this.props;
-    const { calendar, cancellations, teamIndex } = this.state;
+    const { calendar, cancellations, teamIndex, teamId } = this.state;
     console.log(this.state);
     console.log(this.props.location.state);
 
@@ -59,7 +61,7 @@ class CoachDashboard extends Component {
           // context={context}
         />
         <div className={classes.content}>
-          {calendar && <CoachCalendar context={this.context} />}
+          {calendar && <CoachCalendar index={teamIndex} teamId={teamId} />}
           {cancellations && <CoachCancellationList index={teamIndex} />}
         </div>
       </>
