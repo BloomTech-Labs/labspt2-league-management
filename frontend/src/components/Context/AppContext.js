@@ -36,7 +36,6 @@ export default class AppProvider extends Component {
             if (token) {
               const decoded = jwt_decode(token);
               // const username = decoded.user.username;
-              // console.log('decoded jwt: ', decoded);
               this.setState({ loggedIn: true });
             }
           },
@@ -174,12 +173,10 @@ export default class AppProvider extends Component {
             // });
           },
           updateEvents: () => {
-            // console.log('made it to context update function');
 
             const newEventsArr = JSON.parse(JSON.stringify(events));
             this.setState({ publicEvents: newEventsArr });
 
-            // console.log('global events:', this.state.events);
             // do a put request to update the events on the DB
             // const updateDB = await axios.put()
           },
@@ -348,10 +345,6 @@ export default class AppProvider extends Component {
                 authorization: token
               }
             };
-            console.log(
-              'Games being passed to the backend to be entered into the database: ',
-              games
-            );
             axios
               .post(endpoint, games, options)
               .then(res => {
@@ -360,8 +353,6 @@ export default class AppProvider extends Component {
                 } else {
                   games = res.data;
                 }
-                console.log(res.data);
-                console.log(games);
                 // this is just to remove the specific schedule from local storage if it exists
                 if (
                   this.state.schedule_by_league.find(x => x.league_id === lid)
@@ -416,16 +407,13 @@ export default class AppProvider extends Component {
                   foundIndex,
                   1
                 )[0];
-                console.log(league.games);
                 let foundGameIndex = null;
 
                 if (league.games.rows) {
-                  console.log('inside league.games.rows check');
                   foundGameIndex = league.games.rows.findIndex(
                     x => x.id === gid
                   );
                 } else {
-                  console.log('inside league.games check');
                   foundGameIndex = league.games.findIndex(x => x.id === gid);
                 }
                 // league.games.findIndex(x => x.id === gid)
@@ -530,19 +518,16 @@ export default class AppProvider extends Component {
           updateCancellationRequest: (cancelRequest, bCancel, lid, cb) => {
             const token = localStorage.getItem('jwt') || this.signOut();
             const cid = cancelRequest.id;
-            console.log('cid', cid);
             const request = {
               isCancelled: bCancel,
               cancellation: cancelRequest
             };
-            console.log('request', request);
             const endpoint = `/leagues/${lid}/cancellations/${cid}`;
             const options = {
               headers: {
                 authorization: token
               }
             };
-            console.log('endpoint', endpoint);
             axios
               .put(endpoint, request, options)
               .then(res => {
@@ -558,12 +543,10 @@ export default class AppProvider extends Component {
                 const foundIndex = this.state.cancellations_by_league.findIndex(
                   x => x.league_id === lid
                 );
-                console.log('foundIndex', foundIndex);
                 const league = this.state.cancellations_by_league.splice(
                   foundIndex,
                   1
                 )[0];
-                console.log('league', league);
 
                 // const cancellationIndex = cancellations_by_league[
                 //   foundIndex
@@ -583,12 +566,10 @@ export default class AppProvider extends Component {
                   );
                 }
 
-                console.log('foundCancellationIndex', foundCancellationIndex);
 
                 cancelRequest.acknowledged = true;
                 cancelRequest.cancelled = bCancel;
                 cancelRequest.pending_cancelled = !bCancel;
-                console.log('cancelRequest', cancelRequest);
 
                 if (league.cancellations.rows) {
                   league.cancellations.rows[
@@ -598,7 +579,6 @@ export default class AppProvider extends Component {
                   league.cancellations[foundCancellationIndex] = cancelRequest;
                 }
 
-                console.log('league.cancellations', league.cancellations);
 
                 const joined = this.state.cancellations_by_league.concat({
                   league_id: lid,
@@ -606,18 +586,15 @@ export default class AppProvider extends Component {
                     league.cancellations.rows || league.cancellations
                 });
 
-                console.log('joined', joined);
 
                 localStorage.setItem(
                   'cancellations_by_league',
                   JSON.stringify(joined)
                 );
 
-                console.log('localStorage updated');
 
                 this.setState({ cancellations_by_league: joined });
 
-                console.log('context state updated');
 
                 cb();
               })
