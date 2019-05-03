@@ -35,32 +35,29 @@ Javascript library used to make HTTP requests connecting frontend and backend
 <br /><br />
 **Material UI**
 <br /><br />
-React components 
+React components that use Google's Material Design
 <br /><br />
 **React / ReactDOM**
 <br /><br />
-
+Fast, efficient, and scalable updating and rendering of the app
 <br /><br />
 **React Autosuggest**
 <br /><br />
-
+Autosuggest component built in React 
 <br /><br />
 **React Big Calendar**
 <br /><br />
-
+Calendar component built in React
 <br /><br />
 **React Dnd**
 <br /><br />
-
+Addon to React Big Calendar allowing drag and drop functionality
 <br /><br />
 **React Router**
 <br /><br />
-
-<br /><br />
-**React Stripe Checkout**
+Standard routing library for React
 <br /><br />
 
-<br /><br />
 ---
 
 ### Third Party APIs
