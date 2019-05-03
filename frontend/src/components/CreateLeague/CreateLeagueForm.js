@@ -18,8 +18,14 @@ const styles = {
   },
   button: {
     width: '100%',
-    border: '1px solid #eee',
-    backgroundColor: 'skyblue'
+    // border: '1px solid #eee',
+    backgroundColor: '#1565c0',
+    marginBottom: 8,
+    color: 'white',
+    '&:hover': {
+      color: '#333',
+      boxShadow: '1px 1px 2px #1565c0'
+    }
   }
 };
 
