@@ -154,7 +154,6 @@ class CreateLeague extends Component {
   };
 
   setStartDate = date => {
-    console.log(date);
     this.setState({ start_day: date });
   };
 
@@ -454,11 +453,6 @@ class CreateLeague extends Component {
         currentTimeSlot = 0;
       }
     }
-
-    // console.log(this.state.start_day.getDay(), this.state.leagueEndDate);
-    // console.log(allGameMatchUps);
-    // console.log(gameTimeSlotsPerWeek);
-    console.log(completedSchedule);
   };
 
   render() {

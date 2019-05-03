@@ -97,7 +97,6 @@ class HomeDrawer extends Component {
           <List component="div" disablePadding>
             {teams.map((team, index) => {
               const id = team.id;
-              console.log('Team ID: ', id);
               return (
                 <>
                   <Link

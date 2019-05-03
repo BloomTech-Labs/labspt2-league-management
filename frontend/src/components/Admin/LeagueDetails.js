@@ -101,7 +101,6 @@ class LeagueDetails extends React.Component {
       sunday_start_time,
       sunday_end_time
     } = this.props.league;
-    // console.log(this.context);
     const labelStyle = {
       color: 'rgb(20,20,20)',
       textAlign: 'center',
