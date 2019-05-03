@@ -56,7 +56,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#fafafa',
+    backgroundColor: '#fff',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       paddingTop: 20
