@@ -93,7 +93,6 @@ class LeagueSetupSettings extends Component {
 
   inputHandler = event => {
     event.preventDefault();
-    console.log(event);
     this.setState({ [event.target.name]: event.target.value });
   };
 
