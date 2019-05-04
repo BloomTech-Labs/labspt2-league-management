@@ -46,8 +46,7 @@ router.put('/', (req, res) => {
 router.post('/password', (req, res) => {
   const uid = req.user.id;
   const pwUpdate = req.body;
-
-  console.log(pwUpdate);
+  
   const change = { password: bcrypt.hashSync(pwUpdate.newPassword, 4) };
 
   userModel

@@ -139,9 +139,7 @@ class UserSettings extends React.Component {
   };
 
   handleEntered = () => {
-    console.log(this.oldPasswordRef);
-    console.log(this.newPasswordRef);
-    console.log(this.confirmPasswordRef);
+    
   };
 
   handleClose = () => {
@@ -247,10 +245,6 @@ class UserSettings extends React.Component {
             }, 3000);
           })
           .catch(err => {
-            console.log(
-              'Error from submit handler in Change Password',
-              err.data
-            );
             this.setState({
               dialogMessage: 'Old password is invalid'
             });
@@ -289,15 +283,11 @@ class UserSettings extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.dialogFocus);
     if (this.state.dialogFocus === 1) {
-      console.log('check a');
       // document.getElementById('oldPassword').focus();
     } else if (this.state.dialogFocus === 2) {
-      console.log('check b');
       // document.getElementById('newPassword').focus();
     } else if (this.state.dialogFocus === 3) {
-      console.log('check c');
       // document.getElementById('confirmPassword').focus();
     }
   }
