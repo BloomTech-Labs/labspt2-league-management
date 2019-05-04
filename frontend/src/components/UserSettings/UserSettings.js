@@ -8,6 +8,11 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
@@ -56,6 +61,15 @@ const styles = theme => ({
     margin: '0 1% 15px 1%',
     minWidth: 175,
     border: '1px solid gray'
+  },
+  message: {
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '20px',
+    color: 'green'
+  },
+  dialogMessage: {
+    color: 'red'
   }
 });
 
@@ -95,18 +109,57 @@ TextMaskCustom.propTypes = {
 };
 
 class UserSettings extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.oldPasswordRef = React.createRef();
+    this.newPasswordRef = React.createRef();
+    this.confirmPasswordRef = React.createRef();
+  }
+
   state = {
     username: '',
     email: '',
     first_name: '',
     last_name: '',
     phone: '',
-    password: '',
-    allowUpdate: false
+    allowUpdate: false,
+    message: '',
+    open: false,
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+    dialogMessage: '',
+    dialogFocus: 1,
+    dialogError: 0
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleEntered = () => {
+    
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false,
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+      dialogMessage: '',
+      dialogFocus: 1,
+      dialogError: 0
+    });
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+    this.setState({ 
+      [name]: event.target.value, 
+      dialogError: 0,
+      dialogMessage: ''
+    });
   };
 
   handleButtonClick = () => {
@@ -142,6 +195,70 @@ class UserSettings extends React.Component {
       });
   };
 
+  handleSubmitDialog = e => {
+    e.preventDefault();
+    const token = localStorage.getItem('jwt');
+    const options = {
+      headers: {
+        authorization: token
+      }
+    };
+
+    const endpoint = '/settings/password';
+
+    const { oldPassword, newPassword, confirmPassword } = this.state;
+    const body = { oldPassword, newPassword, confirmPassword };
+
+    if (!oldPassword) {
+      this.setState({
+        dialogMessage: 'Old password cannot be empty',
+        dialogFocus: 1,
+        dialogError: 1
+      });
+    } else if (!newPassword) {
+      this.setState({
+        dialogMessage: 'New password cannot be empty',
+        dialogFocus: 2,
+        dialogError: 2
+      });
+    } else if (!confirmPassword) {
+      this.setState({
+        dialogMessage: 'Confirm password cannot be empty',
+        dialogFocus: 3,
+        dialogError: 3
+      });
+    } else {
+      if (newPassword === confirmPassword) {
+        axios
+          .post(endpoint, body, options)
+          .then(res => {
+            this.setState({
+              message: res.data.message
+            });
+            this.handleClose();
+
+            const self = this;
+            setTimeout(() => {
+              self.setState({
+                message: ''
+              })
+            }, 3000);
+          })
+          .catch(err => {
+            this.setState({
+              dialogMessage: 'Old password is invalid'
+            });
+          });
+      } else {
+        this.setState({
+          dialogMessage: 'New password and confirm password do not match',
+          dialogFocus: 2,
+          dialogError: 4
+        });
+      }
+    }
+  };
+
   getData() {
     const token = localStorage.getItem('jwt') || this.context.signOut();
     const options = {
@@ -165,9 +282,19 @@ class UserSettings extends React.Component {
     this.getData();
   }
 
+  componentDidUpdate() {
+    if (this.state.dialogFocus === 1) {
+      // document.getElementById('oldPassword').focus();
+    } else if (this.state.dialogFocus === 2) {
+      // document.getElementById('newPassword').focus();
+    } else if (this.state.dialogFocus === 3) {
+      // document.getElementById('confirmPassword').focus();
+    }
+  }
+
   render() {
     const { classes } = this.props;
-    const { phone } = this.state;
+    const { phone, dialogFocus } = this.state;
 
     return (
       <AppContext.Consumer>
@@ -189,6 +316,7 @@ class UserSettings extends React.Component {
               >
                 User Settings
               </h1>
+              <p className={classes.message}>{this.state.message}</p>
               <TextField
                 required
                 id="standard-name"
@@ -216,18 +344,6 @@ class UserSettings extends React.Component {
                   readOnly: !this.state.allowUpdate
                 }}
               />
-
-              {/* <TextField
-          id="standard-email"
-          label="Email"
-          className={classes.textField}
-          value={this.state.password}
-          onChange={this.handleChange('password')}
-          margin="normal"
-          InputProps={{
-            readOnly: this.state.allowUpdate
-          }}
-        /> */}
 
               <TextField
                 required
@@ -269,6 +385,7 @@ class UserSettings extends React.Component {
                   readOnly={!this.state.allowUpdate}
                 />
               </FormControl>
+
               <div className={classes.buttons}>
                 <Button
                   className={classes.button}
@@ -283,7 +400,74 @@ class UserSettings extends React.Component {
                   Submit Updates
                 </Button>
               </div>
+              <div className={classes.buttons}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={this.handleClickOpen}
+                >
+                  Change Password
+                </Button>
+              </div>
             </form>
+            <Dialog
+              open={this.state.open}
+              onEntered={this.handleEntered}
+              onClose={this.handleClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
+              <DialogContent>
+                <DialogContentText className={classes.dialogMessage}>
+                  {this.state.dialogMessage}
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  error={this.state.dialogError === 1 ? true : false }
+                  margin="dense"
+                  id="oldPassword"
+                  label="Old Password"
+                  type="password"
+                  value={this.state.oldPassword}
+                  onChange={this.handleChange('oldPassword')}
+                  inputProps={{id: "oldPassword"}}
+                  ref={this.oldPasswordRef}
+                  fullWidth
+                />
+                <TextField
+                  error={this.state.dialogError === 2 || this.state.dialogError === 4 ? true : false }
+                  margin="dense"
+                  id="newPassword"
+                  label="New Password"
+                  type="password"
+                  value={this.state.newPassword}
+                  onChange={this.handleChange('newPassword')}
+                  inputProps={{id: "newPassword"}}
+                  ref={this.newPasswordRef}
+                  fullWidth
+                />
+                <TextField
+                  error={this.state.dialogError === 3 || this.state.dialogError === 4 ? true : false }
+                  margin="dense"
+                  id="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  value={this.state.confirmPassword}
+                  onChange={this.handleChange('confirmPassword')}
+                  inputProps={{id: "confirmPassword"}}
+                  ref={this.confirmPasswordRef}
+                  fullWidth
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handleClose} color="primary">
+                  Cancel
+                </Button>
+                <Button onClick={this.handleSubmitDialog} color="primary">
+                  Change
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
         )}
       </AppContext.Consumer>
