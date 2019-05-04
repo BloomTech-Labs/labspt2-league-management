@@ -8,7 +8,6 @@ import { AppContext } from '../Context/AppContext';
 class AdminCancellationItem extends React.Component {
   clickAcceptHandler = e => {
     e.preventDefault();
-    console.log('clickAcceptHandler()');
     this.context.updateCancellationRequest(
       this.props.cancellation,
       true,
@@ -21,7 +20,6 @@ class AdminCancellationItem extends React.Component {
 
   clickDenyHandler = e => {
     e.preventDefault();
-    console.log('clickDenyHandler()');
     this.context.updateCancellationRequest(
       this.props.cancellation,
       false,

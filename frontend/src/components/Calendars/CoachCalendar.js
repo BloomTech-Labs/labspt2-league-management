@@ -22,7 +22,6 @@ class CoachCalendar extends Component {
 
   showGames = async () => {
     const lid = this.context.state.teams[this.props.index].league_id;
-    console.log('Props: ', this.props);
     if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
       const games = this.context.state.schedule_by_league.find(
         x => x.league_id === lid
@@ -33,23 +32,12 @@ class CoachCalendar extends Component {
     }
 
     const displayEvents = await this.state.games.map(event => {
-      console.log(this.state.games);
-      console.log(event);
-      console.log(
-        'Public Calendar. Mapping through events - Start: ',
-        event.start_time
-      );
       event.start = new Date(event.start_time);
-      console.log(
-        'Public Calendar. Mapping through events - End: ',
-        event.end_time
-      );
       event.end = new Date(event.end_time);
       event.title = `${event.away_team_name} vs ${event.home_team_name}`;
       return event;
     });
     await this.setState({ publicEvents: displayEvents, isLoading: false });
-    console.log(displayEvents);
     // const { publicEvents } = this.props.context.state;
 
     // const displayEvents = publicEvents.map(event => {
@@ -67,7 +55,6 @@ class CoachCalendar extends Component {
       event.home_team_id === this.props.teamId ||
       event.away_team_id === this.props.teamId
     ) {
-      console.log(event);
       return {
         style: {
           backgroundColor: 'yellow',

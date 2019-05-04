@@ -26,9 +26,7 @@ class DragAndDropCalendar extends Component {
   }
 
   showGames = async () => {
-    console.log('this.context.state ', this.context.state);
     const lid = this.context.state.leagues[this.props.index].id;
-    console.log('league id: ', lid);
 
     if (this.context.state.schedule_by_league.find(x => x.league_id === lid)) {
       const games = this.context.state.schedule_by_league.find(
@@ -57,7 +55,6 @@ class DragAndDropCalendar extends Component {
   onEventChange = async ({ event, start, end, allDay }) => {
     const lid = this.context.state.leagues[this.props.index].id;
     const index = this.state.games.indexOf(event);
-    // console.log(start);
     await this.setState(state => {
       state.games[index].start = start;
       state.games[index].end = end;
