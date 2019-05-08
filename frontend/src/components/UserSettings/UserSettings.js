@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
+import { withSnackbar } from 'notistack';
 import Navbar from '../Dashboards/Navbar';
 import { AppContext } from '../Context/AppContext';
 
@@ -66,7 +67,7 @@ const styles = theme => ({
     width: '100%',
     textAlign: 'center',
     marginBottom: '20px',
-    color: 'green'
+    color: 'red'
   },
   dialogMessage: {
     color: 'red'
@@ -125,6 +126,8 @@ class UserSettings extends React.Component {
     phone: '',
     allowUpdate: false,
     message: '',
+    focus: 1,
+    error: 0,
     open: false,
     oldPassword: '',
     newPassword: '',
@@ -232,17 +235,10 @@ class UserSettings extends React.Component {
         axios
           .post(endpoint, body, options)
           .then(res => {
-            this.setState({
-              message: res.data.message
-            });
             this.handleClose();
-
-            const self = this;
-            setTimeout(() => {
-              self.setState({
-                message: ''
-              })
-            }, 3000);
+            this.props.enqueueSnackbar(res.data.message, {
+              variant: 'success'
+            });
           })
           .catch(err => {
             this.setState({
@@ -275,7 +271,11 @@ class UserSettings extends React.Component {
         const { username, email, first_name, last_name, phone } = res.data;
         this.setState({ username, email, first_name, last_name, phone });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.props.enqueueSnackbar("Unable to fetch user settings", {
+          variant: 'error'
+        });
+      });
   }
 
   componentDidMount() {
@@ -481,4 +481,4 @@ UserSettings.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(UserSettings);
+export default withStyles(styles)(withSnackbar(UserSettings));
