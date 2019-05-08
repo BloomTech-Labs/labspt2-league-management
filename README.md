@@ -112,25 +112,33 @@ All other features required the user to be signed in.
 5. Games that are pending request have the option to `Accept` or `Deny` the request
 6. The request goes in the appropriate column after deciding on the request
 
-# As a Coach of a team
-1. You can click on `Your Teams` in the left-hand corner
-3. All teams that you are a coach of are displayed
-4. Clicking on the team you want to go to will load the team and bring you to the team calendar
+# As a Coach of a Team
+1. You can click on `Your Teams` in the left-hand bar
+2. Then choose any team that you coach
+3. After you choose a team, the coach dashboard will render with the team calendar and the coach cancellations
 
 ## Coach Calendar
 
 1. In the left-hand bar click `Calendar`
+2. All of your team's games have a yellow background color
+3. The rest of the league's games have an orange background color
 
 ## Coach Cancellation Requests
 
 1. In the left-hand bar click `Cancellations`
-2. This will render each game 
+2. This will render the ability to ask for a cancellation for any game on the schedule
+3. Once requesting a cancellation request, it will be placed in the pending cancellation requests column
+4. Once the league administrator approves or denies a request, it is placed in the proper column
 
 # User Settings
 
 1. Click the person icon in the upper right-hand corner next 
-2. Reset your password
-3. Click `Save` -->
+2. Click `User Settings`
+3. Once the page renders, the textfields are read-only until the user hits the `UPDATE INFORMATION` button
+4. Then the textfields can be edited
+5. Once everything has been filed out to the user's liking, hit `SUBMIT UPDATES`
+6. If the user would like to change their password then they can hit the `CHANGE PASSWORD` button
+7. Then the user will be walked throught the process of changing their password
 
 # Contributing
 
