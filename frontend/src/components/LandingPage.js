@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import baseball from '../Images/7261.baseball-and-bat-500x300.jpg';
 import soccer from '../Images/soccer-ball-ss-img.jpg';
@@ -10,6 +10,9 @@ import sports from '../Images/sports-banner.jpeg';
 import { AppContext } from './Context/AppContext';
 import './LandingPage.css';
 import Navbar from './Dashboards/Navbar';
+import Button from '@material-ui/core/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PhotoGallery from './Gallery/PhotoGallery';
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -36,57 +39,78 @@ class LandingPage extends Component {
             <section className="content">
               <header
                 className="header"
-                style={{ backgroundImage: `url(${sports})` }}
+                // style={{ backgroundImage: `url(${sports})` }}
               >
                 <div className="header-content">
                   <span>
-                    <h1>Average Joe League Management</h1>
+                    <h1>Welcome to League Manager</h1>
                   </span>
                   <p>
-                    Do you want a fast easy way to organize your sports league?
-                    Look no further we have the solution you have been looking
+                    Do you want a fast, easy way to organize your sports league?
+                    Look no further! We have the solution you have been looking
                     for!
                   </p>
+                  <Link to="/signup">
+                    <div className="ctaBtn">Sign Up Now!</div>
+                  </Link>
                 </div>
               </header>
               <section className="middle-content">
-                {/* <div className="carousel">
-          <div className="left-button"></div>
-          <img className="carousel-img" src={baseball} data-img="1"/>
-          <img className="carousel-img" src={soccer} data-img="2"/>
-          <img className="carousel-img" src={football} data-img="3"/>  
-          <div className="right-button"></div>
-        </div>
-        <span className="quote-area"></span>
-        <div className="story-quote">
-          <p className="quote" data-img="1">Take me out to the ball game...</p>
-          <p className="quote" data-img="2">GOOOAAAALLLLL!!!!</p>
-          <p className="quote" data-img="3">TOUCHDOWN!!!</p>
-        </div>        */}
-                <Carousel showArrows={true} infiniteLoop autoPlay>
-                  <div>
-                    <img src={baseball} alt="Baseball and Bat" />
-                    <p className="legend">TAKE ME OUT TO THE BALL GAME....</p>
+                <div className="features">
+                  <div className="feature">
+                    <div className="number">1.</div>
+                    <div>Create an account</div>
                   </div>
-                  <div>
-                    <img src={soccer} alt="Soccer Ball" />
-                    <p className="legend">GOOOAAAALLLLL!!!!!</p>
+                  <div className="feature">
+                    <div className="number">2.</div>
+                    <div>Admin dashboard for leagues you create </div>
                   </div>
-                  <div>
-                    <img src={football} alt="Footbal on field" />
-                    <p className="legend">TOUCHDOWN!!!!</p>
+                  <div className="feature">
+                    <div className="number">3.</div>
+                    <div>Coaching dashboard for teams you coach </div>
                   </div>
-                </Carousel>
+                </div>
               </section>
             </section>
+            <section className="screenshots">
+              <div className="screenshot" />
+              <div className="screenshot" />
+            </section>
+            <PhotoGallery />
             <footer className="footer">
-              <h4>Contact</h4>
-              <div>
-                <address>
-                  <a href="mailto:lmlambdalabs@gmail.com">lmlambdalabs.com</a>
-                </address>
-                <p>1-800-888-4141</p>
+              <div className="footer-content">
+                <div className="social-media">
+                  {/* <p>Social Media</p> */}
+                  <FontAwesomeIcon
+                    className="icon"
+                    icon={['fab', 'facebook-f']}
+                    size="2x"
+                  />
+                  <FontAwesomeIcon
+                    className="icon"
+                    icon={['fab', 'twitter']}
+                    size="2x"
+                  />
+                  <FontAwesomeIcon
+                    className="icon"
+                    icon={['fab', 'instagram']}
+                    size="2x"
+                  />
+                  <FontAwesomeIcon
+                    className="icon"
+                    icon={['fab', 'snapchat-ghost']}
+                    size="2x"
+                  />
+                </div>
+                <div className="contact">
+                  <div>Contact Us</div>
+                  <a href="mailto:lmlambdalabs@gmail.com">
+                    <p>lmlambdalabs.com</p>
+                  </a>
+                  <p>1-800-888-4141</p>
+                </div>
               </div>
+              <p className="copyright">&copy; 2019 - League Manager Team</p>
             </footer>
           </div>
         </>
