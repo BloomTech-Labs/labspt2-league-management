@@ -13,8 +13,18 @@ const styles = theme => ({
     overflow: 'hidden'
   },
   gridList: {
+    width: '95%',
+    height: 900,
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  },
+  gridListSm: {
     width: '98%',
-    height: 900
+    height: 1020,
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
   }
 });
 
@@ -23,7 +33,14 @@ function PhotoGallery(props) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={445} className={classes.gridList} cols={7}>
+      <GridList cellHeight={445} className={classes.gridList} cols={6}>
+        {tileData.map(tile => (
+          <GridListTile key={tile.img} cols={tile.cols || 1}>
+            <img src={tile.img} alt={tile.title} />
+          </GridListTile>
+        ))}
+      </GridList>
+      <GridList cellHeight={250} className={classes.gridListSm} cols={3}>
         {tileData.map(tile => (
           <GridListTile key={tile.img} cols={tile.cols || 1}>
             <img src={tile.img} alt={tile.title} />
