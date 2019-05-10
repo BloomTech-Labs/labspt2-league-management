@@ -12,10 +12,10 @@ const styles = theme => ({
     flexWrap: 'wrap',
     paddingTop: 30,
     // width: '98%',
-    margin: '78px auto 10px auto',
+    margin: '78px auto 0px auto',
     // backgroundColor: '#fff',
-    backgroundColor: '#1565c0',
-    minHeight: 'calc(100vh - 93px)'
+    backgroundColor: '#1565c0'
+    // minHeight: 'calc(100vh - 153px)'
   },
   boxContainer: {
     display: 'flex',
@@ -91,8 +91,8 @@ const styles = theme => ({
     // backgroundColor: '#1565c0',
     backgroundColor: 'white',
     marginTop: 30,
-    padding: '20px 0 30px 0',
-    flexGrow: 1
+    padding: '20px 0 30px 0'
+    // flexGrow: 1
   },
   daysTitle: {
     fontSize: '2.5rem',
