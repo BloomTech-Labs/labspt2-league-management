@@ -186,6 +186,8 @@ class UserSettings extends React.Component {
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
+      error: 0,
+      message: '',
       dialogError: 0,
       dialogMessage: ''
     });
@@ -209,22 +211,50 @@ class UserSettings extends React.Component {
     const { username, email, first_name, last_name, phone } = this.state;
     const body = { username, email, first_name, last_name, phone };
 
-    axios
-      .put(endpoint, body, options)
-      .then(res => {
-        // put the token in local storage and sign in again
-        localStorage.setItem('jwt', res.data.token);
-        // this.props.signin();
-
-        this.setState({ allowUpdate: false });
-        this.getData();
-        this.props.enqueueSnackbar('Information Updated', {
-          variant: 'success'
-        });
-      })
-      .catch(err => {
-        console.log('err from Submit handler in User Settings', err);
+    if (!username) {
+      this.setState({
+        message: 'Username cannot be empty',
+        focus: 1,
+        error: 1
       });
+    } else if (!email) {
+      this.setState({
+        message: 'Email cannot be empty',
+        focus: 2,
+        error: 2
+      });
+    } else if (!first_name) {
+      this.setState({
+        message: 'First Name cannot be empty',
+        focus: 3,
+        error: 3
+      });
+    } else if (!last_name) {
+      this.setState({
+        message: 'Last Name cannot be empty',
+        focus: 4,
+        error: 4
+      });
+    } else {
+      axios
+        .put(endpoint, body, options)
+        .then(res => {
+          // put the token in local storage and sign in again
+          localStorage.setItem('jwt', res.data.token);
+          // this.props.signin();
+
+          this.setState({ allowUpdate: false });
+          this.getData();
+          this.props.enqueueSnackbar('Information updated', {
+            variant: 'success'
+          });
+        })
+        .catch(err => {
+          this.props.enqueueSnackbar('Unable to update information', {
+            variant: 'error'
+          });
+        });
+    }
   };
 
   handleSubmitDialog = e => {
@@ -357,6 +387,7 @@ class UserSettings extends React.Component {
               <p className={classes.message}>{this.state.message}</p>
               <TextField
                 required
+                error={this.state.error === 1 ? true : false}
                 id="standard-name"
                 label="Username"
                 className={classes.textField}
@@ -371,6 +402,7 @@ class UserSettings extends React.Component {
 
               <TextField
                 required
+                error={this.state.error === 2 ? true : false}
                 id="standard-email"
                 label="Email"
                 className={classes.textField}
@@ -385,6 +417,7 @@ class UserSettings extends React.Component {
 
               <TextField
                 required
+                error={this.state.error === 3 ? true : false}
                 id="standard-firstName"
                 label="First Name"
                 className={classes.textField}
@@ -399,6 +432,7 @@ class UserSettings extends React.Component {
 
               <TextField
                 required
+                error={this.state.error === 4 ? true : false}
                 id="standard-lastName"
                 label="Last Name"
                 className={classes.textField}
