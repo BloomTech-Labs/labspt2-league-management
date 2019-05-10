@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   content: {
     fontFamily: 'Montserrat',
-    backgroundColor: '#eee',
+    // backgroundColor: '#eee',
     height: 'auto',
     minHeight: 'calc(100vh - 63px)',
     paddingTop: 20,

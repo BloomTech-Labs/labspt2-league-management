@@ -8,8 +8,53 @@ const styles = theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
+    flexFlow: 'column',
     flexWrap: 'wrap',
-    paddingTop: 20
+    paddingTop: 30,
+    // width: '98%',
+    margin: '78px auto 10px auto',
+    // backgroundColor: '#fff',
+    backgroundColor: '#1565c0',
+    minHeight: 'calc(100vh - 93px)'
+  },
+  boxContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    width: '100%',
+    backgroundColor: '#1565c0',
+    minHeight: 280
+  },
+  box: {
+    boxSizing: 'border-box',
+    // border: '1px solid #1565c0',
+    margin: '10px',
+    textAlign: 'center',
+    width: '45%',
+    // minWidth: 400,
+    borderRadius: 9,
+    padding: '10px 0 20px 0',
+    // backgroundColor: '#1565c0',
+    backgroundColor: 'white',
+    boxShadow: '0px 15px 8px -12px #333',
+    // color: '#fff',
+    color: '#555',
+    textShadow: '1px 1px 3px #777',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    }
+  },
+  boxTitle: {
+    fontSize: '2rem',
+    margin: '0 auto',
+    width: '80%',
+    paddingBottom: 5,
+    borderBottom: '1px solid #ccc',
+    marginBottom: 25
+    // textShadow: '1px 2px 3px #111'
+  },
+  boxContent: {
+    fontSize: '1.3rem'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -38,15 +83,69 @@ const styles = theme => ({
       paddingBottom: 20
     }
   },
+  days: {
+    // border: '1px solid black',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    // backgroundColor: '#1565c0',
+    backgroundColor: 'white',
+    marginTop: 30,
+    padding: '20px 0 30px 0',
+    flexGrow: 1
+  },
+  daysTitle: {
+    fontSize: '2.5rem',
+    textAlign: 'center',
+    paddingBottom: 20,
+    // color: '#fff',
+    color: '#555',
+    textShadow: '1px 2px 3px #777'
+  },
+  week: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    paddingTop: 20
+  },
+  weekend: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    paddingTop: 15
+  },
   day: {
-    width: '20%',
-    minWidth: '15%',
-    paddingLeft: 50,
+    // border: '1px solid red',
+    borderRadius: 9,
+    minWidth: 200,
+    width: '18.5%',
+    margin: '7px .5%',
+    textAlign: 'center',
+    lineHeight: '2.4rem',
+    padding: '12px 0',
+    // backgroundColor: 'white',
+    backgroundColor: '#1565c0',
+    boxShadow: '0px 15px 8px -12px #111',
+    textShadow: '1px 2px 3px #111',
+    // color: '#444',
+    color: '#fff',
     [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      padding: 0,
-      textAlign: 'center'
+      width: '100%'
     }
+    // width: '20%',
+    // minWidth: '15%',
+    // paddingLeft: 50,
+    // [theme.breakpoints.down('sm')]: {
+    //   width: '100%',
+    //   padding: 0,
+    //   textAlign: 'center'
+    // }
+  },
+  dayTitle: {
+    fontSize: '1.6rem'
+  },
+  dayContent: {
+    fontSize: '1.2rem'
   },
   dense: {
     marginTop: 16
@@ -78,6 +177,10 @@ class LeagueDetails extends React.Component {
       [name]: event.target.value
     });
   };
+
+  componentDidMount() {
+    localStorage.setItem('leagueName', this.props.league.name);
+  }
 
   render() {
     const { classes } = this.props;
@@ -115,328 +218,418 @@ class LeagueDetails extends React.Component {
       // border: '1px solid red'
     };
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          id="outlined-read-only-input"
-          label="League Name"
-          defaultValue={name}
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-            style: inputStyle
-          }}
-          InputLabelProps={{
-            style: labelStyle
-          }}
-          variant="outlined"
-        />
+      <div className={classes.container}>
+        <div className={classes.boxContainer}>
+          <div className={classes.box}>
+            <div className={classes.boxTitle}>League Name</div>
+            <div className={classes.boxContent}>{name}</div>
+          </div>
+          <div className={classes.box}>
+            <div className={classes.boxTitle}>Start Date</div>
+            <div className={classes.boxContent}>
+              {start_day ? pullDate(start_day) : 'No date set'}
+            </div>
+          </div>
+          <div className={classes.box}>
+            <div className={classes.boxTitle}>Number of games per team</div>
+            <div className={classes.boxContent}>
+              {teams_game_count || 'Not set'}
+            </div>
+          </div>
+          <div className={classes.box}>
+            <div className={classes.boxTitle}>Default Game Length</div>
+            <div className={classes.boxContent}>
+              {game_length ? `${game_length} hours` : 'Not set'}
+            </div>
+          </div>
+        </div>
 
-        <TextField
-          id="outlined-read-only-input"
-          label="Start Date"
-          defaultValue={start_day ? pullDate(start_day) : 'No date set'}
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-            style: inputStyle
-          }}
-          InputLabelProps={{
-            style: labelStyle
-          }}
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="Number of games per team"
-          defaultValue={teams_game_count || 'Not set'}
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-            style: inputStyle
-          }}
-          InputLabelProps={{
-            style: labelStyle
-          }}
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="Game Length"
-          defaultValue={game_length ? `${game_length} hours` : 'Not set'}
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-            style: inputStyle
-          }}
-          InputLabelProps={{
-            style: labelStyle
-          }}
-          variant="outlined"
-        />
-        <div className={classes.time}>
-          <p className={classes.day}>Monday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              monday_start_time ? pullTime(monday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              monday_end_time ? pullTime(monday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
+        <div className={classes.days}>
+          <div className={classes.daysTitle}>League Hours</div>
+          <div className={classes.week}>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Monday</div>
+              <div className={classes.dayContent}>
+                {monday_start_time ? pullTime(monday_start_time) : 'Not set'} -{' '}
+                {monday_end_time ? pullTime(monday_end_time) : 'Not set'}
+              </div>
+            </div>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Tuesday</div>
+              <div className={classes.dayContent}>
+                {tuesday_start_time ? pullTime(tuesday_start_time) : 'Not set'}{' '}
+                - {tuesday_end_time ? pullTime(tuesday_end_time) : 'Not set'}
+              </div>
+            </div>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Wednesday</div>
+              <div className={classes.dayContent}>
+                {wednesday_start_time
+                  ? pullTime(wednesday_start_time)
+                  : 'Not set'}{' '}
+                -{' '}
+                {wednesday_end_time ? pullTime(wednesday_end_time) : 'Not set'}
+              </div>
+            </div>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Thursday</div>
+              <div className={classes.dayContent}>
+                {thursday_start_time
+                  ? pullTime(thursday_start_time)
+                  : 'Not set'}{' '}
+                - {thursday_end_time ? pullTime(thursday_end_time) : 'Not set'}
+              </div>
+            </div>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Friday</div>
+              <div className={classes.dayContent}>
+                {friday_start_time ? pullTime(friday_start_time) : 'Not set'} -{' '}
+                {friday_end_time ? pullTime(friday_end_time) : 'Not set'}
+              </div>
+            </div>
+          </div>
+          <div className={classes.weekend}>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Saturday</div>
+              <div className={classes.dayContent}>
+                {saturday_start_time
+                  ? pullTime(saturday_start_time)
+                  : 'Not set'}{' '}
+                - {saturday_end_time ? pullTime(saturday_end_time) : 'Not set'}
+              </div>
+            </div>
+            <div className={classes.day}>
+              <div className={classes.dayTitle}>Sunday</div>
+              <div className={classes.dayContent}>
+                {sunday_start_time ? pullTime(sunday_start_time) : 'Not set'} -{' '}
+                {sunday_end_time ? pullTime(sunday_end_time) : 'Not set'}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Tuesday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              tuesday_start_time ? pullTime(tuesday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              tuesday_end_time ? pullTime(tuesday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Wednesday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              wednesday_start_time ? pullTime(wednesday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              wednesday_end_time ? pullTime(wednesday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Thursday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              thursday_start_time ? pullTime(thursday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              thursday_end_time ? pullTime(thursday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Friday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              friday_start_time ? pullTime(friday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              friday_end_time ? pullTime(friday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Saturday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              saturday_start_time ? pullTime(saturday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              saturday_end_time ? pullTime(saturday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-        <div className={classes.time}>
-          <p className={classes.day}>Sunday</p>
-          <TextField
-            id="outlined-read-only-input"
-            label="Start"
-            defaultValue={
-              sunday_start_time ? pullTime(sunday_start_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="End"
-            defaultValue={
-              sunday_end_time ? pullTime(sunday_end_time) : 'Not set'
-            }
-            className={classes.textField}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-              style: inputStyle
-            }}
-            InputLabelProps={{
-              style: labelStyle
-            }}
-            variant="outlined"
-          />
-        </div>
-      </form>
+      </div>
+      // <form className={classes.container} noValidate autoComplete="off">
+      //   <TextField
+      //     id="outlined-read-only-input"
+      //     label="League Name"
+      //     defaultValue={name}
+      //     className={classes.textField}
+      //     margin="normal"
+      //     InputProps={{
+      //       readOnly: true,
+      //       style: inputStyle
+      //     }}
+      //     InputLabelProps={{
+      //       style: labelStyle
+      //     }}
+      //     variant="outlined"
+      //   />
+
+      //   <TextField
+      //     id="outlined-read-only-input"
+      //     label="Start Date"
+      //     defaultValue={start_day ? pullDate(start_day) : 'No date set'}
+      //     className={classes.textField}
+      //     margin="normal"
+      //     InputProps={{
+      //       readOnly: true,
+      //       style: inputStyle
+      //     }}
+      //     InputLabelProps={{
+      //       style: labelStyle
+      //     }}
+      //     variant="outlined"
+      //   />
+      //   <TextField
+      //     id="outlined-read-only-input"
+      //     label="Number of games per team"
+      //     defaultValue={teams_game_count || 'Not set'}
+      //     className={classes.textField}
+      //     margin="normal"
+      //     InputProps={{
+      //       readOnly: true,
+      //       style: inputStyle
+      //     }}
+      //     InputLabelProps={{
+      //       style: labelStyle
+      //     }}
+      //     variant="outlined"
+      //   />
+      //   <TextField
+      //     id="outlined-read-only-input"
+      //     label="Game Length"
+      //     defaultValue={game_length ? `${game_length} hours` : 'Not set'}
+      //     className={classes.textField}
+      //     margin="normal"
+      //     InputProps={{
+      //       readOnly: true,
+      //       style: inputStyle
+      //     }}
+      //     InputLabelProps={{
+      //       style: labelStyle
+      //     }}
+      //     variant="outlined"
+      //   />
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Monday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         monday_start_time ? pullTime(monday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         monday_end_time ? pullTime(monday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Tuesday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         tuesday_start_time ? pullTime(tuesday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         tuesday_end_time ? pullTime(tuesday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Wednesday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         wednesday_start_time ? pullTime(wednesday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         wednesday_end_time ? pullTime(wednesday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Thursday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         thursday_start_time ? pullTime(thursday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         thursday_end_time ? pullTime(thursday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Friday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         friday_start_time ? pullTime(friday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         friday_end_time ? pullTime(friday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Saturday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         saturday_start_time ? pullTime(saturday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         saturday_end_time ? pullTime(saturday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      //   <div className={classes.time}>
+      //     <p className={classes.day}>Sunday</p>
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="Start"
+      //       defaultValue={
+      //         sunday_start_time ? pullTime(sunday_start_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //     <TextField
+      //       id="outlined-read-only-input"
+      //       label="End"
+      //       defaultValue={
+      //         sunday_end_time ? pullTime(sunday_end_time) : 'Not set'
+      //       }
+      //       className={classes.textField}
+      //       margin="normal"
+      //       InputProps={{
+      //         readOnly: true,
+      //         style: inputStyle
+      //       }}
+      //       InputLabelProps={{
+      //         style: labelStyle
+      //       }}
+      //       variant="outlined"
+      //     />
+      //   </div>
+      // </form>
     );
   }
 }
