@@ -24,13 +24,14 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    backgroundColor: '#efefef',
+    backgroundColor: '#fff',
     width: '100%',
     // minWidth: 400,
     maxWidth: 640,
     margin: '65px auto 0 auto',
     padding: '40px 20px 100px 20px',
-    minHeight: 'calc(100vh - 65px)'
+    minHeight: 'calc(100vh - 65px)',
+    fontFamily: 'Montserrat'
   },
   formControl: {
     marginLeft: theme.spacing.unit,
@@ -61,7 +62,33 @@ const styles = theme => ({
     height: 44,
     margin: '0 1% 15px 1%',
     minWidth: 175,
-    border: '1px solid gray'
+    backgroundColor: '#333',
+    // border: '1px solid gray',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#777'
+    }
+  },
+  submitBtn: {
+    height: 44,
+    margin: '0 1% 15px 1%',
+    minWidth: 175,
+    backgroundColor: 'rgb(16,255,35)',
+    color: '#333',
+    '&:hover': {
+      backgroundColor: 'rgb(16,200,35)'
+    }
+  },
+  pwButton: {
+    height: 44,
+    margin: '0 1% 15px 1%',
+    minWidth: 175,
+    backgroundColor: '#1565c0',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#0e4c93'
+    }
+    // border: '1px solid gray'
   },
   message: {
     width: '100%',
@@ -70,7 +97,8 @@ const styles = theme => ({
     color: 'red'
   },
   dialogMessage: {
-    color: 'red'
+    color: 'red',
+    fontFamily: 'Montserrat'
   }
 });
 
@@ -141,9 +169,7 @@ class UserSettings extends React.Component {
     this.setState({ open: true });
   };
 
-  handleEntered = () => {
-    
-  };
+  handleEntered = () => {};
 
   handleClose = () => {
     this.setState({
@@ -158,8 +184,8 @@ class UserSettings extends React.Component {
   };
 
   handleChange = name => event => {
-    this.setState({ 
-      [name]: event.target.value, 
+    this.setState({
+      [name]: event.target.value,
       dialogError: 0,
       dialogMessage: ''
     });
@@ -192,6 +218,9 @@ class UserSettings extends React.Component {
 
         this.setState({ allowUpdate: false });
         this.getData();
+        this.props.enqueueSnackbar('Information Updated', {
+          variant: 'success'
+        });
       })
       .catch(err => {
         console.log('err from Submit handler in User Settings', err);
@@ -272,7 +301,7 @@ class UserSettings extends React.Component {
         this.setState({ username, email, first_name, last_name, phone });
       })
       .catch(err => {
-        this.props.enqueueSnackbar("Unable to fetch user settings", {
+        this.props.enqueueSnackbar('Unable to fetch user settings', {
           variant: 'error'
         });
       });
@@ -299,7 +328,14 @@ class UserSettings extends React.Component {
     return (
       <AppContext.Consumer>
         {context => (
-          <div style={{ backgroundColor: '#999' }}>
+          <div
+            style={{
+              // background: 'rgb(21, 101, 192)',
+              // background:
+              //   'linear-gradient(315deg, rgba(21,101,192,1) 0%, rgba(255,255,255,1) 100%)'
+              backgroundColor: '#eee'
+            }}
+          >
             <Navbar context={context} loggedIn={true} />
             <form
               className={classes.container}
@@ -311,7 +347,9 @@ class UserSettings extends React.Component {
                 style={{
                   width: '100%',
                   textAlign: 'center',
-                  margin: '0 0 60px 0'
+                  margin: '0 0 60px 0',
+                  fontWeight: '200',
+                  color: '#444'
                 }}
               >
                 User Settings
@@ -390,20 +428,23 @@ class UserSettings extends React.Component {
                 <Button
                   className={classes.button}
                   onClick={this.handleButtonClick}
+                  style={this.state.allowUpdate ? { display: 'none' } : null}
                 >
                   Update Information
                 </Button>
                 <Button
-                  className={classNames(classes.button, classes.submitBtn)}
+                  className={classes.submitBtn}
                   type="submit"
+                  style={!this.state.allowUpdate ? { display: 'none' } : null}
                 >
                   Submit Updates
                 </Button>
               </div>
-              <div className={classes.buttons}>
+              <div className={classes.buttons} style={{ marginTop: 0 }}>
                 <Button
-                  variant="outlined"
-                  color="primary"
+                  className={classes.pwButton}
+                  // variant="outlined"
+                  // color="primary"
                   onClick={this.handleClickOpen}
                 >
                   Change Password
@@ -423,38 +464,46 @@ class UserSettings extends React.Component {
                 </DialogContentText>
                 <TextField
                   autoFocus
-                  error={this.state.dialogError === 1 ? true : false }
+                  error={this.state.dialogError === 1 ? true : false}
                   margin="dense"
                   id="oldPassword"
                   label="Old Password"
                   type="password"
                   value={this.state.oldPassword}
                   onChange={this.handleChange('oldPassword')}
-                  inputProps={{id: "oldPassword"}}
+                  inputProps={{ id: 'oldPassword' }}
                   ref={this.oldPasswordRef}
                   fullWidth
                 />
                 <TextField
-                  error={this.state.dialogError === 2 || this.state.dialogError === 4 ? true : false }
+                  error={
+                    this.state.dialogError === 2 || this.state.dialogError === 4
+                      ? true
+                      : false
+                  }
                   margin="dense"
                   id="newPassword"
                   label="New Password"
                   type="password"
                   value={this.state.newPassword}
                   onChange={this.handleChange('newPassword')}
-                  inputProps={{id: "newPassword"}}
+                  inputProps={{ id: 'newPassword' }}
                   ref={this.newPasswordRef}
                   fullWidth
                 />
                 <TextField
-                  error={this.state.dialogError === 3 || this.state.dialogError === 4 ? true : false }
+                  error={
+                    this.state.dialogError === 3 || this.state.dialogError === 4
+                      ? true
+                      : false
+                  }
                   margin="dense"
                   id="confirmPassword"
                   label="Confirm Password"
                   type="password"
                   value={this.state.confirmPassword}
                   onChange={this.handleChange('confirmPassword')}
-                  inputProps={{id: "confirmPassword"}}
+                  inputProps={{ id: 'confirmPassword' }}
                   ref={this.confirmPasswordRef}
                   fullWidth
                 />
