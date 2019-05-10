@@ -72,7 +72,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: '100%',
-    // backgroundColor: '#E2ECF7',
+    backgroundColor: '#eee',
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth
     }

@@ -4,6 +4,9 @@ import './App.css';
 import { AppContext } from './components/Context/AppContext';
 import LandingPage from './components/LandingPage';
 import Search from './components/Search/Search';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import AdminDashboard from './components/Dashboards/AdminDashboard';
 import CoachDashboard from './components/Dashboards/CoachDashboard';
@@ -15,6 +18,7 @@ import Signin from './components/SignIn.js';
 import LeagueSetup from './components/Admin/LeagueSetup';
 import PublicCalendar from './components/Calendars/PublicCalendar';
 import SearchCalendar from './components/Search/SearchCalendar.js';
+library.add(fab);
 
 class App extends Component {
   render() {
@@ -37,7 +41,7 @@ class App extends Component {
         <Route path="/search" component={Search} />
         <Route path="/schedule" component={PublicCalendar} />
         <Route path="/publicSchedule" component={SearchCalendar} />
-        <Route path="/signup" component={Signup} /> 
+        <Route path="/signup" component={Signup} />
         <Route
           path="/signin"
           component={Signin}

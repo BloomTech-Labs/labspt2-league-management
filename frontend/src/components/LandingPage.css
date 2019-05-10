@@ -1,3 +1,7 @@
+* {
+  font-family: 'Montserrat';
+}
+
 .landing-page html,
 .landing-page body,
 .landing-page div,
@@ -100,8 +104,7 @@
 .landing-page section {
   display: block;
 }
-.landing-page body
-{
+.landing-page body {
   line-height: 1;
 }
 .landing-page ol,
@@ -132,8 +135,8 @@
 .landing-page html {
   font-size: 62.5%;
 }
-.landing-page html, body
-{
+.landing-page html,
+body {
   font-family: 'Lato', sans-serif;
 }
 .landing-page h1,
@@ -146,7 +149,7 @@
 .landing-page h1 {
   font-size: 2.8rem;
   font-family: 'Lato', sans-serif;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   text-align: center;
 }
 .landing-page h2 {
@@ -196,22 +199,31 @@
   align-items: center;
 }
 .landing-page .content .header {
+  /* background-image: url('https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
+  /* background-image: url('https://images.pexels.com/photos/186076/pexels-photo-186076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
+  /* background-image: url('https://images.pexels.com/photos/1349339/pexels-photo-1349339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
+  background-position: center;
   background-image: url(../Images/sports-banner.jpeg);
   background-size: cover;
-  padding: 6% 0;
+  background-repeat: no-repeat;
+  margin-top: 64px;
   width: 100%;
 }
 .landing-page .content .header .header-content {
-  margin-top: 3%;
-  background-color: rgba(3, 3, 3, 0.6);
+  text-align: center;
+  /* margin-top: 3%; */
+  background-color: rgba(43, 43, 43, 0.522);
   margin-top: 8%;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 3%;
+  padding: 10% 12%;
+  padding: 100px 12%;
   margin: 0 auto;
+  text-shadow: 1px 1px 2px black, 1px 0px 2px black, 0px 1px 2px black,
+    0 0 8px #333;
 }
 .landing-page .content .header .links {
   float: right;
@@ -224,39 +236,127 @@
 }
 .landing-page .content .header .links a {
   text-decoration: none;
-  color: red ;
+  color: red;
   font-weight: 500;
 }
 .landing-page .content .header .links a:hover {
   text-decoration: underline;
 }
 .landing-page .content .header .header-content span {
-  border-top: 3px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
-  padding: 2% 0;
+  /* border-top: 3px solid rgba(255, 255, 255, 0.9); */
+  /* border-bottom: 3px solid rgba(255, 255, 255, 0.9); */
+  /* padding: 2% 0; */
 }
 .landing-page .content .header .header-content span h1 {
-  border-top: 3px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
-  color: rgba(255, 255, 255, 0.9);
-  padding: 6% 0;
+  /* border-top: 3px solid rgba(255, 255, 255, 0.9); */
+  /* border-bottom: 3px solid rgba(255, 255, 255, 0.9); */
+  color: rgb(255, 255, 255);
+  font-weight: 200;
+  margin-bottom: 100px;
+  font-size: 4.5rem;
+  /* padding: 6% 0; */
 }
 .landing-page .content .header .header-content p {
-  color: rgba(255, 255, 255, 0.9);
-  padding-top: 3%;
+  color: rgb(255, 255, 255);
+  /* padding-top: 3%; */
   width: 90%;
 }
 .landing-page .content .middle-content {
-  margin: 0 4%;
-  margin-top: 10%;
+  /* margin: 0 4%; */
+  /* margin-top: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 95%;
-  padding-bottom: 3%;
+  width: 100%;
+  /* padding-bottom: 3%; */
   background-color: white;
 }
+
+.landing-page .ctaBtn {
+  background-color: #1565c0;
+  padding: 18px 2.5%;
+  margin-top: 80px;
+  border-radius: 4px;
+  width: 20%;
+  min-width: 210px;
+  color: white;
+  transition: 0.3s;
+  text-shadow: none;
+}
+
+.landing-page .ctaBtn:hover {
+  background-color: #1e5594;
+  text-shadow: none;
+}
+
+.landing-page .ctaBtn a {
+  color: white;
+  text-shadow: none;
+}
+
+.landing-page .features {
+  /* border: 1px solid black; */
+  margin: 150px 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.landing-page .feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-start;
+  line-height: 1.75rem;
+  font-size: 1.4rem;
+  width: 25%;
+  margin: 0 1.2%;
+  text-align: center;
+  color: #333;
+  /* border: 1px solid red; */
+  /* min-height: 100px; */
+}
+
+@media (max-width: 700px) {
+  .landing-page .features {
+    flex-direction: column;
+    margin: 30px 0;
+  }
+
+  .landing-page .feature {
+    width: 90%;
+    margin: 20px auto;
+    /* line-height: 2.75rem; */
+    /* border: 1px solid black; */
+  }
+}
+
+.landing-page .feature .number {
+  color: #1565c0;
+  margin-bottom: 14px;
+}
+
+.landing-page .screenshots {
+  height: 500px;
+  background-color: #1565c0;
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.landing-page .screenshot {
+  /* border: 1px solid red; */
+  border-radius: 7px;
+  background-color: #eee;
+  width: 35%;
+  min-width: 350px;
+  margin: 30px 2%;
+  box-shadow: 0px 15px 5px -10px #222;
+}
+
 .landing-page .content .middle-content .carousel {
   margin-top: 3%;
   width: 85%;
@@ -272,12 +372,12 @@
   border-top: 12px solid transparent;
   border-right: 25px solid rgba(3, 3, 3, 0.6);
   border-bottom: 12px solid transparent;
-  opacity: .3;
+  opacity: 0.3;
   float: left;
   align-self: center;
 }
 .landing-page .content .middle-content .carousel .left-button:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 .landing-page .content .middle-content .carousel .right-button {
   width: 0;
@@ -285,12 +385,12 @@
   border-top: 12px solid transparent;
   border-left: 25px solid rgba(3, 3, 3, 0.6);
   border-bottom: 12px solid transparent;
-  opacity: .3;
+  opacity: 0.3;
   float: right;
   align-self: center;
 }
 .landing-page .content .middle-content .carousel .right-button:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 .landing-page .content .middle-content .carousel .carousel-img {
   display: none;
@@ -376,32 +476,72 @@
   display: block;
 }
 .landing-page .footer {
-  background-color: white;
-  border: 1px solid white;
+  font-weight: 200;
+  background-color: #333;
+  margin-top: 60px;
+  color: white;
+  /* border: 1px solid blue; */
   line-height: 1.3;
   width: 100%;
-  margin-top: 4%;
+  padding-top: 25px;
   align-self: center;
 }
 .landing-page .footer h4 {
   text-align: center;
-  color: rgba(3, 3, 3, 0.6);
+  /* color: rgba(3, 3, 3, 0.6); */
 }
-.landing-page .footer div {
+.landing-page .footer-content {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  color: rgba(3, 3, 3, 0.6);
+  justify-content: space-around;
+  align-items: flex-start;
 }
-.landing-page .footer div p {
+
+.landing-page .social-media {
+  /* border: 1px solid white; */
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 18%;
+  min-width: 170px;
+}
+
+.landing-page .social-media .icon {
+  cursor: pointer;
+  transition: 0.25s;
+  width: 25%;
+}
+.landing-page .social-media .icon:hover {
+  color: #1565c0;
+}
+
+.landing-page .contact {
+  text-align: center;
+}
+
+.landing-page .contact div {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+}
+
+.landing-page .contact p {
+  font-size: 1.1rem;
+  padding: 2px;
+}
+/* .landing-page .footer div p {
   font-size: 1.3rem;
+} */
+.landing-page .footer a {
+  color: white;
 }
-.landing-page .footer div address a {
-  color: rgba(3, 3, 3, 0.6);
+
+.landing-page .copyright {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 20px 0 10px 0;
 }
+
 @media (min-width: 900px) {
-    .landing-page .content .header .links {
+  .landing-page .content .header .links {
     width: 55%;
     display: flex;
     justify-content: space-evenly;
@@ -427,7 +567,7 @@
     font-size: 2rem;
   }
   .landing-page .content .middle-content {
-    margin-top: 5%;
+    /* margin-top: 5%; */
   }
   .landing-page .content .middle-content .carousel {
     margin-right: 0;
@@ -651,7 +791,7 @@
   padding: 0 3%;
 }
 @media (min-width: 900px) {
-    .landing-page body {
+  .landing-page body {
     max-width: 100%;
   }
   .landing-page .top-content .header nav {
@@ -659,5 +799,13 @@
   }
   .landing-page .top-content .header nav a {
     font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .landing-page .content .header {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
