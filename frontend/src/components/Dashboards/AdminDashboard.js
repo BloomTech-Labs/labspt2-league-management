@@ -19,7 +19,7 @@ const styles = theme => ({
   content: {
     marginTop: 50,
     fontFamily: 'Montserrat',
-    backgroundColor: '#eee',
+    // backgroundColor: '#1565c0',
     height: 'auto',
     minHeight: 'calc(100vh - 63px)',
 
