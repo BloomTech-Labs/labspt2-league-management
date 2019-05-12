@@ -1,71 +1,75 @@
-![alt text](./src/Images/LM_Logo.png)
+<div align="center">
+<img style="margin-top: 10px;" alt="logo" src="./src/Images/LM_Logo.png">
+</div>
+
 # Front End Documentation
 
-## Project Description
+## Initializing Project on your local server
 
-<!-- Come back to Project Description Part -->
+- From the command line, `cd` into the 'frontend' directory
 
-#### Topics:
+- **RUN** yarn install to install node-modules and dependencies
 
-* Initializing Project on your local server
-* State
-* Frontend Dependencies
-* Third Party APIs
+- **RUN** `yarn start` to get your local server up and running on [http://localhost:3000](http://localhost:3000)
 
-### Initializing Project on your local server
 
-* From the command line, `cd` into the 'frontend' directory
+# Frontend Structure
 
-* **RUN** yarn install to install node-modules and dependencies
+## src/components
 
-* **RUN** `yarn start` to get your local server up and running on [http://localhost:3000](http://localhost:3000)
+This folder contains all of our components. Components are seperated into folders to easily identify where files are and what their functions are.
 
----
+Some of the important component folders are listed below:
 
-### State
-Our project uses React context to create and store global variables that can be accessed anywhere in the project and stores them to local storage. Context file can be found [here](./src/components/Context/AppContext.js)
+## src/components/Admin
 
----
+This folder contains `LeagueSetup.js` which will step-by-step guide admins through the league creation process
 
-### Frontend Dependencies
+## src/components/Calendars
 
-**Axios** 
-<br /><br />
+This folder contains the different calendars that are used in the app
+
+## src/components/Context
+
+`AppContext.js` contains the global variables and functions used throughout the entire app
+
+## src/components/Dashboards
+
+This folder contains the different dashboards allowing the appropriate information to be shown on the page.  The dashboards render either the Admin, Coach, or Home dashboard
+
+## src/components/LeagueSetupSchedule
+
+The schedule creation algorithm that runs during the league setup process
+
+# Frontend Dependencies
+
+## Axios 
 Javascript library used to make HTTP requests connecting frontend and backend
-<br /><br />
-**Material UI**
-<br /><br />
+
+## Material UI
 React components that use Google's Material Design
-<br /><br />
-**React / ReactDOM**
-<br /><br />
+
+## React / ReactDOM
 Fast, efficient, and scalable updating and rendering of the app
-<br /><br />
-**React Autosuggest**
-<br /><br />
+
+## React Autosuggest
 Autosuggest component built in React 
-<br /><br />
-**React Big Calendar**
-<br /><br />
+
+## React Big Calendar
 Calendar component built in React
-<br /><br />
-**React Dnd**
-<br /><br />
+
+## React Dnd
 Addon to React Big Calendar allowing drag and drop functionality
-<br /><br />
-**React Router**
-<br /><br />
+
+## React Router
 Standard routing library for React
-<br /><br />
 
----
+# Third Party APIs
 
-### Third Party APIs
-
-**Stripe**
+## Stripe
 
 Powerful, clean, and seamless payment commerce solution
 
-**Dark Sky**
+## Dark Sky
 
 Advanced weather API allowing user to see their current weather data
