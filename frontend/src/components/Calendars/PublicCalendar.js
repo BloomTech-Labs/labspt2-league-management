@@ -7,6 +7,7 @@ import './calendar.css';
 import { AppContext } from '../Context/AppContext';
 import DragAndDropCalendar from './DnDCalendar';
 import { EditOutlined } from '@material-ui/icons';
+import windowSize from 'react-window-size';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -14,11 +15,16 @@ class PublicCalendar extends Component {
   state = {
     isLoading: true,
     edit: false,
-    games: [],
+    games: []
   };
 
   componentDidMount() {
     this.showGames();
+  }
+
+  findDefaultCalendarView() {
+    const width = this.props.windowWidth;
+    return width > 1250 ? 'week' : 'day';
   }
 
   showGames = async () => {
@@ -33,25 +39,41 @@ class PublicCalendar extends Component {
     }
 
     const displayEvents = await this.state.games.map(event => {
+      console.log(event);
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
-      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+      event.title = !event.cancelled
+        ? `${event.away_team_name} vs ${event.home_team_name}`
+        : `${event.away_team_name} vs ${event.home_team_name} CANCELLED`;
       return event;
     });
     await this.setState({ publicEvents: displayEvents, isLoading: false });
   };
 
   customEventPropGetter = event => {
-    return {
-      style: {
-        color: '#fff',
-        textAlign: 'center',
-        boxShadow: '1px 1px 5px black',
-        backgroundColor: '#ef6c00ed',
-        margin: '0 5px',
-        fontFamily: 'Montserrat'
-      }
-    };
+    if (!event.cancelled) {
+      return {
+        style: {
+          color: '#fff',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#ef6c00ed',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    } else {
+      return {
+        style: {
+          color: '#222',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#aaa',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    }
   };
 
   render() {
@@ -83,7 +105,7 @@ class PublicCalendar extends Component {
             min={new Date(2019, 0, 0, 8, 0)}
             max={new Date(2019, 0, 0, 23, 0)}
             defaultDate={new Date()}
-            defaultView="week"
+            defaultView={this.findDefaultCalendarView()}
             events={this.state.publicEvents}
             style={{
               height: '83vh',
@@ -103,4 +125,4 @@ class PublicCalendar extends Component {
 
 PublicCalendar.contextType = AppContext;
 
-export default PublicCalendar;
+export default windowSize(PublicCalendar);

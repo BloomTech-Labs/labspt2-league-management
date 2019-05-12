@@ -30,7 +30,7 @@ const styles = theme => ({
     // border: '1px solid #1565c0',
     margin: '10px',
     textAlign: 'center',
-    width: '45%',
+    width: '40%',
     // minWidth: 400,
     borderRadius: 9,
     padding: '10px 0 20px 0',
@@ -45,7 +45,7 @@ const styles = theme => ({
     }
   },
   boxTitle: {
-    fontSize: '2rem',
+    fontSize: '1.8rem',
     margin: '0 auto',
     width: '80%',
     paddingBottom: 5,
@@ -54,7 +54,7 @@ const styles = theme => ({
     // textShadow: '1px 2px 3px #111'
   },
   boxContent: {
-    fontSize: '1.3rem'
+    fontSize: '1.2rem'
   },
   textField: {
     marginLeft: theme.spacing.unit,
