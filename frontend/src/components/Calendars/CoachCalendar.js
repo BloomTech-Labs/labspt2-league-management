@@ -18,6 +18,11 @@ class CoachCalendar extends Component {
 
   componentDidMount() {
     this.showGames();
+    // console.log(this.context.state.teams[this.props.index].name);
+    localStorage.setItem(
+      'teamName',
+      this.context.state.teams[this.props.index].name
+    );
   }
 
   showGames = async () => {
