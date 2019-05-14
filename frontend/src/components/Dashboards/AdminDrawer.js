@@ -48,10 +48,10 @@ class AdminDrawer extends Component {
             // border: '1px solid red',
             margin: '0px 0px -10px 0px',
             textAlign: 'center',
-            padding: '15px 0',
+            padding: '15px',
             color: '#fff',
             backgroundColor: '#333',
-            fontSize: '1.4rem'
+            fontSize: '1.3rem'
           }}
         >
           {localStorage.getItem('leagueName')}

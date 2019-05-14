@@ -57,6 +57,7 @@ class CreateLeagueForm extends React.Component {
         <Button
           className={classes.button}
           disabled={leagueType !== 'basic'}
+          style={leagueType !== 'basic' ? { color: '#ccc' } : null}
           onClick={this.handleClickOpen}
         >
           {leagueType === 'basic'

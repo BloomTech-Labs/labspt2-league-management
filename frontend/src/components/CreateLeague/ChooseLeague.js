@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   card: {
     width: '20%',
-    minWidth: 250,
+    minWidth: 300,
     margin: '0 2%',
     marginBottom: 15,
     minHeight: 200,
@@ -37,8 +37,10 @@ const styles = theme => ({
     boxShadow: '1px 2px 3px #000, 2px 3px 2px #111'
   },
   title: {
-    fontSize: 16,
-    textDecoration: 'underline'
+    display: 'inline-block',
+    fontSize: '1.2rem',
+    borderBottom: '1px solid black',
+    marginTop: 12
   },
   pos: {
     marginBottom: 12
@@ -89,9 +91,24 @@ const styles = theme => ({
     // lineHeight: '1.3'
   },
   unavailableTitle: {
-    fontSize: 16,
-    textDecoration: 'underline',
+    display: 'inline-block',
+    fontSize: '1.2rem',
+    borderBottom: '1px solid #555',
+    marginTop: 12,
     color: '#555'
+  },
+  cardText: {
+    // border: '1px solid red',
+    fontSize: '1rem',
+    marginTop: 14
+  },
+  unavailableCardText: {
+    fontSize: '1rem',
+    marginTop: 14,
+    color: '#555'
+  },
+  feature: {
+    marginBottom: 8
   }
 });
 
@@ -120,20 +137,26 @@ function ChooseLeague(props) {
             <Typography
               variant="h5"
               component="h2"
+              style={{ textAlign: 'center' }}
               // className={classes.title}
               // color="textSecondary"
               gutterBottom
             >
               Basic League
             </Typography>
-            <Typography className={classes.title}>
-              League Description
-            </Typography>
-            <Typography>
+            <Typography className={classes.title}>League Features</Typography>
+            <div className={classes.cardText}>
+              <p className={classes.feature}>- Create a Custom Sports League</p>
+              <p className={classes.feature}>- Generate a Custom Schedule</p>
+              <p className={classes.feature}>- Drag and Drop Schedule</p>
+              <p className={classes.feature}>- Public Calendar</p>
+              <p className={classes.feature}>- Cancellation Requests</p>
+            </div>
+            {/* <Typography>
               - Create a Custom Sports League <br /> - Generate a Custom
               Schedule <br /> - Drag and Drop Edit Schedule <br /> - Public
               Calendar
-            </Typography>
+            </Typography> */}
           </CardContent>
           <CardActions>
             <CreateLeagueForm leagueType="basic" />
@@ -143,9 +166,9 @@ function ChooseLeague(props) {
         <Card className={classes.card} style={{ backgroundColor: '#c0c0df' }}>
           <CardContent>
             <Typography
-              className={classes.unavailable}
               variant="h5"
               component="h2"
+              style={{ textAlign: 'center', color: '#555' }}
               // className={classes.title}
               // color="textSecondary"
               gutterBottom
@@ -155,9 +178,15 @@ function ChooseLeague(props) {
             <Typography className={classes.unavailableTitle}>
               Coming Soon
             </Typography>
-            <Typography className={classes.unavailable}>
+            {/* <Typography className={classes.unavailable}>
               - Team Stats <br /> - Tournament Mode <br /> - League Standings
-            </Typography>
+            </Typography> */}
+            <div className={classes.unavailableCardText}>
+              <p className={classes.feature}>- All Basic Features Plus:</p>
+              <p className={classes.feature}>- Track Team Stats</p>
+              <p className={classes.feature}>- League Standings</p>
+              <p className={classes.feature}>- Tournament Mode</p>
+            </div>
           </CardContent>
           <CardActions>
             <CreateLeagueForm leagueType="premium" />

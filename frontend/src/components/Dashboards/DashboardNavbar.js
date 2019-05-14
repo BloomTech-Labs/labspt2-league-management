@@ -194,6 +194,8 @@ class DashboardNavbar extends React.Component {
     localStorage.removeItem('schedule_by_league');
     localStorage.removeItem('schedule_by_team');
     localStorage.removeItem('cancellations_by_league');
+    localStorage.removeItem('leagueName');
+    localStorage.removeItem('teamName');
     this.setState({ logout: true });
     this.context.signOut();
   };
