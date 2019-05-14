@@ -39,7 +39,9 @@ class CoachCalendar extends Component {
     const displayEvents = await this.state.games.map(event => {
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
-      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+      event.title = !event.cancelled
+        ? `${event.away_team_name} vs ${event.home_team_name}`
+        : `${event.away_team_name} vs ${event.home_team_name} CANCELLED`;
       return event;
     });
     await this.setState({ publicEvents: displayEvents, isLoading: false });
@@ -56,7 +58,18 @@ class CoachCalendar extends Component {
   };
 
   customEventPropGetter = event => {
-    if (
+    if (event.cancelled) {
+      return {
+        style: {
+          color: '#222',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#aaa',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    } else if (
       event.home_team_id === this.props.teamId ||
       event.away_team_id === this.props.teamId
     ) {

@@ -40,7 +40,9 @@ class DragAndDropCalendar extends Component {
     const displayEvents = this.state.games.map(event => {
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
-      event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+      event.title = !event.cancelled
+        ? `${event.away_team_name} vs ${event.home_team_name}`
+        : `${event.away_team_name} vs ${event.home_team_name} CANCELLED`;
       return event;
     });
 
@@ -86,17 +88,30 @@ class DragAndDropCalendar extends Component {
   // ========== DRAG AND DROP FUNCTIONS END HERE ==========
 
   customEventPropGetter = event => {
-    return {
-      style: {
-        color: '#333',
-        textAlign: 'center',
-        boxShadow: '0px 0px 5px #ef6c00',
-        margin: '0 5px',
-        fontFamily: 'Montserrat',
-        border: '1px solid #ef6c00',
-        backgroundColor: 'rgba(220, 220, 220, .9)'
-      }
-    };
+    if (!event.cancelled) {
+      return {
+        style: {
+          color: '#333',
+          textAlign: 'center',
+          boxShadow: '0px 0px 5px #ef6c00',
+          margin: '0 5px',
+          fontFamily: 'Montserrat',
+          border: '1px solid #ef6c00',
+          backgroundColor: 'rgba(220, 220, 220, .9)'
+        }
+      };
+    } else {
+      return {
+        style: {
+          color: '#222',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#aaa',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    }
   };
 
   render() {

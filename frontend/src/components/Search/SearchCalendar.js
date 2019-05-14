@@ -95,62 +95,65 @@ class SearchCalendar extends Component {
   async componentDidMount() {
     if (this.props.location.state !== undefined) {
       await this.publicShowGames();
-      await console.log(this.state.games);
+      // await console.log(this.state.games);
       await this.displayEvents();
-      await console.log(this.state.games);
+      // await console.log(this.state.games);
     } else {
       await this.getPublicLeagues();
-      await console.log(this.state.games);
+      // await console.log(this.state.games);
       await this.getThisLeague();
-      await console.log(this.state.games);
+      // await console.log(this.state.games);
       await this.displayEvents();
-      await console.log(this.state.games);
+      // await console.log(this.state.games);
     }
   }
 
   async displayEvents() {
-    console.log('displayEvents', this.state.games);
-    await console.log(this.state.games);
-    if(this.state.games.rows) {
+    // console.log('displayEvents', this.state.games);
+    // await console.log(this.state.games);
+    if (this.state.games.rows) {
       const displayedEvents = await this.state.games.rows.map(event => {
         event.start = new Date(event.start_time);
         event.end = new Date(event.end_time);
-        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+        event.title = !event.cancelled
+          ? `${event.away_team_name} vs ${event.home_team_name}`
+          : `${event.away_team_name} vs ${event.home_team_name} CANCELLED`;
         return event;
       });
       await this.setState({ publicEvents: displayedEvents, isLoading: false });
-      console.log(displayedEvents);
-      await console.log(this.state.publicLeagues);
-    }
-    else {
+      // console.log(displayedEvents);
+      // await console.log(this.state.publicLeagues);
+    } else {
       const displayedEvents = await this.state.games.map(event => {
         event.start = new Date(event.start_time);
         event.end = new Date(event.end_time);
-        event.title = `${event.away_team_name} vs ${event.home_team_name}`;
+        event.title = !event.cancelled
+          ? `${event.away_team_name} vs ${event.home_team_name}`
+          : `${event.away_team_name} vs ${event.home_team_name} CANCELLED`;
         return event;
       });
       await this.setState({ publicEvents: displayedEvents, isLoading: false });
-      console.log(displayedEvents);
-      await console.log(this.state.publicLeagues);
+      // console.log(displayedEvents);
+      // await console.log(this.state.publicLeagues);
     }
   }
 
   async getThisLeague() {
-    console.log('window.location.pathname', window.location.pathname);
+    // console.log('window.location.pathname', window.location.pathname);
     let pathName = window.location.pathname.slice(
       16,
       window.location.pathname.length - 1
     );
-    console.log('pathName', pathName);
+    // console.log('pathName', pathName);
     let lid = pathName.substr(0, pathName.indexOf('/'));
-    console.log('lid', lid);
+    // console.log('lid', lid);
 
     await axios
       .get(`/search/${lid}/schedule`)
       .then(res => {
         const schedule = res.data;
-        console.log(schedule);
-        console.log(schedule.rows);
+        // console.log(schedule);
+        // console.log(schedule.rows);
         this.setState({
           games: schedule
         });
@@ -164,19 +167,19 @@ class SearchCalendar extends Component {
     await axios
       .get('/search')
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           publicLeagues: response.data
         });
-        console.log(this.state.publicLeagues);
+        // console.log(this.state.publicLeagues);
       })
       .catch(error => console.log(error));
   }
 
   async publicShowGames() {
-    console.log(this.props.location.state.publicLeagues);
+    // console.log(this.props.location.state.publicLeagues);
     const lid = this.props.location.state.lid;
-    console.log(lid);
+    // console.log(lid);
     await axios
       .get(`/search/${lid}/schedule`)
       .then(res => {
@@ -191,16 +194,29 @@ class SearchCalendar extends Component {
   }
 
   customEventPropGetter = event => {
-    return {
-      style: {
-        color: '#fff',
-        textAlign: 'center',
-        boxShadow: '1px 1px 5px black',
-        backgroundColor: '#ef6c00ed',
-        margin: '0 5px',
-        fontFamily: 'Montserrat'
-      }
-    };
+    if (!event.cancelled) {
+      return {
+        style: {
+          color: '#fff',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#ef6c00ed',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    } else {
+      return {
+        style: {
+          color: '#222',
+          textAlign: 'center',
+          boxShadow: '1px 1px 5px black',
+          backgroundColor: '#aaa',
+          margin: '0 5px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    }
   };
 
   render() {
