@@ -27,10 +27,12 @@ Listed alphabetically:
 2. Set up the database
    - `knex migrate:latest`
    - `knex seed:run` to populate the database with seed data
+
 3. Inside `/backend` install all dependencies and spin up the server
    ```
    $ yarn && yarn server
    ```
+   
 4. Inside `/frontend` install all dependencies and kick off the frontend
    ```
    $ yarn && yarn start
