@@ -62,13 +62,7 @@ From the root directory:
 
 ## Backend Testing
 
-We did a lot of manual testing to make sure everything works correctly.  Our back end testing quick guide can be found [here](./Postman_Testing/QuickGuide.md)
-
-## Frontend Testing
-
-TBD
-
-<br />
+We did a lot of manual testing to make sure everything works correctly.  Our main testing tools were Postman, terminal logging, and the Chrome DevTools.  Our back end testing quick guide can be found [here](./Postman_Testing/QuickGuide.md)
 
 # Environment Variables
 
