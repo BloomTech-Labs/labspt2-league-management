@@ -73,10 +73,10 @@ const styles = theme => ({
     height: 44,
     margin: '0 1% 15px 1%',
     minWidth: 175,
-    backgroundColor: 'rgb(16,255,35)',
+    backgroundColor: '#24D830',
     color: '#333',
     '&:hover': {
-      backgroundColor: 'rgb(16,200,35)'
+      backgroundColor: '#32C156'
     }
   },
   pwButton: {

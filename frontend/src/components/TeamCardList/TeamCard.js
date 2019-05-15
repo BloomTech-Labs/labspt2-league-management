@@ -24,25 +24,32 @@ const styles = theme => ({
     justifyContent: 'center',
     boxShadow: '1px 1px 4px #333, 2px 2px 7px #1565c0',
     minHeight: '330px',
-    backgroundColor: '#E2ECF7',
+    // backgroundColor: '#E2ECF7',
+    backgroundColor: '#1565c0dd',
+    // backgroundColor: '#33A1FD',
     padding: 0,
     margin: 0,
     height: 'auto',
     marginBottom: '20px'
   },
   cardBack: {
-    minWidth: '275px',
-    maxWidth: '300px',
+    // minWidth: '275px',
+    // maxWidth: '300px',
+    minWidth: '285px',
+    maxWidth: '320px',
     width: '45%',
     borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    boxShadow: '1px 1px 4px #333, 2px 2px 7px #ef6c00',
+    // boxShadow: '1px 1px 4px #333, 2px 2px 7px #ef6c00',
+    boxShadow: '1px 1px 4px #333, 2px 2px 7px #1565c0',
     minHeight: '375px',
     backgroundColor: '#E2ECF7',
+    // backgroundColor: '#33A1FD',
     padding: 0,
     margin: 0,
+    marginRight: -35,
     height: 'auto'
   },
   container: {
@@ -63,12 +70,65 @@ const styles = theme => ({
     fontSize: '1.6rem',
     display: 'flex',
     justifyContent: 'space-between',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    color: 'white',
+    textShadow: '1px 2px 3px #111',
+    marginBottom: 8
   },
   button: {
-    border: '1px solid lightgrey',
+    // border: '1px solid #3BE566',
+    backgroundColor: '#24D830',
     borderRadius: '8px',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    '&:hover': {
+      backgroundColor: '#32C156'
+    }
+  },
+  coachInfo: {
+    // border: '1px solid red',
+    backgroundColor: 'white',
+    borderRadius: 7,
+    height: 100,
+    color: '#333',
+    padding: 5,
+    textShadow: '1px 1px 2px #aaa'
+  },
+  header: {
+    display: 'inline-block',
+    padding: '0 3px',
+    marginBottom: 8,
+    borderBottom: '1px solid #999',
+    fontSize: '1rem'
+  },
+  coachInfoContent: {
+    // color: '#333'
+    marginBottom: 7,
+    fontSize: '.9rem'
+  },
+  record: {
+    display: 'flex',
+    backgroundColor: 'white',
+    borderRadius: 7,
+    color: '#333',
+    marginTop: 12,
+    textShadow: '1px 1px 2px #aaa'
+  },
+  recordContent: {
+    fontSize: '.9rem',
+    marginRight: 10,
+    padding: '10px 5px'
+  },
+  upcomingGames: {
+    backgroundColor: 'white',
+    borderRadius: 7,
+    color: '#333',
+    marginTop: 12,
+    padding: 5,
+    textShadow: '1px 1px 2px #aaa'
+  },
+  game: {
+    marginTop: 2,
+    marginBottom: 5
   }
 });
 
@@ -215,6 +275,20 @@ class TeamCard extends React.Component {
 
   displayGames() {
     let editedTeamSchedule = this.state.teamSchedule;
+    // let editedTeamSchedule = this.state.teamSchedule.filter(
+    //   game => new Date(game.start_time) > new Date()
+    // );
+
+    console.log('schedule: ', editedTeamSchedule);
+    console.log(this.state.teamSchedule.map(game => new Date(game.start_time)));
+    console.log(new Date());
+    console.log(
+      'Games after today: ',
+      this.state.teamSchedule.filter(
+        game => new Date(game.start_time) > new Date()
+      )
+    );
+
     const lid = this.context.state.leagues[this.props.index].id;
     for (let i = 0; i < editedTeamSchedule.length; i++) {
       editedTeamSchedule.splice(i, 1);
@@ -257,6 +331,8 @@ class TeamCard extends React.Component {
         }
 
         if (game1Hours > 12) {
+          game1Hours -= 12;
+          game1Time = game1Hours + ':' + game1Minutes;
           game1Time += ' PM';
         }
 
@@ -308,6 +384,8 @@ class TeamCard extends React.Component {
           game2Time += ' AM';
         }
         if (game2Hours > 12) {
+          game2Hours -= 12;
+          game2Time = game2Hours + ':' + game2Minutes;
           game2Time += ' PM';
         }
 
@@ -421,314 +499,73 @@ class TeamCard extends React.Component {
                   style={{ cursor: 'pointer' }}
                 />
               </Typography>
-              <TextField /* Contains all 3 fields */
-                fullWidth
-                multiline
-                label="Coach Info"
-                value={`Name: ${coach_name}\nEmail: ${coach_email}\nPhone #: ${coach_phone}`}
-                className={classes.textField}
-                margin="normal"
-                rows={4}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    this.state.coachNameExists &&
-                    this.state.coachEmailExists &&
-                    this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
 
-              <TextField /* Contains Name and Email */
-                fullWidth
-                multiline
-                label="Coach Info"
-                value={`Name: ${coach_name}\nEmail: ${coach_email}`}
-                className={classes.textField}
-                margin="normal"
-                rows={3}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    this.state.coachNameExists &&
-                    this.state.coachEmailExists &&
-                    !this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* Contains Name and Phone */
-                fullWidth
-                multiline
-                label="Coach Info"
-                value={`Name: ${coach_name}\nPhone #: ${coach_phone}`}
-                className={classes.textField}
-                margin="normal"
-                rows={2}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    this.state.coachNameExists &&
-                    !this.state.coachEmailExists &&
-                    this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* Contains Email and Phone */
-                fullWidth
-                multiline
-                label="Coach Info"
-                value={`Email: ${coach_email}\nPhone #: ${coach_phone}`}
-                className={classes.textField}
-                margin="normal"
-                rows={3}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    !this.state.coachNameExists &&
-                    this.state.coachEmailExists &&
-                    this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* Contains Name only */
-                fullWidth
-                label="Coach Info"
-                value={`Name: ${coach_name}`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    this.state.coachNameExists &&
-                    !this.state.coachEmailExists &&
-                    !this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* Contains Email only */
-                fullWidth
-                label="Coach Info"
-                value={`Email: ${coach_email}`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    !this.state.coachNameExists &&
-                    this.state.coachEmailExists &&
-                    !this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* Contains Phone only */
-                fullWidth
-                label="Coach Info"
-                value={`Phone #: ${coach_phone}`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    !this.state.coachNameExists &&
-                    !this.state.coachEmailExists &&
-                    this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField /* No info */
-                fullWidth
-                label="Coach Info"
-                value={`No coach info for this team`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display:
-                    !this.state.coachNameExists &&
-                    !this.state.coachEmailExists &&
-                    !this.state.coachPhoneExists
-                      ? 'block'
-                      : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                label="Record"
-                value={`Wins: ${wins}   Losses: ${losses}`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{ display: this.state.containsTies ? 'none' : 'block' }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                label="Record"
-                value={`Wins: ${wins}   Losses: ${losses}   Ties: ${ties}`}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{ display: this.state.containsTies ? 'block' : 'none' }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                multiline
-                label="Upcoming Games"
-                value={`${this.state.scheduleGame1.game1Month} ${
-                  this.state.scheduleGame1.game1Day
-                } ${this.state.scheduleGame1.game1Time} vs ${
-                  this.state.scheduleGame1.game1Opp
-                }\n${this.state.scheduleGame2.game2Month} ${
-                  this.state.scheduleGame2.game2Day
-                } ${this.state.scheduleGame2.game2Time} vs ${
-                  this.state.scheduleGame2.game2Opp
-                }`}
-                className={classes.textField}
-                margin="normal"
-                rows={4}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display: this.state.bothGamesExist ? 'block' : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                multiline
-                label="Upcoming Games"
-                value={`${this.state.scheduleGame1.game1Month} ${
-                  this.state.scheduleGame1.game1Day
-                } ${this.state.scheduleGame1.game1Time} vs ${
-                  this.state.scheduleGame1.game1Opp
-                }`}
-                className={classes.textField}
-                margin="normal"
-                rows={3}
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display: this.state.game1Exists ? 'block' : 'none'
-                }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                label="Upcoming Games"
-                value={'Season Completed'}
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                  style: inputStyle
-                }}
-                InputLabelProps={{
-                  style: labelStyle,
-                  padding: '0px'
-                }}
-                style={{
-                  display: this.state.seasonComplete ? 'block' : 'none'
-                }}
-                variant="outlined"
-              />
+              <div className={classes.coachInfo}>
+                <p className={classes.header}>Coach Info</p>
+                <p className={classes.coachInfoContent}>
+                  <span style={{ fontWeight: '600' }}>Name:</span>{' '}
+                  {coach_name || 'Not yet entered'}
+                </p>
+                <p className={classes.coachInfoContent}>
+                  <span style={{ fontWeight: '600' }}>Email:</span>{' '}
+                  {coach_email || 'Not yet entered'}
+                </p>
+                <p className={classes.coachInfoContent}>
+                  <span style={{ fontWeight: '600' }}>Phone:</span>{' '}
+                  {coach_phone || 'Not yet entered'}
+                </p>
+              </div>
+
+              <div className={classes.record}>
+                <p className={classes.recordContent}>Wins: {wins}</p>
+                <p className={classes.recordContent}>Losses: {losses}</p>
+                <p
+                  className={classes.recordContent}
+                  style={ties < 1 ? { display: 'none' } : null}
+                >
+                  Ties: {ties}
+                </p>
+              </div>
+
+              <div className={classes.upcomingGames}>
+                <p className={classes.header}>Upcoming Games</p>
+                <p
+                  className={classes.game}
+                  style={!this.state.scheduleGame2 ? { display: 'none' } : null}
+                >
+                  <span style={{ fontWeight: '600' }}>
+                    {this.state.scheduleGame1.game1Month}
+                    {'  '}
+                    {this.state.scheduleGame1.game1Day}
+                    {'  '}
+                    {this.state.scheduleGame1.game1Time}
+                  </span>{' '}
+                  vs{'  '}
+                  {this.state.scheduleGame1.game1Opp}
+                </p>
+                <p
+                  className={classes.game}
+                  style={!this.state.scheduleGame2 ? { display: 'none' } : null}
+                >
+                  <span style={{ fontWeight: '600' }}>
+                    {this.state.scheduleGame2.game2Month}
+                    {'  '}
+                    {this.state.scheduleGame2.game2Day}
+                    {'  '}
+                    {this.state.scheduleGame2.game2Time}
+                  </span>{' '}
+                  vs{'  '}
+                  {this.state.scheduleGame2.game2Opp}
+                </p>
+                <p
+                  className={classes.game}
+                  style={
+                    !this.state.seasonComplete ? { display: 'none' } : null
+                  }
+                >
+                  Season Completed
+                </p>
+              </div>
             </CardContent>
           </Card>
 
@@ -750,7 +587,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
 
@@ -768,7 +606,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
 
@@ -793,7 +632,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
 
@@ -811,7 +651,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
 
@@ -829,7 +670,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
 
@@ -847,7 +689,8 @@ class TeamCard extends React.Component {
                     style: inputStyleBack
                   }}
                   InputLabelProps={{
-                    style: labelStyle
+                    style: labelStyle,
+                    shrink: true
                   }}
                 />
               </form>
