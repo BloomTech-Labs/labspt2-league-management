@@ -15,9 +15,9 @@ import UserSearch from './UserSearch.js';
 
 const styles = theme => ({
   cardFront: {
-    minWidth: '285px',
-    maxWidth: '320px',
-    width: '45%',
+    // minWidth: '285px',
+    // maxWidth: '285px',
+    width: 285,
     borderRadius: '10px',
     display: 'flex',
     flexWrap: 'wrap',
@@ -124,6 +124,7 @@ const styles = theme => ({
     color: '#333',
     marginTop: 12,
     padding: 5,
+    height: 130,
     textShadow: '1px 1px 2px #aaa'
   },
   game: {
@@ -274,28 +275,28 @@ class TeamCard extends React.Component {
   }
 
   displayGames() {
-    let editedTeamSchedule = this.state.teamSchedule;
-    // let editedTeamSchedule = this.state.teamSchedule.filter(
-    //   game => new Date(game.start_time) > new Date()
-    // );
-
-    console.log('schedule: ', editedTeamSchedule);
-    console.log(this.state.teamSchedule.map(game => new Date(game.start_time)));
-    console.log(new Date());
-    console.log(
-      'Games after today: ',
-      this.state.teamSchedule.filter(
-        game => new Date(game.start_time) > new Date()
-      )
+    // let editedTeamSchedule = this.state.teamSchedule;
+    let editedTeamSchedule = this.state.teamSchedule.filter(
+      game => new Date(game.start_time) > new Date()
     );
 
+    // console.log('schedule: ', editedTeamSchedule);
+    // console.log(this.state.teamSchedule.map(game => new Date(game.start_time)));
+    // console.log(new Date());
+    // console.log(
+    //   'Games after today: ',
+    //   this.state.teamSchedule.filter(
+    //     game => new Date(game.start_time) > new Date()
+    //   )
+    // );
+
     const lid = this.context.state.leagues[this.props.index].id;
-    for (let i = 0; i < editedTeamSchedule.length; i++) {
-      editedTeamSchedule.splice(i, 1);
-    }
-    if (editedTeamSchedule.length > 2) {
-      editedTeamSchedule.length = 2;
-    }
+    // for (let i = 0; i < editedTeamSchedule.length; i++) {
+    //   editedTeamSchedule.splice(i, 1);
+    // }
+    // if (editedTeamSchedule.length > 2) {
+    //   editedTeamSchedule.length = 2;
+    // }
     if (editedTeamSchedule[0]) {
       let game1Opp;
       // Opponent Testing
