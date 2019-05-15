@@ -42,6 +42,10 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main
   },
+  message: {
+    color: 'red',
+    marginTop: theme.spacing.unit
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit
@@ -55,36 +59,54 @@ class SignIn extends React.Component {
   state = {
     email: '',
     password: '',
-    signedIn: false
+    signedIn: false,
+    message: '',
+    focus: 1,
+    error: 0
   };
 
   InputHandler = event => {
     event.preventDefault();
     const target = event.target;
-    this.setState({ [target.name]: target.value });
+    this.setState({ 
+      [target.name]: target.value,
+      error: 0,
+      message: '' });
   };
 
   SubmitHandler = event => {
     event.preventDefault();
-    const credentials = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    const endpoint = '/auth/login';
-    axios
-      .post(endpoint, credentials)
-      .then(res => {
-        localStorage.setItem('jwt', res.data.token);
-        this.context.signin();
-        this.context.getLeagues();
-        this.context.getTeams();
-        this.setState({ email: '', password: '', signedIn: true });
-        // window.location.href = 'http://localhost:3000/dashboard';
-        // window.location.href = 'https://leaguemanagement.netlify.com/dashboard';
-      })
-      .catch(err => {
-        console.log('err from Submit handler in SignUp', err);
+
+    const { email, password } = this.state;
+
+    if (!email) {
+      this.setState({
+        message: 'Email cannot be empty',
+        focus: 1,
+        error: 1
       });
+    } else if (!password) {
+      this.setState({
+        message: 'Password cannot be empty',
+        focus: 2,
+        error: 2
+      });
+    } else {
+      const endpoint = '/auth/login';
+      const credentials = { email, password };
+      axios
+        .post(endpoint, credentials)
+        .then(res => {
+          localStorage.setItem('jwt', res.data.token);
+          this.context.signin();
+          this.setState({ email: '', password: '', signedIn: true });
+        })
+        .catch(err => {
+          this.setState({
+            message: 'Email or Password is incorrect'
+          });
+        });
+    }
   };
 
   render() {
@@ -104,18 +126,28 @@ class SignIn extends React.Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <p className={classes.message}>{this.state.message}</p>
           <form className={classes.form} onSubmit={this.SubmitHandler}>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl 
+                margin="normal" 
+                // required
+                fullWidth
+                error={this.state.error === 1 ? true : false}>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input
                 id="email"
                 name="email"
                 onChange={this.InputHandler}
                 autoComplete="email"
+                error={this.state.error === 1 ? true : false}
                 autoFocus
               />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+                margin="normal" 
+                // required
+                fullWidth
+                error={this.state.error === 2 ? true : false}>
               <InputLabel htmlFor="password">Password</InputLabel>
               <Input
                 id="password"
