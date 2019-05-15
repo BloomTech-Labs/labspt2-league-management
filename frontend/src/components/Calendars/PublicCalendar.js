@@ -39,7 +39,7 @@ class PublicCalendar extends Component {
     }
 
     const displayEvents = await this.state.games.map(event => {
-      console.log(event);
+      // console.log(event);
       event.start = new Date(event.start_time);
       event.end = new Date(event.end_time);
       event.title = !event.cancelled
