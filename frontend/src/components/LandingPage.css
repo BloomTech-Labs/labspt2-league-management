@@ -339,7 +339,7 @@ body {
 }
 
 .landing-page .screenshots {
-  height: 500px;
+  min-height: 500px;
   background-color: #1565c0;
   margin-bottom: 60px;
   display: flex;
@@ -347,15 +347,27 @@ body {
   justify-content: space-evenly;
 }
 
-.landing-page .screenshot {
-  /* border: 1px solid red; */
+.landing-page .screenshot1,
+.landing-page .screenshot2 {
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   border-radius: 7px;
-  background-color: #eee;
-  width: 35%;
-  min-width: 350px;
-  margin: 30px 2%;
+  /* background-color: #eee; */
+  width: 98%;
+  min-width: 500px;
+  max-width: 720px;
+  margin: 50px 2%;
   box-shadow: 0px 15px 5px -10px #222;
+  height: 400px;
 }
+
+/* .landing-page .screenshot1 {
+  background-image: url(../Images/Calendar.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
 
 .landing-page .content .middle-content .carousel {
   margin-top: 3%;
