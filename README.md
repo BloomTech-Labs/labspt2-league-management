@@ -1,10 +1,12 @@
-<img style="display: block; margin: auto; margin-top: 10px;" alt="logo" src="./frontend/src/Images/LM_Logo.png">
+<div align="center">
+<img style="margin-top: 10px;" alt="logo" src="./frontend/src/Images/LM_Logo.png">
+</div>
 
 # League Management
 
 League Management allows users to run all of their sports leagues from one hub minimizing the amount of time, energy, and resouces required. 
 
-This repository contains the collective effort and capstone project of 6 students that will graduate from Lambda School’s Full Stack Web Development program.
+This repository contains the collective effort and capstone project of 6 students that will graduate from Lambda School’s Full Stack Web Development program in October 2019.
 
 ## Team
 
@@ -25,10 +27,12 @@ Listed alphabetically:
 2. Set up the database
    - `knex migrate:latest`
    - `knex seed:run` to populate the database with seed data
+
 3. Inside `/backend` install all dependencies and spin up the server
    ```
    $ yarn && yarn server
    ```
+   
 4. Inside `/frontend` install all dependencies and kick off the frontend
    ```
    $ yarn && yarn start
@@ -36,11 +40,15 @@ Listed alphabetically:
 
 Now just open [http://localhost:3000](http://localhost:3000) to visit the frontend, or query the server endpoints directly at [http://localhost:4000](http://localhost:4000)
 
+<br />
+
 # Resources
 
 - [App Wireframes](https://balsamiq.cloud/snv27r3/ptbqmhb/r2278)
 - [Front End Site - Hosted on Netlify](https://leaguemanagement.netlify.com)
 - [Back End Site - Hosted on Heroku](https://league-management.herokuapp.com/)
+
+<br />
 
 # Scripts
 
@@ -52,11 +60,34 @@ From the root directory:
 
 `cd backend && yarn server` - Runs the backend server
 
+## Backend Testing
+
+We did a lot of manual testing to make sure everything works correctly.  Our main testing tools were Postman, terminal logging, and the Chrome DevTools.  Our back end testing quick guide can be found [here](./Postman_Testing/QuickGuide.md)
+
+# Environment Variables
+
+These reside in the `/backend/.env` file, which is not in the github
+
+| Variable         | Description                     |
+| :--------------- | :------------------------------ |
+| `JWT_SECRET`     | `YourRandomString`              |
+
+> **Note:** The app will crash without these variables defined
+
+<br />
+
+
 # Front End Information
+
 Front end infomation can be found in the [Front End README](./frontend/README.md)
 
+<br />
+
 # Back End Information
+
 Back end information can be found in the [Back End README](./backend/README.md)
+
+<br />
 
 # App Usage & User Story
 
@@ -112,6 +143,8 @@ All other features required the user to be signed in.
 5. Games that are pending request have the option to `Accept` or `Deny` the request
 6. The request goes in the appropriate column after deciding on the request
 
+<br />
+
 # As a Coach of a Team
 1. You can click on `Your Teams` in the left-hand bar
 2. Then choose any team that you coach
@@ -130,6 +163,8 @@ All other features required the user to be signed in.
 3. Once requesting a cancellation request, it will be placed in the pending cancellation requests column
 4. Once the league administrator approves or denies a request, it is placed in the proper column
 
+<br />
+
 # User Settings
 
 1. Click the person icon in the upper right-hand corner next 
@@ -140,9 +175,13 @@ All other features required the user to be signed in.
 6. If the user would like to change their password then they can hit the `CHANGE PASSWORD` button
 7. Then the user will be walked throught the process of changing their password
 
+<br />
+
 # Contributing
 
 Currently contributing is only availble to members of our team.  If this changes it will be updated in the README
+
+<br />
 
 # Issues
 

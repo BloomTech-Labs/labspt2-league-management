@@ -160,7 +160,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU2OTM4OTQzLCJleHAiOjMzMTE0NTM4OTQzLCJqdGkiOiIxMjM0NSJ9.zdzknopO8I6BiSWV6BvxEoxN-FX9gNXhddhvbPrn3Ls",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3NDQ5MDM4LCJleHAiOjMzMTE1MDQ5MDM4LCJqdGkiOiIxMjM0NSJ9.-gRd2pSMDguo8oYhwH5eifSRAyPsHq01cah7-o7QcEM",
 						"type": "text"
 					}
 				],
@@ -271,13 +271,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU2OTM4OTQzLCJleHAiOjMzMTE0NTM4OTQzLCJqdGkiOiIxMjM0NSJ9.zdzknopO8I6BiSWV6BvxEoxN-FX9gNXhddhvbPrn3Ls",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3NDQ5MDM4LCJleHAiOjMzMTE1MDQ5MDM4LCJqdGkiOiIxMjM0NSJ9.-gRd2pSMDguo8oYhwH5eifSRAyPsHq01cah7-o7QcEM",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"postman TEAM\",\n\t\"league_id\":4\n}"
+					"raw": "{\n\t\"name\": \"postman TEAM 4\",\n\t\"league_id\":4\n}"
 				},
 				"url": {
 					"raw": "http://localhost:4000/leagues/4/teams",
@@ -392,7 +392,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU2OTM4OTQzLCJleHAiOjMzMTE0NTM4OTQzLCJqdGkiOiIxMjM0NSJ9.zdzknopO8I6BiSWV6BvxEoxN-FX9gNXhddhvbPrn3Ls",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
 						"type": "text"
 					}
 				],
@@ -415,6 +415,584 @@
 					]
 				},
 				"description": "This is the PUT request that is made to edit a team"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/schedule - POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3NDQ5MDM4LCJleHAiOjMzMTE1MDQ5MDM4LCJqdGkiOiIxMjM0NSJ9.-gRd2pSMDguo8oYhwH5eifSRAyPsHq01cah7-o7QcEM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"away_team_id\": \"9\",\n        \"home_team_id\": \"10\",\n        \"start_time\": \"June 01, 2019 17:00:00\",\n        \"end_time\": \"June 01, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"11\",\n        \"home_team_id\": \"12\",\n        \"start_time\": \"June 02, 2019 17:00:00\",\n        \"end_time\": \"June 02, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"9\",\n        \"home_team_id\": \"11\",\n        \"start_time\": \"June 03, 2019 17:00:00\",\n        \"end_time\": \"June 03, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"10\",\n        \"home_team_id\": \"12\",\n        \"start_time\": \"June 04, 2019 17:00:00\",\n        \"end_time\": \"June 04, 2019 19:00:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/schedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"schedule"
+					]
+				},
+				"description": "To generate a new schedule "
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/schedule -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3NDQ5MDM4LCJleHAiOjMzMTE1MDQ5MDM4LCJqdGkiOiIxMjM0NSJ9.-gRd2pSMDguo8oYhwH5eifSRAyPsHq01cah7-o7QcEM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"away_team_id\": \"9\",\n        \"home_team_id\": \"10\",\n        \"start_time\": \"June 01, 2019 17:00:00\",\n        \"end_time\": \"June 01, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"11\",\n        \"home_team_id\": \"12\",\n        \"start_time\": \"June 02, 2019 17:00:00\",\n        \"end_time\": \"June 02, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"9\",\n        \"home_team_id\": \"11\",\n        \"start_time\": \"June 03, 2019 17:00:00\",\n        \"end_time\": \"June 03, 2019 19:00:00\"\n\t},\n\t{\n        \"away_team_id\": \"10\",\n        \"home_team_id\": \"12\",\n        \"start_time\": \"June 04, 2019 17:00:00\",\n        \"end_time\": \"June 04, 2019 19:00:00\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/schedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"schedule"
+					]
+				},
+				"description": "To get the entire schedule for the league"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/schedule/15 -PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3NDQ5MDM4LCJleHAiOjMzMTE1MDQ5MDM4LCJqdGkiOiIxMjM0NSJ9.-gRd2pSMDguo8oYhwH5eifSRAyPsHq01cah7-o7QcEM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"start_time\": \"June 05, 2019 17:00:00\",\n    \"end_time\": \"June 05, 2019 19:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/schedule/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"schedule",
+						"15"
+					]
+				},
+				"description": "To edit information in a certain game"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/cancellations -GET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"POSTMAN TEAM\",\n\t\"league_id\":4\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/cancellations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"cancellations"
+					]
+				},
+				"description": "To get all cancellation request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/cancellations -POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"game_id\": \"15\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/cancellations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"cancellations"
+					]
+				},
+				"description": "To send a cancellation request for a specific game"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/leagues/4/cancellations/1 - PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"isCancelled\":\"true\",\n\t\"cancellation\": {\"id\":\"1\", \"game_id\":\"15\" }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/leagues/4/cancellations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"leagues",
+						"4",
+						"cancellations",
+						"1"
+					]
+				},
+				"description": "To acknowledge a cancellation request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/search -POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"postmanPut\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"search"
+					]
+				},
+				"description": "search for a specific team by name"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/search -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"postmanPut\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"search"
+					]
+				},
+				"description": "This gets all leagues that are searchable"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/search/4/schedule -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"postmanPut\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/search/4/schedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"search",
+						"4",
+						"schedule"
+					]
+				},
+				"description": "This gets the schedule for a specific league that is searched"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/search/users -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"postmanPut\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/search/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"search",
+						"users"
+					]
+				},
+				"description": "finds users id and email"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/settings -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"postmanPut\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"settings"
+					]
+				},
+				"description": "Gets all the settings for a league admin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/settings -PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"postman@blah.com\",\n    \"username\": \"poster\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"phone\": null,\n    \"google_id\": null\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"settings"
+					]
+				},
+				"description": "This is the put when changing the settings"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/settings/password -POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"oldPassword\":\"12345\",\n\t\"newPassword\": \"1234\",\n\t\"confirmPassword\":\"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/settings/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"settings",
+						"password"
+					]
+				},
+				"description": "This is used for changing the password of the users"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/teams/10/schedule -GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"coach_user_id\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/teams/10/schedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"teams",
+						"10",
+						"schedule"
+					]
+				},
+				"description": "This retrieves the schedule for a specific team"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/teams -GET",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJlbWFpbCI6InBvc3RtYW5AYmxhaC5jb20iLCJ1c2VybmFtZSI6bnVsbCwiZmlyc3RfbmFtZSI6bnVsbCwibGFzdF9uYW1lIjpudWxsLCJwaG9uZSI6bnVsbCwiZ29vZ2xlX2lkIjpudWxsfSwiaWF0IjoxNTU3Mjc5Njc3LCJleHAiOjMzMTE0ODc5Njc3LCJqdGkiOiIxMjM0NSJ9.nPeMP4eUfgfQdJdzl7AFNWkJ0Hv3lY0RV9fTqFE_pgM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/teams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"teams"
+					]
+				},
+				"description": "This gets the teams that a specific user is a coach for"
 			},
 			"response": []
 		}
