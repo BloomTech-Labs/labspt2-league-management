@@ -340,6 +340,7 @@ body {
 
 .landing-page .screenshots {
   min-height: 500px;
+  padding: 25px 0;
   background-color: #1565c0;
   margin-bottom: 60px;
   display: flex;
@@ -358,7 +359,7 @@ body {
   width: 98%;
   min-width: 500px;
   max-width: 720px;
-  margin: 50px 2%;
+  margin: 25px 1%;
   box-shadow: 0px 15px 5px -10px #222;
   height: 400px;
 }
