@@ -73,8 +73,18 @@ class LandingPage extends Component {
               </section>
             </section>
             <section className="screenshots">
-              <div className="screenshot" />
-              <div className="screenshot" />
+              <img
+                className="screenshot1"
+                src={require('../Images/Calendar.png')}
+                alt="Calendar Screenshot"
+              />
+              <img
+                className="screenshot2"
+                src={require('../Images/leagueSettings.png')}
+                alt="Calendar Screenshot"
+              />
+              {/* <div className="screenshot1" /> */}
+              {/* <div className="screenshot2" /> */}
             </section>
             <PhotoGallery />
             <footer className="footer">
