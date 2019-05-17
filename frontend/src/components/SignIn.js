@@ -139,7 +139,6 @@ class SignIn extends React.Component {
                 name="email"
                 onChange={this.InputHandler}
                 autoComplete="email"
-                error={this.state.error === 1 ? true : false}
                 autoFocus
               />
             </FormControl>

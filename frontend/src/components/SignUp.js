@@ -40,6 +40,10 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main
   },
+  message: {
+    color: 'red',
+    marginTop: theme.spacing.unit
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit
@@ -56,28 +60,86 @@ class Signup extends React.Component {
     email: '',
     first_name: '',
     last_name: '',
-    phone: ''
+    phone: '',
+    message: '',
+    focus: 1,
+    error: 0
   };
 
   InputHandler = event => {
     event.preventDefault();
     const target = event.target;
-    this.setState({ [target.name]: target.value });
+    this.setState({
+      [target.name]: target.value,
+      error: 0,
+      message: ''
+    });
   };
 
   SubmitHandler = event => {
     event.preventDefault();
-    const credentials = this.state;
-    const endpoint = '/auth/register';
-    axios
-      .post(endpoint, credentials)
-      .then(res => {
-        localStorage.setItem('jwt', res.data.token);
-        this.props.history.push('/signin');
-      })
-      .catch(err => {
-        console.log('err from Submit handler in SignUp', err);
+
+    const {
+      username,
+      password,
+      email,
+      first_name,
+      last_name,
+      phone
+    } = this.state;
+
+    if (!username) {
+      this.setState({
+        message: 'Username cannot be empty',
+        focus: 1,
+        error: 1
       });
+    } else if (!password) {
+      this.setState({
+        message: 'Password cannot be empty',
+        focus: 2,
+        error: 2
+      });
+    } else if (!email) {
+      this.setState({
+        message: 'Email cannot be empty',
+        focus: 3,
+        error: 3
+      });
+    } else if (!first_name) {
+      this.setState({
+        message: 'First Name cannot be empty',
+        focus: 4,
+        error: 4
+      });
+    } else if (!last_name) {
+      this.setState({
+        message: 'Last Name cannot be empty',
+        focus: 5,
+        error: 5
+      });
+    } else {
+      const endpoint = '/auth/register';
+      const profile = {
+        username,
+        password,
+        email,
+        first_name,
+        last_name,
+        phone
+      };
+      axios
+        .post(endpoint, profile)
+        .then(res => {
+          localStorage.setItem('jwt', res.data.token);
+          this.props.history.push('/signin');
+        })
+        .catch(err => {
+          this.setState({
+            message: 'Unable to create profile'
+          });
+        });
+    }
   };
 
   render() {
@@ -94,8 +156,14 @@ class Signup extends React.Component {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
+          <p className={classes.message}>{this.state.message}</p>
           <form className={classes.form} onSubmit={this.SubmitHandler}>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 1 ? true : false}
+            >
               <InputLabel htmlFor="username">Username</InputLabel>
               <Input
                 id="username"
@@ -104,11 +172,21 @@ class Signup extends React.Component {
                 autoFocus
               />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 2 ? true : false}
+            >
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input id="email" name="email" onChange={this.InputHandler} />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 3 ? true : false}
+            >
               <InputLabel htmlFor="password">Password</InputLabel>
               <Input
                 id="password"
@@ -117,7 +195,12 @@ class Signup extends React.Component {
                 onChange={this.InputHandler}
               />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 4 ? true : false}
+            >
               <InputLabel htmlFor="first_name">First Name</InputLabel>
               <Input
                 id="first_name"
@@ -125,7 +208,12 @@ class Signup extends React.Component {
                 onChange={this.InputHandler}
               />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 5 ? true : false}
+            >
               <InputLabel htmlFor="last_name">Last Name</InputLabel>
               <Input
                 id="last_name"
@@ -133,7 +221,12 @@ class Signup extends React.Component {
                 onChange={this.InputHandler}
               />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl
+              margin="normal"
+              // required
+              fullWidth
+              error={this.state.error === 6 ? true : false}
+            >
               <InputLabel htmlFor="phone">Phone # Ex: 1234567890</InputLabel>
               <Input id="phone" name="phone" onChange={this.InputHandler} />
             </FormControl>
