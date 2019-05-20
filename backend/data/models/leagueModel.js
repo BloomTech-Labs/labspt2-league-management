@@ -6,7 +6,9 @@ module.exports = {
   },
 
   getLeaguesByUser: user => {
-    return db('league').where('admin_user_id', user.id);
+    return db('league')
+      .where('admin_user_id', user.id)
+      .orderBy('id');
   },
 
   getLeaguesByName: name => {

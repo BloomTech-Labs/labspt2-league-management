@@ -27,7 +27,11 @@ class CoachCancellationList extends Component {
           <p className="page-header">Upcoming Games</p>
           <div className="games">
             {this.state.games.map(game => {
-              if (!game.pending_cancelled && !game.cancelled) {
+              if (
+                !game.pending_cancelled &&
+                !game.cancelled &&
+                new Date(game.start_time) > new Date()
+              ) {
                 return (
                   <CoachCancellationItem
                     classname="available-games"
