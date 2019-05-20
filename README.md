@@ -33,12 +33,12 @@ Listed alphabetically:
    $ yarn && yarn server
    ```
    
-4. Inside `/frontend` install all dependencies and kick off the frontend
+4. Inside `/frontend` install all dependencies and kick off the Front End
    ```
    $ yarn && yarn start
    ```
 
-Now just open [http://localhost:3000](http://localhost:3000) to visit the frontend, or query the server endpoints directly at [http://localhost:4000](http://localhost:4000)
+Now just open [http://localhost:3000](http://localhost:3000) to visit the Front End, or query the server endpoints directly at [http://localhost:4000](http://localhost:4000)
 
 <br />
 
@@ -50,19 +50,25 @@ Now just open [http://localhost:3000](http://localhost:3000) to visit the fronte
 
 <br />
 
+# Tech Stack
+
+Our tech stack is React and Context API on the Front End and Node, Express, and PostgresQL on the Back End.  We chose our Front End because we wanted a fast rendering framework that when using Context API could hold state without prop-drilling and we had never used Context API before.  We chose our Back End because we wanted to keep the app unified using JavaScript throughout.  Node and express would allow us to do that easily and PostgresQL allowed us to have a relational database that could maintain better than some other options such as SQLit3.
+
+<br />
+
 # Scripts
 
 ## Running
 
 From the root directory:
 
-`cd frontend && yarn start` - Runs the frontend client
+`cd frontend && yarn start` - Runs the Front end client
 
-`cd backend && yarn server` - Runs the backend server
+`cd backend && yarn server` - Runs the Back end server
 
-## Backend Testing
+## Back End Testing
 
-We did a lot of manual testing to make sure everything works correctly.  Our main testing tools were Postman, terminal logging, and the Chrome DevTools.  Our back end testing quick guide can be found [here](./Postman_Testing/QuickGuide.md)
+We did a lot of manual testing to make sure everything works correctly.  Our main testing tools were Postman, terminal logging, and the Chrome DevTools.  Our Back End testing quick guide can be found [here](./Postman_Testing/QuickGuide.md).
 
 # Environment Variables
 
@@ -85,7 +91,13 @@ Front end infomation can be found in the [Front End README](./frontend/README.md
 
 # Back End Information
 
-Back end information can be found in the [Back End README](./backend/README.md)
+Back End information can be found in the [Back End README](./backend/README.md)
+
+<br />
+
+# Security
+
+Security is very important to us.  We will never store passwords in plain text.  Authentication is handled through the use of JSON Web tokens, and user passwords are salted and hashed for extra security.  Payment transcations are conducted using Stripe so that credit card information is never stored on our server.
 
 <br />
 
