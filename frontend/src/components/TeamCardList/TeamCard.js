@@ -532,7 +532,7 @@ class TeamCard extends React.Component {
                 <p className={classes.header}>Upcoming Games</p>
                 <p
                   className={classes.game}
-                  style={!this.state.scheduleGame2 ? { display: 'none' } : null}
+                  style={(this.state.scheduleGame1 === false || this.state.scheduleGame1.game1Month === null) ? { display: 'none' } : null}
                 >
                   <span style={{ fontWeight: '600' }}>
                     {this.state.scheduleGame1.game1Month}
@@ -546,7 +546,7 @@ class TeamCard extends React.Component {
                 </p>
                 <p
                   className={classes.game}
-                  style={!this.state.scheduleGame2 ? { display: 'none' } : null}
+                  style={(this.state.scheduleGame2 === false || this.state.scheduleGame2.game2Month === null) ? { display: 'none' } : null}
                 >
                   <span style={{ fontWeight: '600' }}>
                     {this.state.scheduleGame2.game2Month}
