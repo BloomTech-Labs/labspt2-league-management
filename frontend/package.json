@@ -17,7 +17,7 @@
     "date-fns": "2.0.0-alpha.26",
     "jwt-decode": "^2.2.0",
     "material-ui-pickers": "^2.2.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "notistack": "^0.8.2",
     "query-string": "^6.4.0",
     "react": "^16.8.3",
